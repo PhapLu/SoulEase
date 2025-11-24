@@ -25,12 +25,6 @@ const ConversationSchema = new mongoose.Schema(
                 },
                 content: { type: String },
                 media: { type: [String] },
-                reactions: [
-                    {
-                        emoji: { type: String, required: true },
-                        reactors: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
-                    },
-                ],
                 createdAt: { type: Date, default: Date.now },
                 isSeen: {
                     type: Boolean,
@@ -44,9 +38,6 @@ const ConversationSchema = new mongoose.Schema(
                 ],
             },
         ],
-        type: { type: String, default: '' },
-        galaxyId: { type: mongoose.Types.ObjectId, ref: 'Galaxy' },
-        roleplayRoomId: { type: mongoose.Types.ObjectId, ref: 'RoleplayRoom' },
     },
     {
         timestamps: true,
