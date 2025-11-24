@@ -12,7 +12,7 @@ const UserSchema = new Schema(
         password: { type: String, default: '' },
         role: {
             type: String,
-            enum: ['member', 'talent', 'admin'],
+            enum: ['member', 'family', 'doctor', 'clinic'],
             default: 'member',
         },
         gender: { type: String, enum: ['male', 'female', 'other'], trim: true },
@@ -54,12 +54,6 @@ UserSchema.pre('save', function (next) {
     }
     next()
 })
-
-// Indexing for searching
-UserSchema.index({ fullName: 'text', email: 'text', bio: 'text' })
-UserSchema.index({ domainName: 1 })
-UserSchema.index({ email: 1 })
-UserSchema.index({ 'comments.userId': 1, 'comments.createdAt': -1 })
 
 const User = mongoose.model(DOCUMENT_NAME, UserSchema)
 export { User }
