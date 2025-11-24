@@ -4,87 +4,166 @@ dotenv.config()
 import express from 'express'
 import http from 'http'
 import cors from 'cors'
-import helmet from 'helmet'
 import morgan from 'morgan'
+import helmet from 'helmet'
+import { v4 as uuidv4 } from 'uuid'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import passport from 'passport'
+import session from 'express-session'
 import mongoose from 'mongoose'
 
 import router from './routes/index.js'
 import configureSocket from './configs/socket.config.js'
 import SocketServices from './services/socket.service.js'
+import sanitizeInputs from './middlewares/sanitize.middleware.js'
+import './configs/cronJob.config.js'
 
-// Optional custom input sanitizer
-// import sanitizeInputs from "./middlewares/sanitize.middleware.js";
-
-// Connect MongoDB
+// Init DBs/caches (no Redis store for session; keep your own ioredis init if needed)
 import './db/init.mongodb.js'
+import { init as initIoRedis } from './db/init.ioredis.js'
+import { blockChecker, globalLimiter } from './configs/ratelimit.config.js'
+import myLogger from './loggers/myLogger.log.js'
+initIoRedis({ IOREDIS_IS_ENABLED: false })
 
 const app = express()
 
-/* ------------------------ Basic Security ------------------------ */
+/* ---------- App & Security Defaults ---------- */
+app.set('trust proxy', 1)
 app.disable('x-powered-by')
-app.use(
-    helmet({
-        contentSecurityPolicy: false, // disable CSP → easier during dev
-    })
-)
 
-/* ------------------------ CORS (simple, clean) ------------------------ */
+/* ---------- Allowed Origins (normalize) ---------- */
+const toOrigin = (v) => (v && !/^https?:\/\//.test(v) ? `https://${v}` : v)
+
+const allowedOrigins = [toOrigin(process.env.CLIENT_LOCAL_ORIGIN), toOrigin(process.env.CLIENT_ORIGIN)].filter(Boolean)
+
+/* ---------- CORS (before rate limits) ---------- */
 app.use(
     cors({
-        origin: true, // allow any frontend
+        origin: (origin, cb) => {
+            if (!origin || allowedOrigins.includes(origin)) return cb(null, true)
+            return cb(new Error(`CORS blocked for ${origin}`))
+        },
+        methods: ['GET', 'HEAD', 'OPTIONS', 'PUT', 'PATCH', 'POST', 'DELETE'],
+        allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization', 'X-Request-Id'],
         credentials: true,
     })
 )
+// Ensure preflights pass quickly
+app.options('*', cors())
 
-/* ------------------------ Parsers & Utilities ------------------------ */
-app.use(express.json({ limit: '500kb' }))
-app.use(express.urlencoded({ extended: true }))
+/* ---------- Helmet (hardened defaults) ---------- */
+app.use(
+    helmet({
+        contentSecurityPolicy: process.env.DISABLE_CSP
+            ? false
+            : {
+                  useDefaults: true,
+                  directives: {
+                      'script-src': ["'self'"],
+                      'frame-ancestors': ["'none'"],
+                  },
+              },
+        referrerPolicy: { policy: 'no-referrer' },
+        crossOriginOpenerPolicy: { policy: 'same-origin' },
+        crossOriginResourcePolicy: { policy: 'same-site' },
+        hsts: process.env.NODE_ENV === 'production' ? { maxAge: 15552000, includeSubDomains: true, preload: false } : false,
+    })
+)
+
+/* ---------- Parsers & Utilities ---------- */
+app.use(express.json({ limit: '200kb' }))
+app.use(express.urlencoded({ extended: true, limit: '200kb' }))
 app.use(cookieParser())
 app.use(compression())
-// app.use(sanitizeInputs);
+app.use(sanitizeInputs)
 
-/* ------------------------ Logger ------------------------ */
-app.use(morgan('dev'))
+/* ---------- Request ID + Logging ---------- */
+app.use((req, _res, next) => {
+    req.requestId = req.headers['x-request-id'] || uuidv4()
+    next()
+})
+morgan.token('rid', (req) => req.requestId)
+app.use(morgan(':method :url :status :response-time ms rid=:rid'))
 
-/* ------------------------ Passport ------------------------ */
-app.use(passport.initialize())
-import './configs/passport.config.js'
+app.use((req, _res, next) => {
+    myLogger.log(`input-params ::${req.method}::`, [req.path, { requestId: req.requestId }, req.method === 'POST' || req.method === 'PATCH' ? req.body : req.query])
+    next()
+})
 
-/* ------------------------ Routes ------------------------ */
-app.use('/', router)
+/* ---------- Rate Limiters (after CORS) ---------- */
+app.use(blockChecker)
+// If your limiter throttles OPTIONS, short-circuit it:
+app.use((req, res, next) => (req.method === 'OPTIONS' ? res.sendStatus(204) : next()))
+app.use(globalLimiter)
 
-/* ------------------------ 404 Handler ------------------------ */
-app.use((req, res) => {
-    res.status(404).json({
+/* ---------- Sessions (MemoryStore; OK for dev/small apps) ---------- */
+/* NOTE: MemoryStore isn't for production scale. You asked to omit Redis. */
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            secure: process.env.NODE_ENV === 'production',
+            httpOnly: true,
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        },
+    })
+)
+
+/* ---------- Routes ---------- */
+app.use('', router)
+
+/* ---------- 404 & Error Handling ---------- */
+app.use((req, _res, next) => {
+    const error = new Error('Not Found Route')
+    error.status = 404
+    next(error)
+})
+
+app.use((error, req, res, _next) => {
+    const statusCode = error.status || 500
+
+    myLogger.error('handler-error', [req.path, { requestId: req.requestId }, { status: statusCode, message: error.message }])
+
+    // Avoid leaking internals in prod
+    const message = statusCode === 404 ? 'Not Found' : process.env.NODE_ENV === 'production' ? 'Internal Server Error' : error.message || 'Internal Server Error'
+
+    res.status(statusCode).json({
         status: 'error',
-        message: 'Route not found',
+        code: statusCode,
+        message,
     })
 })
 
-/* ------------------------ Error Handler ------------------------ */
-app.use((err, req, res, _next) => {
-    console.error('Error:', err.message)
-
-    res.status(err.status || 500).json({
-        status: 'error',
-        message: process.env.NODE_ENV === 'production' ? 'Internal Server Error' : err.message,
-    })
-})
-
-/* ------------------------ HTTP + WebSocket ------------------------ */
+/* ---------- Server & Sockets ---------- */
 const server = http.createServer(app)
 const io = configureSocket(server)
-io.on('connection', SocketServices.connection)
+global._io.on('connection', SocketServices.connection)
 
-/* ------------------------ Graceful Shutdown ------------------------ */
-process.on('SIGINT', async () => {
-    console.log('Shutting down...')
-    await mongoose.connection.close()
-    server.close(() => process.exit(0))
+/* ---------- Shutdown & Process Events ---------- */
+process.on('unhandledRejection', (reason) => {
+    console.error('Unhandled Rejection:', reason)
 })
 
-/* ------------------------ Export ------------------------ */
+process.on('SIGINT', async () => {
+    console.log('SIGINT: closing…')
+    try {
+        if (global._io) await global._io.close()
+    } catch (e) {
+        console.error('Socket close error:', e?.message)
+    }
+    try {
+        await mongoose.connection.close()
+    } catch (e) {
+        console.error('Mongo close error:', e?.message)
+    }
+    server.close(() => {
+        console.log('HTTP server closed.')
+        process.exit(0)
+    })
+})
+
 export default server
