@@ -18,7 +18,7 @@ const Header = () => {
           <span className="se-logo__text">SoulEase</span>
         </Link>
 
-        {/* MENU DESKTOP + MOBILE (layout khác nhau bằng CSS) */}
+        {/* MENU DESKTOP + MOBILE */}
         <nav
           className={`se-nav ${isMobileOpen ? "se-nav--open" : ""}`}
           aria-hidden={!isMobileOpen}
@@ -36,7 +36,7 @@ const Header = () => {
             Pricing
           </Link>
 
-          {/* Actions chỉ hiện ở MOBILE */}
+          {/* Actions MOBILE */}
           <div className="se-nav__mobile-actions">
             <Link
               to="/signin"
@@ -63,7 +63,7 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Hamburger button – chỉ hiện mobile */}
+        {/* Hamburger mobile */}
         <button
           className={`se-menu-toggle ${
             isMobileOpen ? "se-menu-toggle--open" : ""

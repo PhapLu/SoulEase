@@ -204,7 +204,7 @@
   font-weight: 600;
   color: #ffffff;
   background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
-  box-shadow: 0 8px 18px var(--secondary-color);
+  box-shadow: 0 8px 18px var(--primary-color);
   transform: translateY(0);
   transition:
     transform 0.22s ease,
@@ -233,7 +233,6 @@
     padding: 10px 16px;
   }
 
-  /* Ẩn menu ngang & actions desktop */
   .se-nav {
     position: absolute;
     top: 100%;
@@ -268,7 +267,7 @@
   }
 
   .se-actions {
-    display: none; /* desktop actions */
+    display: none;
   }
 
   .se-nav__mobile-actions {
