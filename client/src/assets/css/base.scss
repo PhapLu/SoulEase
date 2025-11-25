@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&display=swap");
+
+:root {
+    --primary-color: #A9F1DD;
+    --secondary-color: #059669;
+    --tertiary-color: #5cd4b4;
+    --btn-color: rgba(255, 255, 255, 0.16);
+    --hover-btn: #44BEA1;
+    --text-color-dark: #051b15;
+    --text-color-light: #fff;
+    --danger: #ef4444;
+    --bg: #fff5fb;
+    --muted: rgba(55, 71, 65, 0.452);
+    --border: #e5e7eb;
+    --box-shadow: #5cd4b420
+}
+
+html,
+body {
+    font-family: "Inter", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+}

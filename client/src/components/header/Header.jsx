@@ -1,34 +1,80 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/logo.png";
 
 const Header = () => {
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  const toggleMobile = () => setIsMobileOpen((prev) => !prev);
+  const closeMobile = () => setIsMobileOpen(false);
+
   return (
     <header className="se-header">
-      <div className="se-header-inner">
-        {/* Brand */}
-        <Link to="/" className="se-header-brand">
-          <img src={logo} alt="SoulEase Logo" className="se-header-logo-img" />
-          <span className="se-header-brand-text">SoulEase</span>
+      <div className="se-header__inner">
+        {/* Logo */}
+        <Link to="/" className="se-logo" onClick={closeMobile}>
+          <img src={logo} alt="SoulEase logo" className="se-logo__img" />
+          <span className="se-logo__text">SoulEase</span>
         </Link>
 
-        {/* Nav */}
-        <nav className="se-header-nav">
-          <a href="#about">About us</a>
-          <a href="#services">Services</a>
-          <a href="#resources">Resources</a>
-          <a href="#pricing">Pricing</a>
+        {/* MENU DESKTOP + MOBILE (layout khác nhau bằng CSS) */}
+        <nav
+          className={`se-nav ${isMobileOpen ? "se-nav--open" : ""}`}
+          aria-hidden={!isMobileOpen}
+        >
+          <Link to="/about" className="se-nav__link" onClick={closeMobile}>
+            About us
+          </Link>
+          <Link to="/services" className="se-nav__link" onClick={closeMobile}>
+            Services
+          </Link>
+          <Link to="/resources" className="se-nav__link" onClick={closeMobile}>
+            Resources
+          </Link>
+          <Link to="/pricing" className="se-nav__link" onClick={closeMobile}>
+            Pricing
+          </Link>
+
+          {/* Actions chỉ hiện ở MOBILE */}
+          <div className="se-nav__mobile-actions">
+            <Link
+              to="/signin"
+              className="se-actions__signin se-actions__signin--mobile"
+              onClick={closeMobile}
+            >
+              Sign in
+            </Link>
+            <Link to="/signup" onClick={closeMobile}>
+              <button className="se-actions__trial se-actions__trial--mobile">
+                Start free trial
+              </button>
+            </Link>
+          </div>
         </nav>
 
-        {/* Actions */}
-        <div className="se-header-actions">
-          <Link to="/signin" className="se-header-btn se-header-btn-ghost">
+        {/* Actions DESKTOP */}
+        <div className="se-actions">
+          <Link to="/signin" className="se-actions__signin">
             Sign in
           </Link>
-          <Link to="/signup" className="se-header-btn se-header-btn-primary">
-            Start free trial
+          <Link to="/signup">
+            <button className="se-actions__trial">Start free trial</button>
           </Link>
         </div>
+
+        {/* Hamburger button – chỉ hiện mobile */}
+        <button
+          className={`se-menu-toggle ${
+            isMobileOpen ? "se-menu-toggle--open" : ""
+          }`}
+          onClick={toggleMobile}
+          aria-label="Toggle navigation"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
     </header>
   );

@@ -1,17 +1,13 @@
-* {
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
-}
-
-
 .signin-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at top left,#10b981, #d9fff3, #ffffff);
+    background: radial-gradient(circle at top left,var(--tertiary-color), var(--primary-color),  #fff);
     min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
 }
 
 /* brand + card */
@@ -48,7 +44,7 @@
 
 .signin-subtitle {
     text-align: center;
-    color: #6b7280;
+    color: var(--muted);
     font-size: 18px;
     margin-bottom: 24px;
 }
@@ -77,7 +73,7 @@
     display: flex;
     align-items: center;
     border-radius: 6px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border);
     background: #ffffff;
     padding-left: 38px;
 }
@@ -91,15 +87,15 @@
 }
 
 .signin-input-wrapper:focus-within {
-    border-color: #10b981;
-    box-shadow: 0 0 0 1px #10b98120;
+    border-color: #5cd4b4;
+    box-shadow: 0 0 0 1px var(--box-shadow);
 }
 
 .signin-input-icon {
     position: absolute;
     left: 12px;
     font-size: 14px;
-    color: #9ca3af;
+    color: var(--muted);
 }
 
 /* Eye button */
@@ -111,7 +107,7 @@
     cursor: pointer;
     font-size: 20px;
     padding: 0;
-    color: #10b981;
+    color: var(--tertiary-color);
 }
 
 /* Submit button */
@@ -124,7 +120,7 @@
     font-size: 14px;
     font-weight: 500;
     color: white;
-    background: linear-gradient(90deg, #10b981, #059669);
+    background: linear-gradient(90deg, var(--tertiary-color), var(--secondary-color));
     cursor: pointer;
 }
 
@@ -139,21 +135,21 @@
     background: none;
     padding: 0;
     font-size: 14px;
-    color: #6b7280;
+    color: var(--btn-color);
     cursor: pointer;
 }
 
 .signin-footer-text {
     margin-top: 10px;
     padding-top: 14px;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--border);
     text-align: center;
     font-size: 14px;
-    color: #6b7280;
+    color: var(--muted);
 }
 
 .signin-link {
-    color: #10b981;
+    color: var(--hover-btn);
     font-weight: 500;
     text-decoration: none;
 }
@@ -163,7 +159,7 @@
 }
 
 .signup-select {
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border);
     border-radius: 6px;
     padding: 10px 12px;
     font-size: 14px;
@@ -172,8 +168,8 @@
 }
 
 .signup-select:focus {
-    border-color: #10b981;
-    box-shadow: 0 0 0 1px #10b98120;
+    border-color: var(--hover-btn);
+    box-shadow: 0 0 0 1px var(--box-shadow);
 }
 
 /* Responsive */

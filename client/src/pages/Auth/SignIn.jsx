@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Auth.css";
-import Header from "../components/header/Header";
+import Header from "../../components/header/Header";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const SignIn = () => {
@@ -92,7 +92,7 @@ const SignIn = () => {
 
               <div className="signin-footer-text">
                 Are you new here?{" "}
-                <a href="/signup" className="signin-link">
+                <a href="/auth/signup" className="signin-link">
                   Create a free account
                 </a>
               </div>
