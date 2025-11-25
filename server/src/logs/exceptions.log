@@ -304,3 +304,75 @@ TypeError: Missing parameter name at index 1: *; visit https://git.new/pathToReg
     at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:257:22)
     at app.<computed> [as options] (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:478:22)
     at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/app.js:53:5::undefined
+2025-11-25 09:07:29::error::undefined::undefined::uncaughtException: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+TypeError: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:96:19)
+    at parse (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:113:68)
+    at pathToRegexp (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:267:58)
+    at Object.match (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:237:30)
+    at matcher (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\lib\layer.js:86:23)
+    at new Layer (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\lib\layer.js:93:62)
+    at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\index.js:428:17)
+    at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:257:22)
+    at app.<computed> [as options] (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:478:22)
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/app.js:53:5::undefined
+2025-11-25 09:07:33::error::undefined::undefined::uncaughtException: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+TypeError: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:96:19)
+    at parse (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:113:68)
+    at pathToRegexp (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:267:58)
+    at Object.match (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:237:30)
+    at matcher (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\lib\layer.js:86:23)
+    at new Layer (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\lib\layer.js:93:62)
+    at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\index.js:428:17)
+    at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:257:22)
+    at app.<computed> [as options] (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:478:22)
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/app.js:53:5::undefined
+2025-11-25 09:07:38::error::undefined::undefined::uncaughtException: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+TypeError: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:96:19)
+    at parse (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:113:68)
+    at pathToRegexp (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:267:58)
+    at Object.match (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:237:30)
+    at matcher (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\lib\layer.js:86:23)
+    at new Layer (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\lib\layer.js:93:62)
+    at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\index.js:428:17)
+    at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:257:22)
+    at app.<computed> [as options] (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:478:22)
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/app.js:53:5::undefined
+2025-11-25 09:07:49::error::undefined::undefined::uncaughtException: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+TypeError: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:96:19)
+    at parse (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:113:68)
+    at pathToRegexp (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:267:58)
+    at Object.match (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:237:30)
+    at matcher (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\lib\layer.js:86:23)
+    at new Layer (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\lib\layer.js:93:62)
+    at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\index.js:428:17)
+    at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:257:22)
+    at app.<computed> [as options] (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:478:22)
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/app.js:53:5::undefined
+2025-11-25 09:07:58::error::undefined::undefined::uncaughtException: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+TypeError: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:96:19)
+    at parse (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:113:68)
+    at pathToRegexp (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:267:58)
+    at Object.match (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:237:30)
+    at matcher (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\lib\layer.js:86:23)
+    at new Layer (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\lib\layer.js:93:62)
+    at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\index.js:428:17)
+    at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:257:22)
+    at app.<computed> [as options] (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:478:22)
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/app.js:53:5::undefined
+2025-11-25 09:08:09::error::undefined::undefined::uncaughtException: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+TypeError: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:96:19)
+    at parse (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:113:68)
+    at pathToRegexp (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:267:58)
+    at Object.match (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\path-to-regexp\dist\index.js:237:30)
+    at matcher (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\lib\layer.js:86:23)
+    at new Layer (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\lib\layer.js:93:62)
+    at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\router\index.js:428:17)
+    at Function.route (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:257:22)
+    at app.<computed> [as options] (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\express\lib\application.js:478:22)
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/app.js:53:5::undefined
