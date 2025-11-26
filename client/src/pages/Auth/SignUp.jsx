@@ -1,13 +1,16 @@
 import { useState } from "react";
 import "./Auth.css";
-import Header from "../components/header/Header";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import Header from "../../components/header/Header";
+import { Link } from "react-router-dom";
 
-const SignIn = () => {
+const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({
     email: "",
+    fullName: "",
     password: "",
+    clinicians: "",
   });
 
   const onChange = (e) => {
@@ -17,22 +20,20 @@ const SignIn = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("Sign in with:", inputs);
+    console.log("Sign up with:", inputs);
   };
 
   return (
     <>
       {/* HEADER */}
       <Header />
-
-      {/* SIGN-IN PAGE */}
       <div className="signin-page">
         <div className="signin-card">
-          <h1 className="signin-brand">SoulEase</h1>
+        
 
           <div className="signin-card-inner">
-            <h2 className="signin-title">Sign in</h2>
-            <p className="signin-subtitle">Great to see you again</p>
+            <h2 className="signin-title">Sign Up</h2>
+            <p className="signin-subtitle">Welcome to SoulEase</p>
 
             <form className="signin-form" onSubmit={onSubmit}>
               {/* Email */}
@@ -47,6 +48,24 @@ const SignIn = () => {
                     name="email"
                     placeholder="Enter your email"
                     value={inputs.email}
+                    onChange={onChange}
+                    required
+                  />
+                </div>
+              </label>
+
+              {/* Full Name */}
+              <label className="signin-field">
+                <span className="signin-label">Full name</span>
+                <div className="signin-input-wrapper">
+                  <span className="signin-input-icon">
+                    <i className="fa-solid fa-user"></i>
+                  </span>
+                  <input
+                    type="text"
+                    name="fullName"
+                    placeholder="Enter your full name"
+                    value={inputs.fullName}
                     onChange={onChange}
                     required
                   />
@@ -82,19 +101,35 @@ const SignIn = () => {
                 </div>
               </label>
 
-              <button type="submit" className="signin-submit-btn">
-                Sign in
-              </button>
+              {/* Clinicians dropdown */}
+              <label className="signin-field">
+                <span className="signin-label">
+                  How many clinicians are in your practice?
+                </span>
+                <select
+                  className="signup-select"
+                  name="clinicians"
+                  value={inputs.clinicians}
+                  onChange={onChange}
+                  required
+                >
+                  <option value="">Select one</option>
+                  <option value="1-5">1–5</option>
+                  <option value="6-20">6–20</option>
+                  <option value="21-50">21–50</option>
+                  <option value="50+">50+</option>
+                </select>
+              </label>
 
-              <button type="button" className="signin-link-btn">
-                Forget your password?
+              <button type="submit" className="signin-submit-btn">
+                Sign up
               </button>
 
               <div className="signin-footer-text">
-                Are you new here?{" "}
-                <a href="/signup" className="signin-link">
-                  Create a free account
-                </a>
+                Have an account already?{" "}
+                <Link to="/auth/signin" className="signin-link">
+                  Sign In
+                </Link>
               </div>
             </form>
           </div>
@@ -104,4 +139,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
