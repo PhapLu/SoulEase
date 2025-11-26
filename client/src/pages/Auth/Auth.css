@@ -1,44 +1,33 @@
 .signin-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: radial-gradient(circle at top left,var(--tertiary-color), var(--primary-color),  #fff);
-    min-height: 100vh;
+    height: 100vh;
     padding: 0;
     margin: 0;
-    overflow-x: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+    overflow-y: hidden;
 }
 
 /* brand + card */
 .signin-card {
-    width: 80%;
-    padding: 40px 16px;
+    width: 100%;
+    height: 100%;
 }
 
-/* Logo*/
-.signin-brand {
-    text-align: center;
-    font-size: 32px;
-    font-weight: 600;
-    margin-bottom: 32px;
-    color: #000;
-}
 
 /* Card form */
 .signin-card-inner {
-    margin: 0 auto;
-    max-width: 300px;
+    margin: 10% auto;
+    max-width: 510px;
+    height: 700px;
     background: #ffffff;
     border-radius: 12px;
-    padding: 16px 32px 28px;
+    padding: 28px 32px;
     box-shadow: 0 10px 10px #69646433;
 }
 
 /* Title + subtitle */
 .signin-title {
     text-align: center;
-    font-size: 22px;
+    font-weight: 500;
+    font-size: 24px;
     margin-bottom: 4px;
 }
 
@@ -51,6 +40,7 @@
 
 /* Form + field */
 .signin-form {
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -112,7 +102,7 @@
 
 /* Submit button */
 .signin-submit-btn {
-    margin-top: 4px;
+    margin-top: 12px;
     width: 100%;
     border: none;
     border-radius: 6px;
@@ -120,22 +110,20 @@
     font-size: 14px;
     font-weight: 500;
     color: white;
-    background: linear-gradient(90deg, var(--tertiary-color), var(--secondary-color));
+    background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
     cursor: pointer;
+    transition: 0.25s;
 }
 
 .signin-submit-btn:hover {
     filter: brightness(1.02);
+    transform: translateY(-1px) scale(1.02);
 }
 
 /* Link text */
 .signin-link-btn {
-    margin-top: 8px;
-    border: none;
-    background: none;
-    padding: 0;
+    color: var(--muted);
     font-size: 14px;
-    color: var(--btn-color);
     cursor: pointer;
 }
 

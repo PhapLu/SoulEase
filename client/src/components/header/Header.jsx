@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/logo.png";
@@ -45,7 +45,7 @@ const Header = () => {
             >
               Sign in
             </Link>
-            <Link to="/signup" onClick={closeMobile}>
+            <Link to="/auth/signup" onClick={closeMobile}>
               <button className="se-actions__trial se-actions__trial--mobile">
                 Start free trial
               </button>
@@ -55,10 +55,10 @@ const Header = () => {
 
         {/* Actions DESKTOP */}
         <div className="se-actions">
-          <Link to="/signin" className="se-actions__signin">
+          <Link to="/auth/signin" className="se-actions__signin">
             Sign in
           </Link>
-          <Link to="/signup">
+          <Link to="/auth/signup">
             <button className="se-actions__trial">Start free trial</button>
           </Link>
         </div>

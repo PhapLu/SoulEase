@@ -27,7 +27,7 @@ export default function About() {
   return (
     <div className="about-page">
       {/* HERO -------------------------------------------------- */}
-      <section className="about-hero" data-aos="fade-up">
+      <section className="about-hero " data-aos="fade-up">
         <div className="about-hero-inner">
           <p className="about-hero-eyebrow">SoulEase’s story</p>
 
@@ -57,8 +57,9 @@ export default function About() {
       >
         <h2 className="about-section-title">Objective - Mission - Value</h2>
         <p className="about-section-subtitle">
-          By organizing clinicians’ knowledge, we support personalized care and
-          meaningful insights for mental-health improvement.
+          By organizing clients into meaningful groups for easier dashboard and
+          system management, SoulEase enables you to use your time more
+          efficiently and significantly boost your overall productivity.
         </p>
 
         <div className="about-card-grid">
@@ -73,7 +74,7 @@ export default function About() {
 
       {/* OUR TEAM ---------------------------------------------- */}
       <section
-        className="about-section"
+        className="about-section team"
         data-aos="fade-up"
         data-aos-delay="250"
       >

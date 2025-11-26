@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Auth.css";
 import Header from "../../components/header/Header";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,8 +29,6 @@ const SignIn = () => {
       {/* SIGN-IN PAGE */}
       <div className="signin-page">
         <div className="signin-card">
-          <h1 className="signin-brand">SoulEase</h1>
-
           <div className="signin-card-inner">
             <h2 className="signin-title">Sign in</h2>
             <p className="signin-subtitle">Great to see you again</p>
@@ -92,9 +91,9 @@ const SignIn = () => {
 
               <div className="signin-footer-text">
                 Are you new here?{" "}
-                <a href="/auth/signup" className="signin-link">
+                <Link to="/auth/signup" className="signin-link">
                   Create a free account
-                </a>
+                </Link>
               </div>
             </form>
           </div>
