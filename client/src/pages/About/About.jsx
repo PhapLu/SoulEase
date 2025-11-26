@@ -1,4 +1,4 @@
-// import React from "react";
+import { useState, useEffect } from "react";
 import "./About.css";
 
 const OMV = [
@@ -23,7 +23,42 @@ const team = [
   { name: "Bao Tran" },
 ];
 
-export default function About() {
+export default function About({
+  interest = [
+    "Clinicians",
+    "Therapists",
+    "Psychiatrists",
+  ],
+}) {
+  // Typing effect
+  const [wordIndex, setWordIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const TYPING_MS = 60;
+  const DELETING_MS = 38;
+  const HOLD_MS = 8000;
+  const words = interest && interest.length ? interest : ["Clinicians"];
+  const currentWord = words[wordIndex % words.length];
+  const display = currentWord.slice(0, charIndex);
+
+  useEffect(() => {
+    let timer;
+    if (!isDeleting) {
+      if (charIndex < currentWord.length) {
+        timer = setTimeout(() => setCharIndex((c) => c + 1), TYPING_MS);
+      } else {
+        timer = setTimeout(() => setIsDeleting(true), HOLD_MS);
+      }
+    } else {
+      if (charIndex > 0) {
+        timer = setTimeout(() => setCharIndex((c) => c - 1), DELETING_MS);
+      } else {
+        setIsDeleting(false);
+        setWordIndex((i) => (i + 1) % words.length);
+      }
+    }
+    return () => clearTimeout(timer);
+  }, [charIndex, isDeleting, wordIndex, currentWord.length]);
   return (
     <div className="about-page">
       {/* HERO -------------------------------------------------- */}
@@ -34,9 +69,7 @@ export default function About() {
           <h1 className="about-hero-title">
             SoulEase is an all-in-one workspace for
             <br />
-            <span className="about-hero-highlight">
-              clinicians / therapists / psychiatrists
-            </span>
+            <span className="about-hero-highlight">{display}</span>
           </h1>
 
           <p className="about-hero-description">
