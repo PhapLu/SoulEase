@@ -11,6 +11,7 @@ import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import SignIn from "./pages/Auth/SignIn.jsx";
 import SignUp from "./pages/Auth/SignUp.jsx";
 import AuthLayout from "./pages/Auth/AuthLayout.jsx";
+import Resources from "./pages/Resources/Resources.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,14 +20,16 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <LandingPage /> },
       { path: "about", element: <About /> },
+      { path: "resources", element: <Resources /> },
     ],
   },
-  { path: "/auth", 
-    element: <AuthLayout/>,
+  {
+    path: "/auth",
+    element: <AuthLayout />,
     children: [
-      {path: 'signin', element: <SignIn/>},
-      {path: 'signup', element: <SignUp/>}
-    ]
+      { path: "signin", element: <SignIn /> },
+      { path: "signup", element: <SignUp /> },
+    ],
   },
 ]);
 

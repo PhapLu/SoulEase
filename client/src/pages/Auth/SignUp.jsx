@@ -29,8 +29,6 @@ const SignUp = () => {
       <Header />
       <div className="signin-page">
         <div className="signin-card">
-        
-
           <div className="signin-card-inner">
             <h2 className="signin-title">Sign Up</h2>
             <p className="signin-subtitle">Welcome to SoulEase</p>

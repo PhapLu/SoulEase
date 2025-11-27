@@ -1,0 +1,143 @@
+.resources-page {
+  min-height: 100vh;
+  background-color: var(--bg);
+  box-sizing: border-box;
+  padding-top: 120px;
+  padding-bottom: 80px;
+  width: 100%;
+}
+
+.resources-layout {
+  display: flex;
+  max-width: 960px;
+  margin: 0 auto;
+  gap: 48px;
+  padding-top: 7%;
+}
+
+/* Sidebar */
+.resources-sidebar {
+  width: 200px;
+  padding-top: 6px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.resources-sidebar-label {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.resources-sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resources-sidebar-list li {
+  margin-bottom: 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Content */
+.resources-content {
+  flex: 1;
+}
+
+.resources-title {
+  font-size: 32px;
+  margin-bottom: 32px;
+  scroll-margin-top: 110px;
+}
+
+.resources-content .resources-title:first-of-type {
+  margin-top: 0;
+}
+
+.resources-content .resources-title:not(:first-of-type) {
+  margin-top: 32px;
+}
+
+.resources-item + .resources-item {
+  margin-top: 28px;
+}
+
+.resources-question {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.resources-answer {
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* -------------------- Responsive -------------------- */
+
+@media (max-width: 1024px) {
+  .resources-page {
+    padding: 110px 60px 64px;
+  }
+
+  .resources-title {
+    font-size: 28px;
+  }
+
+  .resources-question {
+    font-size: 18px;
+  }
+
+  .resources-answer {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .resources-page {
+    padding: 30px 40px 56px;
+  }
+
+  .resources-layout {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .resources-sidebar {
+    width: 100%;
+  }
+
+  .resources-sidebar-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+
+  .resources-sidebar-list li {
+    margin-bottom: 0;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.03);
+    font-size: 13px;
+  }
+
+  .resources-title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .resources-page {
+    padding: 10px 24px 40px;
+  }
+
+  .resources-title {
+    font-size: 22px;
+  }
+
+  .resources-question {
+    font-size: 17px;
+  }
+}
