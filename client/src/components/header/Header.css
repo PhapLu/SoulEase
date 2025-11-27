@@ -82,7 +82,7 @@
 .se-nav__link:hover {
   opacity: 1;
   color: var(--hover-btn);
-  transform: translateY(-1px);
+  transform: translateY(-10px);
 }
 
 
@@ -142,7 +142,7 @@
 .se-actions__signin:hover {
   opacity: 1;
   color: var(--hover-btn);
-  transform: translateY(-1px);
+  transform: translateY(-10px);
 }
 
 
@@ -169,7 +169,7 @@
 }
 
 .se-actions__trial:hover {
-  transform: translateY(-1px) scale(1.02);
+  transform: translateY(-5px) scale(1.02);
   filter: brightness(1.03);
 }
 

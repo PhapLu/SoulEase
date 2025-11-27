@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./About.css";
+import logo from "../../assets/logo.png";
 
 const OMV = [
   {
@@ -17,18 +18,26 @@ const OMV = [
 ];
 
 const team = [
-  { name: "Quoc Phap" },
-  { name: "Gia Hy" },
-  { name: "Minh Tuan" },
-  { name: "Bao Tran" },
+  {
+    name: "Quoc Phap",
+    img: "/images/phap.jpg",
+    role: "Loremmmm mmmmmmmmm mmmmmmmmmmmm",
+  },
+  {
+    name: "Gia Hy",
+    img: "/images/hy.jpg",
+    role: "Loremmmmmm mmmmmmmmmmm mmmmmmmm",
+  },
+  { name: "Minh Tuan", img: logo, role: "Loremmmmmm mmmmmmmmmmm mmmmmmmm" },
+  {
+    name: "Bao Tran",
+    img: "/images/tran.jpg",
+    role: "Loremmmmm mmmmmmmmmm mmmmmmmmmm",
+  },
 ];
 
 export default function About({
-  interest = [
-    "Clinicians",
-    "Therapists",
-    "Psychiatrists",
-  ],
+  interest = ["Clinicians", "Therapists", "Psychiatrists"],
 }) {
   // Typing effect
   const [wordIndex, setWordIndex] = useState(0);
@@ -120,7 +129,8 @@ export default function About({
         <div className="about-team-grid">
           {team.map((m) => (
             <div key={m.name} className="about-team-card">
-              <div className="about-team-avatar" />
+              <img src={m.img} alt={m.name} className="about-team-avatar" />
+              <p className="about-team-text">{m.role}</p>
               <p className="about-team-name">{m.name}</p>
             </div>
           ))}
