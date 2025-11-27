@@ -1,8 +1,7 @@
 .se-footer {
   width: 100%;
-  padding: 40px 20px 30px;
-  background: #ffffff;
-  margin-top: 40px;
+  padding: 10px 20px 30px;
+  margin-top: 20px;
 }
 
 .se-footer-top-border {
@@ -25,9 +24,9 @@
 .se-footer-brand {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
-  min-width: 150px;
+  min-width: 180px;
 }
 
 .se-footer-logo {
@@ -44,6 +43,9 @@
   font-size: 22px;
   color: #111827;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .se-footer-socials a:hover {
@@ -55,6 +57,7 @@
   flex: 1;
   display: flex;
   justify-content: space-between;
+  gap: 32px;
 }
 
 .se-footer-col h4 {
@@ -77,18 +80,70 @@
   margin-top: 35px;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+/* ================== RESPONSIVE ================== */
+
+/* Tablet: cho phép wrap, đỡ bó chặt ngang */
+@media (max-width: 1024px) {
   .se-footer-inner {
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
     text-align: center;
+  }
+
+  .se-footer-brand {
+    align-items: center;
   }
 
   .se-footer-columns {
     width: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+
+  .se-footer-col {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .se-footer {
+    padding: 10px 16px 24px;
+  }
+
+  .se-footer-inner {
     flex-direction: column;
-    gap: 28px;
     align-items: center;
+    gap: 24px;
+  }
+
+  .se-footer-columns {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .se-footer-col {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .se-footer-logo {
+    height: 50px;
+  }
+
+  .se-footer-socials a {
+    font-size: 20px;
+  }
+
+  .se-footer-col h4 {
+    font-size: 15px;
+  }
+
+  .se-footer-col p,
+  .se-footer-bottom {
+    font-size: 13px;
   }
 }

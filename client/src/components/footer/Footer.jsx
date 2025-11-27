@@ -13,22 +13,26 @@ const Footer = () => {
           <img src={logo} alt="SoulEase Logo" className="se-footer-logo" />
 
           <div className="se-footer-socials">
-            <i className="fa-brands fa-facebook"></i>
-            <i className="fa-brands fa-square-instagram"></i>
-            <i className="fa-brands fa-github"></i>
+            <a href="#" aria-label="Facebook">
+              <i className="fa-brands fa-facebook" />
+            </a>
+            <a href="#" aria-label="Instagram">
+              <i className="fa-brands fa-square-instagram" />
+            </a>
+            <a href="#" aria-label="Github">
+              <i className="fa-brands fa-github" />
+            </a>
           </div>
         </div>
 
         {/* Columns */}
         <div className="se-footer-columns">
-          {/* Legal */}
           <div className="se-footer-col">
             <h4>Legal</h4>
             <p>Lorem Ipsum</p>
             <p>Lorem Ipsum</p>
           </div>
 
-          {/* Developers */}
           <div className="se-footer-col">
             <h4>Developers</h4>
             <p>Luu Quoc Phap</p>
@@ -37,14 +41,12 @@ const Footer = () => {
             <p>Le Minh Tuan</p>
           </div>
 
-          {/* Support */}
           <div className="se-footer-col">
             <h4>Help & support</h4>
             <p>Lorem Ipsum</p>
             <p>Lorem Ipsum</p>
           </div>
 
-          {/* Address */}
           <div className="se-footer-col">
             <h4>Our address:</h4>
             <p>702 Nguyen Van Linh, Tan Hung Ward,</p>
@@ -53,7 +55,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom text */}
       <div className="se-footer-bottom">
         Copyright © 2025 SoulEase – All rights reserved.
       </div>
