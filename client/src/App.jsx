@@ -7,6 +7,7 @@ import "aos/dist/aos.css";
 import Layout from "./Layout.jsx";
 
 import About from "./pages/About/About.jsx";
+import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import SignIn from "./pages/Auth/SignIn.jsx";
 import SignUp from "./pages/Auth/SignUp.jsx";
 import AuthLayout from "./pages/Auth/AuthLayout.jsx";
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      { index: true, element: <About /> },
+      { index: true, element: <LandingPage /> },
       { path: "about", element: <About /> },
     ],
   },
