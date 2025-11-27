@@ -184,7 +184,7 @@
     display: grid;
     place-items: center;
     border-radius: 5px;
-    background: #DFEEEC;
+    background: rgba(12, 137, 107, 0.10);
     color: var(--tertiary-color);
     font-size: 25px;
 }
@@ -311,7 +311,7 @@
     display: grid;
     place-items: center;
     border-radius: 5px;
-    background: #DFEEEC;
+    background: rgba(12, 137, 107, 0.10);
     color: var(--tertiary-color);
     font-size: 25px;
 }

@@ -128,10 +128,26 @@
   text-align: left;
 }
 
+.about-card-head{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.about-card-icon{
+  width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+    background: rgba(12, 137, 107, 0.10);
+    color: var(--tertiary-color);
+}
+
 .about-card-title {
   font-size: 24px;
   font-weight: 600;
-  margin-bottom: 14px;
   color: var(--text-color-dark);
 }
 
