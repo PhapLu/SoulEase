@@ -1,29 +1,28 @@
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
-import { Outlet, useLocation } from "react-router-dom";
+import Header from './components/header/Header'
+import Footer from './components/footer/Footer'
+import { Outlet, useLocation } from 'react-router-dom'
 
-import "./Layout.css";
-import FinisherBackground from "./components/BackgroundApp/FinisherBackground";
+import './Layout.css'
+import FinisherBackground from './components/BackgroundApp/FinisherBackground'
 
 const Layout = () => {
-  const { pathname } = useLocation();
-  const isLanding = pathname === "/";
+    const { pathname } = useLocation()
+    const isLanding = pathname === '/'
 
-  return (
-    <>
-      <div className={`app-layout ${isLanding ? "landing-view" : ""}`}>
-      <FinisherBackground />
-        <Header />
+    return (
+        <>
+            <div className={`app-layout ${isLanding ? 'landing-view' : ''}`}>
+                <FinisherBackground />
+                <Header />
 
-        <main className="app-main">
-          
-          <Outlet />
-        </main>
+                <main className='app-main'>
+                    <Outlet />
+                </main>
 
-        <Footer />
-      </div>
-    </>
-  );
-};
+                <Footer />
+            </div>
+        </>
+    )
+}
 
-export default Layout;
+export default Layout

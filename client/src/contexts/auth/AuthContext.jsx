@@ -1,0 +1,182 @@
+// Imports
+import { createContext, useContext, useState, useEffect } from 'react'
+import Cookies from 'js-cookie'
+import socketIOClient from 'socket.io-client'
+
+// Utils
+import { newRequest, apiUtils } from '../../utils/newRequest'
+import { formatEmailToName } from '../../utils/formatter'
+
+const AuthContext = createContext()
+export const useAuth = () => useContext(AuthContext)
+
+export const AuthProvider = ({ children }) => {
+    // UI states
+    const [showLoginForm, setShowLoginForm] = useState(false)
+    const [showRegisterForm, setShowRegisterForm] = useState(false)
+    const [showResetPasswordForm, setShowResetPasswordForm] = useState(false)
+    const [showResetPasswordVerificationForm, setShowResetPasswordVerificationForm] = useState(false)
+    const [showSetNewPasswordForm, setShowSetNewPasswordForm] = useState(false)
+    const [showRegisterVerificationForm, setShowRegisterVerificationForm] = useState(false)
+    const [overlayVisible, setOverlayVisible] = useState(false)
+    const [showMenu, setShowMenu] = useState(false)
+
+    // Auth + user data
+    const [userInfo, setUserInfo] = useState(null)
+    const [myCharacters, setMyCharacters] = useState([])
+    const [characterInfo, setCharacterInfo] = useState(null)
+    const [onlineUsers, setOnlineUsers] = useState([])
+
+    // Loading state
+    const [loading, setLoading] = useState(true)
+
+    // Socket
+    const [socket, setSocket] = useState(null)
+
+    // --------------------------------------------------
+    // 1) Setup socket connection on mount
+    // --------------------------------------------------
+    useEffect(() => {
+        const newSocket = socketIOClient(import.meta.env.VITE_ENV === 'production' ? import.meta.env.VITE_SERVER_ORIGIN : import.meta.env.VITE_SERVER_LOCAL_ORIGIN)
+
+        setSocket(newSocket)
+        return () => newSocket.disconnect()
+    }, [])
+
+    useEffect(() => {
+        if (!socket) return
+        socket.on('getUsers', (users) => setOnlineUsers(users))
+        return () => socket.off('getUsers')
+    }, [socket])
+
+    // --------------------------------------------------
+    // 2) Fetch userInfo on mount
+    // --------------------------------------------------
+    const loadUserMe = async () => {
+        try {
+            const res = await newRequest.get('/user/me')
+            const user = res.data.metadata.user
+            user.displayName = formatEmailToName(user.email)
+            setUserInfo(user)
+        } catch {
+            setUserInfo(null)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        loadUserMe()
+    }, [])
+
+    // Add socket user after login load
+    useEffect(() => {
+        if (socket && userInfo?._id) {
+            socket.emit('addUser', userInfo._id)
+        }
+    }, [socket, userInfo])
+
+    // --------------------------------------------------
+    // 3) Fetch characters
+    // --------------------------------------------------
+    const loadMyCharacters = async () => {
+        if (!userInfo?._id) return
+        try {
+            const res = await newRequest.get(`/character/readCharacters/${userInfo.domainName}?includeRoles=owner`)
+            const chars = res.data.metadata.characters ?? []
+            setMyCharacters(chars)
+
+            // Set selected character
+            const storedId = localStorage.getItem('selectedCharacterId')
+            const found = chars.find((c) => c._id === storedId)
+
+            if (found) {
+                setCharacterInfo(found)
+            } else if (chars.length > 0) {
+                setCharacterInfo(chars[0])
+                localStorage.setItem('selectedCharacterId', chars[0]._id)
+            }
+        } catch (err) {
+            console.error('Error loading characters:', err)
+            setMyCharacters([])
+        }
+    }
+
+    useEffect(() => {
+        if (userInfo?._id) loadMyCharacters()
+    }, [userInfo])
+
+    // --------------------------------------------------
+    // 4) Login & Logout
+    // --------------------------------------------------
+    const login = async (email, password) => {
+        try {
+            const res = await newRequest.post('/auth/users/login', { email, password })
+            console.log('Login response:', res)
+            await loadUserMe() // Refresh userInfo
+            setShowLoginForm(false)
+            setOverlayVisible(false)
+            return true
+        } catch (err) {
+            console.log('Login failed:', err)
+            return false
+        }
+    }
+
+    const logout = async () => {
+        try {
+            await apiUtils.post('auth/users/logout')
+        } catch (err) {
+            console.error('Logout error:', err)
+        }
+
+        Cookies.remove('token')
+        localStorage.removeItem('token')
+        setUserInfo(null)
+        setMyCharacters([])
+        setCharacterInfo(null)
+
+        window.location.href = '/auth/login'
+    }
+
+    // --------------------------------------------------
+    // 5) Context value
+    // --------------------------------------------------
+    const value = {
+        // UI forms
+        showLoginForm,
+        setShowLoginForm,
+        showRegisterForm,
+        setShowRegisterForm,
+        showResetPasswordForm,
+        setShowResetPasswordForm,
+        showResetPasswordVerificationForm,
+        setShowResetPasswordVerificationForm,
+        showSetNewPasswordForm,
+        setShowSetNewPasswordForm,
+        showRegisterVerificationForm,
+        setShowRegisterVerificationForm,
+        overlayVisible,
+        setOverlayVisible,
+        showMenu,
+        setShowMenu,
+
+        // Auth
+        userInfo,
+        login,
+        logout,
+        loading,
+
+        // Characters
+        characterInfo,
+        setCharacterInfo,
+        myCharacters,
+        loadMyCharacters,
+
+        // Socket
+        socket,
+        onlineUsers,
+    }
+
+    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+}

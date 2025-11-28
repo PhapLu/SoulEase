@@ -32,25 +32,27 @@ const app = express()
 app.set('trust proxy', 1)
 app.disable('x-powered-by')
 
-/* ---------- Allowed Origins (normalize) ---------- */
-const toOrigin = (v) => (v && !/^https?:\/\//.test(v) ? `https://${v}` : v)
+/* ---------- Allowed Origins ---------- */
+const allowedOrigins = ['http://localhost:5173']
 
-const allowedOrigins = [toOrigin(process.env.CLIENT_LOCAL_ORIGIN), toOrigin(process.env.CLIENT_ORIGIN)].filter(Boolean)
-
-/* ---------- CORS (before rate limits) ---------- */
+/* ---------- CORS (Safe + Clean) ---------- */
 app.use(
     cors({
         origin: (origin, cb) => {
-            if (!origin || allowedOrigins.includes(origin)) return cb(null, true)
-            return cb(new Error(`CORS blocked for ${origin}`))
+            // Allow tools like Postman (no origin header)
+            if (!origin) return cb(null, true)
+
+            if (allowedOrigins.includes(origin)) {
+                return cb(null, true)
+            }
+
+            return cb(new Error(`CORS blocked: ${origin} not allowed`))
         },
         methods: ['GET', 'HEAD', 'OPTIONS', 'PUT', 'PATCH', 'POST', 'DELETE'],
         allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization', 'X-Request-Id'],
         credentials: true,
     })
 )
-// Ensure preflights pass quickly
-app.options('*', cors())
 
 /* ---------- Helmet (hardened defaults) ---------- */
 app.use(
