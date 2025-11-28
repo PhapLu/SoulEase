@@ -15,7 +15,7 @@
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 150px 90px 60px;
+  padding: 120px 90px 30px;
   text-align: center;
 }
 
@@ -54,7 +54,7 @@
   border-radius: 20px;
   background: var(--text-color-dark);
   color: var(--text-color-light);
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.3px;
 }
 
@@ -67,7 +67,7 @@
   z-index: 1;
   margin: 20px auto;
   max-width: 900px;
-  font-size: 65px;
+  font-size: 60px;
   font-weight: 500;
   line-height: 1.2;
 }
@@ -78,7 +78,7 @@
   font-style: italic;
   font-weight: 150;
   margin-top: 6px;
-  font-size: 60px;
+  font-size: 50px;
 }
 
 .landing-hero__subtitle {
@@ -86,8 +86,8 @@
   z-index: 1;
   margin: 15px auto;
   max-width: 720px;
-  color: #0c2d24;
-  font-size: 19px;
+  color: var(--text-color-dark);
+  font-size: 18px;
   line-height: 1.6;
 }
 
@@ -102,8 +102,8 @@
   border: none;
   outline: none;
   border-radius: 8px;
-  padding: 15px 25px;
-  font-size: 17px;
+  padding: 15px 28px;
+  font-size: 16px;
   cursor: pointer;
   font-weight: 500;
   color: var(--text-color-light);
@@ -115,8 +115,8 @@
 }
 
 .landing-btn:hover {
-  transform: translateY(-1px) scale(1.02);
-  filter: brightness(1.03);
+  transform: translateY(-10px) scale(1.02);
+  filter: brightness(1.12);
 }
 
 .landing-hero__panel {
@@ -147,7 +147,7 @@
 .landing-section__title {
   font-size: 50px;
   font-weight: 400;
-  background: linear-gradient(90deg, #0C1317, #0B876A);
+  background: linear-gradient(90deg, var(--text-color-dark), var(--tertiary-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -155,8 +155,8 @@
 
 .landing-section__subtitle {
   margin-top: 10px;
-  color: #5c6a63;
-  font-size: 20px;
+  color: var(--muted);
+  font-size: 18px;
 }
 
 .landing-features {
@@ -169,8 +169,8 @@
 
 .landing-feature-card {
   background: linear-gradient(315deg, var(--text-color-light) 60%, #D0EDE6 100%);
-  border: 1.5px solid #0C896B;
-  border-radius: 14px;
+  border: 1.5px solid var(--tertiary-color);
+  border-radius: 12px;
   padding: 50px 40px;
   min-height: 210px;
   text-align: center;
@@ -184,20 +184,20 @@
     display: grid;
     place-items: center;
     border-radius: 5px;
-    background: #DFEEEC;
-    color: #0C896B;
+    background: rgba(12, 137, 107, 0.10);
+    color: var(--tertiary-color);
     font-size: 25px;
 }
 
 .landing-feature-title {
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 550;
   margin-bottom: 25px;
 }
 
 .landing-feature-text {
-  font-size: 17px;
-  color: #496359;
+  font-size: 16px;
+  color: var(--muted);
   line-height: 1.6;
 }
 
@@ -220,7 +220,6 @@
   width: fit-content;
   border-radius: 999px;
   border: 1.3px solid rgba(10, 135, 105, 0.35);
-  box-shadow: 0 12px 24px rgba(8, 71, 55, 0.12);
 }
 
 .landing-tab {
@@ -237,7 +236,7 @@
 }
 
 .landing-tab.is-active {
-  background: linear-gradient(135deg, #4ec0a2, #0a8769);
+  background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
   color: var(--text-color-light);
   box-shadow: 0 12px 20px rgba(10, 135, 105, 0.18);
 }
@@ -264,13 +263,13 @@
 }
 
 .landing-tools__content h3 {
-  font-size: 25px;
+  font-size: 24px;
   margin-bottom: 8px;
 }
 
 .landing-tools__content p {
-  color: #496359;
-  font-size: 15px;
+  color: var(--muted);
+  font-size: 16px;
   line-height: 1.7;
 }
 
@@ -281,7 +280,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  color: #496359;
+  color: var(--muted);
 }
 
 .landing-list li {
@@ -292,13 +291,13 @@
 }
 
 .landing-list svg {
-  color: #496359;
+  color: var(--muted);
 }
 
 .landing-tools__card {
   background: linear-gradient(315deg, var(--text-color-light) 60%, #D0EDE6 100%);
-  border: 1.5px solid #0C896B;
-  border-radius: 14px;
+  border: 1.5px solid var(--tertiary-color);
+  border-radius: 12px;
   padding: 50px 40px;
   min-height: 210px;
   text-align: center;
@@ -312,8 +311,8 @@
     display: grid;
     place-items: center;
     border-radius: 5px;
-    background: #DFEEEC;
-    color: #0C896B;
+    background: rgba(12, 137, 107, 0.10);
+    color: var(--tertiary-color);
     font-size: 25px;
 }
 
@@ -322,7 +321,7 @@
   align-items: center;
   gap: 8px;
   justify-content: center;
-  color: #0a8769;
+  color: var(--tertiary-color);
   font-weight: 700;
   margin-top: 30px;
 }
