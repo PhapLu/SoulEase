@@ -7,9 +7,6 @@ import WorkspaceTopBar from "../../../components/Workspace/WorkspaceTopBar";
 export default function Patients() {
   const navigate = useNavigate();
 
-  // =============================
-  // MOCK DATA CHUẨN
-  // =============================
   const folders = [
     { id: "folder-1", name: "Folder 1" },
     { id: "folder-2", name: "Folder 2" },
