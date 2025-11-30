@@ -42,13 +42,19 @@
 }
 
 .workspace-topbar-btn-primary {
-  background: var(--secondary-color);
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--tertiary-color)
+  );
+  transform: translateY(0);
+  transition: transform 0.22s ease, filter 0.22s ease;
   color: #fff;
   border-color: transparent;
 }
 
 .workspace-topbar-btn:hover {
-    transform: translateY(-5px) scale(1.02);
+  transform: translateY(-5px) scale(1.02);
   filter: brightness(1.03);
 }
 
@@ -84,9 +90,9 @@
     font-size: 0.85rem;
   }
 
-    .workspace-topbar-btn-primary{
+  .workspace-topbar-btn-primary {
     background: var(--secondary-color);
-    }
+  }
 
   .workspace-topbar-search-input {
     padding: 0.6rem 0.85rem;
