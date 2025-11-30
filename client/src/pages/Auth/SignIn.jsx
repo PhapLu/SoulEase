@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import "./Auth.css";
 import Header from "../../components/header/Header";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -10,6 +10,11 @@ const SignIn = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/workspace";
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -19,6 +24,12 @@ const SignIn = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log("Sign in with:", inputs);
+
+    // TODO: call API login
+
+    localStorage.setItem("token", "fake-token");
+
+    navigate(from, { replace: true });
   };
 
   return (

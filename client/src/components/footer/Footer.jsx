@@ -1,5 +1,5 @@
 import "./Footer.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.svg";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const Footer = () => {

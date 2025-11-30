@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.svg";
 
 const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -14,7 +14,7 @@ const Header = () => {
       <div className="se-header__inner">
         {/* Logo */}
         <Link to="/" className="se-logo" onClick={closeMobile}>
-          <img src={logo} alt="SoulEase logo" className="se-logo__img" />
+          <img src={logo} alt="SoulEase logo" className="se-logo__svg" />
           <span className="se-logo__text">SoulEase</span>
         </Link>
 

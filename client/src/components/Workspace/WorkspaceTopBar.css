@@ -1,0 +1,123 @@
+.workspace-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.workspace-topbar-search-wrapper {
+  flex: 1;
+}
+
+.workspace-topbar-search-input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.workspace-topbar-search-input::placeholder {
+  color: #aaa;
+}
+
+.workspace-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.workspace-topbar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.workspace-topbar-btn-primary {
+  background: var(--secondary-color);
+  color: #fff;
+  border-color: transparent;
+}
+
+.workspace-topbar-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+  filter: brightness(1.03);
+}
+
+.workspace-topbar-user-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.workspace-topbar-user-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: #ddd;
+}
+
+/* ========= RESPONSIVE TOPBAR ========= */
+
+/* Tablet (≤ 900px) */
+@media (max-width: 900px) {
+  .workspace-topbar {
+    gap: 0.75rem;
+  }
+
+  .workspace-topbar-btn,
+  .workspace-topbar-user-pill {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+    .workspace-topbar-btn-primary{
+    background: var(--secondary-color);
+    }
+
+  .workspace-topbar-search-input {
+    padding: 0.6rem 0.85rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile (≤ 640px) */
+@media (max-width: 640px) {
+  .workspace-topbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .workspace-topbar-search-wrapper {
+    width: 100%;
+    order: 1;
+  }
+
+  .workspace-topbar-actions {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    order: 2;
+    gap: 0.5rem;
+  }
+
+  .workspace-topbar-btn,
+  .workspace-topbar-user-pill {
+    flex: 1 1 calc(50% - 0.5rem);
+    justify-content: center;
+  }
+}

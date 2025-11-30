@@ -3,24 +3,26 @@
 @import "tailwindcss";
 
 :root {
-    --primary-color: #A9F1DD;
-    --secondary-color: #47C1A4;
-    --tertiary-color: #0A8769;
-    --btn-color: rgba(255, 255, 255, 0.16);
-    --hover-btn: #44BEA1;
-    --text-color-dark: #0C1317;
-    --text-color-light: #FFFCFF;
-    --danger: #ef4444;
-    --bg: #fff5fb;
-    --muted: #737373;
-    --border: #e5e7eb;
-    --box-shadow: rgba(0, 0, 0, 0.25);
+  --primary-color: #A9F1DD;
+  --secondary-color: #47C1A4;
+  --tertiary-color: #0A8769;
+  --btn-color: rgba(255, 255, 255, 0.16);
+  --hover-btn: #44BEA1;
+  --text-color-dark: #0C1317;
+  --text-color-light: #FFFCFF;
+  --danger: #ef4444;
+  --bg: #faebf4;
+  --muted: #737373;
+  --border: #e5e7eb;
+  --box-shadow: rgba(0, 0, 0, 0.25);
 }
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
+
 * {
   margin: 0;
 }
@@ -31,11 +33,12 @@ html {
 
 html,
 body {
-    font-family: "Manrope", sans-serif;
-    padding: 0;
-    margin: 0;
-    scroll-behavior: smooth;
+  font-family: "Manrope", sans-serif;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
 }
+
 img,
 picture,
 video,
@@ -44,6 +47,7 @@ svg {
   display: block;
   max-width: 100%;
 }
+
 input,
 button,
 textarea,
@@ -52,17 +56,19 @@ select {
 }
 
 body {
-    margin: 0;
+  margin: 0;
 }
-.app-layer{
+
+.app-layer {
   position: relative;
   z-index: 1;
 }
-.finisher-header{
+
+.finisher-header {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100vh;
-  pointer-events: none; 
+  pointer-events: none;
   z-index: 0;
 }
