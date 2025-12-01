@@ -12,6 +12,7 @@ import LandingPage from './pages/landingPage/LandingPage.jsx'
 import SignIn from './pages/auth/SignIn.jsx'
 import SignUp from './pages/auth/SignUp.jsx'
 import AuthLayout from './pages/auth/AuthLayout.jsx'
+import Verification from './pages/auth/Verification.jsx'
 import ResourcesPage from './pages/Resources/Resources.jsx'
 
 import WorkspaceLayout from './pages/workSpace/WorkspaceLayout.jsx'
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
         children: [
             { path: 'signin', element: <SignIn /> },
             { path: 'signup', element: <SignUp /> },
+            { path: 'verification', element: <Verification /> },
         ],
     },
     {
