@@ -10,16 +10,19 @@
     --text-color-dark: #0c1317;
     --text-color-light: #fffcff;
     --danger: #ef4444;
-    --bg: #fff5fb;
-    --muted: #686868;
+    --bg: #faebf4;
+    --green-bg: #e1f9f5;
+    --muted: #737373;
     --border: #e5e7eb;
     --box-shadow: rgba(0, 0, 0, 0.25);
 }
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
+
 * {
     margin: 0;
 }
@@ -35,6 +38,7 @@ body {
     margin: 0;
     scroll-behavior: smooth;
 }
+
 img,
 picture,
 video,
@@ -43,6 +47,7 @@ svg {
     display: block;
     max-width: 100%;
 }
+
 input,
 button,
 textarea,
@@ -53,10 +58,12 @@ select {
 body {
     margin: 0;
 }
+
 .app-layer {
     position: relative;
     z-index: 1;
 }
+
 .finisher-header {
     position: fixed;
     inset: 0;

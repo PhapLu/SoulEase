@@ -4,11 +4,11 @@ import Header from '../../components/header/Header'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/auth/AuthContext'
+import { useNavigate, useLocation, Link } from 'react-router-dom'
 
 const SignIn = () => {
     const { login } = useAuth()
     const navigate = useNavigate()
-
     const [showPassword, setShowPassword] = useState(false)
     const [isSubmitLoginLoading, setIsSubmitLoginLoading] = useState(false)
     const [errors, setErrors] = useState({})
@@ -22,6 +22,9 @@ const SignIn = () => {
         setInputs((prev) => ({ ...prev, [name]: value }))
         setErrors((prev) => ({ ...prev, [name]: '' }))
     }
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname || '/workspace'
 
     const validateInputs = () => {
         let errs = {}

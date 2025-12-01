@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./About.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.svg";
 
 const OMV = [
   {
