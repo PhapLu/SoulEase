@@ -19,66 +19,17 @@ class UserService {
         // 1. Decode accessToken
         const decoded = jwt.verify(decrypt(accessToken), process.env.JWT_SECRET)
         if (!decoded?.id) throw new AuthFailureError('Invalid token')
-
         const userId = decoded.id.toString()
-
         // 2. Fetch user WITHOUT followers/following arrays
-        const user = await User.findById(userId).select('-password -accessToken -googleId -followers -following').populate('referral.referred', 'avatar fullName domainName createdAt').populate('referral.referredBy', 'avatar fullName domainName createdAt').lean()
-
+        const user = await User.findById(userId).select('-password -accessToken -googleId -followers -following')
         if (!user) throw new NotFoundError('Please login to continue')
-
-        // Pin code flag
-        const hasSetPinCode = !!user.pinCode
-        delete user.pinCode
-
-        // -----------------------------------------
-        // 🔥 3. OPTIMIZED: followersCount & followingCount
-        // -----------------------------------------
-        const [followersCount, followingCount] = await Promise.all([User.countDocuments({ following: userId }), User.countDocuments({ followers: userId })])
-        // -----------------------------------------
-
-        // 4. Parallel fetch unseen conversations & notifications
-        const [filteredUnSeenConversations, unSeenNotifications] = await Promise.all([
-            Conversation.find({
-                members: { $elemMatch: { user: userId } },
-                'messages.0': { $exists: true },
-            })
-                .select('members messages')
-                .populate('members.user', 'avatar fullName domainName')
-                .populate('messages.senderId', 'avatar fullName domainName')
-                .lean()
-                .then((conversations) =>
-                    conversations.filter((conv) => {
-                        const last = conv.messages?.[conv.messages.length - 1]
-                        if (!last) return false
-
-                        const senderId = last.senderId?._id?.toString() ?? last.senderId?.toString()
-                        const seenBy = (last.seenBy || []).map((id) => id.toString())
-                        const me = userId
-
-                        return senderId !== me && !seenBy.includes(me)
-                    })
-                ),
-
-            Notification.find({
-                receiverId: new mongoose.Types.ObjectId(userId),
-                isSeen: false,
-            }).lean(),
-        ])
 
         // 5. Fire-and-forget activity update
         User.updateOne({ _id: userId }, { $set: { 'activity.lastVisit': new Date() } }).exec()
 
         // 6. Return response
         return {
-            user: {
-                ...user,
-                hasSetPinCode,
-                followersCount, // 👈 clean & light
-                followingCount, // 👈 clean & light
-                unSeenConversations: filteredUnSeenConversations,
-                unSeenNotifications,
-            },
+            user,
         }
     }
 

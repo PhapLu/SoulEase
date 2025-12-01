@@ -84,3 +84,17 @@
 2025-12-01 22:43:14::info::/v1/api/auth/login::c8a49b63-b09c-474e-8424-c45c96088f98::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
 2025-12-01 22:43:14::info::/v1/api/user/me::ed0a0c8c-9912-416e-a030-1ee105704731::input-params ::GET::::{}
 2025-12-01 22:43:14::error::/v1/api/user/me::ed0a0c8c-9912-416e-a030-1ee105704731::handler-error::{"status":500,"message":"Cannot populate path `referral.referred` because it is not in your schema. Set the `strictPopulate` option to false to override."}
+2025-12-01 22:49:39::info::/v1/api/user/me::be5b4b19-70d5-4c88-8a80-88b95e8b77b5::input-params ::GET::::{}
+2025-12-01 22:49:39::error::/v1/api/user/me::be5b4b19-70d5-4c88-8a80-88b95e8b77b5::handler-error::{"status":500,"message":"Cannot populate path `referral.referred` because it is not in your schema. Set the `strictPopulate` option to false to override."}
+2025-12-01 22:49:39::info::/v1/api/user/me::0233deef-28b0-41e9-826b-e75c78c85c64::input-params ::GET::::{}
+2025-12-01 22:49:39::error::/v1/api/user/me::0233deef-28b0-41e9-826b-e75c78c85c64::handler-error::{"status":500,"message":"Cannot populate path `referral.referred` because it is not in your schema. Set the `strictPopulate` option to false to override."}
+2025-12-01 22:51:15::info::/v1/api/auth/login::d3e417c5-9f8c-4fca-8601-6f3f8495a603::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-01 22:51:15::info::/v1/api/user/me::9452ee55-a388-49f6-b79f-8e3350e17e23::input-params ::GET::::{}
+2025-12-01 22:51:15::error::/v1/api/user/me::9452ee55-a388-49f6-b79f-8e3350e17e23::handler-error::{"status":500,"message":"Cannot populate path `referral.referred` because it is not in your schema. Set the `strictPopulate` option to false to override."}
+2025-12-01 22:51:21::info::/v1/api/auth/login::445cd6f7-05eb-42a9-aaab-a57b69096ff5::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-01 22:51:21::info::/v1/api/user/me::adc97712-78cb-497e-852e-91896470e70d::input-params ::GET::::{}
+2025-12-01 22:51:21::error::/v1/api/user/me::adc97712-78cb-497e-852e-91896470e70d::handler-error::{"status":500,"message":"Cannot populate path `referral.referred` because it is not in your schema. Set the `strictPopulate` option to false to override."}
+2025-12-01 22:52:31::info::/v1/api/auth/login::036f9452-bc61-47ff-bacc-cf884d6146b3::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-01 22:52:31::info::/v1/api/user/me::f0edbf2f-f7c1-48c2-8533-f26ce29aae2f::input-params ::GET::::{}
+2025-12-01 22:52:31::info::/v1/api/character/readCharacters/undefined::362cec1e-cd9e-43e9-a7dd-9210d476ea72::input-params ::GET::::{"includeRoles":"owner"}
+2025-12-01 22:52:31::error::/v1/api/character/readCharacters/undefined::362cec1e-cd9e-43e9-a7dd-9210d476ea72::handler-error::{"status":404,"message":"Not Found Route"}

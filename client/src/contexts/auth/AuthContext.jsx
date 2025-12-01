@@ -77,45 +77,12 @@ export const AuthProvider = ({ children }) => {
     }, [socket, userInfo])
 
     // --------------------------------------------------
-    // 3) Fetch characters
-    // --------------------------------------------------
-    const loadMyCharacters = async () => {
-        if (!userInfo?._id) return
-        try {
-            const res = await newRequest.get(`/character/readCharacters/${userInfo.domainName}?includeRoles=owner`)
-            const chars = res.data.metadata.characters ?? []
-            setMyCharacters(chars)
-
-            // Set selected character
-            const storedId = localStorage.getItem('selectedCharacterId')
-            const found = chars.find((c) => c._id === storedId)
-
-            if (found) {
-                setCharacterInfo(found)
-            } else if (chars.length > 0) {
-                setCharacterInfo(chars[0])
-                localStorage.setItem('selectedCharacterId', chars[0]._id)
-            }
-        } catch (err) {
-            console.error('Error loading characters:', err)
-            setMyCharacters([])
-        }
-    }
-
-    useEffect(() => {
-        if (userInfo?._id) loadMyCharacters()
-    }, [userInfo])
-
-    // --------------------------------------------------
     // 4) Login & Logout
     // --------------------------------------------------
     const login = async (email, password) => {
         try {
             const res = await newRequest.post('/auth/login', { email, password })
-            console.log('Login response:', res)
             await loadUserMe() // Refresh userInfo
-            setShowLoginForm(false)
-            setOverlayVisible(false)
             return true
         } catch (err) {
             console.log('Login failed:', err)
@@ -171,7 +138,6 @@ export const AuthProvider = ({ children }) => {
         characterInfo,
         setCharacterInfo,
         myCharacters,
-        loadMyCharacters,
 
         // Socket
         socket,
