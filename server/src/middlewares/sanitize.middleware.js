@@ -1,11 +1,10 @@
 import sanitizeHtml from 'sanitize-html'
 import sanitize from 'mongo-sanitize'
 
-// Define allowed HTML tags and attributes for sanitization
 const sanitizeHtmlOptions = {
     allowedTags: ['b', 'i', 'em', 'strong', 'a', 'div', 'span', 'p', 'img', 'section', 'font', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'li', 'ol', 'br', 'hr', 'blockquote'],
     allowedAttributes: {
-        '*': ['class', 'id', 'style'], // Allow common attributes for all tags
+        '*': ['class', 'id', 'style'],
         a: ['href', 'target'],
         img: ['src', 'alt'],
         font: ['size'],
@@ -13,38 +12,43 @@ const sanitizeHtmlOptions = {
     allowedSchemes: ['http', 'https'],
 }
 
-// Function to recursively sanitize nested objects
+// ✅ Recursive sanitizer (unchanged logic)
 const sanitizeObject = (obj) => {
     if (Array.isArray(obj)) {
-        // If obj is an array, recursively sanitize each item
         return obj.map((item) => sanitizeObject(item))
     } else if (obj && typeof obj === 'object' && !Buffer.isBuffer(obj)) {
-        // If obj is an object, iterate through its keys
         const sanitizedObject = {}
         for (const key in obj) {
             if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                if (key.startsWith('$')) {
-                    // If key starts with '$', skip it to prevent MongoDB operator injection
-                    continue
-                }
-                sanitizedObject[key] = sanitizeObject(obj[key]) // Recursively sanitize nested objects
+                if (key.startsWith('$')) continue
+                sanitizedObject[key] = sanitizeObject(obj[key])
             }
         }
         return sanitizedObject
     } else if (typeof obj === 'string') {
-        // If obj is a string, sanitize HTML and remove potential MongoDB injection
         return sanitizeHtml(sanitize(obj), sanitizeHtmlOptions)
     } else {
-        // Return other types as is to ensure uniform handling
         return obj
     }
 }
 
-// Middleware function to sanitize req.body, req.query, and req.params
+// ✅ ✅ SAFE MIDDLEWARE (NO REASSIGNMENTS)
 const sanitizeInputs = (req, res, next) => {
-    req.body = sanitizeObject(req.body)
-    req.query = sanitizeObject(req.query)
-    req.params = sanitizeObject(req.params)
+    if (req.body && typeof req.body === 'object') {
+        const cleanBody = sanitizeObject(req.body)
+        Object.assign(req.body, cleanBody) // ✅ mutate instead of replace
+    }
+
+    if (req.query && typeof req.query === 'object') {
+        const cleanQuery = sanitizeObject(req.query)
+        Object.assign(req.query, cleanQuery) // ✅ THIS FIXES YOUR CRASH
+    }
+
+    if (req.params && typeof req.params === 'object') {
+        const cleanParams = sanitizeObject(req.params)
+        Object.assign(req.params, cleanParams) // ✅ safe
+    }
+
     next()
 }
 

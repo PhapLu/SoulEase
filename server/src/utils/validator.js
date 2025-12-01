@@ -15,7 +15,3 @@ export const isValidHttpUrl = (urlStr) => {
         return false
     }
 }
-
-export function isValidPassword(password) {
-    return minLength(password, 6) && hasDigit(password) && hasSymbol(password)
-}

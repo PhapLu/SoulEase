@@ -6,7 +6,6 @@ import ForgotPasswordOTP from '../models/forgotPasswordOTP.model.js'
 import UserOTPVerification from '../models/userOTPVerification.model.js'
 import { User } from '../models/user.model.js'
 import { AuthFailureError, BadRequestError } from '../core/error.response.js'
-import { isValidPassword } from '../utils/validator.js'
 import { encrypt } from '../configs/encryption.config.js'
 import { isAllowedEmail } from '../models/repositories/auth.repo.js'
 import Conversation from '../models/conversation.model.js'
@@ -92,96 +91,57 @@ class AuthService {
         }
     }
 
-    static signUp = async ({ fullName, email, password, referralCode }) => {
-        // 1. Check if email exists and in blacklist
-        const holderUser = await User.findOne({ email }).select('email').lean()
-        if (holderUser) throw new BadRequestError('Account already exists')
+    static signUp = async ({ fullName, email, password, clinicians }) => {
+        // 1️⃣ Normalize inputs
+        fullName = String(fullName || '').trim()
+        email = String(email || '')
+            .trim()
+            .toLowerCase()
+        password = String(password || '').trim()
+        clinicians = String(clinicians || '').trim()
 
-        // Check if the email is allowed
-        if (!isAllowedEmail(email)) throw new BadRequestError('Invalid Email')
+        // 2️⃣ Hash password
+        const passwordHash = await bcrypt.hash(password, 10)
 
-        // 2. Hash password
-        if (!isValidPassword(password)) throw new BadRequestError('Invalid password')
-        const hashedPassword = await bcrypt.hash(password, 10)
+        // 3️⃣ Generate OTP
+        const otp = crypto.randomInt(100000, 999999).toString()
+        const expiredAt = new Date(Date.now() + 30 * 60 * 1000) // 30 minutes
 
-        // 3. Check if there is an existing OTP record for the email
-        const oldOtp = await UserOTPVerification.findOne({ email }).select('email lastRequestDate requestCount').lean()
-        const today = new Date()
-        today.setHours(0, 0, 0, 0) // Set to the start of the day
-
-        let otp
-        let otpVerification
-        let lastRequestDate
-        if (oldOtp) {
-            lastRequestDate = new Date(oldOtp.lastRequestDate)
-            lastRequestDate.setHours(0, 0, 0, 0) // Set to the start of the day
-
-            if (lastRequestDate.getTime() === today.getTime()) {
-                // Same day request
-                if (oldOtp.requestCount >= 10) {
-                    throw new BadRequestError('You have exceeded the maximum number of requests for today. Please try again tomorrow.')
-                } else {
-                    // Increment request count and generate new OTP
-                    otp = crypto.randomInt(100000, 999999).toString()
-                    otpVerification = await UserOTPVerification.updateOne(
-                        { email },
-                        {
-                            $inc: { requestCount: 1 },
-                            $set: {
-                                otp,
-                                expiredAt: new Date(Date.now() + 30 * 60 * 1000),
-                                lastRequestDate: new Date(),
-                            },
-                        }
-                    )
-                }
-            } else {
-                // Different day request, reset count and generate new OTP
-                otp = crypto.randomInt(100000, 999999).toString()
-                otpVerification = await UserOTPVerification.updateOne(
-                    { email },
-                    {
-                        $set: {
-                            requestCount: 1,
-                            lastRequestDate: new Date(),
-                            otp,
-                            expiredAt: new Date(Date.now() + 30 * 60 * 1000),
-                        },
-                    }
-                )
-            }
-        } else {
-            // New OTP request
-            otp = crypto.randomInt(100000, 999999).toString()
-            otpVerification = new UserOTPVerification({
-                email,
-                password: hashedPassword,
-                fullName,
-                otp,
-                expiredAt: new Date(Date.now() + 30 * 60 * 1000), // OTP expires in 30 minutes
-                requestCount: 1,
-                lastRequestDate: new Date(),
-                referralCode: referralCode,
-            })
-            await otpVerification.save()
-        }
-        // 4. Send OTP email
+        // 4️⃣ Upsert OTP record (SIMPLE & SAFE)
         try {
-            const subject = `[Pastal] OTP for Account Registration`
-            const message = `Your verification code to complete account registration is:`
-            const verificationCode = otp
+            await UserOTPVerification.findOneAndUpdate(
+                { email },
+                {
+                    fullName,
+                    email,
+                    password: passwordHash,
+                    clinicians,
+                    otp,
+                    expiredAt,
+                },
+                {
+                    upsert: true,
+                    new: true,
+                    setDefaultsOnInsert: true,
+                }
+            )
+        } catch (err) {
+            console.error('OTP upsert error:', err)
+            throw new BadRequestError('Cannot create verification record')
+        }
 
-            await sendOtpEmail(email, subject, message, verificationCode)
-        } catch (error) {
-            console.error('Error sending email:', error)
+        // 5️⃣ Send OTP email
+        try {
+            await sendOtpEmail(email, '[Pastal] OTP for Account Registration', 'Your verification code to complete account registration is:', otp)
+        } catch (err) {
+            console.error('OTP email error:', err)
             throw new BadRequestError('Failed to send verification email')
         }
 
+        // 6️⃣ Done
         return {
             code: 201,
-            metadata: {
-                email: otpVerification.email,
-            },
+            metadata: { email },
         }
     }
 
@@ -352,7 +312,7 @@ class AuthService {
         if (!otpRecord.isVerified) throw new BadRequestError('OTP has not been verified')
 
         //3. Hash the new password
-        if (!isValidPassword(password)) throw new BadRequestError('Invalid password')
+        if (!password) throw new BadRequestError('Invalid password')
         const hashedPassword = await bcrypt.hash(password, 10)
         user.password = hashedPassword
 

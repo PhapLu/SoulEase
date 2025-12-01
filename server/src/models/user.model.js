@@ -6,7 +6,6 @@ const COLLECTION_NAME = 'Users'
 
 const UserSchema = new Schema(
     {
-        username: { type: String, required: true, trim: true, unique: true },
         email: { type: String, required: true, trim: true, unique: true },
         fullName: { type: String, required: true, trim: true },
         password: { type: String, default: '' },
@@ -15,6 +14,7 @@ const UserSchema = new Schema(
             enum: ['member', 'family', 'doctor', 'clinic'],
             default: 'member',
         },
+        clinicians: { type: String, default: '' },
         gender: { type: String, enum: ['male', 'female', 'other'], trim: true },
         jobTitle: { type: String, trim: true },
         avatar: {
@@ -24,21 +24,18 @@ const UserSchema = new Schema(
         phone: { type: String },
         address: { type: String, default: '' },
         country: { type: String, default: 'Vietnam' },
-        pronoun: { type: String, default: '' },
         dob: { type: Date, default: null },
         status: {
             type: String,
             default: 'pending',
             enum: ['pending', 'active', 'block', 'inactive'],
         },
-        pinCode: { type: String, default: '' },
         accessToken: { type: String, default: '' },
         lastViewConversations: { type: Date, default: Date.now },
         lastViewNotifications: { type: Date, default: Date.now },
         activity: {
             isOnline: { type: Boolean, default: false },
             lastVisit: { type: Date, default: Date.now },
-            lastEmailReminder: { type: Date, default: null },
         },
     },
     {

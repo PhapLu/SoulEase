@@ -111,7 +111,7 @@ export const AuthProvider = ({ children }) => {
     // --------------------------------------------------
     const login = async (email, password) => {
         try {
-            const res = await newRequest.post('/auth/users/login', { email, password })
+            const res = await newRequest.post('/auth/login', { email, password })
             console.log('Login response:', res)
             await loadUserMe() // Refresh userInfo
             setShowLoginForm(false)
@@ -125,7 +125,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await apiUtils.post('auth/users/logout')
+            await apiUtils.post('auth/logout')
         } catch (err) {
             console.error('Logout error:', err)
         }

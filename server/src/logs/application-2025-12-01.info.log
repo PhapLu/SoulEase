@@ -1,0 +1,50 @@
+2025-12-01 19:59:37::error::/v1/api/user/me::7ea52b82-b5b9-429e-968a-01859448184d::handler-error::{"status":500,"message":"Cannot set property query of #<IncomingMessage> which has only a getter"}
+2025-12-01 19:59:37::error::/v1/api/user/me::eae0a5a6-593a-4c55-a57a-6dbc3db98c93::handler-error::{"status":500,"message":"Cannot set property query of #<IncomingMessage> which has only a getter"}
+2025-12-01 20:24:25::error::/v1/api/auth/users/login::47802571-7124-4b1c-abc0-ed9f7f1ca37f::handler-error::{"status":500,"message":"Cannot set property query of #<IncomingMessage> which has only a getter"}
+2025-12-01 20:26:55::error::/v1/api/user/me::3fce47f6-bc4b-47e6-a78d-ee401d4d7d90::handler-error::{"status":500,"message":"Cannot set property query of #<IncomingMessage> which has only a getter"}
+2025-12-01 20:26:55::error::/v1/api/user/me::38b0a0b1-8d20-4cf8-ba55-6e3b550ea1d3::handler-error::{"status":500,"message":"Cannot set property query of #<IncomingMessage> which has only a getter"}
+2025-12-01 20:27:04::error::/v1/api/auth/login::11865925-a944-4dd3-a109-ac5ac99937ff::handler-error::{"status":500,"message":"Cannot set property query of #<IncomingMessage> which has only a getter"}
+2025-12-01 20:34:57::info::/v1/api/auth/login::f3eeba98-08ae-4519-b8b4-a406b087f3b1::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-01 20:34:57::error::/v1/api/auth/login::f3eeba98-08ae-4519-b8b4-a406b087f3b1::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-01 20:35:33::info::/v1/api/auth/login::71e679a6-8f0b-42c9-ae64-8748d8272b57::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-01 20:35:33::error::/v1/api/auth/login::71e679a6-8f0b-42c9-ae64-8748d8272b57::handler-error::{"status":403,"message":"User not found"}
+2025-12-01 20:35:57::info::/v1/api/user/me::b64d903d-52b0-4011-bf42-2f4fc2bb10a9::input-params ::GET::::{}
+2025-12-01 20:35:57::error::/v1/api/user/me::b64d903d-52b0-4011-bf42-2f4fc2bb10a9::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-01 20:35:57::info::/v1/api/user/me::230289cb-d348-4be9-8835-6e6c5f4bbf19::input-params ::GET::::{}
+2025-12-01 20:35:57::error::/v1/api/user/me::230289cb-d348-4be9-8835-6e6c5f4bbf19::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-01 21:02:50::info::/v1/api/auth/users/signUp::eca6a77b-91e1-49ff-a9d6-7767e7fa888e::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Luu Quoc Phap","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:02:50::error::/v1/api/auth/users/signUp::eca6a77b-91e1-49ff-a9d6-7767e7fa888e::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-01 21:03:05::info::/v1/api/auth/signUp::f06ea61c-819f-43eb-beea-f068f7818a36::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Luu Quoc Phap","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:03:05::error::/v1/api/auth/signUp::f06ea61c-819f-43eb-beea-f068f7818a36::handler-error::{"status":500,"message":"minLength is not defined"}
+2025-12-01 21:04:30::info::/v1/api/auth/signUp::8a842843-a3a0-4220-afa1-800e6dcf606c::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Luu Quoc Phap","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:04:30::error::/v1/api/auth/signUp::8a842843-a3a0-4220-afa1-800e6dcf606c::handler-error::{"status":500,"message":"minLength is not defined"}
+2025-12-01 21:27:22::info::/v1/api/auth/signUp::b37e818e-151d-4962-ba5e-59203355be33::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Luu Quoc Phap","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:27:22::error::/v1/api/auth/signUp::b37e818e-151d-4962-ba5e-59203355be33::handler-error::{"status":500,"message":"isValidPassword is not defined"}
+2025-12-01 21:27:54::info::/v1/api/auth/signUp::79482d4e-5399-4b50-8c85-f7b8c1bea9ed::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Luu Quoc Phap","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:27:56::error::/v1/api/auth/signUp::79482d4e-5399-4b50-8c85-f7b8c1bea9ed::handler-error::{"status":403,"message":"Invalid password"}
+2025-12-01 21:28:41::info::/v1/api/auth/signUp::0faa917a-5127-4d44-b800-0eb2f18ecc47::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Luu Quoc Phap","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:28:41::error::/v1/api/auth/signUp::0faa917a-5127-4d44-b800-0eb2f18ecc47::handler-error::{"status":403,"message":"Invalid password"}
+2025-12-01 21:29:00::info::/v1/api/auth/signUp::78bed3b2-aa25-4ed7-a4f5-e11a242cba27::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Luu Quoc Phap","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:29:01::error::/v1/api/auth/signUp::78bed3b2-aa25-4ed7-a4f5-e11a242cba27::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 21:38:11::info::/v1/api/auth/signUp::7ce56f4e-76a6-4855-95bc-d68460e3684c::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Luu Quoc Phap","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:38:11::error::/v1/api/auth/signUp::7ce56f4e-76a6-4855-95bc-d68460e3684c::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 21:40:12::info::/v1/api/auth/signUp::fc1f8f32-58c0-46ed-935a-65d60f4ec6c4::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Luu Quoc Phap","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:40:13::error::/v1/api/auth/signUp::fc1f8f32-58c0-46ed-935a-65d60f4ec6c4::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 21:42:01::info::/v1/api/user/me::992cb0aa-bccf-41e1-a948-f8dbcc4b8d14::input-params ::GET::::{}
+2025-12-01 21:42:01::error::/v1/api/user/me::992cb0aa-bccf-41e1-a948-f8dbcc4b8d14::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-01 21:42:01::info::/v1/api/user/me::f3406a50-7d15-4604-96e9-49df6df07dee::input-params ::GET::::{}
+2025-12-01 21:42:01::error::/v1/api/user/me::f3406a50-7d15-4604-96e9-49df6df07dee::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-01 21:42:07::info::/v1/api/auth/signUp::f3b93386-ebb5-4f35-ad99-4da67700804d::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Lưu Quốc Pháp","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:42:07::error::/v1/api/auth/signUp::f3b93386-ebb5-4f35-ad99-4da67700804d::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 21:43:48::info::/v1/api/auth/signUp::47d927a5-5a15-4721-8c21-9e99aa284599::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Lưu Quốc Pháp","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:43:48::error::/v1/api/auth/signUp::47d927a5-5a15-4721-8c21-9e99aa284599::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 21:46:19::info::/v1/api/auth/signUp::fe89b42c-411d-4f7d-b25d-35f7ff81af89::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Lưu Quốc Pháp","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:46:19::error::/v1/api/auth/signUp::fe89b42c-411d-4f7d-b25d-35f7ff81af89::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 21:48:40::info::/v1/api/auth/signUp::d059c533-9b0d-4809-8210-a0701b8b8761::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Lưu Quốc Pháp","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:48:40::error::/v1/api/auth/signUp::d059c533-9b0d-4809-8210-a0701b8b8761::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 21:49:02::info::/v1/api/auth/signUp::e678a5b5-31cd-465a-bed1-48b31b37ff68::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Lưu Quốc Pháp","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:49:02::error::/v1/api/auth/signUp::e678a5b5-31cd-465a-bed1-48b31b37ff68::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 21:51:49::info::/v1/api/auth/signUp::070f9e0c-7b57-49fc-a753-a7cc97d4eae2::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Lưu Quốc Pháp","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:51:49::error::/v1/api/auth/signUp::070f9e0c-7b57-49fc-a753-a7cc97d4eae2::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 21:59:08::info::/v1/api/auth/signUp::9a1207d2-b3d6-4d43-8a92-56844bb4eb07::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Lưu Quốc Pháp","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-01 21:59:09::error::/v1/api/auth/signUp::9a1207d2-b3d6-4d43-8a92-56844bb4eb07::handler-error::{"status":403,"message":"Cannot create verification record"}

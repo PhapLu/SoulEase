@@ -7,13 +7,13 @@ dotenv.config()
 const router = express.Router()
 
 //signUp
-router.post('/auth/signUp', asyncHandler(authController.signUp))
-router.post('/auth/login', asyncHandler(authController.login))
-router.post('/auth/verifyOtp', asyncHandler(authController.verifyOtp))
-router.post('/auth/logout', asyncHandler(authController.logout))
-router.post('/auth/forgotPassword', asyncHandler(authController.forgotPassword))
-router.post('/auth/verifyResetPasswordOtp', asyncHandler(authController.verifyResetPasswordOtp))
-router.patch('/auth/resetPassword', asyncHandler(authController.resetPassword))
+router.post('/signUp', asyncHandler(authController.signUp))
+router.post('/login', asyncHandler(authController.login))
+router.post('/verifyOtp', asyncHandler(authController.verifyOtp))
+router.post('/logout', asyncHandler(authController.logout))
+router.post('/forgotPassword', asyncHandler(authController.forgotPassword))
+router.post('/verifyResetPasswordOtp', asyncHandler(authController.verifyResetPasswordOtp))
+router.patch('/resetPassword', asyncHandler(authController.resetPassword))
 
 //MOBILE
 router.post('/users/loginMobile', asyncHandler(authController.loginMobile))

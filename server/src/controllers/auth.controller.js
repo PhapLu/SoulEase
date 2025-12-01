@@ -42,17 +42,13 @@ class AuthController {
     }
 
     signUp = async (req, res, next) => {
-        try {
-            const { metadata, code } = await AuthService.signUp(req.body)
+        console.log('HELLO')
+        const { metadata, code } = await AuthService.signUp(req.body)
 
-            // Sending response
-            new CREATED({
-                message: 'Sign up successfully',
-                metadata,
-            }).send(res)
-        } catch (error) {
-            next(error) // Pass error to error handler middleware
-        }
+        new CREATED({
+            message: 'Sign up successfully',
+            metadata,
+        }).send(res)
     }
 
     verifyOtp = async (req, res, next) => {
