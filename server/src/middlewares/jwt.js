@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken'
 import { AuthFailureError, BadRequestError, ForbiddenError, NotFoundError } from '../core/error.response.js'
 import { decrypt } from '../configs/encryption.config.js'
 import { User } from '../models/user.model.js'
-import Character from '../models/character.model.js'
 
 export const verifyToken = (req, res, next) => {
     let token
@@ -28,35 +27,6 @@ export const verifyToken = (req, res, next) => {
     } catch (err) {
         console.error('❌ Invalid token:', err.message)
         return next(new BadRequestError('Invalid token, please login again'))
-    }
-}
-
-export const verifyCharacterOwnership = async (req, res, next) => {
-    const userId = req.userId
-
-    // 1. Try to find characterId from various sources
-    const characterId = req.body.characterId || req.params.characterId
-
-    if (!characterId) {
-        return next(new BadRequestError('Character ID is required for this operation'))
-    }
-
-    try {
-        // 2. Find the character and verify ownership
-        const character = await Character.findById(characterId).select('userId')
-        if (!character) {
-            return next(new NotFoundError('Character not found'))
-        }
-
-        if (character.userId.toString() !== userId.toString()) {
-            return next(new ForbiddenError('You are not authorized to edit this character'))
-        }
-
-        // 3. Continue if ownership is valid
-        next()
-    } catch (error) {
-        console.error('❌ verifyCharacterOwnership failed:', error.message)
-        return next(new BadRequestError('Error verifying character ownership'))
     }
 }
 

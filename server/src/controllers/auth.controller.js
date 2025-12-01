@@ -26,6 +26,7 @@ class AuthController {
                 metadata,
             }).send(res)
         } catch (error) {
+            console.log('AuthController.login error:', error)
             next(error) // Pass error to error handler middleware
         }
     }
@@ -42,7 +43,6 @@ class AuthController {
     }
 
     signUp = async (req, res, next) => {
-        console.log('HELLO')
         const { metadata, code } = await AuthService.signUp(req.body)
 
         new CREATED({

@@ -26,3 +26,19 @@
 2025-12-01 21:49:02::error::/v1/api/auth/signUp::e678a5b5-31cd-465a-bed1-48b31b37ff68::handler-error::{"status":500,"message":"next is not a function"}
 2025-12-01 21:51:49::error::/v1/api/auth/signUp::070f9e0c-7b57-49fc-a753-a7cc97d4eae2::handler-error::{"status":500,"message":"next is not a function"}
 2025-12-01 21:59:09::error::/v1/api/auth/signUp::9a1207d2-b3d6-4d43-8a92-56844bb4eb07::handler-error::{"status":403,"message":"Cannot create verification record"}
+2025-12-01 22:15:39::error::/v1/api/auth/login::9de7be00-36af-492b-9259-05c2c88838df::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 22:15:55::error::/v1/api/auth/login::28a4c6a8-ad67-4248-8949-b241b8140ec7::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 22:19:21::error::/v1/api/auth/login::ee897715-76a6-4f3f-845e-357f6685377a::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 22:20:42::error::/v1/api/auth/login::0334b4e5-9af9-4093-8f73-a18e659925f4::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 22:22:15::error::/v1/api/auth/login::c86e182b-7a5f-4bf5-83f4-8282e0b99256::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 22:22:47::error::/v1/api/auth/login::1f0472f6-90c7-46c9-803b-0f43d028c84c::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 22:24:12::error::/v1/api/auth/login::90221e74-3e70-4913-a4d7-e74263ccce74::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 22:27:40::error::/v1/api/user/me::3a0295d4-b58d-4cbd-9f6e-9a723a824881::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-01 22:27:40::error::/v1/api/user/me::8ba4f4a4-57c5-449f-8a5c-e87a564e92eb::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-01 22:30:37::error::/v1/api/user/me::90666995-b3fb-4692-8151-e66b2b4fdf2b::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-01 22:30:37::error::/v1/api/user/me::c9346bfe-cc5b-4d43-8d2f-74f371d49d71::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-01 22:31:13::error::/v1/api/auth/login::d2da3044-1345-4305-ac1a-8b660cc5366d::handler-error::{"status":500,"message":"next is not a function"}
+2025-12-01 22:33:09::error::/v1/api/user/me::dd7d3cd5-352d-4a1d-81af-22be851c5692::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-01 22:39:04::error::/v1/api/user/me::a722ae15-c04b-426b-8803-e4cbc47318a5::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-01 22:42:02::error::/v1/api/user/me::d3a0db72-6ccb-4a52-bd8a-f612f84c20b9::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-01 22:43:14::error::/v1/api/user/me::ed0a0c8c-9912-416e-a030-1ee105704731::handler-error::{"status":500,"message":"Cannot populate path `referral.referred` because it is not in your schema. Set the `strictPopulate` option to false to override."}

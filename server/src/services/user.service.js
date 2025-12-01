@@ -3,27 +3,15 @@ import { AuthFailureError, NotFoundError } from '../core/error.response.js'
 import { decrypt } from '../configs/encryption.config.js'
 import mongoose from 'mongoose'
 import { User } from '../models/user.model.js'
-import Post from '../models/post.model.js'
 import Order from '../models/order.model.js'
-import Review from '../models/review.model.js'
-import Proposal from '../models/proposal.model.js'
-import Character from '../models/character.model.js'
 import Conversation from '../models/conversation.model.js'
-import Service from '../models/commissionService.model.js'
 import Notification from '../models/notification.model.js'
-import DisburseRequest from '../models/disburseRequest.model.js'
 import dotenv from 'dotenv'
 dotenv.config()
 
 const COLLECTIONS = {
     Orders: Order,
-    Proposals: Proposal,
     Users: User,
-    Characters: Character,
-    DisburseRequests: DisburseRequest,
-    Posts: Post,
-    CommissionServices: Service,
-    Reviews: Review,
 }
 
 class UserService {

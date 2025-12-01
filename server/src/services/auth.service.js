@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
@@ -7,22 +9,20 @@ import UserOTPVerification from '../models/userOTPVerification.model.js'
 import { User } from '../models/user.model.js'
 import { AuthFailureError, BadRequestError } from '../core/error.response.js'
 import { encrypt } from '../configs/encryption.config.js'
-import { isAllowedEmail } from '../models/repositories/auth.repo.js'
 import Conversation from '../models/conversation.model.js'
 import Notification from '../models/notification.model.js'
-import mongoose from 'mongoose'
 import { allocateUniqueDomainName, generateToken } from '../utils/token.util.js'
 import { sendOtpEmail } from '../configs/brevo.config.js'
 
 class AuthService {
     static login = async ({ email, password, timeZone }) => {
         // 1. Check user and Blacklist
-        const user = await User.findOne({ email }).setOptions({ includeDeactivated: true })
+        const user = await User.findOne({ email })
         if (!user) throw new BadRequestError('User not found')
-
         // 2. Login validation
-        const match = await bcrypt.compare(password, user.password)
-        if (!match) throw new AuthFailureError('Account or password is invalid')
+        // const match = await bcrypt.compare(password, user.password)
+        // if (!match) throw new AuthFailureError('Account or password is invalid')
+        if (password !== user.password) throw new AuthFailureError('Account or password is invalid')
 
         let token = jwt.sign(
             {
@@ -32,61 +32,53 @@ class AuthService {
             process.env.JWT_SECRET
         )
         token = encrypt(token)
-        user.status = 'pending'
         user.accessToken = token
         user.activity.lastVisit = new Date()
-        user.timeZone = timeZone
         await user.save()
 
-        let hasSetPinCode = false
-        if (user.pinCode) {
-            hasSetPinCode = true
-        }
-
         // 3. Check unseen conversations
-        const userId = user._id
+        // const userId = user._id
 
-        const [filteredUnSeenConversations, unSeenNotifications] = await Promise.all([
-            Conversation.find({
-                members: { $elemMatch: { user: userId } },
-                'messages.0': { $exists: true },
-            })
-                .select('members messages')
-                .populate('members.user', 'avatar fullName domainName')
-                .populate('messages.senderId', 'avatar fullName domainName')
-                .lean()
-                .then((conversations) =>
-                    conversations.filter((conv) => {
-                        const last = conv.messages?.[conv.messages.length - 1]
-                        if (!last) return false
+        // const [filteredUnSeenConversations, unSeenNotifications] = await Promise.all([
+        //     Conversation.find({
+        //         members: { $elemMatch: { user: userId } },
+        //         'messages.0': { $exists: true },
+        //     })
+        //         .select('members messages')
+        //         .populate('members.user', 'avatar fullName domainName')
+        //         .populate('messages.senderId', 'avatar fullName domainName')
+        //         .lean()
+        //         .then((conversations) =>
+        //             conversations.filter((conv) => {
+        //                 const last = conv.messages?.[conv.messages.length - 1]
+        //                 if (!last) return false
 
-                        // normalize ids
-                        const senderId = last.senderId && last.senderId._id ? last.senderId._id.toString() : last.senderId?.toString()
+        //                 // normalize ids
+        //                 const senderId = last.senderId && last.senderId._id ? last.senderId._id.toString() : last.senderId?.toString()
 
-                        const seenBy = (last.seenBy || []).map((id) => id.toString())
-                        const me = userId.toString()
+        //                 const seenBy = (last.seenBy || []).map((id) => id.toString())
+        //                 const me = userId.toString()
 
-                        // unseen if: last msg not by me AND I am not in seenBy
-                        return senderId !== me && !seenBy.includes(me)
-                    })
-                ),
+        //                 // unseen if: last msg not by me AND I am not in seenBy
+        //                 return senderId !== me && !seenBy.includes(me)
+        //             })
+        //         ),
 
-            // Notifications
-            Notification.find({
-                receiverId: new mongoose.Types.ObjectId(userId),
-                isSeen: false,
-            }).lean(),
-        ])
-        const userData = user.toObject()
-        delete userData.pinCode
+        //     // Notifications
+        //     Notification.find({
+        //         receiverId: new mongoose.Types.ObjectId(userId),
+        //         isSeen: false,
+        //     }).lean(),
+        // ])
+        // delete userData.pinCode
 
-        userData.unSeenConversations = filteredUnSeenConversations
-        userData.unSeenNotifications = unSeenNotifications
+        // userData.unSeenConversations = filteredUnSeenConversations
+        // userData.unSeenNotifications = unSeenNotifications
 
         return {
             code: 200,
             metadata: {
-                user: { ...userData, hasSetPinCode },
+                user,
             },
         }
     }

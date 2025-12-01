@@ -9,7 +9,6 @@ import helmet from 'helmet'
 import { v4 as uuidv4 } from 'uuid'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
-import passport from 'passport'
 import session from 'express-session'
 import mongoose from 'mongoose'
 
@@ -17,13 +16,14 @@ import router from './routes/index.js'
 import configureSocket from './configs/socket.config.js'
 import SocketServices from './services/socket.service.js'
 import sanitizeInputs from './middlewares/sanitize.middleware.js'
-import './configs/cronJob.config.js'
+import { globalLimiter, blockChecker } from './configs/rateLimit.config.js'
+// import './configs/passport.config.js'
+// import './configs/cronJob.config.js'
 
 // Init DBs/caches (no Redis store for session; keep your own ioredis init if needed)
 import './db/init.mongodb.js'
 import { init as initIoRedis } from './db/init.ioredis.js'
-import { blockChecker, globalLimiter } from './configs/ratelimit.config.js'
-import myLogger from './loggers/myLogger.log.js'
+import myLoggerLog from './loggers/myLogger.log.js'
 initIoRedis({ IOREDIS_IS_ENABLED: false })
 
 const app = express()
@@ -32,27 +32,29 @@ const app = express()
 app.set('trust proxy', 1)
 app.disable('x-powered-by')
 
-/* ---------- Allowed Origins ---------- */
-const allowedOrigins = ['http://localhost:5173']
+/* ---------- Allowed Origins (normalize) ---------- */
+const toOrigin = (v) => (v && !/^https?:\/\//.test(v) ? `https://${v}` : v)
 
-/* ---------- CORS (Safe + Clean) ---------- */
+const allowedOrigins = [
+    toOrigin(process.env.CLIENT_LOCAL_ORIGIN), // Local Dev FE
+    toOrigin(process.env.CLIENT_ORIGIN), // Prod FE
+    toOrigin(process.env.AWS_CLOUDFRONT_DOMAIN),
+].filter(Boolean)
+
+/* ---------- CORS (before rate limits) ---------- */
 app.use(
     cors({
         origin: (origin, cb) => {
-            // Allow tools like Postman (no origin header)
-            if (!origin) return cb(null, true)
-
-            if (allowedOrigins.includes(origin)) {
-                return cb(null, true)
-            }
-
-            return cb(new Error(`CORS blocked: ${origin} not allowed`))
+            if (!origin || allowedOrigins.includes(origin)) return cb(null, true)
+            return cb(new Error(`CORS blocked for ${origin}`))
         },
         methods: ['GET', 'HEAD', 'OPTIONS', 'PUT', 'PATCH', 'POST', 'DELETE'],
         allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization', 'X-Request-Id'],
         credentials: true,
     })
 )
+// Ensure preflights pass quickly
+// app.options('*', cors())
 
 /* ---------- Helmet (hardened defaults) ---------- */
 app.use(
@@ -89,7 +91,7 @@ morgan.token('rid', (req) => req.requestId)
 app.use(morgan(':method :url :status :response-time ms rid=:rid'))
 
 app.use((req, _res, next) => {
-    myLogger.log(`input-params ::${req.method}::`, [req.path, { requestId: req.requestId }, req.method === 'POST' || req.method === 'PATCH' ? req.body : req.query])
+    myLoggerLog.log(`input-params ::${req.method}::`, [req.path, { requestId: req.requestId }, req.method === 'POST' || req.method === 'PATCH' ? req.body : req.query])
     next()
 })
 
@@ -128,10 +130,10 @@ app.use((req, _res, next) => {
 app.use((error, req, res, _next) => {
     const statusCode = error.status || 500
 
-    myLogger.error('handler-error', [req.path, { requestId: req.requestId }, { status: statusCode, message: error.message }])
+    myLoggerLog.error('handler-error', [req.path, { requestId: req.requestId }, { status: statusCode, message: error.message }])
 
-    // Avoid leaking internals in prod
-    const message = statusCode === 404 ? 'Not Found' : process.env.NODE_ENV === 'production' ? 'Internal Server Error' : error.message || 'Internal Server Error'
+    // ✅ Only hide message for REAL 500 errors
+    const message = process.env.NODE_ENV === 'production' && statusCode >= 500 ? 'Internal Server Error' : error.message || 'Internal Server Error'
 
     res.status(statusCode).json({
         status: 'error',

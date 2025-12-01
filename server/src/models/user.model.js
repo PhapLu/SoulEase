@@ -44,13 +44,5 @@ const UserSchema = new Schema(
     }
 )
 
-// Middleware to set the verificationExpiry field to 30 minutes in the future
-UserSchema.pre('save', function (next) {
-    if (this.isNew || this.isModified('verificationExpiry')) {
-        this.verificationExpiry = new Date(Date.now() + 30 * 60 * 1000) // 30 minutes
-    }
-    next()
-})
-
 const User = mongoose.model(DOCUMENT_NAME, UserSchema)
 export { User }
