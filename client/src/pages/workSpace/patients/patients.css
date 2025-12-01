@@ -79,6 +79,11 @@
   cursor: pointer;
 }
 
+.patients-folder-item img {
+  width: 50%;
+  height: 50%;
+}
+
 .patients-folder-icon {
   width: 80px;
   height: 80px;
