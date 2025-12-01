@@ -20,6 +20,8 @@ import RequireAuth from './components/Auth/RequireAuth.jsx'
 import Patients from './pages/workSpace/patients/patients.jsx'
 // import Message from "./pages/workSpace/message/message.jsx";
 import FolderClients from './pages/workSpace/patients/folderClients/folderClients.jsx'
+import Services from './pages/Services/Services'
+import Pricing from './pages/Pricing/Pricing'
 
 const router = createBrowserRouter([
     {

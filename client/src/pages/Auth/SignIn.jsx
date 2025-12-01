@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './Auth.css'
 import Header from '../../components/header/Header'
 import '@fortawesome/fontawesome-free/css/all.min.css'
-import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/auth/AuthContext'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
 
