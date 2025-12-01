@@ -55,7 +55,7 @@ const SignIn = () => {
         }
 
         // Redirect after success
-        navigate('/workspace/clients')
+        navigate('/workspace/patients')
     }
 
     return (
