@@ -23,6 +23,9 @@ const Header = () => {
           className={`se-nav ${isMobileOpen ? "se-nav--open" : ""}`}
           aria-hidden={!isMobileOpen}
         >
+          <Link to="/" className="se-nav__link" onClick={closeMobile}>
+            Home
+          </Link>
           <Link to="/about" className="se-nav__link" onClick={closeMobile}>
             About us
           </Link>
