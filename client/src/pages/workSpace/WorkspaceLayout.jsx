@@ -25,11 +25,6 @@ export default function WorkspaceLayout() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to='/workspace/dashboard' className={({ isActive }) => (isActive ? 'workspace-nav-link active' : 'workspace-nav-link')}>
-                                    Dashboard
-                                </NavLink>
-                            </li>
-                            <li>
                                 <NavLink to='/workspace/messages' className={({ isActive }) => (isActive ? 'workspace-nav-link active' : 'workspace-nav-link')}>
                                     Messages
                                 </NavLink>
@@ -37,11 +32,6 @@ export default function WorkspaceLayout() {
                             <li>
                                 <NavLink to='/workspace/notifications' className={({ isActive }) => (isActive ? 'workspace-nav-link active' : 'workspace-nav-link')}>
                                     Notifications
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/workspace/settings' className={({ isActive }) => (isActive ? 'workspace-nav-link active' : 'workspace-nav-link')}>
-                                    Setting
                                 </NavLink>
                             </li>
                         </ul>
