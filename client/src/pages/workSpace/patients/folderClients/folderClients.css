@@ -8,7 +8,7 @@
   padding: 1.75rem 2rem;
   border-radius: 24px;
   background: radial-gradient(circle at 0% 0%, #e5fff4, #f8fffd);
-  box-shadow: 0 18px 40px var(--box-shadow);
+  /* box-shadow: 0 18px 40px var(--box-shadow); */
   display: flex;
   flex-direction: column;
 }
@@ -47,6 +47,20 @@
   color: var(--muted);
 }
 
+.folder-description {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+  max-width: 300px;
+  line-height: 1.3;
+}
+
+.folder-description-empty {
+  color: var(--border);
+  font-style: italic;
+}
+
 /* Add client button */
 
 .folder-add-btn {
@@ -54,7 +68,7 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.5rem 1rem;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   background: #ffffff;
   font-size: 0.9rem;
@@ -64,7 +78,7 @@
 
 .folder-add-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px var(--box-shadow);
+  /* box-shadow: 0 8px 16px var(--box-shadow); */
 }
 
 /* CONTROLS (search + sort) */

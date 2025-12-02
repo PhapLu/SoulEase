@@ -13,11 +13,11 @@
 
 /* Modal box */
 .modal-content {
-  background: #f5faf8;
+  background: var(--bg-form);
   width: 380px;
   padding: 32px;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px var(--box-shadow);
   position: relative;
 }
 
@@ -45,15 +45,14 @@
   margin-bottom: 16px;
 }
 
-input,
-textarea {
+.text-input {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid #ddd;
   border-radius: 6px;
 }
 
-textarea {
+.text-input textarea {
   height: 80px;
   resize: none;
 }
@@ -63,7 +62,11 @@ textarea {
   width: 100%;
   margin-top: 12px;
   padding: 12px;
-  background: linear-gradient(to right, #4fc4a3, #0f8f61);
+  background: linear-gradient(
+    to right,
+    var(--secondary-color),
+    var(--tertiary-color)
+  );
   color: white;
   border: none;
   border-radius: 6px;

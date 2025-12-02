@@ -9,14 +9,27 @@ export default function Patients() {
   const navigate = useNavigate();
   const [openFolderModal, setOpenFolderModal] = useState(false);
 
-  const folders = [
-    { id: "folder-1", name: "Folder 1" },
-    { id: "folder-2", name: "Folder 2" },
-    { id: "folder-3", name: "Folder 3" },
-    { id: "folder-4", name: "Folder 4" },
-    { id: "folder-5", name: "Folder 5" },
-    { id: "folder-6", name: "Folder 6" },
-  ];
+  // Folders nằm trong state để khi tạo mới thì update được
+  const [folders, setFolders] = useState([
+    { id: "folder-1", name: "Folder 1", description: "", clients: [] },
+    { id: "folder-2", name: "Folder 2", description: "", clients: [] },
+    { id: "folder-3", name: "Folder 3", description: "", clients: [] },
+    { id: "folder-4", name: "Folder 4", description: "", clients: [] },
+    { id: "folder-5", name: "Folder 5", description: "", clients: [] },
+    { id: "folder-6", name: "Folder 6", description: "", clients: [] },
+  ]);
+
+  const handleCreateFolder = (data) => {
+    const newFolder = {
+      id: `folder-${Date.now()}`,
+      name: data.name,
+      description: data.description,
+      clients: [], // folder mới chưa có client
+    };
+
+    setFolders((prev) => [...prev, newFolder]);
+    setOpenFolderModal(false);
+  };
 
   return (
     <div className="patients">
@@ -43,7 +56,9 @@ export default function Patients() {
               key={folder.id}
               className="patients-folder-item"
               onClick={() =>
-                navigate(`/workspace/patients/folder/${folder.id}`)
+                navigate(`/workspace/patients/folder/${folder.id}`, {
+                  state: { folder }, // 👈 truyền full object qua router
+                })
               }
             >
               <img src={folderIcon} alt={folder.name} />
@@ -54,7 +69,10 @@ export default function Patients() {
       </section>
 
       {openFolderModal && (
-        <FolderModalForm onClose={() => setOpenFolderModal(false)} />
+        <FolderModalForm
+          onClose={() => setOpenFolderModal(false)}
+          onSubmit={handleCreateFolder}
+        />
       )}
     </div>
   );
