@@ -15,7 +15,6 @@ import ResourcesPage from './pages/Resources/Resources.jsx'
 
 import WorkspaceLayout from './pages/workSpace/WorkspaceLayout.jsx'
 
-import WorkspaceLayout from './pages/workSpace/WorkspaceLayout.jsx'
 // import RequireAuth from './components/Auth/RequireAuth.jsx'
 
 import Patients from './pages/workSpace/patients/patients.jsx'

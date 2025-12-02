@@ -1,4 +1,4 @@
-import { Outlet, NavLink } from 'react-router-dom'
+import { Outlet, NavLink, Link } from 'react-router-dom'
 import './WorkspaceLayout.css'
 import logo from '../../assets/logo.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -30,7 +30,7 @@ export default function WorkspaceLayout() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to='/workspace/message' className={({ isActive }) => (isActive ? 'workspace-nav-link active' : 'workspace-nav-link')}>
+                                <NavLink to='/workspace/messages' className={({ isActive }) => (isActive ? 'workspace-nav-link active' : 'workspace-nav-link')}>
                                     Messages
                                 </NavLink>
                             </li>
