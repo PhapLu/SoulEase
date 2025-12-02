@@ -5,3 +5,8 @@
 2025-12-02 11:04:41::error::/v1/api/folder/createFolder::149202ee-4adf-4100-9c91-03c5d4d36ca4::handler-error::{"status":404,"message":"Not Found Route"}
 2025-12-02 11:05:32::info::/v1/api/folder/createFolder::c0d32321-f031-4edc-9d84-2be6e23e439a::input-params ::POST::::{"title":"Folder 1","description":"hello"}
 2025-12-02 11:05:32::error::/v1/api/folder/createFolder::c0d32321-f031-4edc-9d84-2be6e23e439a::handler-error::{"status":401,"message":"Please login to continue"}
+2025-12-02 13:06:21::info::/v1/api/auth/signUp::788f41d5-a21b-4cf2-8c62-f50fc82ee9b6::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Francee","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-02 13:23:23::info::/v1/api/auth/login::d979b29a-e564-41bf-b85b-7fb5b37e29ed::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-02 13:23:23::info::/v1/api/user/me::8f1ede08-fd99-41fb-84ac-9fcd34e404b3::input-params ::GET::::{}
+2025-12-02 14:26:50::info::/v1/api/user/me::549a8346-19a7-41a3-99b9-b52a9b45be10::input-params ::GET::::{}
+2025-12-02 14:26:50::info::/v1/api/user/me::70532f8e-d62d-4f1d-acb7-bda3982f3cd1::input-params ::GET::::{}

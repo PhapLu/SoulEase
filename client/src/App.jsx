@@ -16,7 +16,7 @@ import Verification from './pages/auth/Verification.jsx'
 import ResourcesPage from './pages/Resources/Resources.jsx'
 
 import WorkspaceLayout from './pages/workSpace/WorkspaceLayout.jsx'
-import RequireAuth from './components/Auth/RequireAuth.jsx'
+// import RequireAuth from './components/Auth/RequireAuth.jsx'
 
 import Patients from './pages/workSpace/patients/patients.jsx'
 // import Message from "./pages/workSpace/message/message.jsx";
@@ -48,9 +48,9 @@ const router = createBrowserRouter([
     {
         path: '/workspace',
         element: (
-            <RequireAuth>
-                <WorkspaceLayout />
-            </RequireAuth>
+            // <RequireAuth>
+            <WorkspaceLayout />
+            // </RequireAuth>
         ),
         children: [
             {
