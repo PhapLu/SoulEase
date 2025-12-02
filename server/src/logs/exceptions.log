@@ -154,3 +154,24 @@ Error: Brevo SMTP credentials missing. Set BREVO_SMTP_USERNAME/BREVO_SMTP_PASSWO
     at ModuleJob.run (node:internal/modules/esm/module_job:222:25)
     at async ModuleLoader.import (node:internal/modules/esm/loader:316:24)
     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined
+2025-12-02 12:38:01::error::undefined::undefined::uncaughtException: Soulra is not defined
+ReferenceError: Soulra is not defined
+    at file:///D:/RMIT/SEM%20C-2025/SoulEase/server/src/routes/index.js:10:30
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:647:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)::undefined
+2025-12-02 12:38:06::error::undefined::undefined::uncaughtException: ao is not defined
+ReferenceError: ao is not defined
+    at file:///D:/RMIT/SEM%20C-2025/SoulEase/server/src/routes/index.js:10:30
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:647:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)::undefined
+2025-12-02 12:38:10::error::undefined::undefined::uncaughtException: aiRoute is not defined
+ReferenceError: aiRoute is not defined
+    at file:///D:/RMIT/SEM%20C-2025/SoulEase/server/src/routes/index.js:10:30
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:647:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)::undefined

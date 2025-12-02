@@ -3,8 +3,6 @@ import { useEffect } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import logo from '../src/assets/logo.svg'
-
 import Layout from './Layout.jsx'
 
 import About from './pages/about/About.jsx'
@@ -14,6 +12,8 @@ import SignUp from './pages/auth/SignUp.jsx'
 import AuthLayout from './pages/auth/AuthLayout.jsx'
 import Verification from './pages/auth/Verification.jsx'
 import ResourcesPage from './pages/Resources/Resources.jsx'
+
+import WorkspaceLayout from './pages/workSpace/WorkspaceLayout.jsx'
 
 import WorkspaceLayout from './pages/workSpace/WorkspaceLayout.jsx'
 // import RequireAuth from './components/Auth/RequireAuth.jsx'
@@ -54,17 +54,10 @@ const router = createBrowserRouter([
             // </RequireAuth>
         ),
         children: [
-            {
-                index: true,
-                element: (
-                    <div>
-                        <img src={logo} alt='SoulEase logo' className='logo' />
-                    </div>
-                ),
-            },
+            { index: true, element: <Patients /> },
             { path: 'patients', element: <Patients /> },
-            { path: 'messages', element: <Messages /> },
             { path: 'patients/folder/:folderId', element: <FolderClients /> },
+            { path: 'messages', element: <Messages /> },
         ],
     },
 ])

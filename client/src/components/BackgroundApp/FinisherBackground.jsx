@@ -37,9 +37,6 @@ export default function FinisherBackground() {
       document.head.appendChild(s);
     }
 
-    return () => {
-      if (hostRef.current) hostRef.current.innerHTML = "";
-    };
   }, []);
 
   return <div ref={hostRef} className="finisher-background" aria-hidden="true" />;

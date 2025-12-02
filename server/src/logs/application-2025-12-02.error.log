@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 2025-12-02 10:20:44::error::/::14f8ff36-63dc-409f-9df6-c7b3b7bb31ad::handler-error::{"status":404,"message":"Not Found Route"}
 2025-12-02 10:20:44::error::/favicon.ico::0a2b8720-8ea4-414e-a839-ac0285f6d430::handler-error::{"status":404,"message":"Not Found Route"}
 2025-12-02 10:20:46::error::/::aefd78b0-22b9-4023-b027-1e84d6d3a75e::handler-error::{"status":404,"message":"Not Found Route"}
@@ -12,3 +13,20 @@
 2025-12-02 11:04:41::error::/v1/api/folder/createFolder::149202ee-4adf-4100-9c91-03c5d4d36ca4::handler-error::{"status":404,"message":"Not Found Route"}
 2025-12-02 11:05:32::error::/v1/api/folder/createFolder::c0d32321-f031-4edc-9d84-2be6e23e439a::handler-error::{"status":401,"message":"Please login to continue"}
 >>>>>>> 2b76905d7aee4717a9f167925a483fa795de04a7
+=======
+2025-12-02 10:07:40::error::/v1/api/auth/login::470ab2d9-23b5-4c24-9b74-ad154f160f93::handler-error::{"status":403,"message":"User not found"}
+2025-12-02 10:07:45::error::/v1/api/auth/login::427aa742-fe68-4574-a0ea-868f542545ff::handler-error::{"status":403,"message":"User not found"}
+2025-12-02 10:07:45::error::/v1/api/auth/login::590c6e7c-a9d2-40bb-9cad-ea08c6c71325::handler-error::{"status":403,"message":"User not found"}
+2025-12-02 10:07:46::error::/v1/api/auth/login::0d1b6d98-93da-49b7-8002-d01ff49efa46::handler-error::{"status":403,"message":"User not found"}
+2025-12-02 10:07:46::error::/v1/api/auth/login::f1536606-90ca-4cb9-be7c-8b5a29d60a5f::handler-error::{"status":403,"message":"User not found"}
+2025-12-02 10:07:47::error::/v1/api/auth/login::ed097417-2a8b-4436-86c1-85e159ef1d31::handler-error::{"status":403,"message":"User not found"}
+2025-12-02 10:07:47::error::/v1/api/auth/login::26c5c7b1-54f5-4dd4-92ec-53914817219c::handler-error::{"status":403,"message":"User not found"}
+2025-12-02 10:07:48::error::/v1/api/auth/login::314362b8-5cae-4c89-866b-e39f71223a56::handler-error::{"status":403,"message":"User not found"}
+2025-12-02 10:08:24::error::/v1/api/auth/login::87b43d6b-79d1-4677-820b-a0869725c720::handler-error::{"status":403,"message":"User not found"}
+2025-12-02 10:08:25::error::/v1/api/user/me::bf6f2f0e-eb5a-4dd2-a9c9-c83f3614f4f9::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-02 10:08:25::error::/v1/api/user/me::6519453e-e260-4731-8bac-97704651c568::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-02 10:08:53::error::/v1/api/auth/login::4a2b5ad5-0c89-4707-b051-2e28f0f515bf::handler-error::{"status":403,"message":"User not found"}
+2025-12-02 11:07:21::error::/v1/api/auth/login::00e45418-553f-4815-89d2-39e1f4a69507::handler-error::{"status":403,"message":"User not found"}
+2025-12-02 12:23:21::error::/v1/api/user/me::7de710a4-06c6-4f01-a6e2-038428c1d4fd::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-00.hebkgzl.mongodb.net"}
+2025-12-02 12:23:57::error::/v1/api/user/me::eaca5989-7c95-4c1e-ab25-4497f8125bd6::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-00.hebkgzl.mongodb.net"}
+>>>>>>> hy_dev2

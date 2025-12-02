@@ -37,9 +37,6 @@ export default function FinisherHeader() {
       document.head.appendChild(s);
     }
 
-    return () => {
-      if (hostRef.current) hostRef.current.innerHTML = "";
-    };
   }, []);
 
   return <div ref={hostRef} className="finisher-header" aria-hidden="true" />;
