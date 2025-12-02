@@ -1,185 +1,195 @@
 .signin-page {
-    height: 100vh;
-    padding: 0;
-    margin: 0;
-    overflow-y: hidden;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  overflow-y: hidden;
 }
 
 /* brand + card */
 .signin-card {
-    width: 100%;
+  width: 100%;
 }
-
 
 /* Card form */
 .signin-card-inner {
-    margin: 8% auto;
-    max-width: 510px;
-    height: 100%;
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 24px 32px;
-    box-shadow: 0 10px 10px #69646433;
+  margin: 8% auto;
+  max-width: 510px;
+  height: 600px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 32px;
+  box-shadow: 0 10px 10px #69646433;
 }
 
 /* Title + subtitle */
 .signin-title {
-    text-align: center;
-    font-weight: 500;
-    font-size: 24px;
-    margin-bottom: 4px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 4px;
 }
 
 .signin-subtitle {
-    text-align: center;
-    color: var(--muted);
-    font-size: 18px;
-    margin-bottom: 10px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 /* Form + field */
 .signin-form {
-    margin-top: 0.5%;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+  margin-top: 0.5%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .signin-field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
 }
 
 .signin-label {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 /* Input + icon */
 .signin-input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    background: #ffffff;
-    padding-left: 38px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  padding-left: 38px;
 }
 
 .signin-input-wrapper input {
-    border: none;
-    outline: none;
-    width: 100%;
-    padding: 10px 12px;
-    font-size: 14px;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
 }
 
 .signin-input-wrapper:focus-within {
-    border-color: #5cd4b4;
-    box-shadow: 0 0 0 1px var(--box-shadow);
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 1px var(--box-shadow);
 }
 
 .signin-input-icon {
-    position: absolute;
-    left: 12px;
-    font-size: 14px;
-    color: var(--muted);
+  position: absolute;
+  left: 12px;
+  font-size: 14px;
+  color: var(--muted);
 }
 
 /* Eye button */
 .signin-eye-btn {
-    position: absolute;
-    right: 10px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 20px;
-    padding: 0;
-    color: var(--tertiary-color);
+  position: absolute;
+  right: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0;
+  color: var(--tertiary-color);
 }
 
 /* Submit button */
 .signin-submit-btn {
-    /* margin-top: 10px; */
-    width: 100%;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 12px;
-    font-size: 14px;
-    font-weight: 500;
-    color: white;
-    background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
-    cursor: pointer;
-    transition: 0.25s;
+  /* margin-top: 10px; */
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--tertiary-color)
+  );
+  cursor: pointer;
+  transition: 0.25s;
 }
 
 .signin-submit-btn:hover {
-    filter: brightness(1.02);
-    transform: translateY(-5px) scale(1.02);
+  filter: brightness(1.02);
+  transform: translateY(-5px) scale(1.02);
 }
 
 /* Link text */
 .signin-link-btn {
-    color: var(--muted);
-    font-size: 14px;
-    cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--hover-btn);
+  padding: 0;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .signin-link-btn:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .signin-footer-text {
-    /* margin-top: 5px; */
-    padding-top: 14px;
-    border-top: 1px solid var(--border);
-    text-align: center;
-    font-size: 14px;
-    color: var(--muted);
+  /* margin-top: 5px; */
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
 }
 
 .signin-link {
-    color: var(--hover-btn);
-    font-weight: 500;
-    text-decoration: none;
+  color: var(--hover-btn);
+  font-weight: 500;
+  text-decoration: none;
 }
 
 .signin-link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .signup-select {
-    width: 100%;
-    max-width: 100%;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 10px 12px;
-    font-size: 14px;
-    outline: none;
-    background: #fff;
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
 }
 
 .signup-select:focus {
-    border-color: var(--hover-btn);
-    box-shadow: 0 0 0 1px var(--box-shadow);
+  border-color: var(--hover-btn);
+  box-shadow: 0 0 0 1px var(--box-shadow);
+}
+
+.signin-error {
+  color: var(--danger);
 }
 
 /* Responsive */
 @media (max-width: 480px) {
-    .signin-card {
-        margin-top: 120px;
-    }
+  .signin-card {
+    margin-top: 120px;
+  }
 
-    .signin-card-inner {
-        padding: 24px 20px 22px;
-    }
+  .signin-card-inner {
+    padding: 24px 20px 22px;
+  }
 
-    .signin-brand {
-        font-size: 26px;
-    }
+  .signin-brand {
+    font-size: 26px;
+  }
 
-    .signup-select {
+  .signup-select {
     font-size: 14px;
   }
 
@@ -189,9 +199,9 @@
   }
 
   .signup-select {
-  appearance: none;
-  -webkit-appearance: none;
-}
+    appearance: none;
+    -webkit-appearance: none;
+  }
 }
 
 /* ===== VERIFICATION ===== */
@@ -202,8 +212,7 @@
   justify-content: center;
   padding: 120px 16px 80px;
   background: radial-gradient(circle at 20% 20%, #e7fff7, transparent 35%),
-    radial-gradient(circle at 80% 50%, #dbfff3, transparent 32%),
-    #f8fffc;
+    radial-gradient(circle at 80% 50%, #dbfff3, transparent 32%), #f8fffc;
 }
 
 .verify-card {
@@ -211,8 +220,7 @@
   background: rgba(255, 255, 255, 0.6);
   border-radius: 16px;
   padding: 50px;
-  box-shadow:
-    0 18px 28px rgba(12, 45, 36, 0.12),
+  box-shadow: 0 18px 28px rgba(12, 45, 36, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
   text-align: center;
   border: 1px solid #e3f2ec;
@@ -260,9 +268,7 @@
   text-align: center;
   font-size: 30px;
   font-weight: 600;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .verify-otp input:focus {
@@ -281,7 +287,11 @@
   cursor: pointer;
   font-weight: 600;
   color: var(--text-color-light);
-  background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--tertiary-color)
+  );
   transform: translateY(0);
   transition: transform 0.22s ease, filter 0.22s ease;
   margin-bottom: 30px;
