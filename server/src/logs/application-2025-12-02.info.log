@@ -1,1 +1,7 @@
 2025-12-02 00:00:45::info::/v1/api/auth/login::7c1a0d52-04fe-43b6-8d3a-f06bd008852c::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-02 11:04:35::info::/v1/api/createFolder::6dbeca7f-326f-4601-b364-1029135c679d::input-params ::POST::::{"title":"Folder 1","description":"hello"}
+2025-12-02 11:04:35::error::/v1/api/createFolder::6dbeca7f-326f-4601-b364-1029135c679d::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-02 11:04:41::info::/v1/api/folder/createFolder::149202ee-4adf-4100-9c91-03c5d4d36ca4::input-params ::POST::::{"title":"Folder 1","description":"hello"}
+2025-12-02 11:04:41::error::/v1/api/folder/createFolder::149202ee-4adf-4100-9c91-03c5d4d36ca4::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-02 11:05:32::info::/v1/api/folder/createFolder::c0d32321-f031-4edc-9d84-2be6e23e439a::input-params ::POST::::{"title":"Folder 1","description":"hello"}
+2025-12-02 11:05:32::error::/v1/api/folder/createFolder::c0d32321-f031-4edc-9d84-2be6e23e439a::handler-error::{"status":401,"message":"Please login to continue"}
