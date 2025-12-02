@@ -1,44 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./patientModelForm.css";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faUser,
-  faCalendarDays,
-  faPhone,
-  faKey,
-  faEye,
-  faEyeSlash,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
-
-export default function PatientModalForm({ onClose, onSubmit }) {
+export default function PatientModalForm({
+  onClose,
+  onSubmit,
+  folders = [],
+  initialFolderId = "",
+  lockFolder = false,
+}) {
   const [formData, setFormData] = useState({
     email: "",
     fullName: "",
     dob: "",
     phoneNumber: "",
-    password: "",
-    relationship: "None",
+    role: "patient",
+    relationship: "Family",
+    folderId: initialFolderId || folders[0]?.id || "",
   });
 
-  const [showPassword, setShowPassword] = useState(false);
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      folderId: initialFolderId || folders[0]?.id || "",
+    }));
+  }, [folders, initialFolderId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleRoleChange = (e) => {
+    const value = e.target.value;
+    setFormData((prev) => ({
+      ...prev,
+      role: value,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit?.(formData);
+
+    const payload = {
+      ...formData,
+      relationship:
+        formData.role === "relative" ? formData.relationship : "None",
+    };
+
+    onSubmit?.(payload);
   };
 
   return (
-    <div className="patient-modal-overlay">
-      <div className="patient-modal">
-        <button className="patient-modal-close" onClick={onClose}>
+    <div className="patient-modal-overlay" onClick={onClose}>
+      <div className="patient-modal" onClick={(e) => e.stopPropagation()}>
+        <button className="patient-modal-close" onClick={onClose} type="button">
           ✕
         </button>
 
@@ -49,7 +64,6 @@ export default function PatientModalForm({ onClose, onSubmit }) {
           <div className="form-group">
             <label className="form-label">Email</label>
             <div className="input-with-icon">
-              <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
               <input
                 type="email"
                 name="email"
@@ -66,12 +80,11 @@ export default function PatientModalForm({ onClose, onSubmit }) {
           <div className="form-group">
             <label className="form-label">Full name</label>
             <div className="input-with-icon">
-              <FontAwesomeIcon icon={faUser} className="input-icon" />
               <input
                 type="text"
                 name="fullName"
                 className="form-input"
-                placeholder="Enter your full name"
+                placeholder="Enter full name"
                 value={formData.fullName}
                 onChange={handleChange}
                 required
@@ -83,7 +96,6 @@ export default function PatientModalForm({ onClose, onSubmit }) {
           <div className="form-group">
             <label className="form-label">Date of birth</label>
             <div className="input-with-icon">
-              <FontAwesomeIcon icon={faCalendarDays} className="input-icon" />
               <input
                 type="date"
                 name="dob"
@@ -98,7 +110,6 @@ export default function PatientModalForm({ onClose, onSubmit }) {
           <div className="form-group">
             <label className="form-label">Phone number</label>
             <div className="input-with-icon">
-              <FontAwesomeIcon icon={faPhone} className="input-icon" />
               <input
                 type="tel"
                 name="phoneNumber"
@@ -110,50 +121,86 @@ export default function PatientModalForm({ onClose, onSubmit }) {
             </div>
           </div>
 
-          {/* Relationship */}
+          {/* Role */}
           <div className="form-group">
-            <label className="form-label">Relationship</label>
-            <div className="input-with-icon">
-              <FontAwesomeIcon icon={faHeart} className="input-icon" />
-              <select
-                name="relationship"
-                className="form-input"
-                value={formData.relationship}
-                onChange={handleChange}
+            <label className="form-label">Role</label>
+
+            <div className="role-group">
+              <label
+                className={`role-option ${
+                  formData.role === "patient" ? "role-option--active" : ""
+                }`}
               >
-                <option value="None">None</option>
-                <option value="Family">Family</option>
-                <option value="Friend">Friend</option>
-                <option value="Coworker">Coworker</option>
-                <option value="Partner">Partner</option>
-                <option value="Neighbor">Neighbor</option>
-              </select>
+                <input
+                  type="radio"
+                  name="role"
+                  value="patient"
+                  checked={formData.role === "patient"}
+                  onChange={handleRoleChange}
+                />
+                <span>Patient</span>
+              </label>
+
+              <label
+                className={`role-option ${
+                  formData.role === "relative" ? "role-option--active" : ""
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="role"
+                  value="relative"
+                  checked={formData.role === "relative"}
+                  onChange={handleRoleChange}
+                />
+                <span>Relative</span>
+              </label>
             </div>
           </div>
 
-          {/* Password */}
+          {/* Relationship */}
+          {formData.role === "relative" && (
+            <div className="form-group">
+              <label className="form-label">Relationship</label>
+              <div className="input-with-icon">
+                <select
+                  name="relationship"
+                  className="form-input"
+                  value={formData.relationship}
+                  onChange={handleChange}
+                >
+                  <option value="Family">Family</option>
+                  <option value="Friend">Friend</option>
+                  <option value="Coworker">Coworker</option>
+                  <option value="Partner">Partner</option>
+                  <option value="Neighbor">Neighbor</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+          )}
+
+          {/* Folder */}
           <div className="form-group">
-            <label className="form-label">Password</label>
-            <div className="input-with-icon input-with-trailing-icon">
-              <FontAwesomeIcon icon={faKey} className="input-icon" />
-
-              <input
-                type={showPassword ? "text" : "password"}
-                name="password"
+            <label className="form-label">Folder</label>
+            <div className="input-with-icon">
+              <select
+                name="folderId"
                 className="form-input"
-                placeholder="Enter password"
-                value={formData.password}
+                value={formData.folderId}
                 onChange={handleChange}
-                required
-              />
-
-              <button
-                type="button"
-                className="input-trailing-icon"
-                onClick={() => setShowPassword(!showPassword)}
+                disabled={lockFolder}
               >
-                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-              </button>
+                {folders.length === 0 && (
+                  <option value="">No folder available</option>
+                )}
+
+                {folders.map((f) => (
+                  <option key={f.id} value={f.id}>
+                    {f.name}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 

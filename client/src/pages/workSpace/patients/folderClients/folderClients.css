@@ -73,7 +73,6 @@
   background: #ffffff;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 .folder-add-btn:hover {
@@ -250,6 +249,80 @@
   outline-offset: 2px;
 }
 
+/* HEADER ACTIONS (edit + add) */
+.folder-header-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-end;
+}
+
+/* EDITING FIELDS */
+.folder-edit-fields {
+  display: flex;
+  flex-direction: row;
+  gap: 10rem;
+  min-width: 220px;
+}
+
+.folder-edit-input {
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.folder-edit-textarea {
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+  min-height: 60px;
+  resize: vertical;
+  outline: none;
+}
+
+/* HEADER ACTIONS INLINE */
+.folder-header-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Buttons */
+.folder-edit-btn,
+.folder-save-btn,
+.folder-cancel-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.folder-save-btn {
+  background: var(--secondary-color);
+  color: white;
+  border-color: var(--tertiary-color);
+}
+
+.folder-cancel-btn {
+  background: #ffe5e5;
+  color: var(--danger);
+  border-color: #ffb3b3;
+}
+
+.folder-edit-btn:hover,
+.folder-save-btn:hover,
+.folder-cancel-btn:hover {
+  transform: translateY(-1px);
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 900px) {
@@ -284,5 +357,17 @@
   .folder-table th,
   .folder-table td {
     font-size: 0.85rem;
+  }
+
+  .folder-header-actions-row {
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .folder-edit-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 }

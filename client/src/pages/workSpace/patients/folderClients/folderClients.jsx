@@ -7,15 +7,15 @@ import PatientModalForm from "../folderClients/patientModelForm/patientModelForm
 export default function FolderClients() {
   const { folderId } = useParams();
   const location = useLocation();
+  const [showModal, setShowModal] = useState(false);
 
-  // folder truyền từ Patients qua navigate(..., { state: { folder } })
   const folderFromState = location.state?.folder;
 
-  // mock cho các folder có sẵn (folder-1..3)
   const mockFolders = [
     {
       id: "folder-1",
       name: "Folder 1",
+      description: "This is a demo folder for testing.",
       clients: [
         {
           id: "client-101",
@@ -49,6 +49,7 @@ export default function FolderClients() {
     {
       id: "folder-2",
       name: "Family Folder",
+      description: "Folder for family members.",
       clients: [
         {
           id: "client-201",
@@ -64,11 +65,17 @@ export default function FolderClients() {
     {
       id: "folder-3",
       name: "Empty Folder",
+      description: "",
       clients: [],
     },
   ];
 
-  // Ưu tiên folder truyền từ Patients, nếu không có thì fallback mock
+  const handleAddClient = (payload) => {
+    console.log("Add client to current folder:", payload);
+    // payload.folderId = folderId in URL
+    setShowModal(false);
+  };
+
   const folder =
     folderFromState && folderFromState.id === folderId
       ? {
@@ -80,6 +87,17 @@ export default function FolderClients() {
   if (!folder) {
     return <h2 style={{ padding: "2rem" }}>Folder not found</h2>;
   }
+
+  const [folderInfo, setFolderInfo] = useState({
+    name: folder.name,
+    description: folder.description || "",
+  });
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [editName, setEditName] = useState(folderInfo.name);
+  const [editDescription, setEditDescription] = useState(
+    folderInfo.description
+  );
 
   const [clients, setClients] = useState(folder.clients || []);
   const [search, setSearch] = useState("");
@@ -124,11 +142,34 @@ export default function FolderClients() {
       age,
       phone: data.phoneNumber,
       email: data.email,
+      role: data.role,
       relationship: data.relationship,
+      folderId: data.folderId,
     };
 
     setClients((prev) => [...prev, newClient]);
     setOpenCreateModal(false);
+  };
+
+  const handleStartEdit = () => {
+    setEditName(folderInfo.name);
+    setEditDescription(folderInfo.description);
+    setIsEditing(true);
+  };
+
+  const handleSaveEdit = () => {
+    // TODO: call API
+    setFolderInfo({
+      name: editName.trim() || "Untitled Folder",
+      description: editDescription.trim(),
+    });
+    setIsEditing(false);
+  };
+
+  const handleCancelEdit = () => {
+    setEditName(folderInfo.name);
+    setEditDescription(folderInfo.description);
+    setIsEditing(false);
   };
 
   return (
@@ -136,31 +177,89 @@ export default function FolderClients() {
       <div className="folder-card">
         {/* HEADER */}
         <div className="folder-card-header">
+          {/* LEFT: icon + title + clients count + (edit mode) */}
           <div className="folder-info-main">
             <img src={folderIcon} className="folder-info-icon" alt="" />
-            <div>
-              <h1 className="folder-info-title">{folder.name}</h1>
-              <p className="folder-info-subtitle">
-                Total Clients: {filteredClients.length}
-              </p>
-            </div>
-          </div>
 
-          <div className="folder-description">
-            {folder.description ? (
-              <p>{folder.description}</p>
+            {isEditing ? (
+              <div className="folder-edit-fields">
+                <input
+                  type="text"
+                  className="folder-edit-input"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                  placeholder="Folder name"
+                />
+
+                <textarea
+                  className="folder-edit-textarea"
+                  value={editDescription}
+                  onChange={(e) => setEditDescription(e.target.value)}
+                  placeholder="Folder description..."
+                />
+              </div>
             ) : (
-              <p className="folder-description-empty">No description</p>
+              <div>
+                <h1 className="folder-info-title">{folderInfo.name}</h1>
+                <p className="folder-info-subtitle">
+                  Total Clients: {filteredClients.length}
+                </p>
+              </div>
             )}
           </div>
 
-          <button
-            className="folder-add-btn"
-            onClick={() => setOpenCreateModal(true)}
-          >
-            <span>＋</span>
-            <span>Add Client</span>
-          </button>
+          {/* MIDDLE: description */}
+          {!isEditing && (
+            <div className="folder-description">
+              {folderInfo.description ? (
+                <p>{folderInfo.description}</p>
+              ) : (
+                <p className="folder-description-empty">No description</p>
+              )}
+            </div>
+          )}
+
+          {/* RIGHT: Edit / Save / Cancel + Add client */}
+          <div className="folder-header-actions-row">
+            {isEditing ? (
+              <>
+                <button className="folder-save-btn" onClick={handleSaveEdit}>
+                  Save
+                </button>
+
+                <button
+                  className="folder-cancel-btn"
+                  onClick={handleCancelEdit}
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <button className="folder-edit-btn" onClick={handleStartEdit}>
+                ✎ Edit
+              </button>
+            )}
+
+            <>
+              <button
+                className="folder-add-btn"
+                onClick={() => setOpenCreateModal(true)}
+              >
+                <span>＋</span>
+                <span>Add Client</span>
+              </button>
+
+              {showModal && (
+                <PatientModalForm
+                  onClose={() => setShowModal(false)}
+                  onSubmit={handleAddClient}
+                  folders={folders}
+                  initialFolderId={folderId}
+                  lockFolder={true}
+                />
+              )}
+            </>
+          </div>
         </div>
 
         {/* SEARCH + SORT */}
@@ -194,12 +293,12 @@ export default function FolderClients() {
           <table className="folder-table">
             <thead>
               <tr>
-                <th>No.</th>
+                <th className="folder-col-number">No.</th>
                 <th>Name</th>
                 <th>Age</th>
                 <th>Contact info</th>
                 <th>Relationship</th>
-                <th></th>
+                <th className="folder-col-actions"></th>
               </tr>
             </thead>
 
