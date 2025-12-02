@@ -1,1 +1,19 @@
 2025-12-02 00:00:45::info::/v1/api/auth/login::7c1a0d52-04fe-43b6-8d3a-f06bd008852c::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-02 10:08:03::info::/v1/api/auth/login::1a669319-78b0-441f-94a7-056fa316c7cc::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapLuu987AZ@"}
+2025-12-02 10:08:03::error::/v1/api/auth/login::1a669319-78b0-441f-94a7-056fa316c7cc::handler-error::{"status":401,"message":"Account or password is invalid"}
+2025-12-02 10:08:12::info::/v1/api/auth/login::cb76c6ce-74d9-4365-b0a7-e20d45219558::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-02 10:08:13::info::/v1/api/user/me::5bb4a783-2b73-4868-bb8a-1ee47dc7ddb6::input-params ::GET::::{}
+2025-12-02 11:00:02::info::/v1/api/user/me::748e1859-3d62-4b6b-afc2-68e1e3c2705d::input-params ::GET::::{}
+2025-12-02 11:00:02::info::/v1/api/user/me::fa82b595-6ac4-47da-bdda-63b58f5301c1::input-params ::GET::::{}
+2025-12-02 11:00:19::info::/v1/api/user/me::a197aff7-c127-4103-b351-1a1775153c61::input-params ::GET::::{}
+2025-12-02 11:00:19::info::/v1/api/user/me::02af517a-a946-45b8-afc0-25b689897d19::input-params ::GET::::{}
+2025-12-02 11:06:04::info::/v1/api/auth/login::f5371081-9d61-462b-b2c5-7163eff75913::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-02 11:06:04::info::/v1/api/user/me::36ddc29c-835c-470b-b3d8-d5b9c35b57a2::input-params ::GET::::{}
+2025-12-02 12:29:06::info::/v1/api/user/me::db8695a2-a602-4f46-a08c-1d4447136e61::input-params ::GET::::{}
+2025-12-02 12:29:08::info::/v1/api/user/me::d0231b52-62cf-4546-b7d5-dd35e870cc5d::input-params ::GET::::{}
+2025-12-02 12:46:14::info::/v1/api/auth/login::f48cdbde-fcab-4a30-84d8-96993b20b1e8::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-02 12:46:14::info::/v1/api/user/me::7076c2af-3c74-482e-ad81-67e6b44c22e1::input-params ::GET::::{}
+2025-12-02 13:00:55::info::/v1/api/user/me::d65d7ef9-9012-4455-ae6b-761f22d00ab5::input-params ::GET::::{}
+2025-12-02 13:00:55::info::/v1/api/user/me::ed8bf61e-84f8-4c23-805c-fb83876da674::input-params ::GET::::{}
+2025-12-02 13:00:57::info::/v1/api/auth/login::37444558-c521-4201-a85a-9dfe728c6d55::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-02 13:00:58::info::/v1/api/user/me::77bc1117-1e5d-46f5-9ca7-0950d6dfcc69::input-params ::GET::::{}

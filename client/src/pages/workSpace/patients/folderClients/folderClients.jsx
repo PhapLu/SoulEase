@@ -1,11 +1,17 @@
 import React, { useState, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import "./folderClients.css";
 import folderIcon from "../../../../assets/folder.svg";
+import PatientModalForm from "../folderClients/patientModelForm/patientModelForm";
 
 export default function FolderClients() {
   const { folderId } = useParams();
+  const location = useLocation();
 
+  // folder truyền từ Patients qua navigate(..., { state: { folder } })
+  const folderFromState = location.state?.folder;
+
+  // mock cho các folder có sẵn (folder-1..3)
   const mockFolders = [
     {
       id: "folder-1",
@@ -40,7 +46,6 @@ export default function FolderClients() {
         },
       ],
     },
-
     {
       id: "folder-2",
       name: "Family Folder",
@@ -56,7 +61,6 @@ export default function FolderClients() {
         },
       ],
     },
-
     {
       id: "folder-3",
       name: "Empty Folder",
@@ -64,17 +68,26 @@ export default function FolderClients() {
     },
   ];
 
-  const folder = mockFolders.find((f) => f.id === folderId);
+  // Ưu tiên folder truyền từ Patients, nếu không có thì fallback mock
+  const folder =
+    folderFromState && folderFromState.id === folderId
+      ? {
+          ...folderFromState,
+          clients: folderFromState.clients || [],
+        }
+      : mockFolders.find((f) => f.id === folderId);
 
   if (!folder) {
     return <h2 style={{ padding: "2rem" }}>Folder not found</h2>;
   }
 
+  const [clients, setClients] = useState(folder.clients || []);
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("lastName");
+  const [openCreateModal, setOpenCreateModal] = useState(false);
 
   const filteredClients = useMemo(() => {
-    let data = folder.clients;
+    let data = clients;
 
     if (search.trim()) {
       const s = search.toLowerCase();
@@ -92,7 +105,31 @@ export default function FolderClients() {
     }
 
     return data;
-  }, [search, sortBy, folder.clients]);
+  }, [search, sortBy, clients]);
+
+  const handleCreateClient = (data) => {
+    const parts = data.fullName.trim().split(" ");
+    const lastName = parts.length > 1 ? parts[parts.length - 1] : "";
+    const firstName =
+      parts.length > 1 ? parts.slice(0, parts.length - 1).join(" ") : parts[0];
+
+    const birthYear = data.dob ? new Date(data.dob).getFullYear() : null;
+    const currentYear = new Date().getFullYear();
+    const age = birthYear ? currentYear - birthYear : 0;
+
+    const newClient = {
+      id: `client-${Date.now()}`,
+      firstName,
+      lastName,
+      age,
+      phone: data.phoneNumber,
+      email: data.email,
+      relationship: data.relationship,
+    };
+
+    setClients((prev) => [...prev, newClient]);
+    setOpenCreateModal(false);
+  };
 
   return (
     <section className="folder-page">
@@ -109,7 +146,18 @@ export default function FolderClients() {
             </div>
           </div>
 
-          <button className="folder-add-btn">
+          <div className="folder-description">
+            {folder.description ? (
+              <p>{folder.description}</p>
+            ) : (
+              <p className="folder-description-empty">No description</p>
+            )}
+          </div>
+
+          <button
+            className="folder-add-btn"
+            onClick={() => setOpenCreateModal(true)}
+          >
             <span>＋</span>
             <span>Add Client</span>
           </button>
@@ -117,7 +165,6 @@ export default function FolderClients() {
 
         {/* SEARCH + SORT */}
         <div className="folder-controls">
-          {/* Search */}
           <div className="folder-search-wrapper">
             <input
               type="search"
@@ -128,7 +175,6 @@ export default function FolderClients() {
             />
           </div>
 
-          {/* Sort */}
           <div className="folder-sort-wrapper">
             <label className="folder-sort-label">Sort:</label>
             <select
@@ -189,6 +235,14 @@ export default function FolderClients() {
           </table>
         </div>
       </div>
+
+      {/* Modal Create Client */}
+      {openCreateModal && (
+        <PatientModalForm
+          onClose={() => setOpenCreateModal(false)}
+          onSubmit={handleCreateClient}
+        />
+      )}
     </section>
   );
 }
