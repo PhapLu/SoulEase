@@ -1,6 +1,14 @@
 import { Outlet, NavLink } from "react-router-dom";
 import "./WorkspaceLayout.css";
 import logo from "../../assets/logo.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUsers,
+  faChartPie,
+  faComments,
+  faBell,
+  faGear,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function WorkspaceLayout() {
   return (
@@ -22,7 +30,8 @@ export default function WorkspaceLayout() {
                   isActive ? "workspace-nav-link active" : "workspace-nav-link"
                 }
               >
-                Clients
+                <FontAwesomeIcon icon={faUsers} />
+                <span>Clients</span>
               </NavLink>
             </li>
             <li>
@@ -32,17 +41,19 @@ export default function WorkspaceLayout() {
                   isActive ? "workspace-nav-link active" : "workspace-nav-link"
                 }
               >
-                Dashboard
+                <FontAwesomeIcon icon={faChartPie} />
+                <span>Dashboard</span>
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/workspace/message"
+                to="/workspace/messages"
                 className={({ isActive }) =>
                   isActive ? "workspace-nav-link active" : "workspace-nav-link"
                 }
               >
-                Messages
+                <FontAwesomeIcon icon={faComments} />
+                <span>Messages</span>
               </NavLink>
             </li>
             <li>
@@ -52,7 +63,8 @@ export default function WorkspaceLayout() {
                   isActive ? "workspace-nav-link active" : "workspace-nav-link"
                 }
               >
-                Notifications
+                <FontAwesomeIcon icon={faBell} />
+                <span>Notifications</span>
               </NavLink>
             </li>
             <li>
@@ -62,7 +74,8 @@ export default function WorkspaceLayout() {
                   isActive ? "workspace-nav-link active" : "workspace-nav-link"
                 }
               >
-                Setting
+                <FontAwesomeIcon icon={faGear} />
+                <span>Setting</span>
               </NavLink>
             </li>
           </ul>

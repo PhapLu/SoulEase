@@ -1,0 +1,360 @@
+.ws-messages {
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+.ws-panels {
+  display: grid;
+  grid-template-columns: 320px auto 360px;
+  gap: 14px;
+  padding: 10px;
+  background-color:rgba(255, 255, 255, 0.6);
+  height: 100%;
+  border-radius: 25px;
+}
+
+.ws-threads,
+.ws-chat,
+.ws-assistant {
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.ws-threads {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ws-threads h2 {
+  margin: 0;
+  font-size: 35px;
+  font-weight: 500;
+  background: linear-gradient(90deg, var(--text-color-dark), var(--tertiary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.ws-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border: 1px solid #e5f1eb;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.ws-input input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  margin: 0;
+  padding: 10px;
+}
+
+.ws-thread-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ws-thread {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  padding: 10px 8px;
+  border-radius: 12px;
+  transition: background 0.18s ease, box-shadow 0.18s ease;
+  cursor: pointer;
+}
+
+.ws-thread:hover {
+  background: #f2fffb;
+  box-shadow: inset 0 0 0 1px #c8e8dd;
+}
+
+.ws-thread.active {
+  background: #f2fffb;
+  box-shadow: inset 0 0 0 1px #0a8769;
+}
+
+.ws-thread__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #cbd7d3;
+}
+
+.ws-thread__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ws-thread__name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.ws-thread__snippet {
+  color: #6b7a74;
+  font-size: 13px;
+}
+
+.ws-thread__time {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 12px;
+  color: #6b7a74;
+}
+
+.ws-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0a8769;
+}
+
+.ws-chat {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 14px;
+  background: linear-gradient(135deg, #e6fff8, #f9fffc);
+}
+
+.ws-chat__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 14px rgba(12, 45, 36, 0.08);
+}
+
+.ws-chat__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #cbd7d3;
+}
+
+.ws-chat__name {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.ws-chat__status {
+  font-size: 12px;
+  color: #6b7a74;
+}
+
+.ws-chat__body {
+  position: relative;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.ws-bubble {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ws-bubble p {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 6px 12px rgba(12, 45, 36, 0.08);
+  max-width: 320px;
+  font-size: 14px;
+}
+
+.ws-bubble--me {
+  justify-content: flex-end;
+}
+
+.ws-bubble--me p {
+  background: #f7fffc;
+}
+
+.ws-avatar-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #cbd7d3;
+}
+
+.ws-chat__input {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 14px rgba(12, 45, 36, 0.08);
+}
+
+.ws-chat__input input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 0 10px;
+  margin: 0;
+}
+
+.ws-chat__input button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: var(--tertiary-color);
+  color: #fff;
+  cursor: pointer;
+}
+
+.ws-assistant {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 14px;
+}
+
+.ws-assistant__header {
+  text-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.ws-assistant__header svg {
+  color: var(--tertiary-color);
+  font-size: 45px;
+}
+
+.ws-assistant__title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 500;
+  background: linear-gradient(90deg, var(--text-color-dark), var(--tertiary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.ws-assistant__divider {
+  height: 1.5px;
+  background: var(--tertiary-color);
+}
+
+.ws-assistant__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ws-assistant__bubble {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: flex-end;
+  max-width: 280px;
+}
+
+.ws-assistant__bubble p {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 6px 12px rgba(12, 45, 36, 0.08);
+  font-size: 14px;
+}
+
+.ws-assistant__bubble--reply {
+  align-self: flex-start;
+  align-items: center;
+}
+
+.ws-assistant__bubble--reply p {
+  background: #f7fffc;
+}
+
+.ws-chip {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e6fff6;
+  color: #0a8769;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.ws-assistant__input {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 14px rgba(12, 45, 36, 0.08);
+}
+
+.ws-assistant__input input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 0 10px;
+  margin: 0;
+}
+
+.ws-assistant__input button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: var(--tertiary-color);
+  color: #fff;
+  cursor: pointer;
+}
+
+.fa-paper-plane {
+  width: 13px;
+}
+
+@media (max-width: 1200px) {
+  .ws-panels {
+    grid-template-columns: 240px 1fr;
+  }
+
+  .ws-assistant {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+}
+
+@media (max-width: 768px) {
+  .ws-panels {
+    grid-template-columns: 1fr;
+  }
+
+  .ws-threads {
+    order: 2;
+  }
+}

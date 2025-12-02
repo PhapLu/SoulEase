@@ -23,6 +23,7 @@ import Patients from './pages/workSpace/patients/patients.jsx'
 import FolderClients from './pages/workSpace/patients/folderClients/folderClients.jsx'
 import Services from './pages/Services/Services'
 import Pricing from './pages/Pricing/Pricing'
+import Messages from './pages/workSpace/messages/Messages.jsx'
 
 const router = createBrowserRouter([
     {
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
                 ),
             },
             { path: 'patients', element: <Patients /> },
-            // { path: "message", element: <Message /> },
+            { path: 'messages', element: <Messages /> },
             { path: 'patients/folder/:folderId', element: <FolderClients /> },
         ],
     },

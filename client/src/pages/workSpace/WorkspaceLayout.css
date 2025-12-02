@@ -52,19 +52,25 @@
 }
 
 .workspace-nav-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   width: 100%;
   padding: 0.6rem 0.75rem;
   border-radius: 999px;
   font-size: 0.95rem;
   text-decoration: none;
   color: var(--muted);
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .workspace-nav-link:hover {
   background: var(--hover-btn);
   color: var(--text-color-light);
+  transform: translateY(-1px);
 }
 
 .workspace-nav-link.active {
