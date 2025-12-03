@@ -4,6 +4,10 @@ import PatientModalForm from '../../pages/workSpace/patients/folderClients/patie
 
 export default function WorkspaceTopBar() {
     const [openCreateModal, setOpenCreateModal] = useState(false)
+    const { folderId } = useParams()
+    const [showModal, setShowModal] = useState(false)
+
+    const isInsideFolder = !!folderId
     const handleCreateClient = (data) => {
         const parts = data.fullName.trim().split(' ')
         const lastName = parts.length > 1 ? parts[parts.length - 1] : ''
@@ -33,10 +37,13 @@ export default function WorkspaceTopBar() {
             </div>
 
             <div className='workspace-topbar-actions'>
-                <button className='workspace-topbar-btn' onClick={() => setOpenCreateModal(true)}>
+                <button className='workspace-topbar-btn' onClick={() => setShowModal(true)}>
                     <span>＋</span>
                     <span>Create Client</span>
                 </button>
+
+                {/* MODAL */}
+                {showModal && <PatientModalForm onClose={() => setShowModal(false)} onSubmit={handleCreateClient} folders={folders} initialFolderId={folderId || ''} lockFolder={isInsideFolder} />}
 
                 <button className='workspace-topbar-btn workspace-topbar-btn-primary'>Upgrade plus</button>
 

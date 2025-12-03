@@ -8,15 +8,20 @@ export default function FolderClients() {
     const { folderId } = useParams()
     const location = useLocation()
 
-    // folder truyền từ Patients qua navigate(..., { state: { folder } })
-    const folderFromState = location.state?.folder
-    console.log(location.state)
+    const [showModal, setShowModal] = useState(false)
+    const [openCreateModal, setOpenCreateModal] = useState(false)
+    const [search, setSearch] = useState('')
+    const [sortBy, setSortBy] = useState('lastName')
 
-    // mock cho các folder có sẵn (folder-1..3)
+    const [isEditing, setIsEditing] = useState(false)
+    const [editName, setEditName] = useState('')
+    const [editDescription, setEditDescription] = useState('')
+
     const mockFolders = [
         {
             id: 'folder-1',
             name: 'Folder 1',
+            description: 'This is a demo folder for testing.',
             clients: [
                 {
                     id: 'client-101',
@@ -50,6 +55,7 @@ export default function FolderClients() {
         {
             id: 'folder-2',
             name: 'Family Folder',
+            description: 'Folder for family members.',
             clients: [
                 {
                     id: 'client-201',
@@ -65,35 +71,23 @@ export default function FolderClients() {
         {
             id: 'folder-3',
             name: 'Empty Folder',
+            description: '',
             clients: [],
         },
     ]
 
-    // Ưu tiên folder truyền từ Patients, nếu không có thì fallback mock
-    const folder =
-        folderFromState && folderFromState._id === folderId
-            ? {
-                  ...folderFromState,
-                  clients: folderFromState.clients || [],
-              }
-            : mockFolders.find((f) => f._id === folderId)
+    const folderFromState = location.state?.folder
+    const folder = (folderFromState && folderFromState.id === folderId && folderFromState) || mockFolders.find((f) => f.id === folderId) || mockFolders[0]
 
-    if (!folder) {
-        return <h2 style={{ padding: '2rem' }}>Folder not found</h2>
-    }
+    const [folderInfo, setFolderInfo] = useState({
+        name: folder.name,
+        description: folder.description || '',
+    })
 
     const [clients, setClients] = useState(folder.clients || [])
-    const [search, setSearch] = useState('')
-    const [sortBy, setSortBy] = useState('lastName')
-    const [openCreateModal, setOpenCreateModal] = useState(false)
 
     const filteredClients = useMemo(() => {
-        let data = clients
-
-        if (search.trim()) {
-            const s = search.toLowerCase()
-            data = data.filter((c) => `${c.firstName} ${c.lastName}`.toLowerCase().includes(s))
-        }
+        let data = clients.filter((client) => `${client.firstName} ${client.lastName}`.toLowerCase().includes(search.toLowerCase()))
 
         if (sortBy === 'lastName') {
             data = [...data].sort((a, b) => a.lastName.localeCompare(b.lastName))
@@ -104,7 +98,7 @@ export default function FolderClients() {
         }
 
         return data
-    }, [search, sortBy, clients])
+    }, [clients, search, sortBy])
 
     const handleCreateClient = (data) => {
         const parts = data.fullName.trim().split(' ')
@@ -129,6 +123,26 @@ export default function FolderClients() {
         setOpenCreateModal(false)
     }
 
+    const handleStartEdit = () => {
+        setEditName(folderInfo.name)
+        setEditDescription(folderInfo.description)
+        setIsEditing(true)
+    }
+
+    const handleSaveEdit = () => {
+        setFolderInfo({
+            name: editName.trim() || 'Untitled Folder',
+            description: editDescription.trim(),
+        })
+        setIsEditing(false)
+    }
+
+    const handleCancelEdit = () => {
+        setEditName(folderInfo.name)
+        setEditDescription(folderInfo.description)
+        setIsEditing(false)
+    }
+
     return (
         <section className='folder-page'>
             <div className='folder-card'>
@@ -136,18 +150,45 @@ export default function FolderClients() {
                 <div className='folder-card-header'>
                     <div className='folder-info-main'>
                         <img src={folderIcon} className='folder-info-icon' alt='' />
-                        <div>
-                            <h1 className='folder-info-title'>{folder.title}</h1>
-                            <p className='folder-info-subtitle'>Total Clients: {filteredClients.length}</p>
-                        </div>
+
+                        {isEditing ? (
+                            <div className='folder-edit-fields'>
+                                <input type='text' className='folder-edit-input' value={editName} onChange={(e) => setEditName(e.target.value)} placeholder='Folder name' />
+
+                                <textarea className='folder-edit-textarea' value={editDescription} onChange={(e) => setEditDescription(e.target.value)} placeholder='Folder description...' />
+                            </div>
+                        ) : (
+                            <div>
+                                <h1 className='folder-info-title'>{folderInfo.name}</h1>
+                                <p className='folder-info-subtitle'>Total Clients: {filteredClients.length}</p>
+                            </div>
+                        )}
                     </div>
 
-                    <div className='folder-description'>{folder.description ? <p>{folder.description}</p> : <p className='folder-description-empty'>No description</p>}</div>
+                    {!isEditing && <div className='folder-description'>{folderInfo.description ? <p>{folderInfo.description}</p> : <p className='folder-description-empty'>No description</p>}</div>}
 
-                    <button className='folder-add-btn' onClick={() => setOpenCreateModal(true)}>
-                        <span>＋</span>
-                        <span>Add Client</span>
-                    </button>
+                    <div className='folder-header-actions-row'>
+                        {isEditing ? (
+                            <>
+                                <button className='folder-save-btn' onClick={handleSaveEdit}>
+                                    Save
+                                </button>
+
+                                <button className='folder-cancel-btn' onClick={handleCancelEdit}>
+                                    Cancel
+                                </button>
+                            </>
+                        ) : (
+                            <button className='folder-edit-btn' onClick={handleStartEdit}>
+                                ✎ Edit
+                            </button>
+                        )}
+
+                        <button className='folder-add-btn' onClick={() => setOpenCreateModal(true)}>
+                            <span>＋</span>
+                            <span>Add Client</span>
+                        </button>
+                    </div>
                 </div>
 
                 {/* SEARCH + SORT */}
@@ -171,12 +212,12 @@ export default function FolderClients() {
                     <table className='folder-table'>
                         <thead>
                             <tr>
-                                <th>No.</th>
+                                <th className='folder-col-number'>No.</th>
                                 <th>Name</th>
                                 <th>Age</th>
                                 <th>Contact info</th>
                                 <th>Relationship</th>
-                                <th></th>
+                                <th className='folder-col-actions'></th>
                             </tr>
                         </thead>
 
@@ -213,7 +254,7 @@ export default function FolderClients() {
                 </div>
             </div>
 
-            {/* Modal Create Client */}
+            {/* MODAL */}
             {openCreateModal && <PatientModalForm onClose={() => setOpenCreateModal(false)} onSubmit={handleCreateClient} />}
         </section>
     )
