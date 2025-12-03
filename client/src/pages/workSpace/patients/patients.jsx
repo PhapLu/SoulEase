@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./patients.css";
 import folderIcon from "../../../assets/folder.svg";
