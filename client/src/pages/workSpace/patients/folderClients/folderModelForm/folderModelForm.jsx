@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './folderModelForm.css'
 
 export default function FolderModalForm({ onClose, onSubmit }) {

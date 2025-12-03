@@ -14,8 +14,9 @@
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--border);
-  border-radius: 20px;
-  margin: 24px 8px;
+  border-radius: 12px;
+  margin: 12px 8px;
+  margin-right: 0px;
 }
 
 /* Brand (logo + text) */
@@ -29,14 +30,14 @@
 }
 
 .workspace-logo {
-  width: 32px;
-  height: 32px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
 }
 
 .workspace-brand-name {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 400;
 }
 
 /* Nav */
@@ -47,7 +48,7 @@
 }
 
 .workspace-nav li + li {
-  margin-top: 0.5rem;
+  margin-top: 8px;
 }
 
 .workspace-nav-link {
@@ -56,8 +57,9 @@
   gap: 10px;
   width: 100%;
   padding: 0.6rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.95rem;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
   text-decoration: none;
   color: var(--muted);
   transition:
@@ -67,15 +69,22 @@
 }
 
 .workspace-nav-link:hover {
-  background: var(--hover-btn);
-  color: var(--text-color-light);
+  background: rgba(10, 135, 105, 0.12);
+  color: var(--tertiary-color);
   transform: translateY(-1px);
 }
 
-.workspace-nav-link.active {
-  background: var(--hover-btn);
-  color: var(--text-color-light);
-  font-weight: 500;
+.workspace-nav-link:hover span svg {
+  fill: var(--tertiary-color);
+}
+
+.workspace-nav-link.active{
+  background: rgba(10, 135, 105, 0.12);
+  color: var(--tertiary-color);
+}
+
+.workspace-nav-link.active span svg {
+  fill: var(--tertiary-color);
 }
 
 /* Footer */
@@ -99,7 +108,7 @@
 /* MAIN CONTENT */
 .workspace-main {
   flex: 1;
-  padding: 1.5rem;
+  padding: 12px 8px;
 }
 
 .workspace-main .logo {

@@ -5,7 +5,7 @@
 }
 
 .services-hero {
-  padding: 50px 100px;
+  padding: 50px 10%;
   overflow: hidden;
   position: relative;
 }
@@ -22,7 +22,6 @@
   z-index: 1;
   display: flex;
   gap: 120px;
-  padding: 0 80px;
   align-items: center;
 }
 
@@ -87,7 +86,7 @@
   display: grid;
   place-items: center;
   border-radius: 5px;
-  background: #dfeeec;
+  background: rgba(12, 137, 107, 0.1);
   color: #0c896b;
   font-size: 25px;
 }
@@ -199,7 +198,7 @@
   display: grid;
   place-items: center;
   border-radius: 8px;
-  background: #cde8e2;
+  background: rgba(12, 137, 107, 0.1);
   color: #0c896b;
   font-size: 26px;
 }

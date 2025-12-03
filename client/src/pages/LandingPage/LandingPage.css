@@ -132,7 +132,7 @@
 }
 
 .landing-section {
-    padding: 20px 26px 80px;
+    padding: 20px 10% 80px;
 }
 
 .landing-section__header {
@@ -159,8 +159,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 18px;
-    max-width: 90%;
-    margin: 0 auto;
 }
 
 .landing-feature-card {
@@ -198,7 +196,7 @@
 }
 
 .landing-tools {
-    margin: 20px 100px;
+    margin: 20px 10%;
     padding: 70px;
     border-radius: 25px;
     box-shadow: 0px 5px 10px 3px rgba(8, 71, 55, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
