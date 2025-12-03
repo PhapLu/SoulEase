@@ -20,7 +20,7 @@ export default function WorkspaceLayout() {
                     <nav className='workspace-nav'>
                         <ul>
                             <li>
-                                <NavLink to='/workspace/patients' end className={({ isActive }) => (isActive ? 'workspace-nav-link active' : 'workspace-nav-link')}>
+                                <NavLink to='/workspace' end className={({ isActive }) => (isActive ? 'workspace-nav-link active' : 'workspace-nav-link')}>
                                     Clients
                                 </NavLink>
                             </li>

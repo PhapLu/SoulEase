@@ -54,8 +54,7 @@ const router = createBrowserRouter([
         ),
         children: [
             { index: true, element: <Patients /> },
-            { path: 'patients', element: <Patients /> },
-            { path: 'patients/folder/:folderId', element: <FolderClients /> },
+            { path: 'folder/:folderId', element: <FolderClients /> },
             { path: 'messages', element: <Messages /> },
         ],
     },

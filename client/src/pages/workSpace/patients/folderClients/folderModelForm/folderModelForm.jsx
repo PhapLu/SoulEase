@@ -7,11 +7,10 @@ export default function FolderModalForm({ onClose, onSubmit }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
         if (!title.trim()) return
 
         onSubmit({
-            name: title.trim(),
+            title: title.trim(),
             description: description.trim(),
         })
     }

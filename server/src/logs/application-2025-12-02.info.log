@@ -17,3 +17,116 @@
 2025-12-02 13:00:55::info::/v1/api/user/me::ed8bf61e-84f8-4c23-805c-fb83876da674::input-params ::GET::::{}
 2025-12-02 13:00:57::info::/v1/api/auth/login::37444558-c521-4201-a85a-9dfe728c6d55::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
 2025-12-02 13:00:58::info::/v1/api/user/me::77bc1117-1e5d-46f5-9ca7-0950d6dfcc69::input-params ::GET::::{}
+2025-12-02 15:42:53::info::/v1/api/folder/createFolder::98c3624e-6636-494b-916f-76430c96f604::input-params ::POST::::{"title":"Folder 1","description":"Description"}
+2025-12-02 15:42:56::error::/v1/api/folder/createFolder::98c3624e-6636-494b-916f-76430c96f604::handler-error::{"status":401,"message":"Please login to continue"}
+2025-12-02 15:44:14::info::/v1/api/folder/createFolder::92e5c28d-879c-4cfe-b788-e12924a201f4::input-params ::POST::::{"title":"Folder 1","description":"Description"}
+2025-12-02 15:44:15::info::/v1/api/folder/readFolders::7d0abcf9-7ae9-4e07-b25f-b17ad1a96332::input-params ::GET::::{}
+2025-12-02 15:44:15::error::/v1/api/folder/readFolders::7d0abcf9-7ae9-4e07-b25f-b17ad1a96332::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-02 15:44:32::info::/v1/api/folder/readFolders::78c5d62e-a171-4ee2-ba29-5bfd557f7f01::input-params ::GET::::{}
+2025-12-02 15:44:32::error::/v1/api/folder/readFolders::78c5d62e-a171-4ee2-ba29-5bfd557f7f01::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-02 15:44:32::info::/v1/api/folder/readFolders::f6cb9315-9068-462b-9985-bd197daba85a::input-params ::GET::::{}
+2025-12-02 15:44:32::error::/v1/api/folder/readFolders::f6cb9315-9068-462b-9985-bd197daba85a::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-02 15:46:00::info::/v1/api/folder/createFolder::1179c96b-dcfa-4d49-9f74-e8b7f3907527::input-params ::POST::::{"title":"Folder 1","description":"Description 222"}
+2025-12-02 15:46:00::info::/v1/api/folder/readFolders::b3f6b7a3-b1c7-4f1f-98c5-3b97e6ebcc65::input-params ::GET::::{}
+2025-12-02 15:46:00::error::/v1/api/folder/readFolders::b3f6b7a3-b1c7-4f1f-98c5-3b97e6ebcc65::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-02 15:47:02::info::/v1/api/folder/readFolders::ee6b54d0-e8b9-4e72-8140-a231eb13629a::input-params ::GET::::{}
+2025-12-02 15:47:02::info::/v1/api/user/me::f861507f-bd2e-4aee-b70a-ea788b007ae4::input-params ::GET::::{}
+2025-12-02 15:47:02::info::/v1/api/user/me::dc0b7649-9e53-4ab1-9024-18a5430d4d35::input-params ::GET::::{}
+2025-12-02 15:47:02::info::/v1/api/folder/readFolders::ae333bf7-f196-48ee-bc35-baf5786b938c::input-params ::GET::::{}
+2025-12-02 15:47:20::info::/v1/api/folder/readFolders::4e33dca6-10b7-4b5e-8e9f-acc0ce954081::input-params ::GET::::{}
+2025-12-02 15:47:23::info::/v1/api/folder/readFolders::b98ea9c6-f380-4417-acb4-0a35dde87b58::input-params ::GET::::{}
+2025-12-02 15:47:25::info::/v1/api/folder/readFolders::90155338-4e81-4ea7-95a7-147bf34c5c6a::input-params ::GET::::{}
+2025-12-02 15:47:28::info::/v1/api/folder/readFolders::371c3d1b-f4c3-4e4d-a25d-e35c1c31e1d0::input-params ::GET::::{}
+2025-12-02 15:47:30::info::/v1/api/folder/readFolders::432579cc-ce21-45e2-9c87-93aaf10d1743::input-params ::GET::::{}
+2025-12-02 15:47:37::info::/v1/api/folder/readFolders::e2c6e91a-5ef1-45dd-8071-ab1d46b66bd5::input-params ::GET::::{}
+2025-12-02 15:47:46::info::/v1/api/folder/readFolders::e1ecbe62-0e79-4604-8c3a-55f3965ca3d4::input-params ::GET::::{}
+2025-12-02 15:47:56::info::/v1/api/folder/readFolders::3d17f9fc-4357-4de0-9be4-07fcf2d8e478::input-params ::GET::::{}
+2025-12-02 15:47:56::info::/v1/api/user/me::7c20aab9-11d8-4b63-b9f1-ed947d080272::input-params ::GET::::{}
+2025-12-02 15:47:56::info::/v1/api/user/me::f325e840-e8d9-4806-8dc8-5c1d10a1f1df::input-params ::GET::::{}
+2025-12-02 15:47:56::info::/v1/api/folder/readFolders::44bfc333-976d-474b-8a56-199a94298f64::input-params ::GET::::{}
+2025-12-02 15:49:16::info::/v1/api/folder/readFolders::ee54c896-c511-44e8-b4b0-47a48c6c1516::input-params ::GET::::{}
+2025-12-02 15:49:16::info::/v1/api/folder/readFolders::75f136e8-78c9-4057-9d7c-eac57b1d3b0c::input-params ::GET::::{}
+2025-12-02 15:50:29::info::/v1/api/folder/readFolders::60829890-ab17-4a80-94b6-67d6ab9e6bbc::input-params ::GET::::{}
+2025-12-02 15:50:30::info::/v1/api/folder/readFolders::00a8790b-6239-4bbe-b43d-849be7be8100::input-params ::GET::::{}
+2025-12-02 15:50:30::info::/v1/api/folder/readFolders::aa54f331-c0c6-4cb3-aab5-6ba3ed10e14e::input-params ::GET::::{}
+2025-12-02 15:50:31::info::/v1/api/user/me::a3d27674-50c4-429d-a99c-94b463e61047::input-params ::GET::::{}
+2025-12-02 15:50:31::info::/v1/api/user/me::e7c3c45b-392a-433a-89e9-d7d7d8226fdd::input-params ::GET::::{}
+2025-12-02 15:50:31::info::/v1/api/folder/readFolders::529b1eb7-0a42-4b96-8393-a97f554bce70::input-params ::GET::::{}
+2025-12-02 15:50:35::info::/v1/api/folder/readFolders::7d380863-32e9-4b6b-92c2-af42734e266e::input-params ::GET::::{}
+2025-12-02 15:50:36::info::/v1/api/folder/readFolders::496c37a7-b30b-4de0-b80f-10a38e44f830::input-params ::GET::::{}
+2025-12-02 15:50:38::info::/v1/api/folder/readFolders::bc3009f4-aa1b-4ab1-97ba-c83aa91eaa15::input-params ::GET::::{}
+2025-12-02 15:50:38::info::/v1/api/folder/readFolders::b05d2882-3242-4657-be20-434056ae7d1d::input-params ::GET::::{}
+2025-12-02 15:50:40::info::/v1/api/folder/readFolders::3bac34df-e232-44e0-839c-a0b9e20c3dd9::input-params ::GET::::{}
+2025-12-02 15:50:40::info::/v1/api/folder/readFolders::0bd066c7-bfc7-4c1f-aa4a-f42a46a69bda::input-params ::GET::::{}
+2025-12-02 15:50:47::info::/v1/api/folder/readFolders::dcd36274-e9cf-4984-889e-bc2b17e0bc48::input-params ::GET::::{}
+2025-12-02 15:50:47::info::/v1/api/user/me::5035b868-b8f5-457d-a47d-940f7319cf83::input-params ::GET::::{}
+2025-12-02 15:50:47::info::/v1/api/user/me::5621bc7d-a302-4d30-ac4b-896fe69f4318::input-params ::GET::::{}
+2025-12-02 15:50:47::info::/v1/api/folder/readFolders::df7e4f5d-a653-42ce-a001-222a64ea27b9::input-params ::GET::::{}
+2025-12-02 15:50:51::info::/v1/api/folder/readFolders::2ab21a92-239e-43b6-a012-b5f905895f08::input-params ::GET::::{}
+2025-12-02 15:50:51::info::/v1/api/folder/readFolders::393e9082-3a5c-4a30-8df9-537f8350f389::input-params ::GET::::{}
+2025-12-02 15:52:41::info::/v1/api/folder/readFolders::1d372182-3b3b-44dd-b837-84fb501b7e6f::input-params ::GET::::{}
+2025-12-02 15:52:41::info::/v1/api/user/me::fa46789e-4df3-40ca-8caa-ab947bf2ae1a::input-params ::GET::::{}
+2025-12-02 16:04:47::error::/v1/api/folder/readFolders::1d372182-3b3b-44dd-b837-84fb501b7e6f::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-01.hebkgzl.mongodb.net"}
+2025-12-02 16:04:47::error::/v1/api/user/me::fa46789e-4df3-40ca-8caa-ab947bf2ae1a::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-01.hebkgzl.mongodb.net"}
+2025-12-02 16:05:06::info::/v1/api/folder/readFolders::556f965c-edbc-44bf-b5f7-fc14c536b8a1::input-params ::GET::::{}
+2025-12-02 16:05:06::info::/v1/api/user/me::2fc21262-192a-475b-9e7a-6fd0b97cc2c8::input-params ::GET::::{}
+2025-12-02 16:05:06::info::/v1/api/folder/readFolders::475a9009-ab67-446c-ab17-1c24795abfdc::input-params ::GET::::{}
+2025-12-02 16:05:06::info::/v1/api/user/me::9b06f07d-04c1-4d0b-840b-91319134fa52::input-params ::GET::::{}
+2025-12-02 16:09:02::info::/v1/api/folder/readFolders::bfaedb12-65f9-4869-b245-489ea8ec3d40::input-params ::GET::::{}
+2025-12-02 16:09:02::info::/v1/api/folder/readFolders::41496556-89bc-46e5-a953-a0f835f927c9::input-params ::GET::::{}
+2025-12-02 16:09:04::info::/v1/api/folder/readFolders::a0422c7d-e00d-4097-8e9e-77c7fd59230a::input-params ::GET::::{}
+2025-12-02 16:09:04::info::/v1/api/user/me::900b3a15-9e70-43d6-ad31-5e39deb895c2::input-params ::GET::::{}
+2025-12-02 16:09:04::info::/v1/api/user/me::73759254-7827-4668-a12a-2f7a01219586::input-params ::GET::::{}
+2025-12-02 16:09:04::info::/v1/api/folder/readFolders::353e20c7-26ca-467b-bc19-ef58af8f7132::input-params ::GET::::{}
+2025-12-02 16:09:09::info::/v1/api/folder/readFolders::84001066-88e7-45d3-9462-681e504656e6::input-params ::GET::::{}
+2025-12-02 16:09:09::info::/v1/api/folder/readFolders::02b347ed-ed30-4de8-8e46-12be00ffe1cd::input-params ::GET::::{}
+2025-12-02 16:09:17::info::/v1/api/folder/readFolders::cd65364e-a94c-4fa1-b205-14d55951439c::input-params ::GET::::{}
+2025-12-02 16:09:17::info::/v1/api/folder/readFolders::ff0d4433-f901-4706-810a-cc4856a38dc1::input-params ::GET::::{}
+2025-12-02 16:12:11::info::/v1/api/folder/readFolders::b9875dc3-1750-4efc-b19e-8fa6758b7354::input-params ::GET::::{}
+2025-12-02 16:12:11::info::/v1/api/folder/readFolders::c9a304f1-3ee6-4f11-988f-c64211625b68::input-params ::GET::::{}
+2025-12-02 16:12:15::info::/v1/api/folder/readFolders::c885cd4d-cf29-4cb1-bcef-395a4dc1aadb::input-params ::GET::::{}
+2025-12-02 16:12:15::info::/v1/api/user/me::d36707af-73a4-40ba-9bbf-0f51f43b4e40::input-params ::GET::::{}
+2025-12-02 16:12:15::info::/v1/api/user/me::ce48349c-a4a0-44c2-925e-566219e0ac7d::input-params ::GET::::{}
+2025-12-02 16:12:15::info::/v1/api/folder/readFolders::7962eb6f-d936-4d01-bd98-d1afb2eebaca::input-params ::GET::::{}
+2025-12-02 16:12:18::info::/v1/api/folder/readFolders::cb3d7634-38d6-45fc-ac22-7f74dd867ca2::input-params ::GET::::{}
+2025-12-02 16:12:19::info::/v1/api/folder/readFolders::5254272b-8a39-4864-bd96-2ec67b464038::input-params ::GET::::{}
+2025-12-02 16:12:20::info::/v1/api/folder/readFolders::172db822-65f4-4804-b9b3-0a770c52f735::input-params ::GET::::{}
+2025-12-02 16:12:20::info::/v1/api/folder/readFolders::6429549f-0216-4941-8e18-ab48940e2030::input-params ::GET::::{}
+2025-12-02 16:12:24::info::/v1/api/folder/readFolders::39331a85-3d68-4462-a28d-f12abd2b1fc0::input-params ::GET::::{}
+2025-12-02 16:12:24::info::/v1/api/folder/readFolders::d957d867-30e6-47d4-b02f-63e302d10ecf::input-params ::GET::::{}
+2025-12-02 16:12:26::info::/v1/api/folder/readFolders::a83bbe9f-856f-42a4-8ee6-fc434365d7d2::input-params ::GET::::{}
+2025-12-02 16:12:26::info::/v1/api/folder/readFolders::fdb8cd07-316a-462a-977a-e7c94082acb6::input-params ::GET::::{}
+2025-12-02 16:12:54::info::/v1/api/folder/readFolders::fb77031a-fdb4-4366-b9a0-c6a7e73a65a9::input-params ::GET::::{}
+2025-12-02 16:12:54::info::/v1/api/folder/readFolders::216ffc73-c1b1-44d8-acd0-89d3acf46250::input-params ::GET::::{}
+2025-12-02 16:12:57::info::/v1/api/folder/readFolders::8458332f-746b-46b7-8449-9f8c41426d26::input-params ::GET::::{}
+2025-12-02 16:12:58::info::/v1/api/folder/readFolders::10e68572-7d4a-4036-ac10-bfa3fc71b0a5::input-params ::GET::::{}
+2025-12-02 16:13:01::info::/v1/api/folder/readFolders::7c77ec4d-fb49-4dbc-810b-f00b43648cb2::input-params ::GET::::{}
+2025-12-02 16:13:01::info::/v1/api/folder/readFolders::c7fd0f48-76c9-46df-bbe3-a777ad96f54b::input-params ::GET::::{}
+2025-12-02 16:16:54::info::/v1/api/folder/readFolders::9a70ed11-95af-4866-80d2-332e5c4140e0::input-params ::GET::::{}
+2025-12-02 16:16:54::info::/v1/api/folder/readFolders::0ed8a10e-3eba-41ae-be82-f2a9d0e668db::input-params ::GET::::{}
+2025-12-02 16:16:56::info::/v1/api/folder/readFolders::e9288e46-9d85-4d48-a84f-25b934795828::input-params ::GET::::{}
+2025-12-02 16:16:56::info::/v1/api/folder/readFolders::2ec653ba-3ee9-418b-b319-e906747165e7::input-params ::GET::::{}
+2025-12-02 16:18:55::info::/v1/api/folder/readFolders::1d0c23be-dcc8-4790-80d3-c63301ce144a::input-params ::GET::::{}
+2025-12-02 16:18:55::info::/v1/api/folder/readFolders::5b202105-56cc-47a6-ae15-3c5e082387f0::input-params ::GET::::{}
+2025-12-02 16:18:56::info::/v1/api/user/me::5dbe6a3d-ad9d-4316-aba0-5f5f16e2b6ac::input-params ::GET::::{}
+2025-12-02 16:18:56::info::/v1/api/user/me::8b3f0995-8325-4272-8825-f8398b6ef4d0::input-params ::GET::::{}
+2025-12-02 16:18:57::info::/v1/api/folder/readFolders::0464d6c8-2888-4f00-9576-c3d46111a966::input-params ::GET::::{}
+2025-12-02 16:18:57::info::/v1/api/folder/readFolders::e27e4095-29b9-4168-8639-0e6aeb67253f::input-params ::GET::::{}
+2025-12-02 16:19:35::info::/v1/api/folder/readFolders::bc6751a5-40e7-4cbf-8e7d-f7736629ff14::input-params ::GET::::{}
+2025-12-02 16:19:36::info::/v1/api/folder/readFolders::4d14b5b4-1420-4132-8aef-3c05ecfece73::input-params ::GET::::{}
+2025-12-02 16:19:37::info::/v1/api/folder/readFolders::d0449420-6c59-4ded-a8bd-fb8ff1bc8173::input-params ::GET::::{}
+2025-12-02 16:19:37::info::/v1/api/user/me::15bb0f81-5cfe-4b74-88f4-a160f1962139::input-params ::GET::::{}
+2025-12-02 16:19:37::info::/v1/api/user/me::0539eb6d-2d0c-41b1-954b-c566ec3d05d1::input-params ::GET::::{}
+2025-12-02 16:19:37::info::/v1/api/folder/readFolders::7ab46973-4266-4ac4-822f-1211e40c5b15::input-params ::GET::::{}
+2025-12-02 16:20:16::info::/v1/api/folder/createFolder::f7f81487-1723-48b3-ad96-d10332259f7a::input-params ::POST::::{"title":"Folder 2","description":"This is the descriptino for fodler 2"}
+2025-12-02 16:20:16::info::/v1/api/folder/readFolders::73f6b884-3cbe-4216-aea5-1c7424df42e6::input-params ::GET::::{}
+2025-12-02 16:20:39::info::/v1/api/folder/readFolders::ce11f10c-1555-4077-804f-05132ec191d7::input-params ::GET::::{}
+2025-12-02 16:20:42::info::/v1/api/folder/readFolders::c8b3c5fb-6166-40df-a40c-89e98fc2f819::input-params ::GET::::{}
+2025-12-02 16:20:43::info::/v1/api/folder/readFolders::1ffb4305-1927-409f-9af2-a7b3e4be6ce1::input-params ::GET::::{}
+2025-12-02 16:20:43::info::/v1/api/folder/readFolders::2fc3935c-1b80-49c3-b57e-804ee3f2c9eb::input-params ::GET::::{}
+2025-12-02 16:21:07::info::/v1/api/folder/readFolders::37dc262c-6d6a-49a1-a400-f2476c3efc63::input-params ::GET::::{}
+2025-12-02 16:21:07::info::/v1/api/folder/readFolders::a7dd25e1-7daa-4f25-9666-ac56e24d3d52::input-params ::GET::::{}
+2025-12-02 16:21:10::info::/v1/api/folder/readFolders::009a27b1-47c0-4b55-ba1e-b0971da00fde::input-params ::GET::::{}
+2025-12-02 16:21:10::info::/v1/api/folder/readFolders::c82733b6-601a-4dda-84bf-d279886cfb77::input-params ::GET::::{}
+2025-12-02 16:22:44::info::/v1/api/folder/readFolders::09abb436-4f52-4dd9-bd6b-992800fbe331::input-params ::GET::::{}
+2025-12-02 16:22:44::info::/v1/api/folder/readFolders::06749cd4-7710-4a4c-8ac6-f3ceca2484cc::input-params ::GET::::{}

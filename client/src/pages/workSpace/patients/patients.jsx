@@ -1,79 +1,83 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./patients.css";
-import folderIcon from "../../../assets/folder.svg";
-import WorkspaceTopBar from "../../../components/Workspace/WorkspaceTopBar";
-import FolderModalForm from "./folderClients/folderModelForm/folderModelForm";
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import './patients.css'
+import folderIcon from '../../../assets/folder.svg'
+import WorkspaceTopBar from '../../../components/Workspace/WorkspaceTopBar'
+import FolderModalForm from './folderClients/folderModelForm/folderModelForm'
+import { apiUtils } from '../../../utils/newRequest'
 
 export default function Patients() {
-  const navigate = useNavigate();
-  const [openFolderModal, setOpenFolderModal] = useState(false);
+    const navigate = useNavigate()
+    const [openFolderModal, setOpenFolderModal] = useState(false)
+    const [folders, setFolders] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
-  // Folders nằm trong state để khi tạo mới thì update được
-  const [folders, setFolders] = useState([
-    { id: "folder-1", name: "Folder 1", description: "", clients: [] },
-    { id: "folder-2", name: "Folder 2", description: "", clients: [] },
-    { id: "folder-3", name: "Folder 3", description: "", clients: [] },
-    { id: "folder-4", name: "Folder 4", description: "", clients: [] },
-    { id: "folder-5", name: "Folder 5", description: "", clients: [] },
-    { id: "folder-6", name: "Folder 6", description: "", clients: [] },
-  ]);
+    const fetchFolders = async () => {
+        try {
+            setIsLoading(true)
+            const res = await apiUtils.get('/folder/readFolders')
+            setFolders(res.data.metadata.folders || [])
+        } catch (err) {
+            console.log('Failed to load folders:', err)
+        } finally {
+            setIsLoading(false)
+        }
+    }
 
-  const handleCreateFolder = (data) => {
-    const newFolder = {
-      id: `folder-${Date.now()}`,
-      name: data.name,
-      description: data.description,
-      clients: [], // folder mới chưa có client
-    };
+    useEffect(() => {
+        fetchFolders()
+    }, [])
 
-    setFolders((prev) => [...prev, newFolder]);
-    setOpenFolderModal(false);
-  };
+    const handleCreateFolder = async (data) => {
+        try {
+            await apiUtils.post('/folder/createFolder', {
+                title: data.title,
+                description: data.description,
+            })
 
-  return (
-    <div className="patients">
-      <WorkspaceTopBar />
+            // Refresh folder list
+            await fetchFolders()
+            setOpenFolderModal(false)
+        } catch (err) {
+            console.log('Create folder failed:', err)
+        }
+    }
 
-      <section className="patients-card">
-        <div className="patients-card-top">
-          <div className="patients-tabs">
-            <p className="patients-tab">Documents Groups Clients</p>
-          </div>
+    return (
+        <div className='patients'>
+            <WorkspaceTopBar />
 
-          <button
-            className="patients-btn-ghost"
-            onClick={() => setOpenFolderModal(true)}
-          >
-            <span>＋</span>
-            <span>Folder</span>
-          </button>
+            <section className='patients-card'>
+                <div className='patients-card-top'>
+                    <div className='patients-tabs'>
+                        <p className='patients-tab'>Documents Groups Clients</p>
+                    </div>
+
+                    <button className='patients-btn-ghost' onClick={() => setOpenFolderModal(true)}>
+                        <span>＋</span>
+                        <span>Folder</span>
+                    </button>
+                </div>
+
+                <div className='patients-folders-grid'>
+                    {folders.map((folder) => (
+                        <div
+                            key={folder._id}
+                            className='patients-folder-item'
+                            onClick={() =>
+                                navigate(`/workspace/folder/${folder._id}`, {
+                                    state: { folder },
+                                })
+                            }
+                        >
+                            <img src={folderIcon} alt={folder.title} />
+                            <span>{folder.title}</span>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {openFolderModal && <FolderModalForm onClose={() => setOpenFolderModal(false)} onSubmit={handleCreateFolder} />}
         </div>
-
-        <div className="patients-folders-grid">
-          {folders.map((folder) => (
-            <div
-              key={folder.id}
-              className="patients-folder-item"
-              onClick={() =>
-                navigate(`/workspace/patients/folder/${folder.id}`, {
-                  state: { folder }, // 👈 truyền full object qua router
-                })
-              }
-            >
-              <img src={folderIcon} alt={folder.name} />
-              <span>{folder.name}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {openFolderModal && (
-        <FolderModalForm
-          onClose={() => setOpenFolderModal(false)}
-          onSubmit={handleCreateFolder}
-        />
-      )}
-    </div>
-  );
+    )
 }

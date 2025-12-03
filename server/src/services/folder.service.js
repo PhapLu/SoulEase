@@ -11,6 +11,9 @@ class FolderService {
 
         // 1. Check user
         const user = await User.findById(userId)
+        console.log(userId)
+        console.log(req.body)
+        console.log(user)
         if (!user) throw new AuthFailureError('Please login to continue')
 
         // 2. Validate inputs
@@ -36,7 +39,7 @@ class FolderService {
         if (!user) throw new AuthFailureError('Please login to continue')
 
         // 2. Fetch folders
-        const folders = await Folder.find({ doctorId: userId, isArchived: false }).sort({ createdAt: -1 })
+        const folders = await Folder.find({ doctorId: userId, isArchived: false }).sort({ createdAt: 1 })
         return { folders }
     }
 
