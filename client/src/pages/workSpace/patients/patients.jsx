@@ -9,7 +9,6 @@ export default function Patients() {
   const navigate = useNavigate();
   const [openFolderModal, setOpenFolderModal] = useState(false);
 
-  // Folders nằm trong state để khi tạo mới thì update được
   const [folders, setFolders] = useState([
     { id: "folder-1", name: "Folder 1", description: "", clients: [] },
     { id: "folder-2", name: "Folder 2", description: "", clients: [] },
@@ -24,7 +23,7 @@ export default function Patients() {
       id: `folder-${Date.now()}`,
       name: data.name,
       description: data.description,
-      clients: [], // folder mới chưa có client
+      clients: [],
     };
 
     setFolders((prev) => [...prev, newFolder]);
@@ -57,7 +56,7 @@ export default function Patients() {
               className="patients-folder-item"
               onClick={() =>
                 navigate(`/workspace/patients/folder/${folder.id}`, {
-                  state: { folder }, // 👈 truyền full object qua router
+                  state: { folder },
                 })
               }
             >

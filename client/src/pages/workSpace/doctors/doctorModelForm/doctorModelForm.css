@@ -1,0 +1,133 @@
+/* Overlay */
+.doctor-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Card */
+.doctor-modal {
+  position: relative;
+  width: 500px;
+  max-width: 100%;
+  background: var(--bg-form);
+  border-radius: 32px;
+  padding: 2.5rem 3rem 2.75rem;
+  box-shadow: 0 24px 60px var(--box-shadow);
+}
+
+/* Close button */
+.doctor-modal-close {
+  position: absolute;
+  right: 1.75rem;
+  top: 1.75rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Title */
+.doctor-modal-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 2rem;
+}
+
+/* Form layout */
+.doctor-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  color: #000;
+  margin-top: 5px;
+}
+
+/* Input + icon wrapper */
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  background: #f9fafb;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.9rem;
+  gap: 0.6rem;
+}
+
+.input-with-trailing-icon {
+  padding-right: 0.25rem;
+}
+
+.input-icon {
+  font-size: 0.95rem;
+}
+
+.form-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.form-input::placeholder {
+  color: var(--muted);
+}
+
+.input-trailing-icon {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Description textarea */
+.form-textarea {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 0.9rem;
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Submit button */
+.doctor-submit-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  background-image: linear-gradient(
+    90deg,
+    var(--secondary-color),
+    var(--tertiary-color)
+  );
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.doctor-submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(16, 185, 129, 0.35);
+}

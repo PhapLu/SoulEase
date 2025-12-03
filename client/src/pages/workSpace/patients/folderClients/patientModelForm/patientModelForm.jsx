@@ -1,18 +1,6 @@
 import React, { useState } from "react";
 import "./patientModelForm.css";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faUser,
-  faCalendarDays,
-  faPhone,
-  faKey,
-  faEye,
-  faEyeSlash,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
-
 export default function PatientModalForm({ onClose, onSubmit }) {
   const [formData, setFormData] = useState({
     email: "",
@@ -49,7 +37,6 @@ export default function PatientModalForm({ onClose, onSubmit }) {
           <div className="form-group">
             <label className="form-label">Email</label>
             <div className="input-with-icon">
-              <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
               <input
                 type="email"
                 name="email"
@@ -66,7 +53,6 @@ export default function PatientModalForm({ onClose, onSubmit }) {
           <div className="form-group">
             <label className="form-label">Full name</label>
             <div className="input-with-icon">
-              <FontAwesomeIcon icon={faUser} className="input-icon" />
               <input
                 type="text"
                 name="fullName"
@@ -83,7 +69,6 @@ export default function PatientModalForm({ onClose, onSubmit }) {
           <div className="form-group">
             <label className="form-label">Date of birth</label>
             <div className="input-with-icon">
-              <FontAwesomeIcon icon={faCalendarDays} className="input-icon" />
               <input
                 type="date"
                 name="dob"
@@ -98,7 +83,6 @@ export default function PatientModalForm({ onClose, onSubmit }) {
           <div className="form-group">
             <label className="form-label">Phone number</label>
             <div className="input-with-icon">
-              <FontAwesomeIcon icon={faPhone} className="input-icon" />
               <input
                 type="tel"
                 name="phoneNumber"
@@ -114,7 +98,6 @@ export default function PatientModalForm({ onClose, onSubmit }) {
           <div className="form-group">
             <label className="form-label">Relationship</label>
             <div className="input-with-icon">
-              <FontAwesomeIcon icon={faHeart} className="input-icon" />
               <select
                 name="relationship"
                 className="form-input"
@@ -135,8 +118,6 @@ export default function PatientModalForm({ onClose, onSubmit }) {
           <div className="form-group">
             <label className="form-label">Password</label>
             <div className="input-with-icon input-with-trailing-icon">
-              <FontAwesomeIcon icon={faKey} className="input-icon" />
-
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -151,9 +132,7 @@ export default function PatientModalForm({ onClose, onSubmit }) {
                 type="button"
                 className="input-trailing-icon"
                 onClick={() => setShowPassword(!showPassword)}
-              >
-                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-              </button>
+              ></button>
             </div>
           </div>
 
