@@ -8,7 +8,7 @@ export default function PatientModalForm({ onClose, onSubmit, folders = [], init
         dob: '',
         phoneNumber: '',
         role: 'patient',
-        relationship: 'Family',
+        relationship: 'None',
         folderId: initialFolderId || folders[0]?.id || '',
     })
 
@@ -66,7 +66,7 @@ export default function PatientModalForm({ onClose, onSubmit, folders = [], init
                     <div className='form-group'>
                         <label className='form-label'>Full name</label>
                         <div className='input-with-icon'>
-                            <input type='text' name='fullName' className='form-input' placeholder='Enter full name' value={formData.fullName} onChange={handleChange} required />
+                            <input type='text' name='fullName' className='form-input' placeholder='Enter your full name' value={formData.fullName} onChange={handleChange} required />
                         </div>
                     </div>
 
@@ -86,53 +86,28 @@ export default function PatientModalForm({ onClose, onSubmit, folders = [], init
                         </div>
                     </div>
 
-                    {/* Role */}
+                    {/* Relationship */}
                     <div className='form-group'>
-                        <label className='form-label'>Role</label>
-
-                        <div className='role-group'>
-                            <label className={`role-option ${formData.role === 'patient' ? 'role-option--active' : ''}`}>
-                                <input type='radio' name='role' value='patient' checked={formData.role === 'patient'} onChange={handleRoleChange} />
-                                <span>Patient</span>
-                            </label>
-
-                            <label className={`role-option ${formData.role === 'relative' ? 'role-option--active' : ''}`}>
-                                <input type='radio' name='role' value='relative' checked={formData.role === 'relative'} onChange={handleRoleChange} />
-                                <span>Relative</span>
-                            </label>
+                        <label className='form-label'>Relationship</label>
+                        <div className='input-with-icon'>
+                            <select name='relationship' className='form-input' value={formData.relationship} onChange={handleChange}>
+                                <option value='None'>None</option>
+                                <option value='Family'>Family</option>
+                                <option value='Friend'>Friend</option>
+                                <option value='Coworker'>Coworker</option>
+                                <option value='Partner'>Partner</option>
+                                <option value='Neighbor'>Neighbor</option>
+                            </select>
                         </div>
                     </div>
 
-                    {/* Relationship */}
-                    {formData.role === 'relative' && (
-                        <div className='form-group'>
-                            <label className='form-label'>Relationship</label>
-                            <div className='input-with-icon'>
-                                <select name='relationship' className='form-input' value={formData.relationship} onChange={handleChange}>
-                                    <option value='Family'>Family</option>
-                                    <option value='Friend'>Friend</option>
-                                    <option value='Coworker'>Coworker</option>
-                                    <option value='Partner'>Partner</option>
-                                    <option value='Neighbor'>Neighbor</option>
-                                    <option value='Other'>Other</option>
-                                </select>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Folder */}
+                    {/* Password */}
                     <div className='form-group'>
-                        <label className='form-label'>Folder</label>
-                        <div className='input-with-icon'>
-                            <select name='folderId' className='form-input' value={formData.folderId} onChange={handleChange} disabled={lockFolder}>
-                                {folders.length === 0 && <option value=''>No folder available</option>}
+                        <label className='form-label'>Password</label>
+                        <div className='input-with-icon input-with-trailing-icon'>
+                            <input type={showPassword ? 'text' : 'password'} name='password' className='form-input' placeholder='Enter password' value={formData.password} onChange={handleChange} required />
 
-                                {folders.map((f) => (
-                                    <option key={f.id} value={f.id}>
-                                        {f.name}
-                                    </option>
-                                ))}
-                            </select>
+                            <button type='button' className='input-trailing-icon' onClick={() => setShowPassword(!showPassword)}></button>
                         </div>
                     </div>
 
