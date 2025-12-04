@@ -36,8 +36,8 @@
 
 .doctors-tab {
   border: none;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 30px;
+  font-weight: 500;
   background: linear-gradient(
     90deg,
     var(--tertiary-color),

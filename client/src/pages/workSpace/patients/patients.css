@@ -38,7 +38,11 @@
   border: none;
   font-size: 30px;
   font-weight: 500;
-  background: linear-gradient(90deg, var(--text-color-dark), var(--tertiary-color));
+  background: linear-gradient(
+    90deg,
+    var(--tertiary-color),
+    var(--secondary-color)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

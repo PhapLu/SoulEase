@@ -51,7 +51,7 @@ export default function Doctors() {
       <section className="doctors-card">
         <div className="doctors-card-top">
           <div className="doctors-tabs">
-            <p className="doctors-tab">Clinic · Doctors</p>
+            <p className="doctors-tab">Clinic Doctors</p>
           </div>
 
           <button
