@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./patients.css";
 import folderIcon from "../../../assets/folder.svg";
 import WorkspaceTopBar from "../../../components/Workspace/WorkspaceTopBar";
 import FolderModalForm from "./folderClients/folderModelForm/folderModelForm";
 import { apiUtils } from "../../../utils/newRequest";
+
 
 export default function Patients() {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ export default function Patients() {
     fetchFolders();
   }, []);
 
+
   const handleCreateFolder = async (data) => {
     try {
       await apiUtils.post("/folder/createFolder", {
@@ -35,7 +37,6 @@ export default function Patients() {
         description: data.description,
       });
 
-      // Refresh folder list
       await fetchFolders();
       setOpenFolderModal(false);
     } catch (err) {

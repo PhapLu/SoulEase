@@ -10,5 +10,7 @@ const router = express.Router()
 router.use(verifyToken)
 router.get('/readFolders', asyncHandler(folderController.readFolders))
 router.post('/createFolder', asyncHandler(folderController.createFolder))
+router.patch('/updateFolder/:folderId', asyncHandler(folderController.updateFolder))
+router.delete('/deleteFolder/:folderId', asyncHandler(folderController.deleteFolder))
 
 export default router

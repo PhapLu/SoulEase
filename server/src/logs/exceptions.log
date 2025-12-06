@@ -181,3 +181,22 @@ ReferenceError: verifyToken is not defined
     at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
     at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined
+2025-12-06 23:33:57::error::undefined::undefined::uncaughtException: router.de is not a function
+TypeError: router.de is not a function
+    at file:///D:/RMIT/SEM%20C-2025/SoulEase/server/src/routes/folder/index.js:13:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:647:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)::undefined
+2025-12-07 01:13:27::error::undefined::undefined::uncaughtException: Missing parameter name at index 15: /updateFolder/:; visit https://git.new/pathToRegexpError for info
+TypeError: Missing parameter name at index 15: /updateFolder/:; visit https://git.new/pathToRegexpError for info
+    at name (D:\RMIT\SEM C-2025\SoulEase\server\node_modules\path-to-regexp\dist\index.js:96:19)
+    at parse (D:\RMIT\SEM C-2025\SoulEase\server\node_modules\path-to-regexp\dist\index.js:110:65)
+    at pathToRegexp (D:\RMIT\SEM C-2025\SoulEase\server\node_modules\path-to-regexp\dist\index.js:267:58)
+    at Object.match (D:\RMIT\SEM C-2025\SoulEase\server\node_modules\path-to-regexp\dist\index.js:237:30)
+    at matcher (D:\RMIT\SEM C-2025\SoulEase\server\node_modules\router\lib\layer.js:86:23)
+    at new Layer (D:\RMIT\SEM C-2025\SoulEase\server\node_modules\router\lib\layer.js:93:62)
+    at Function.route (D:\RMIT\SEM C-2025\SoulEase\server\node_modules\router\index.js:428:17)
+    at Router.<computed> [as patch] (D:\RMIT\SEM C-2025\SoulEase\server\node_modules\router\index.js:447:24)
+    at file:///D:/RMIT/SEM%20C-2025/SoulEase/server/src/routes/folder/index.js:13:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)::undefined

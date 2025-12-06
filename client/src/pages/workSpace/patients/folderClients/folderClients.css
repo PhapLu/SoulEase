@@ -59,8 +59,8 @@
   line-height: 1.3;
 }
 
-.folder-description-empty {
-  color: var(--border);
+.folder-empty-fill {
+  color: var(--muted);
   font-style: italic;
 }
 
@@ -221,7 +221,6 @@
   color: var(--muted);
 }
 
-/* Focus states */
 
 .folder-search-input:focus-visible,
 .folder-add-btn:focus-visible,
@@ -283,6 +282,16 @@
   cursor: pointer;
 }
 
+.folder-btn-delete {
+  display: inline-flex;
+  align-items: center;
+  border: 0.5px solid var(--danger);
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+  background: rgba(239, 68, 68, 0.12);
+  cursor: pointer;
+}
+
 .folder-save-btn {
   border-radius: 5px;
   background: var(--text-color-light);
@@ -299,6 +308,7 @@
 
 .folder-edit-btn:hover,
 .folder-save-btn:hover,
+.folder-btn-delete:hover,
 .folder-cancel-btn:hover {
   transform: translateY(-1px);
 }
