@@ -20,10 +20,12 @@ import WorkspaceLayout from './pages/workSpace/WorkspaceLayout.jsx'
 import Patients from './pages/workSpace/patients/patients.jsx'
 // import Message from "./pages/workSpace/message/message.jsx";
 import FolderClients from './pages/workSpace/patients/folderClients/folderClients.jsx'
+import PatientsDetail from './pages/workSpace/patients/patientsDetail/patientsDetail.jsx'
 import Services from './pages/Services/Services'
 import Pricing from './pages/Pricing/Pricing'
 import Messages from './pages/workSpace/messages/Messages.jsx'
 import Doctors from './pages/workSpace/doctors/doctors.jsx'
+import DoctorDetail from './pages/workSpace/doctors/doctorDetail/doctorDetail.jsx'
 
 const router = createBrowserRouter([
     {
@@ -57,7 +59,9 @@ const router = createBrowserRouter([
             { index: true, element: <Patients /> },
             { path: 'patients', element: <Patients /> },
             { path: 'patients/folder/:folderId', element: <FolderClients /> },
+            { path: 'folder/detail', element: <PatientsDetail /> },
             { path: 'doctors', element: <Doctors /> },
+            { path: 'doctors/detail', element: <DoctorDetail /> },
             { path: 'messages', element: <Messages /> },
         ],
     },

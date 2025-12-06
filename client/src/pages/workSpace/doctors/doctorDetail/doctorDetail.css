@@ -1,0 +1,127 @@
+.dd-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px;
+}
+
+.dd-inner {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 12px 18px rgba(12, 45, 36, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  height: 100%;
+}
+
+.dd-header {
+  display: grid;
+  grid-template-columns: 240px 400px auto;
+  gap: 40px;
+  align-items: start;
+
+}
+
+.dd-avatar {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #d9e4df;
+  border-radius: 10px;
+}
+
+.dd-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+
+.dd-info__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dd-info__row h2 {
+  margin: 0;
+  font-size: 25px;
+  color: var(--tertiary-color);
+  font-weight: 500;
+}
+
+.dd-info__sex {
+  font-weight: 600;
+  color: #4b6158;
+  padding-right: 50px;
+  font-size: 18px;
+}
+
+.dd-info__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px 0;
+}
+
+.dd-field {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  column-gap: 14px;
+  font-size: 17px;
+  padding: 3px 0;
+}
+
+.dd-label {
+  font-weight: 600;
+  color: #4b6158;
+}
+
+.dd-field a {
+  color: var(--tertiary-color);
+  text-decoration: none;
+}
+
+.dd-icon-btn {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 100%;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 6px 12px rgba(12, 45, 36, 0.08);
+}
+
+.dd-speciality {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dd-speciality__chips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  flex: 1;
+}
+
+.dd-chip {
+  height: 32px;
+  background: #d9e4df;
+  border-radius: 8px;
+}
+
+@media (max-width: 1024px) {
+  .dd-header {
+    grid-template-columns: 1fr;
+  }
+
+  .dd-info__grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,162 @@
+import WorkspaceTopBar from "../../../../components/Workspace/WorkspaceTopBar";
+import "./patientsDetail.css";
+
+const chartSeries = [
+  {
+    title: "Sleep Quality",
+    labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    data: [80, 60, 70, 65, 72, 85, 92],
+  },
+  {
+    title: "Mood Rating",
+    labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    data: [60, 70, 65, 68, 66, 78, 90],
+  },
+  {
+    title: "Stress Level",
+    labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    data: [75, 58, 72, 65, 67, 70, 80],
+  },
+  {
+    title: "CTB Task Completion",
+    type: "progress",
+    value: 68,
+  },
+];
+
+const ProgressCard = ({ value }) => (
+  <div className="pd-progress">
+    <div className="pd-progress__circle">
+      <span>{value}%</span>
+    </div>
+  </div>
+);
+
+const LineChartCard = ({ title, labels, data }) => {
+  const viewWidth = 350;
+  const viewHeight = 100;
+  const max = Math.max(...data, 100);
+  const points = data
+    .map((v, idx) => {
+      const x = (idx / (data.length - 1 || 1)) * viewWidth;
+      const y = viewHeight - (v / max) * viewHeight;
+      return `${x},${y}`;
+    })
+    .join(" ");
+
+  return (
+    <div className="pd-card">
+      <div className="pd-card__header">
+        <h4>{title}</h4>
+        <button className="pd-icon-btn">✎</button>
+      </div>
+      <div className="pd-chart">
+        <svg viewBox={`0 0 ${viewWidth} ${viewHeight}`} preserveAspectRatio="xMidYMid meet">
+          <polyline
+            fill="none"
+            stroke="#0a8769"
+            strokeWidth="2"
+            points={points}
+          />
+          {data.map((v, idx) => {
+            const x = (idx / (data.length - 1 || 1)) * viewWidth;
+            const y = viewHeight - (v / max) * viewHeight;
+            return (
+              <circle key={idx} cx={x} cy={y} r="2.8" fill="#0a8769" />
+            );
+          })}
+        </svg>
+        <div className="pd-chart__labels">
+          {labels.map((l) => (
+            <span key={l}>{l}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function PatientsDetail() {
+  return (
+    <div className="pd-page">
+      <WorkspaceTopBar />
+
+      <div className="pd-inner">
+        <section className="pd-header">
+          <div className="pd-avatar" />
+          <div className="pd-info">
+            <div className="pd-info__row">
+              <h2>John Dante</h2>
+              <span className="pd-info__sex">F/M</span>
+              <button className="pd-icon-btn" aria-label="Edit profile">
+                ✎
+              </button>
+            </div>
+
+            <div className="pd-info__grid">
+              <div className="pd-field">
+                <span className="pd-label">Email:</span>
+                <a href="mailto:abc@gmail.com">abc@gmail.com</a>
+              </div>
+              <div className="pd-field">
+                <span className="pd-label">Phone:</span>
+                <span>091234567</span>
+              </div>
+              <div className="pd-field">
+                <span className="pd-label">Birthday:</span>
+                <span>DD/MM/YYYY</span>
+              </div>
+              <div className="pd-field">
+                <span className="pd-label">Age:</span>
+                <span>{`{age}`}</span>
+              </div>
+              <div className="pd-field">
+                <span className="pd-label">Address:</span>
+                <span>{`{address}`}</span>
+              </div>
+            </div>
+          </div>
+
+          <button className="pd-import-btn">Import</button>
+        </section>
+
+        <section className="pd-charts">
+          <div className="pd-section-title">
+            <h3>Chart</h3>
+            <button className="pd-icon-btn">✎</button>
+          </div>
+          <div className="pd-chart-blank" />
+        </section>
+
+        <section className="pd-symptoms">
+          <div className="pd-section-title">
+            <h3>Symptoms</h3>
+            <button className="pd-icon-btn">✎</button>
+          </div>
+          <div className="pd-note-card">
+            <p className="pd-note-placeholder">Add symptoms for patient</p>
+          </div>
+        </section>
+
+        <section className="pd-treatment">
+          <div className="pd-section-title">
+            <h3>Treatment Process</h3>
+            <button className="pd-icon-btn">✎</button>
+          </div>
+          <div className="pd-note-card">
+            <p className="pd-note-placeholder">Add treatment process for patient</p>
+          </div>
+        </section>
+
+        <section className="pd-storage">
+          <h3>Storage</h3>
+          <div className="pd-storage__tabs">
+            <button className="active">Image</button>
+            <button>Files</button>
+          </div>
+          <div className="pd-storage__box" />
+        </section>
+      </div>
+    </div>
+  );
+}
