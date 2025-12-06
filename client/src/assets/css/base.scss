@@ -18,6 +18,11 @@
     --bg-form: #f5faf8;
 }
 
+a, a:visited {
+color: inherit; 
+text-decoration: none;
+}
+
 *,
 *::before,
 *::after {

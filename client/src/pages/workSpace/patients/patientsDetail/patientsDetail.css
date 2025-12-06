@@ -1,18 +1,19 @@
 .pd-page {
-  min-height: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 8px;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
 }
 
 .pd-inner {
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 12px 18px rgba(12, 45, 36, 0.08);
-  display: flex;
-  flex-direction: column;
+  flex: 1;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 1.75rem 2rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(50px);
+    display: flex;
+    flex-direction: column;
   gap: 30px;
 }
 

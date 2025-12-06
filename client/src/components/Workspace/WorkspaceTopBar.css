@@ -134,6 +134,10 @@
   transition: background 0.15s ease;
 }
 
+.dropdown-item a {
+  text-decoration: none;
+}
+
 .dropdown-item:hover {
   background: rgba(10, 135, 105, 0.12);
   color: var(--tertiary-color);

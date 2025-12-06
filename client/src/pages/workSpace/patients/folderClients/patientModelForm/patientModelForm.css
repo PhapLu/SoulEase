@@ -15,7 +15,7 @@
   width: 500px;
   max-width: 100%;
   background: var(--bg-form);
-  border-radius: 32px;
+  border-radius: 12px;
   padding: 2.5rem 3rem 2.75rem;
   box-shadow: 0 24px 60px var(--box-shadow);
 }
@@ -61,12 +61,11 @@
   color: var(--muted);
 }
 
-/* Input + icon wrapper */
 .input-with-icon {
   display: flex;
   align-items: center;
   background: #f9fafb;
-  border-radius: 10px;
+  border-radius: 3px;
   border: 1px solid var(--border);
   padding: 0.55rem 0.9rem;
   gap: 0.6rem;
@@ -102,7 +101,7 @@
 .patient-submit-btn {
   width: 100%;
   padding: 0.75rem 1rem;
-  border-radius: 999px;
+  border-radius: 8px;
   border: none;
   font-size: 0.95rem;
   font-weight: 500;
