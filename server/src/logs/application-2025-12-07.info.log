@@ -625,3 +625,9 @@
 2025-12-07 11:00:46::info::/v1/api/folder/readFolders::7132103f-32f9-46cf-8bc9-491fdcb86020::input-params ::GET::::{}
 2025-12-07 11:00:51::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::d898d465-11b1-47b1-8d56-c9a4b64beead::input-params ::GET::::{}
 2025-12-07 11:00:51::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::a64564d7-cb4a-48a9-8233-9bcfb171acd1::input-params ::GET::::{}
+2025-12-07 11:11:45::info::/v1/api/folder/updateFolder/6934f52eff2f4f064e0c1ff6::1341253d-d69a-4e6c-a06b-a65cc4232a4f::input-params ::PATCH::::{"title":"Easy cases","description":"This is for easy cases!"}
+2025-12-07 11:11:45::error::/v1/api/folder/updateFolder/6934f52eff2f4f064e0c1ff6::1341253d-d69a-4e6c-a06b-a65cc4232a4f::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:47::info::/v1/api/folder/updateFolder/6934f52eff2f4f064e0c1ff6::e736f6d3-5205-43cb-b44d-f3c31dfde4bf::input-params ::PATCH::::{"title":"Easy cases","description":"This is for easy cases!"}
+2025-12-07 11:11:47::error::/v1/api/folder/updateFolder/6934f52eff2f4f064e0c1ff6::e736f6d3-5205-43cb-b44d-f3c31dfde4bf::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:52::info::/v1/api/folder/updateFolder/6934f52eff2f4f064e0c1ff6::5d98f90d-3a48-4351-99a7-325859f35aab::input-params ::PATCH::::{"title":"Easy cases","description":"This is for easy cases!"}
+2025-12-07 11:11:53::error::/v1/api/folder/updateFolder/6934f52eff2f4f064e0c1ff6::5d98f90d-3a48-4351-99a7-325859f35aab::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}

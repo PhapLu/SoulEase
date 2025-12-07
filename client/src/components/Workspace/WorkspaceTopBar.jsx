@@ -9,7 +9,6 @@ export default function WorkspaceTopBar() {
     const { folderId } = useParams()
     const { userInfo } = useAuth()
     const [showModal, setShowModal] = useState(false)
-    console.log(userInfo)
     const isInsideFolder = !!folderId
     const handleCreateClient = (data) => {
         const parts = data.fullName.trim().split(' ')
