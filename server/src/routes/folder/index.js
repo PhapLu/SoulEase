@@ -8,6 +8,7 @@ dotenv.config()
 const router = express.Router()
 
 router.use(verifyToken)
+router.get('/readFolder/:folderId', asyncHandler(folderController.readFolder))
 router.get('/readFolders', asyncHandler(folderController.readFolders))
 router.post('/createFolder', asyncHandler(folderController.createFolder))
 router.patch('/updateFolder/:folderId', asyncHandler(folderController.updateFolder))

@@ -2,6 +2,13 @@ import FolderService from '../services/folder.service.js'
 import { SuccessResponse } from '../core/success.response.js'
 
 class FolderController {
+    readFolder = async (req, res, next) => {
+        new SuccessResponse({
+            message: 'Me success!',
+            metadata: await FolderService.readFolder(req),
+        }).send(res)
+    }
+
     readFolders = async (req, res, next) => {
         new SuccessResponse({
             message: 'Me success!',

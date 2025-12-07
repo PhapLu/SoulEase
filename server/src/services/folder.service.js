@@ -39,7 +39,7 @@ class FolderService {
         if (!user) throw new AuthFailureError('Please login to continue')
 
         // 2. Fetch folders
-        const folders = await Folder.find({ doctorId: userId, isArchived: false }).sort({ createdAt: 1 })
+        const folders = await Folder.find({ doctorId: userId }).sort({ createdAt: 1 })
         return { folders }
     }
 
@@ -79,37 +79,75 @@ class FolderService {
     static updateFolder = async (req) => {
         const userId = req.userId
         const folderId = req.params.folderId
-        const { title, description } = req.body
 
-        // 1. Check user, folder
+        // 1. Validate user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
-        const folder = await Folder.findOne({ _id: folderId, doctorId: userId })
-        if (!folder) throw new NotFoundError('Folder not found')
 
-        // 2. Update folder details
-        if (title && title.trim() !== '') {
-            folder.title = title.trim()
+        // 2. Validate folder ownership
+        const existingFolder = await Folder.findOne({ _id: folderId, doctorId: userId })
+        if (!existingFolder) throw new NotFoundError('Folder not found')
+
+        // 3. Allowed updatable fields
+        const allowedUpdates = ['title', 'description']
+        const updateData = {}
+
+        for (const key of allowedUpdates) {
+            if (req.body[key] !== undefined) {
+                updateData[key] = req.body[key].trim?.() || req.body[key]
+            }
         }
-        if (description) {
-            folder.description = description.trim()
-        }
-        await folder.save()
-        return { folder }
+
+        // 4. Perform update & return full updated folder
+        const updatedFolder = await Folder.findByIdAndUpdate(folderId, updateData, {
+            new: true, // return updated document
+            runValidators: true, // apply schema validation
+        }).populate('records') // ensure folders return full records list
+
+        return { folder: updatedFolder }
     }
 
     static deleteFolder = async (req) => {
         const userId = req.userId
         const folderId = req.params.folderId
 
-        // 1. Check user, folder
+        // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
+
+        // 2. Find folder (ensure ownership)
         const folder = await Folder.findOne({ _id: folderId, doctorId: userId })
         if (!folder) throw new NotFoundError('Folder not found')
 
-        // 2. Delete folder
-        folder.deleteOne()
+        // Optional: prevent deleting archive folder itself
+        if (folder.isArchived) throw new BadRequestError('Archived folder cannot be deleted')
+        if (folder.doctorId.toString() !== userId) throw new BadRequestError('You do not have permission to delete this folder')
+
+        // 3. If folder has records, move them into the archived folder
+        const hasRecords = Array.isArray(folder.records) && folder.records.length > 0
+
+        if (hasRecords) {
+            console.log('HAS RECORDS')
+            // 3.1 Find or create archived folder for this doctor
+            let archivedFolder = await Folder.findOne({ doctorId: userId, isArchived: true })
+
+            if (!archivedFolder) {
+                archivedFolder = await Folder.create({
+                    doctorId: userId,
+                    title: 'Archived Records',
+                    description: 'Automatically created archive folder',
+                    isArchived: true,
+                    records: [],
+                })
+            }
+
+            // 3.2 Move records from current folder to archive
+            archivedFolder.records.push(...folder.records)
+            await archivedFolder.save()
+        }
+
+        // 4. Delete the original folder
+        await folder.deleteOne()
 
         return { message: 'Folder deleted successfully' }
     }

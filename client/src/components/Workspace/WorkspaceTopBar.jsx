@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import './WorkspaceTopBar.css'
 import PatientModalForm from '../../pages/workSpace/patients/folderClients/patientModelForm/patientModelForm'
+import { useAuth } from '../../contexts/auth/AuthContext'
 
 export default function WorkspaceTopBar() {
     const [openCreateModal, setOpenCreateModal] = useState(false)
     const { folderId } = useParams()
+    const { userInfo } = useAuth()
     const [showModal, setShowModal] = useState(false)
-
+    console.log(userInfo)
     const isInsideFolder = !!folderId
     const handleCreateClient = (data) => {
         const parts = data.fullName.trim().split(' ')
@@ -39,23 +41,25 @@ export default function WorkspaceTopBar() {
 
             <div className='workspace-topbar-actions'>
                 <button className='workspace-topbar-btn'>
-                    <span><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#0c1317"><path d="M444-144v-300H144v-72h300v-300h72v300h300v72H516v300h-72Z"/></svg></span>
+                    <span>
+                        <svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#0c1317'>
+                            <path d='M444-144v-300H144v-72h300v-300h72v300h300v72H516v300h-72Z' />
+                        </svg>
+                    </span>
                     <span>Create Client</span>
                 </button>
 
                 <button className='workspace-topbar-btn workspace-topbar-btn-primary'>Upgrade plus</button>
 
-                
                 <div className='user-dropdown-wrapper'>
                     <div className='workspace-topbar-user-pill'>
                         <div className='workspace-topbar-user-avatar' />
-                        <span>Dr. John Smith</span>
+                        <span>{`Dr. ${userInfo?.fullName}`}</span>
                     </div>
 
-                    
                     <div className='user-dropdown-menu'>
-                        <h4 className='user-dropdown-title'>Hi, Dr John</h4>
-                        <p className='user-dropdown-email'>{`{user's email}`}</p>
+                        <h4 className='user-dropdown-title'>{`Hi, Dr ${userInfo?.fullName}`}</h4>
+                        <p className='user-dropdown-email'>{`${userInfo?.email}`}</p>
 
                         <hr className='user-dropdown-divider' />
 
@@ -66,12 +70,12 @@ export default function WorkspaceTopBar() {
                             <span>Account</span>
                         </button>
 
-                        <button className='dropdown-item'>
+                        <Link to='/workspace/patients' className='dropdown-item'>
                             <svg xmlns='http://www.w3.org/2000/svg' height='25px' viewBox='0 -960 960 960' width='25px' fill='#0c1317'>
                                 <path d='M96-192v-92q0-25.78 12.5-47.39T143-366q54-32 114.5-49T384-432q66 0 126.5 17T625-366q22 13 34.5 34.61T672-284v92H96Zm648 0v-92q0-42-19.5-78T672-421q39 8 75.5 21.5T817-366q22 13 34.5 34.67Q864-309.65 864-284v92H744ZM384-480q-60 0-102-42t-42-102q0-60 42-102t102-42q60 0 102 42t42 102q0 60-42 102t-102 42Zm336-144q0 60-42 102t-102 42q-8 0-15-.5t-15-2.5q25-29 39.5-64.5T600-624q0-41-14.5-76.5T546-765q8-2 15-2.5t15-.5q60 0 102 42t42 102ZM168-264h432v-20q0-6.47-3.03-11.76-3.02-5.3-7.97-8.24-47-27-99-41.5T384-360q-54 0-106 14t-99 42q-4.95 2.83-7.98 7.91-3.02 5.09-3.02 12V-264Zm216.21-288Q414-552 435-573.21t21-51Q456-654 434.79-675t-51-21Q354-696 333-674.79t-21 51Q312-594 333.21-573t51 21ZM384-264Zm0-360Z' />
                             </svg>
-                            <Link to="/workspace/patients">Clients</Link>
-                        </button>
+                            <p>Clients</p>
+                        </Link>
 
                         <button className='dropdown-item dropdown-item-logout'>
                             <svg xmlns='http://www.w3.org/2000/svg' height='25px' viewBox='0 -960 960 960' width='25px' fill='#0c1317'>
