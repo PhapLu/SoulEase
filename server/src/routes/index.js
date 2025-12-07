@@ -9,5 +9,4 @@ const router = express.Router()
 router.use('/v1/api/auth', authRoute)
 router.use('/v1/api/user', userRoute)
 router.use('/v1/api/folder', folderRoute)
-
 export default router

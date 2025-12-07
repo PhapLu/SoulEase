@@ -1,3 +1,4 @@
+import PatientRecord from '../models/patientRecord.model.js'
 import Folder from '../models/folder.model.js'
 import { User } from '../models/user.model.js'
 import { AuthFailureError, BadRequestError, NotFoundError } from '../core/error.response.js'
