@@ -675,3 +675,49 @@
 2025-12-07 11:10:46::info::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::0465bbca-b075-4f0c-8034-6d242d56b338::input-params ::PATCH::::{"title":"Hard cases","description":"This is for hard cases!!"}
 2025-12-07 11:10:46::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::bba593b1-7ff4-4b68-8037-1da9e32fc878::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
 2025-12-07 11:10:46::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::0465bbca-b075-4f0c-8034-6d242d56b338::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:17::info::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::efdcbc55-d390-44dc-ad7a-339ab0f4f1bf::input-params ::PATCH::::{"title":"Hard cases","description":"This is for hard cases!!"}
+2025-12-07 11:11:17::info::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::3174b8d9-62fb-4601-8b0f-a746a8223332::input-params ::PATCH::::{"title":"Hard cases","description":"This is for hard cases!!"}
+2025-12-07 11:11:17::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::efdcbc55-d390-44dc-ad7a-339ab0f4f1bf::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:18::info::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::f9d7cc76-fd11-401f-8e1f-db78955147bd::input-params ::PATCH::::{"title":"Hard cases","description":"This is for hard cases!!"}
+2025-12-07 11:11:18::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::3174b8d9-62fb-4601-8b0f-a746a8223332::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:18::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::f9d7cc76-fd11-401f-8e1f-db78955147bd::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:51::info::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::482465b9-75f2-490c-9a53-700af3be4173::input-params ::PATCH::::{"title":"Hard cases","description":"This is for hard cases!"}
+2025-12-07 11:11:51::info::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::0d4551d2-f3a1-49c7-9d0a-b4267fb0e186::input-params ::PATCH::::{"title":"Hard cases","description":"This is for hard cases!"}
+2025-12-07 11:11:51::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::482465b9-75f2-490c-9a53-700af3be4173::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:51::info::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::47b136f0-64bd-4426-bd57-637ec0b49673::input-params ::PATCH::::{"title":"Hard cases","description":"This is for hard cases!"}
+2025-12-07 11:11:51::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::0d4551d2-f3a1-49c7-9d0a-b4267fb0e186::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:51::info::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::5aa016d4-d2a7-4e10-869d-0c6fae7c5a5c::input-params ::PATCH::::{"title":"Hard cases","description":"This is for hard cases!"}
+2025-12-07 11:11:52::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::47b136f0-64bd-4426-bd57-637ec0b49673::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:52::info::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::f98821ef-282a-4fc3-8e13-cace5e415d7e::input-params ::PATCH::::{"title":"Hard cases","description":"This is for hard cases!"}
+2025-12-07 11:11:52::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::5aa016d4-d2a7-4e10-869d-0c6fae7c5a5c::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:52::info::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::b3e3aa20-a41a-421b-a3fd-51104cfa0983::input-params ::PATCH::::{"title":"Hard cases","description":"This is for hard cases!"}
+2025-12-07 11:11:52::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::f98821ef-282a-4fc3-8e13-cace5e415d7e::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:52::info::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::7fa86ff8-9743-4862-9fbe-bc8e17231c54::input-params ::PATCH::::{"title":"Hard cases","description":"This is for hard cases!"}
+2025-12-07 11:11:52::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::b3e3aa20-a41a-421b-a3fd-51104cfa0983::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:52::info::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::13475fa0-00ae-48d5-b01f-edc6c267bef1::input-params ::PATCH::::{"title":"Hard cases","description":"This is for hard cases!"}
+2025-12-07 11:11:52::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::7fa86ff8-9743-4862-9fbe-bc8e17231c54::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:11:52::error::/v1/api/folder/updateFolder/6934f53aff2f4f064e0c1ffb::13475fa0-00ae-48d5-b01f-edc6c267bef1::handler-error::{"status":500,"message":"Schema hasn't been registered for model \"PatientRecord\".\nUse mongoose.model(name, schema)"}
+2025-12-07 11:13:22::info::/v1/api/folder/readFolders::c366d196-254e-47bd-9d1e-e0db3a6a2a42::input-params ::GET::::{}
+2025-12-07 11:13:22::info::/v1/api/folder/readFolders::90f83866-ded8-48a4-9ca2-b5fadb676ab1::input-params ::GET::::{}
+2025-12-07 11:13:24::info::/v1/api/folder/readFolders::86b79154-894d-4929-8594-079305a24bce::input-params ::GET::::{}
+2025-12-07 11:13:24::info::/v1/api/user/me::2813a4d2-cdf8-46eb-9411-3a3890c858f3::input-params ::GET::::{}
+2025-12-07 11:13:24::info::/v1/api/user/me::91f83a9c-543b-43d2-bf5a-de3e25e6a99e::input-params ::GET::::{}
+2025-12-07 11:13:24::info::/v1/api/folder/readFolders::b6a712ae-3e51-4a5a-bd9c-36ab5b56cc05::input-params ::GET::::{}
+2025-12-07 11:13:25::info::/v1/api/folder/readFolders::a422b419-8278-42a2-821a-04eea80797a1::input-params ::GET::::{}
+2025-12-07 11:13:25::info::/v1/api/user/me::207a3446-9642-4ad2-bb69-9ec90f17013e::input-params ::GET::::{}
+2025-12-07 11:13:25::info::/v1/api/user/me::493b2865-f13a-4e04-9a0a-6e5c580babac::input-params ::GET::::{}
+2025-12-07 11:13:25::info::/v1/api/folder/readFolders::4465606a-97cb-4f2b-a7a3-9499b516f348::input-params ::GET::::{}
+2025-12-07 11:13:27::info::/v1/api/folder/readFolder/6934f525ff2f4f064e0c1ff1::da991c54-6baa-42a3-aeb9-3f7aed11d286::input-params ::GET::::{}
+2025-12-07 11:13:27::info::/v1/api/folder/readFolder/6934f525ff2f4f064e0c1ff1::3cf6e408-6dcd-4928-a326-c2aafcbe490e::input-params ::GET::::{}
+2025-12-07 11:13:30::info::/v1/api/folder/readFolders::80969b1e-3fe6-4ed9-86b4-f6921cdcdbf7::input-params ::GET::::{}
+2025-12-07 11:13:30::info::/v1/api/folder/readFolders::c00be9f1-0214-4ecc-9784-79d0bf140e0b::input-params ::GET::::{}
+2025-12-07 11:13:43::info::/v1/api/folder/readFolders::fa201554-4ace-4f2e-a5a1-ed99c242d60e::input-params ::GET::::{}
+2025-12-07 11:13:43::info::/v1/api/folder/readFolders::a413c25c-e42e-42b9-bff1-eba2c4ef972f::input-params ::GET::::{}
+2025-12-07 11:13:52::info::/v1/api/folder/readFolders::c06e9139-2c51-4f9c-813f-9d4554a7cdc6::input-params ::GET::::{}
+2025-12-07 11:13:52::info::/v1/api/folder/readFolders::f29180dd-e332-431f-909b-b9f9202951be::input-params ::GET::::{}
+2025-12-07 11:13:55::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::10f4c611-862c-4800-a7d3-39b22c74f8e7::input-params ::GET::::{}
+2025-12-07 11:13:55::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::a072792c-7058-44bf-a234-913ce9fb0cad::input-params ::GET::::{}
+2025-12-07 11:13:56::info::/v1/api/folder/readFolders::26efe479-f0ca-4b92-8e3f-e1e5b794ab97::input-params ::GET::::{}
+2025-12-07 11:13:56::info::/v1/api/folder/readFolders::72066ffe-b4d9-4bb5-960a-6ecda334b32d::input-params ::GET::::{}
+2025-12-07 11:13:58::info::/v1/api/folder/readFolder/6934f525ff2f4f064e0c1ff1::69f8a2fc-e496-4e5f-95f6-7d6df7c216bf::input-params ::GET::::{}
+2025-12-07 11:13:58::info::/v1/api/folder/readFolder/6934f525ff2f4f064e0c1ff1::8a4eb158-5318-4ec5-b364-95e8f40f9d87::input-params ::GET::::{}
