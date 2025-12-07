@@ -288,7 +288,7 @@
   border: 0.5px solid var(--danger);
   padding: 0.5rem 0.5rem;
   border-radius: 5px;
-  background: rgba(239, 68, 68, 0.12);
+  background: rgb(255, 235, 235);
   cursor: pointer;
 }
 
