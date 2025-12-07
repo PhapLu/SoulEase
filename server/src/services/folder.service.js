@@ -40,7 +40,7 @@ class FolderService {
         if (!user) throw new AuthFailureError('Please login to continue')
 
         // 2. Fetch folders
-        const folders = await Folder.find({ doctorId: userId }).sort({ createdAt: 1 })
+        const folders = await Folder.find({ doctorId: userId }).sort({ createdAt: -1 })
         return { folders }
     }
 
@@ -51,7 +51,10 @@ class FolderService {
         // 1. Check user, folder
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
-        const folder = await Folder.findOne({ _id: folderId, doctorId: userId })
+        const folder = await Folder.findOne({ _id: folderId, doctorId: userId }).populate({
+            path: 'records',
+            select: 'fullName email phone dob role',
+        })
         if (!folder) throw new NotFoundError('Folder not found')
 
         return { folder }

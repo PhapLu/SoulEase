@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import './patientModelForm.css'
+import { apiUtils } from '../../../../../utils/newRequest'
 
-export default function PatientModalForm({ onClose, onSubmit, folders = [], initialFolderId = '', lockFolder = false }) {
+export default function PatientModalForm({ onClose, onSubmit, initialFolderId = '', lockFolder = false }) {
     const [formData, setFormData] = useState({
         email: '',
         fullName: '',
@@ -9,15 +10,30 @@ export default function PatientModalForm({ onClose, onSubmit, folders = [], init
         phoneNumber: '',
         role: 'patient',
         relationship: 'Family',
-        folderId: initialFolderId || folders[0]?.id || '',
+        folderId: initialFolderId,
     })
+    const [doctorFolders, setDoctorFolders] = useState([])
 
     useEffect(() => {
-        setFormData((prev) => ({
-            ...prev,
-            folderId: initialFolderId || folders[0]?.id || '',
-        }))
-    }, [folders, initialFolderId])
+        const fetchFolders = async () => {
+            try {
+                const res = await apiUtils.get('/folder/readFolders')
+                const list = res.data?.metadata?.folders || []
+
+                setDoctorFolders(list)
+
+                // set default folderId if not locked
+                setFormData((prev) => ({
+                    ...prev,
+                    folderId: initialFolderId || list[0]?._id || '',
+                }))
+            } catch (err) {
+                console.log('Failed to load folders', err)
+            }
+        }
+
+        fetchFolders()
+    }, [])
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -124,11 +140,11 @@ export default function PatientModalForm({ onClose, onSubmit, folders = [], init
                         <label className='form-label'>Folder</label>
                         <div className='input-with-icon'>
                             <select name='folderId' className='form-input' value={formData.folderId} onChange={handleChange} disabled={lockFolder}>
-                                {folders.length === 0 && <option value=''>No folder available</option>}
+                                {doctorFolders.length === 0 && <option>No folder available</option>}
 
-                                {folders.map((f) => (
-                                    <option key={f.id} value={f.id}>
-                                        {f.name}
+                                {doctorFolders.map((f) => (
+                                    <option key={f._id} value={f._id}>
+                                        {f.title}
                                     </option>
                                 ))}
                             </select>

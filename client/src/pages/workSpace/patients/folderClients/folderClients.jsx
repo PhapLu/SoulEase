@@ -48,46 +48,55 @@ export default function FolderClients() {
     }, [folderId])
 
     const filteredClients = useMemo(() => {
-        const records = folderInfo.records || []
+        const records = folderInfo?.records || []
 
-        let data = records.filter((client) => `${client.firstName} ${client.lastName}`.toLowerCase().includes(search.toLowerCase()))
+        let data = records.filter((client) => client?.fullName?.toLowerCase().includes(search.toLowerCase()))
 
         if (sortBy === 'lastName') {
-            data = [...data].sort((a, b) => a.lastName.localeCompare(b.lastName))
+            data.sort((a, b) => {
+                const lastA = a?.fullName?.split(' ').slice(-1)[0]
+                const lastB = b?.fullName?.split(' ').slice(-1)[0]
+                return lastA.localeCompare(lastB)
+            })
         } else if (sortBy === 'firstName') {
-            data = [...data].sort((a, b) => a.firstName.localeCompare(b.firstName))
+            data.sort((a, b) => {
+                const firstA = a?.fullName?.split(' ')[0]
+                const firstB = b?.fullName?.split(' ')[0]
+                return firstA.localeCompare(firstB)
+            })
         } else if (sortBy === 'age') {
-            data = [...data].sort((a, b) => a.age - b.age)
+            data.sort((a, b) => calcAge(a?.dob) - calcAge(b?.dob))
         }
 
         return data
     }, [folderInfo.records, search, sortBy])
 
-    const handleCreateClient = (data) => {
-        const parts = data.fullName.trim().split(' ')
-        const lastName = parts.length > 1 ? parts[parts.length - 1] : ''
-        const firstName = parts.length > 1 ? parts.slice(0, parts.length - 1).join(' ') : parts[0]
+    const handleCreateClient = async (data) => {
+        try {
+            const payload = {
+                fullName: data.fullName,
+                email: data.email,
+                dob: data.dob,
+                phoneNumber: data.phoneNumber,
+                role: data.role,
+                relationship: data.relationship,
+                folderId,
+            }
 
-        const birthYear = data.dob ? new Date(data.dob).getFullYear() : null
-        const currentYear = new Date().getFullYear()
-        const age = birthYear ? currentYear - birthYear : 0
+            const res = await apiUtils.post('/patientRecord/createPatientRecord', payload)
 
-        const newClient = {
-            id: `client-${Date.now()}`,
-            firstName,
-            lastName,
-            age,
-            phone: data.phoneNumber,
-            email: data.email,
-            relationship: data.relationship,
+            const createdClient = res.data.metadata.user
+
+            setFolderInfo((prev) => ({
+                ...prev,
+                records: [...(prev.records || []), createdClient],
+            }))
+
+            setOpenCreateModal(false)
+        } catch (err) {
+            console.log(err)
+            alert('Failed to create client. Please try again.')
         }
-
-        setFolderInfo((prev) => ({
-            ...prev,
-            records: [...(prev.records || []), newClient],
-        }))
-
-        setOpenCreateModal(false)
     }
 
     const handleStartEdit = () => {
@@ -95,6 +104,8 @@ export default function FolderClients() {
         setEditDescription(folderInfo.description)
         setIsEditing(true)
     }
+
+    const calcAge = (dob) => (dob ? new Date().getFullYear() - new Date(dob).getFullYear() : '')
 
     const handleDeleteEdit = async () => {
         const confirmed = window.confirm('Are you sure you want to delete this folder? This action cannot be undone.')
@@ -126,7 +137,6 @@ export default function FolderClients() {
             const updatedFolder = res.data.metadata.folder || payload
             setFolderInfo(updatedFolder)
             setIsEditing(false)
-            console.log('Update success')
         } catch (err) {
             console.log('Failed to load folders:', err)
         } finally {
@@ -256,25 +266,27 @@ export default function FolderClients() {
 
                             <tbody>
                                 {filteredClients.map((client, index) => (
-                                    <tr key={client.id}>
+                                    <tr key={client._id}>
                                         <td>{index + 1}.</td>
                                         <td>
                                             <Link to={`/workspace/patients/folder/${folderId}/${client._id}`} className='folder-name-link'>
-                                                {client.firstName} {client.lastName}
+                                                {client.fullName}
                                             </Link>
                                         </td>
-                                        <td>{client.age}</td>
+                                        <td>{calcAge(client.dob)}</td>
                                         <td className='folder-contact-cell'>
                                             <div>{client.phone}</div>
                                             <div>{client.email}</div>
                                         </td>
                                         <td>{client.relationship}</td>
                                         <td>
-                                            <button className='folder-delete-btn'>
-                                                <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#ef4444'>
-                                                    <path d='M312-144q-29.7 0-50.85-21.15Q240-186.3 240-216v-480h-48v-72h192v-48h192v48h192v72h-48v479.57Q720-186 698.85-165T648-144H312Zm336-552H312v480h336v-480ZM384-288h72v-336h-72v336Zm120 0h72v-336h-72v336ZM312-696v480-480Z' />
-                                                </svg>
-                                            </button>
+                                            {!folderInfo.isArchived && (
+                                                <button className='folder-delete-btn'>
+                                                    <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#ef4444'>
+                                                        <path d='M312-144q-29.7 0-50.85-21.15Q240-186.3 240-216v-480h-48v-72h192v-48h192v48h192v72h-48v479.57Q720-186 698.85-165T648-144H312Zm336-552H312v480h336v-480ZM384-288h72v-336h-72v336Zm120 0h72v-336h-72v336ZM312-696v480-480Z' />
+                                                    </svg>
+                                                </button>
+                                            )}
                                         </td>
                                     </tr>
                                 ))}
@@ -292,7 +304,7 @@ export default function FolderClients() {
                 </div>
 
                 {/* MODAL */}
-                {openCreateModal && <PatientModalForm onClose={() => setOpenCreateModal(false)} onSubmit={handleCreateClient} />}
+                {openCreateModal && <PatientModalForm onClose={() => setOpenCreateModal(false)} onSubmit={handleCreateClient} disabled={folderInfo.isArchived} />}
             </section>
         </>
     )

@@ -1,61 +1,70 @@
 import PatientRecord from '../models/patientRecord.model.js'
 import Folder from '../models/folder.model.js'
 import { User } from '../models/user.model.js'
-import { AuthFailureError, BadRequestError, NotFoundError } from '../core/error.response.js'
+import { AuthFailureError, BadRequestError, ForbiddenError, NotFoundError } from '../core/error.response.js'
 import dotenv from 'dotenv'
 dotenv.config()
 
 class PatientRecordService {
-    // ----------------------------------------
-    // CREATE
-    // ----------------------------------------
-    static createRecord = async (req) => {
-        const userId = req.userId
-        const { patientId, folderId, title, recordType, symptoms, diagnosis, moodLevel, treatmentPlan, medications, attachments, caregiverNotes, doctorNotes, visibility } = req.body
+    static createPatientRecord = async (req) => {
+        const doctorId = req.userId
+        const { fullName, email, dob, phoneNumber, role, relationship, folderId } = req.body
 
-        // 1. Check user
-        const user = await User.findById(userId)
-        if (!user) throw new AuthFailureError('Please login to continue')
+        // 1. Verify doctor and patient exists
+        const doctor = await User.findById(doctorId)
+        console.log(doctorId)
+        console.log(doctor)
 
-        // 2. Validate inputs
-        if (!patientId) throw new BadRequestError('Patient ID is required')
-        if (!title || title.trim() === '') {
-            throw new BadRequestError('Record title is required')
+        if (!doctor || doctor.role !== 'doctor') {
+            throw new ForbiddenError('Only doctors can create clients')
         }
 
-        // If folderId provided, validate it belongs to this doctor
-        if (folderId) {
-            const folder = await Folder.findOne({ _id: folderId, doctorId: userId })
-            if (!folder) throw new NotFoundError('Folder not found or unauthorized')
-        }
+        const patient = await User.findOne({ email })
+        if (patient) throw new BadRequestError('Patient already exists')
 
-        // 3. Create record
-        const newRecord = new PatientRecord({
-            doctorId: userId,
-            patientId,
-            folderId: folderId || null,
-            title: title.trim(),
-            recordType,
-            symptoms: symptoms || [],
-            diagnosis: diagnosis ? diagnosis.trim() : '',
-            moodLevel: moodLevel ?? null,
-            treatmentPlan: treatmentPlan ? treatmentPlan.trim() : '',
-            medications: medications || [],
-            attachments: attachments || [],
-            caregiverNotes: caregiverNotes ? caregiverNotes.trim() : '',
-            doctorNotes: doctorNotes ? doctorNotes.trim() : '',
-            visibility,
+        // 2. Check folder belongs to this doctor
+        const folder = await Folder.findOne({ _id: folderId, doctorId })
+        if (!folder) throw new NotFoundError('Folder not found or unauthorized')
+
+        // 3. Create Client as User
+        const randomPassword = Math.random().toString(36).slice(-8)
+
+        const newUser = await User.create({
+            email,
+            fullName,
+            dob,
+            phone: phoneNumber,
+            role: role === 'relative' ? 'family' : 'member',
+            password: randomPassword,
+            status: 'active',
         })
 
-        await newRecord.save()
+        // 4. Add patient to folder.records
+        folder.records.push(newUser._id)
+        await folder.save()
 
-        return { record: newRecord }
+        // 5. (Optional but recommended) Create default initial clinical record
+        const intakeRecord = await PatientRecord.create({
+            doctorId,
+            patientId: newUser._id,
+            folderId,
+            title: 'Initial Intake Record',
+            recordType: 'assessment',
+            visibility: 'doctor_only',
+            symptoms: [],
+            diagnosis: '',
+            treatmentPlan: '',
+            doctorNotes: '',
+            caregiverNotes: role === 'relative' ? relationship : '',
+        })
+
+        return {
+            user: newUser,
+            intakeRecord,
+        }
     }
 
-    // ----------------------------------------
-    // READ ALL (doctor's own records)
-    // ----------------------------------------
-    static readRecords = async (req) => {
+    static readPatientRecords = async (req) => {
         const userId = req.userId
 
         // 1. Check user
@@ -68,10 +77,7 @@ class PatientRecordService {
         return { records }
     }
 
-    // ----------------------------------------
-    // READ SINGLE RECORD
-    // ----------------------------------------
-    static readRecord = async (req) => {
+    static readPatientRecord = async (req) => {
         const userId = req.userId
         const recordId = req.params.recordId
 
@@ -86,10 +92,7 @@ class PatientRecordService {
         return { record }
     }
 
-    // ----------------------------------------
-    // UPDATE
-    // ----------------------------------------
-    static updateRecord = async (req) => {
+    static updatePatientRecord = async (req) => {
         const userId = req.userId
         const recordId = req.params.recordId
 
@@ -128,10 +131,7 @@ class PatientRecordService {
         return { record }
     }
 
-    // ----------------------------------------
-    // DELETE
-    // ----------------------------------------
-    static deleteRecord = async (req) => {
+    static deletePatientRecord = async (req) => {
         const userId = req.userId
         const recordId = req.params.recordId
 

@@ -9,7 +9,7 @@ const FolderSchema = new Schema(
         doctorId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
         title: { type: String, required: true, trim: true },
         description: { type: String, default: '', trim: true },
-        records: [{ type: Schema.Types.ObjectId, ref: 'PatientRecord' }],
+        records: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         isArchived: { type: Boolean, default: false },
     },
     {
