@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useParams, useLocation, Link, useNavigate } from 'react-router-dom'
 import './folderClients.css'
 import folderIcon from '../../../../assets/folder.svg'
