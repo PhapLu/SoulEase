@@ -51,7 +51,11 @@ const LineChartCard = ({ title, labels, data }) => {
         <div className='pd-card'>
             <div className='pd-card__header'>
                 <h4>{title}</h4>
-                <button className='pd-icon-btn'>✎</button>
+                <button className='pd-icon-btn'>
+                    <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'>
+                        <path d='M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z' />
+                    </svg>
+                </button>
             </div>
             <div className='pd-chart'>
                 <svg viewBox={`0 0 ${viewWidth} ${viewHeight}`} preserveAspectRatio='xMidYMid meet'>
@@ -90,7 +94,6 @@ export default function PatientsDetail() {
 
         fetchPatient()
     }, [patientRecordId])
-    console.log(patientRecordId)
 
     return (
         <div className='pd-page'>
@@ -104,7 +107,9 @@ export default function PatientsDetail() {
                             <h2>{patient?.fullName || 'Patient Name'}</h2>
                             <span className='pd-info__sex'>{patient?.gender || 'N/A'}</span>
                             <button className='pd-icon-btn' aria-label='Edit profile'>
-                                ✎
+                                <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'>
+                                    <path d='M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z' />
+                                </svg>
                             </button>
                         </div>
 
@@ -138,7 +143,11 @@ export default function PatientsDetail() {
                 <section className='pd-charts'>
                     <div className='pd-section-title'>
                         <h3>Chart</h3>
-                        <button className='pd-icon-btn'>✎</button>
+                        <button className='pd-icon-btn'>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'>
+                                <path d='M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z' />
+                            </svg>
+                        </button>
                     </div>
                     <div className='pd-chart-blank' />
                 </section>
@@ -146,7 +155,11 @@ export default function PatientsDetail() {
                 <section className='pd-symptoms'>
                     <div className='pd-section-title'>
                         <h3>Symptoms</h3>
-                        <button className='pd-icon-btn'>✎</button>
+                        <button className='pd-icon-btn'>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'>
+                                <path d='M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z' />
+                            </svg>
+                        </button>
                     </div>
                     <div className='pd-note-card'>
                         <p className='pd-note-placeholder'>Add symptoms for patient</p>
@@ -156,7 +169,11 @@ export default function PatientsDetail() {
                 <section className='pd-treatment'>
                     <div className='pd-section-title'>
                         <h3>Treatment Process</h3>
-                        <button className='pd-icon-btn'>✎</button>
+                        <button className='pd-icon-btn'>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'>
+                                <path d='M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z' />
+                            </svg>
+                        </button>
                     </div>
                     <div className='pd-note-card'>
                         <p className='pd-note-placeholder'>Add treatment process for patient</p>

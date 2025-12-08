@@ -88,3 +88,109 @@
 2025-12-08 08:01:47::info::/v1/api/user/me::8f85942f-f71c-4a69-a916-cea67f6e7aa4::input-params ::GET::::{}
 2025-12-08 08:01:47::info::/v1/api/user/me::8939cf09-4543-48d0-8fc1-fb96f2f47f02::input-params ::GET::::{}
 2025-12-08 08:01:47::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::61e66263-4f06-41a7-bbdb-e838c45f7a3d::input-params ::GET::::{}
+2025-12-08 15:53:53::info::/v1/api/user/me::9b232bcc-ceb2-4316-a2f8-f3c1b1bd96a5::input-params ::GET::::{}
+2025-12-08 15:53:53::error::/v1/api/user/me::9b232bcc-ceb2-4316-a2f8-f3c1b1bd96a5::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-08 15:53:53::info::/v1/api/user/me::92f6d663-4344-4f5f-aa51-15261726832e::input-params ::GET::::{}
+2025-12-08 15:53:53::error::/v1/api/user/me::92f6d663-4344-4f5f-aa51-15261726832e::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-08 16:02:00::info::/v1/api/auth/login::0c0db5f3-8e0d-4664-91cc-8a85a72f6c10::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-08 16:02:00::info::/v1/api/user/me::facc251e-588d-4aaa-9c03-9a25581fc846::input-params ::GET::::{}
+2025-12-08 16:02:00::info::/v1/api/folder/readFolders::92be2cff-6d1b-428f-85c3-832c94adfa54::input-params ::GET::::{}
+2025-12-08 16:02:00::info::/v1/api/folder/readFolders::00612db0-cffe-4b9d-878b-a73415825f1e::input-params ::GET::::{}
+2025-12-08 19:16:45::info::/v1/api/user/me::2909509a-dfa2-423f-9981-3405f5f903c4::input-params ::GET::::{}
+2025-12-08 19:16:45::info::/v1/api/user/me::8fd9fa2d-b357-409a-8e99-9210b0009be4::input-params ::GET::::{}
+2025-12-08 21:13:38::info::/v1/api/storyCategory/readCategoryArtworks/69357e3a0adf8fece4c97368::e5b5a726-d25a-449e-81a6-1c53e4fd42cb::input-params ::GET::::{}
+2025-12-08 21:13:38::error::/v1/api/storyCategory/readCategoryArtworks/69357e3a0adf8fece4c97368::e5b5a726-d25a-449e-81a6-1c53e4fd42cb::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-08 21:13:38::info::/v1/api/storyCategory/readCategories::91a40c47-5009-47a1-acd4-7292db2b9446::input-params ::GET::::{"characterId":"688a11b2126c911450b7e94b"}
+2025-12-08 21:13:38::error::/v1/api/storyCategory/readCategories::91a40c47-5009-47a1-acd4-7292db2b9446::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-08 21:13:38::info::/v1/api/story/readStories::da0e8f95-933b-42ad-ad72-29b659d16d51::input-params ::GET::::{"characterId":"688a11b2126c911450b7e94b","storyCategoryId":"69357e3a0adf8fece4c97368","page":"1","limit":"2"}
+2025-12-08 21:13:38::error::/v1/api/story/readStories::da0e8f95-933b-42ad-ad72-29b659d16d51::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-08 21:13:38::info::/v1/api/post/readArtworks/67df542f60caf4e40bbd4ac7::cb00e0f7-a3cf-480a-8f73-1bfef6fa0ee9::input-params ::GET::::{"skip":"0","limit":"9"}
+2025-12-08 21:13:38::error::/v1/api/post/readArtworks/67df542f60caf4e40bbd4ac7::cb00e0f7-a3cf-480a-8f73-1bfef6fa0ee9::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-08 21:13:39::info::/v1/api/user/me::5f624803-479e-48eb-a03d-8b6a11487034::input-params ::GET::::{}
+2025-12-08 21:13:39::error::/v1/api/user/me::5f624803-479e-48eb-a03d-8b6a11487034::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-08 21:13:39::info::/v1/api/user/me::2602f999-b66d-464f-a357-45ab5d6dfa11::input-params ::GET::::{}
+2025-12-08 21:13:39::error::/v1/api/user/me::2602f999-b66d-464f-a357-45ab5d6dfa11::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-08 21:13:40::info::/v1/api/user/me::f0def68d-0143-4c54-bf89-e77bcd3745bd::input-params ::GET::::{}
+2025-12-08 21:13:40::error::/v1/api/user/me::f0def68d-0143-4c54-bf89-e77bcd3745bd::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-08 21:13:40::info::/v1/api/user/me::ee6294e2-5e00-48d9-8a6f-da7adc70180b::input-params ::GET::::{}
+2025-12-08 21:13:40::error::/v1/api/user/me::ee6294e2-5e00-48d9-8a6f-da7adc70180b::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-08 21:15:17::info::/v1/api/auth/login::04b06c27-9d8f-46b3-b7ef-a2080aa62422::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-08 21:15:17::info::/v1/api/user/me::c27a86e2-7a95-4508-badf-1e052f2182cd::input-params ::GET::::{}
+2025-12-08 21:15:17::info::/v1/api/folder/readFolders::fa9146a6-f86e-442c-8e98-db582810707f::input-params ::GET::::{}
+2025-12-08 21:15:17::info::/v1/api/folder/readFolders::be2575a3-5701-42a2-88a7-06f524c10043::input-params ::GET::::{}
+2025-12-08 21:22:35::info::/v1/api/folder/readFolder/6936240a96501e150bbff1cd::9166556f-efe2-4566-9bd3-dcaf0358b6b2::input-params ::GET::::{}
+2025-12-08 21:22:35::info::/v1/api/folder/readFolder/6936240a96501e150bbff1cd::586868dc-4bd1-4c26-8c35-0ddc527d7e6a::input-params ::GET::::{}
+2025-12-08 21:27:30::info::/v1/api/folder/readFolder/6936240a96501e150bbff1cd::29cb26a2-87e4-481c-abe5-db149d05a751::input-params ::GET::::{}
+2025-12-08 21:27:30::info::/v1/api/folder/readFolder/6936240a96501e150bbff1cd::bdb6b6ca-76f6-45b5-bec1-f6a4d609837d::input-params ::GET::::{}
+2025-12-08 21:29:08::info::/v1/api/folder/readFolders::7a916316-01f1-4b72-a9d0-6b35b76a6cd1::input-params ::GET::::{}
+2025-12-08 21:29:08::info::/v1/api/folder/readFolders::01309f4d-8f0d-4425-8cfd-0c9d367e70f5::input-params ::GET::::{}
+2025-12-08 21:29:21::info::/v1/api/folder/readFolders::46a20dec-f039-4ab4-ba49-372127b8cea0::input-params ::GET::::{}
+2025-12-08 21:29:21::info::/v1/api/folder/readFolders::67dd3acd-0a61-41b9-a811-b98e77db9e5a::input-params ::GET::::{}
+2025-12-08 21:29:28::info::/v1/api/folder/readFolders::875c9232-58f9-41d6-983c-c623eb6cb597::input-params ::GET::::{}
+2025-12-08 21:29:28::info::/v1/api/folder/readFolders::a095cc9c-edd0-4cf7-abbe-9110330ab302::input-params ::GET::::{}
+2025-12-08 21:29:31::info::/v1/api/folder/readFolders::b19981a2-5ba1-4910-9991-9a5a982e80be::input-params ::GET::::{}
+2025-12-08 21:29:31::info::/v1/api/folder/readFolders::b3bd1687-4173-4596-b912-7d7db840fa12::input-params ::GET::::{}
+2025-12-08 21:30:09::info::/v1/api/patientRecord/createPatientRecord::48388423-b532-4bcd-b8f5-10f8b155399b::input-params ::POST::::{"fullName":"Lưu Quốc Pháp","email":"phapluudev2k5@gmail.com","dob":"","phoneNumber":"0374499251","role":"patient","relationship":"None","folderId":"6936240a96501e150bbff1cd"}
+2025-12-08 21:30:09::error::/v1/api/patientRecord/createPatientRecord::48388423-b532-4bcd-b8f5-10f8b155399b::handler-error::{"status":403,"message":"Patient already exists"}
+2025-12-08 21:30:39::info::/v1/api/patientRecord/createPatientRecord::b1f359a0-bdc4-4252-b940-6ba7b0f384ed::input-params ::POST::::{"fullName":"Lưu Quốc Pháp","email":"phapluu9ithd@gmail.com","dob":"","phoneNumber":"0374499251","role":"patient","relationship":"None","folderId":"6936240a96501e150bbff1cd"}
+2025-12-08 21:30:42::info::/v1/api/folder/readFolder/6936240a96501e150bbff1cd::eb3c0b5b-d9df-4a0d-90e0-c4681cc1c881::input-params ::GET::::{}
+2025-12-08 21:30:42::info::/v1/api/folder/readFolder/6936240a96501e150bbff1cd::62a9746a-d78e-4ed2-9547-13ee1f0cc65b::input-params ::GET::::{}
+2025-12-08 21:30:49::info::/v1/api/folder/readFolders::a91aa05c-16cb-4439-ab3d-edaf09202710::input-params ::GET::::{}
+2025-12-08 21:30:49::info::/v1/api/folder/readFolders::588fe90c-9272-4104-893a-f455d834f3c4::input-params ::GET::::{}
+2025-12-08 21:31:02::info::/v1/api/folder/readFolders::689cc36c-63ac-4406-a113-467119d117f5::input-params ::GET::::{}
+2025-12-08 21:31:02::info::/v1/api/folder/readFolders::f52162fb-e5ce-4e5b-af83-f555b9e64ec2::input-params ::GET::::{}
+2025-12-08 21:31:05::info::/v1/api/folder/readFolders::d2893b51-c80a-4805-997e-ad6f95bf65fe::input-params ::GET::::{}
+2025-12-08 21:31:05::info::/v1/api/folder/readFolders::b6431bd0-1156-4f73-a2e8-d1832dbc0185::input-params ::GET::::{}
+2025-12-08 21:31:07::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::46726ece-8c58-45f8-9cc5-be4438d408c2::input-params ::GET::::{}
+2025-12-08 21:31:07::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::11012454-6863-4983-9aa8-0ff6d872c84b::input-params ::GET::::{}
+2025-12-08 21:31:08::info::/v1/api/folder/readFolders::213ed141-59a3-45ef-aaf3-7d062bc8bb01::input-params ::GET::::{}
+2025-12-08 21:31:08::info::/v1/api/folder/readFolders::a1eee97e-452f-4727-b55c-177e28944dc3::input-params ::GET::::{}
+2025-12-08 21:31:09::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::38a1e2ca-b245-4243-a610-cded3efe449e::input-params ::GET::::{}
+2025-12-08 21:31:09::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::891dfbe0-ea0c-4196-a60c-6bc54424a539::input-params ::GET::::{}
+2025-12-08 21:31:13::info::/v1/api/folder/readFolders::c7976e12-f394-4174-b93c-a6396c9550e2::input-params ::GET::::{}
+2025-12-08 21:31:13::info::/v1/api/folder/readFolders::80cc8fc9-c982-47df-8d74-2b73df164dc3::input-params ::GET::::{}
+2025-12-08 21:31:13::info::/v1/api/folder/readFolder/6936240a96501e150bbff1cd::d862702d-f2ff-43a5-a259-e06cd51c0059::input-params ::GET::::{}
+2025-12-08 21:31:14::info::/v1/api/folder/readFolder/6936240a96501e150bbff1cd::ba597e0c-8741-40e5-8e4c-5e310a5b8c95::input-params ::GET::::{}
+2025-12-08 21:31:52::info::/v1/api/folder/readFolder/6936240a96501e150bbff1cd::d5af24c3-55b8-4f41-9a41-c0eb8c9f37e9::input-params ::GET::::{}
+2025-12-08 21:31:57::info::/v1/api/folder/deleteFolder/6936240a96501e150bbff1cd::fd428b00-8658-4b81-97f6-cc175ed12bdb::input-params ::DELETE::::{}
+2025-12-08 21:31:57::info::/v1/api/folder/readFolders::77a2f991-7c89-4ce2-a21b-802ba75e80a8::input-params ::GET::::{}
+2025-12-08 21:31:57::info::/v1/api/folder/readFolders::6922473e-c5a6-4ae3-9581-b69d26e9d19f::input-params ::GET::::{}
+2025-12-08 21:32:01::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::d8d25ef3-486e-4b3e-a95d-04487c88abc5::input-params ::GET::::{}
+2025-12-08 21:32:01::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::ed076c86-8903-4053-bed8-8b2e1a04aa25::input-params ::GET::::{}
+2025-12-08 21:32:05::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::7b7428ec-741c-40da-a8c8-3985840f7b5c::input-params ::GET::::{}
+2025-12-08 21:32:06::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::3b04ad6f-e342-4e42-90e6-e31f55240279::input-params ::GET::::{}
+2025-12-08 21:32:07::info::/v1/api/folder/readFolders::d0054b09-ef1d-4aac-945c-9c1d3f89a0f1::input-params ::GET::::{}
+2025-12-08 21:32:07::info::/v1/api/folder/readFolders::555f36af-40ad-4a05-85be-365b65817b63::input-params ::GET::::{}
+2025-12-08 21:32:08::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::ba4bf838-97d0-4b9c-827e-60dc8130ca3c::input-params ::GET::::{}
+2025-12-08 21:32:08::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::00702e91-6585-4ee3-ae39-e041ea4e91eb::input-params ::GET::::{}
+2025-12-08 21:32:57::info::/v1/api/folder/readFolders::aa6097c4-f2bd-43df-94cd-c56284c2b5bc::input-params ::GET::::{}
+2025-12-08 21:32:57::info::/v1/api/folder/readFolders::bf9f8c53-bd43-4095-94fb-102d954bc062::input-params ::GET::::{}
+2025-12-08 21:32:58::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::e8da6e01-2de9-4cc6-b5f4-7470e3231722::input-params ::GET::::{}
+2025-12-08 21:32:59::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::dbbeaae2-7b7b-4869-9abe-5a3eb638886d::input-params ::GET::::{}
+2025-12-08 21:33:01::info::/v1/api/patientRecord/readPatientRecord/6936e10fbff7e04ca5443d51::291bf49f-8104-4546-a894-841c68cbba32::input-params ::GET::::{}
+2025-12-08 21:33:02::info::/v1/api/patientRecord/readPatientRecord/6936e10fbff7e04ca5443d51::f6d4e6eb-cf51-4e0a-a2fd-b52247ff0548::input-params ::GET::::{}
+2025-12-08 21:33:27::info::/v1/api/patientRecord/readPatientRecord/6936e10fbff7e04ca5443d51::0dee8a4d-27d1-4960-adf4-663801841143::input-params ::GET::::{}
+2025-12-08 21:33:27::info::/v1/api/patientRecord/readPatientRecord/6936e10fbff7e04ca5443d51::3edfac3a-52c5-422b-9513-f484ba77a55c::input-params ::GET::::{}
+2025-12-08 21:33:44::info::/v1/api/folder/readFolders::016335ef-14c3-4ef4-98c4-92b0a33febb3::input-params ::GET::::{}
+2025-12-08 21:33:44::info::/v1/api/folder/readFolders::7c745b48-766c-413d-902d-67b15c37ce25::input-params ::GET::::{}
+2025-12-08 21:33:50::info::/v1/api/folder/readFolders::c130d8a1-c515-4c9f-bd3f-13ae9b2e27e2::input-params ::GET::::{}
+2025-12-08 21:33:50::info::/v1/api/folder/readFolders::7a50856e-c286-4c84-9567-6894aca98c86::input-params ::GET::::{}
+2025-12-08 21:33:52::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::49f7b1fb-decc-4b02-8e75-7c51ee0c7511::input-params ::GET::::{}
+2025-12-08 21:33:52::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::ea9a8db0-ed74-47f2-a6cf-ce42c25e4e45::input-params ::GET::::{}
+2025-12-08 21:33:53::info::/v1/api/folder/readFolders::26ede436-077e-4e19-a6ad-8cd8d0ae7685::input-params ::GET::::{}
+2025-12-08 21:33:54::info::/v1/api/folder/readFolders::01a49cfa-afe3-45d4-989c-d6903c9ed7e6::input-params ::GET::::{}
+2025-12-08 21:33:54::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::56ede191-d386-47bc-bdb3-d49759022a29::input-params ::GET::::{}
+2025-12-08 21:33:54::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::b77d2c0f-8d9f-48c3-adf5-f1e90e9f5762::input-params ::GET::::{}
+2025-12-08 21:33:56::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::d1c97ae8-203e-48c3-9194-cf213476ea63::input-params ::GET::::{}
+2025-12-08 21:33:56::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::8299c257-ed58-4361-9f4e-0730a64946e8::input-params ::GET::::{}
+2025-12-08 21:38:06::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::a4221c65-1e30-4c58-9f92-8a3b48e9bdfa::input-params ::GET::::{}
+2025-12-08 21:38:18::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::c90564ed-69f4-4db5-9631-a3505c3cf1de::input-params ::GET::::{}
+2025-12-08 21:38:21::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::fd1a687d-42f9-4a46-8afc-3aafc44dc197::input-params ::GET::::{}
+2025-12-08 21:38:31::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::f1172987-7467-47ee-9348-8eaee97966ad::input-params ::GET::::{}
+2025-12-08 21:38:35::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::98f02063-ace4-4c7f-8d35-e64f9831c258::input-params ::GET::::{}
+2025-12-08 21:39:24::info::/v1/api/folder/readFolders::e94fe558-9698-4e82-b542-8c37cd3f9fb5::input-params ::GET::::{}
+2025-12-08 21:39:24::info::/v1/api/folder/readFolders::659123f6-b9c6-4637-b754-950bcb9d697c::input-params ::GET::::{}
+2025-12-08 21:39:26::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::c897721a-f659-4f3e-8691-7d1f966f42a0::input-params ::GET::::{}
+2025-12-08 21:39:26::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::22caa19d-068d-4f0e-b0db-4a415279a75c::input-params ::GET::::{}
+2025-12-08 21:44:25::info::/v1/api/folder/readFolders::6c0f7d68-cdb9-402c-ba2c-2045ee605ebb::input-params ::GET::::{}
+2025-12-08 21:44:26::info::/v1/api/folder/readFolders::81cb7d9e-0df7-4d12-a551-ebfb216591ef::input-params ::GET::::{}

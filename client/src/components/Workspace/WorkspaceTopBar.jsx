@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import './WorkspaceTopBar.css'
 import PatientModalForm from '../../pages/workSpace/patients/folderClients/patientModelForm/patientModelForm'
 import { useAuth } from '../../contexts/auth/AuthContext'
+import { apiUtils } from '../../utils/newRequest'
 
 export default function WorkspaceTopBar() {
     const [openCreateModal, setOpenCreateModal] = useState(false)
@@ -10,28 +11,28 @@ export default function WorkspaceTopBar() {
     const { userInfo } = useAuth()
     const [showModal, setShowModal] = useState(false)
     const isInsideFolder = !!folderId
-    const handleCreateClient = (data) => {
-        const parts = data.fullName.trim().split(' ')
-        const lastName = parts.length > 1 ? parts[parts.length - 1] : ''
-        const firstName = parts.length > 1 ? parts.slice(0, parts.length - 1).join(' ') : parts[0]
 
-        const birthYear = data.dob ? new Date(data.dob).getFullYear() : null
-        const currentYear = new Date().getFullYear()
-        const age = birthYear ? currentYear - birthYear : 0
+    const handleCreateClient = async (data) => {
+        try {
+            const payload = {
+                fullName: data.fullName,
+                email: data.email,
+                dob: data.dob,
+                phoneNumber: data.phoneNumber,
+                role: data.role,
+                relationship: data.relationship,
+                folderId: data.folderId,
+            }
 
-        const newClient = {
-            id: `client-${Date.now()}`,
-            firstName,
-            lastName,
-            age,
-            phone: data.phoneNumber,
-            email: data.email,
-            relationship: data.relationship,
+            await apiUtils.post('/patientRecord/createPatientRecord', payload)
+
+            setOpenCreateModal(false)
+        } catch (err) {
+            console.log(err)
+            alert('Failed to create client.')
         }
-
-        setClients((prev) => [...prev, newClient])
-        setOpenCreateModal(false)
     }
+
     return (
         <header className='workspace-topbar'>
             <div className='workspace-topbar-search-wrapper'>
@@ -39,7 +40,7 @@ export default function WorkspaceTopBar() {
             </div>
 
             <div className='workspace-topbar-actions'>
-                <button className='workspace-topbar-btn'>
+                <button className='workspace-topbar-btn' onClick={() => setOpenCreateModal(true)}>
                     <span>
                         <svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#0c1317'>
                             <path d='M444-144v-300H144v-72h300v-300h72v300h300v72H516v300h-72Z' />
@@ -88,6 +89,7 @@ export default function WorkspaceTopBar() {
                     </div>
                 </div>
             </div>
+            {openCreateModal && <PatientModalForm onClose={() => setOpenCreateModal(false)} onSubmit={handleCreateClient} lockFolder={false} />}
         </header>
     )
 }

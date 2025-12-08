@@ -108,7 +108,7 @@ export default function FolderClients() {
     const calcAge = (dob) => (dob ? new Date().getFullYear() - new Date(dob).getFullYear() : '')
 
     const handleDeleteEdit = async () => {
-        const confirmed = window.confirm('Are you sure you want to delete this folder? This action cannot be undone.')
+        const confirmed = window.confirm('Are you sure you want to delete this folder? All the patient records will go to archived folder.')
         if (!confirmed) return
 
         try {
