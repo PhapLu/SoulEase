@@ -2,7 +2,6 @@ import Conversation from '../models/conversation.model.js'
 import { User } from '../models/user.model.js'
 import { AuthFailureError, BadRequestError, NotFoundError } from '../core/error.response.js'
 import { uploadImageToS3 } from '../utils/s3.util.js'
-import { checkAndSendInactivityEmail } from '../utils/checkUserActivity.util.js'
 
 const DEFAULT_THUMB = '/uploads/default-bg.png'
 
@@ -277,19 +276,6 @@ class ConversationService {
         }
         conversation.messages.push(newMessage)
         await conversation.save()
-
-        // ✅ Find the receiver (the other member)
-        const receiverMember = conversation.members.find((m) => m.user.toString() !== userId.toString())
-
-        if (receiverMember) {
-            // Load full receiver user info
-            const receiver = await User.findById(receiverMember.user).select('fullName avatar email activity')
-
-            // ✅ Only send inactivity email if NOT muted
-            if (!receiverMember.isMuted) {
-                await checkAndSendInactivityEmail(receiver)
-            }
-        }
 
         return {
             conversation,

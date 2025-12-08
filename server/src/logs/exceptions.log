@@ -218,3 +218,19 @@ TypeError: router.create is not a function
     at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
     at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined
+2025-12-08 21:53:57::error::undefined::undefined::uncaughtException: Region is missing
+Error: Region is missing
+    at Object.resolveRegionConfig (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\@smithy\config-resolver\dist-cjs\index.js:103:15)
+    at new S3Client (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\@aws-sdk\client-s3\dist-cjs\index.js:10679:42)
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/configs/s3.config.js:13:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined
+2025-12-08 21:56:34::error::undefined::undefined::uncaughtException: Region is missing
+Error: Region is missing
+    at Object.resolveRegionConfig (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\@smithy\config-resolver\dist-cjs\index.js:103:15)
+    at new S3Client (C:\Users\Admin\OneDrive\Máy tính\SEPM Project\server\node_modules\@aws-sdk\client-s3\dist-cjs\index.js:10679:42)
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/configs/s3.config.js:13:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined

@@ -12,8 +12,6 @@ class PatientRecordService {
 
         // 1. Verify doctor and patient exists
         const doctor = await User.findById(doctorId)
-        console.log(doctorId)
-        console.log(doctor)
 
         if (!doctor || doctor.role !== 'doctor') {
             throw new ForbiddenError('Only doctors can create clients')
@@ -29,6 +27,7 @@ class PatientRecordService {
         // 3. Create Client as User
         const randomPassword = Math.random().toString(36).slice(-8)
 
+        // 3. Create Client as User
         const newUser = await User.create({
             email,
             fullName,
@@ -38,6 +37,25 @@ class PatientRecordService {
             password: randomPassword,
             status: 'active',
         })
+
+        // ⭐ ADD THIS: Create conversation between doctor and patient/family
+        let existingConversation = await Conversation.findOne({
+            'members.user': { $all: [doctorId, newUser._id] },
+        })
+
+        if (!existingConversation) {
+            existingConversation = await Conversation.create({
+                members: [{ user: doctorId }, { user: newUser._id }],
+                messages: [
+                    {
+                        senderId: doctorId,
+                        content: `Welcome ${newUser.fullName}! This is your private chat with Dr. ${doctor.fullName}.`,
+                        createdAt: new Date(),
+                        seenBy: [doctorId],
+                    },
+                ],
+            })
+        }
 
         // 4. Add patient to folder.records
         folder.records.push(newUser._id)
