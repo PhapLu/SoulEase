@@ -79,17 +79,34 @@ class PatientRecordService {
 
     static readPatientRecord = async (req) => {
         const userId = req.userId
-        const recordId = req.params.recordId
+        const patientId = req.params.patientId
 
         // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
 
-        // 2. Check record
-        const record = await PatientRecord.findOne({ _id: recordId, doctorId: userId })
+        // 2. Check patient
+        const patient = await User.findById(patientId).select('fullName email phone gender birthday address').lean()
+
+        if (!patient) throw new NotFoundError('Patient not found')
+
+        // 3. Find patient record
+        const record = await PatientRecord.findOne({
+            patientId,
+            doctorId: userId,
+        }).lean()
+
         if (!record) throw new NotFoundError('Record not found')
 
-        return { record }
+        // 4. Merge into 1 clean FLAT object
+        const mergedRecord = {
+            recordId: record._id, // <— The REAL patientRecord ID
+            ...patient, // patient info
+            ...record, // record info
+            _id: record._id, // keep `_id` as record ID too (optional)
+        }
+
+        return { patientRecord: mergedRecord }
     }
 
     static updatePatientRecord = async (req) => {

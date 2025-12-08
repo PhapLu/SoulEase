@@ -5,8 +5,8 @@ import { verifyToken } from '../../middlewares/jwt.js'
 
 const router = express.Router()
 router.use(verifyToken)
+router.get('/readPatientRecord/:patientId', asyncHandler(patientRecordController.readPatientRecord))
 router.post('/createPatientRecord', asyncHandler(patientRecordController.createPatientRecord))
-router.get('/readPatientRecord', asyncHandler(patientRecordController.readPatientRecord))
 router.get('/readPatientRecords', asyncHandler(patientRecordController.readPatientRecords))
 router.patch('/updatePatientRecord', asyncHandler(patientRecordController.updatePatientRecord))
 router.delete('/deletePatientRecord', asyncHandler(patientRecordController.deletePatientRecord))
