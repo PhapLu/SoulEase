@@ -1,0 +1,12 @@
+fastapi
+pymongo
+uvicorn[standard]
+python-dotenv
+
+langchain
+langgraph
+langchain-core
+langchain-community
+
+httpx
+duckduckgo-search
