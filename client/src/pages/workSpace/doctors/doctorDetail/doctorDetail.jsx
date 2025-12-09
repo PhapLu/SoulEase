@@ -12,7 +12,6 @@ export default function DoctorDetail() {
         const fetchDoctorDetail = async () => {
             // Fetch doctor detail by ID
             const response = await apiUtils.get(`/user/readDoctorDetail/${doctorId}`)
-            console.log(response.data.metadata)
             if (response) {
                 setDoctorDetail(response.data.metadata.user)
             }
