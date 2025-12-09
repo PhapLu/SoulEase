@@ -96,6 +96,41 @@ class UserService {
             user: { ...userData, hasSetPinCode },
         }
     }
+
+    static readDoctorDetail = async (req) => {
+        const doctorId = req.userId
+
+        // 1. Check doctor
+        const doctor = await User.findById(doctorId).select('-password -accessToken -googleId -followers -following')
+        if (!doctor || doctor.role !== 'doctor') throw new NotFoundError('Doctor not found')
+
+        // 2. Return doctor detail
+
+        return {
+            doctor,
+        }
+    }
+
+    static updateUserProfile = async (req) => {
+        const userId = req.userId
+        const updateData = req.body
+
+        // 1. Check user
+        const user = await User.findById(userId)
+        if (!user) throw new NotFoundError('User not found')
+
+        // 2. Update user profile
+        Object.keys(updateData).forEach((key) => {
+            user[key] = updateData[key]
+        })
+        await user.save()
+
+        // 3. Return updated user without sensitive info
+        const updatedUser = await User.findById(userId).select('-password -accessToken -googleId -followers -following')
+        return {
+            user: updatedUser,
+        }
+    }
 }
 
 export default UserService
