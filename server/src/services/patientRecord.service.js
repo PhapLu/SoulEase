@@ -3,6 +3,7 @@ import Folder from '../models/folder.model.js'
 import { User } from '../models/user.model.js'
 import { AuthFailureError, BadRequestError, ForbiddenError, NotFoundError } from '../core/error.response.js'
 import dotenv from 'dotenv'
+import Conversation from '../models/conversation.model.js'
 dotenv.config()
 
 class PatientRecordService {

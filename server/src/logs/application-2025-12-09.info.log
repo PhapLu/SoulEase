@@ -1,0 +1,57 @@
+2025-12-09 08:04:21::info::/v1/api/user/me::bb5f08bf-a148-470c-8a25-719a6240eaa7::input-params ::GET::::{}
+2025-12-09 08:04:21::info::/v1/api/user/me::b0cb0958-34c6-4259-8b6f-2fdebb11b5d7::input-params ::GET::::{}
+2025-12-09 08:04:25::info::/v1/api/auth/login::32eeb0dc-4ab5-4341-bec2-09d6334ce09b::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-09 08:04:25::info::/v1/api/user/me::a1fd7229-3ed5-443c-80eb-7ac342e13a6b::input-params ::GET::::{}
+2025-12-09 08:04:25::info::/v1/api/folder/readFolders::3821f692-b4c3-4261-ab88-d0d81ac0c97a::input-params ::GET::::{}
+2025-12-09 08:04:26::info::/v1/api/folder/readFolders::6655447e-c6d6-460f-bc52-4c546d96a1c9::input-params ::GET::::{}
+2025-12-09 08:04:27::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::23ba5ba5-eec3-4cfd-8695-27220e34e094::input-params ::GET::::{}
+2025-12-09 08:04:27::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::c3a8ea04-3f3f-402d-9efc-bcfdcc102ef4::input-params ::GET::::{}
+2025-12-09 08:04:29::info::/v1/api/folder/readFolders::ec581d90-4fa9-4d71-9c52-977af906053c::input-params ::GET::::{}
+2025-12-09 08:04:29::info::/v1/api/folder/readFolders::9b7b48ae-208c-4b07-ba15-2582a2d9f550::input-params ::GET::::{}
+2025-12-09 08:04:30::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::09a826a3-80c8-4af0-bc4e-86a52476a6f9::input-params ::GET::::{}
+2025-12-09 08:04:30::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::6fcb01b2-29f2-4b91-a4a7-01d3aef9de8e::input-params ::GET::::{}
+2025-12-09 08:04:34::info::/v1/api/folder/readFolders::16bf7f19-e14a-4baa-904c-1621b2d8422f::input-params ::GET::::{}
+2025-12-09 08:04:34::info::/v1/api/folder/readFolders::4283c26d-bf37-474a-90a5-bf72fec94f62::input-params ::GET::::{}
+2025-12-09 08:04:35::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::a35e6960-3033-4232-9eef-1d559a20031c::input-params ::GET::::{}
+2025-12-09 08:04:35::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::c8906162-a8b5-46c4-a8d3-74e128141ab8::input-params ::GET::::{}
+2025-12-09 08:04:36::info::/v1/api/folder/readFolders::77200966-9544-4478-b4d6-d61f8534803d::input-params ::GET::::{}
+2025-12-09 08:04:36::info::/v1/api/folder/readFolders::08098d9c-4f63-4ea7-9ed6-8ffae2d8423b::input-params ::GET::::{}
+2025-12-09 08:04:38::info::/v1/api/auth/login::cd8f64e2-5c9e-499f-9445-5b324f7da09d::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-09 08:04:38::info::/v1/api/user/me::78187311-b007-44b7-92d8-f464b7633520::input-params ::GET::::{}
+2025-12-09 08:04:38::info::/v1/api/folder/readFolders::5cadacaf-6257-41c9-9dbd-ecf5c3e3fbe9::input-params ::GET::::{}
+2025-12-09 08:04:38::info::/v1/api/folder/readFolders::386a844d-a561-46eb-a585-e3646628b811::input-params ::GET::::{}
+2025-12-09 08:04:44::info::/v1/api/auth/login::2a112c58-8a86-4cfc-99fe-4447dc44abdd::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-09 08:04:44::info::/v1/api/user/me::1faf712e-26c3-4d2e-99d7-104ea7d46d36::input-params ::GET::::{}
+2025-12-09 08:04:44::info::/v1/api/folder/readFolders::87819bf0-3a28-4516-bb27-0ba8d236cdf3::input-params ::GET::::{}
+2025-12-09 08:04:44::info::/v1/api/folder/readFolders::634dec45-47a1-4c4b-ac5d-81c8965cfd76::input-params ::GET::::{}
+2025-12-09 08:04:47::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::eb5dda8f-efee-458b-89b0-649b7d64d88b::input-params ::GET::::{}
+2025-12-09 08:04:47::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::225bf10e-ef6f-458d-90ff-3ea571a0f745::input-params ::GET::::{}
+2025-12-09 08:04:48::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::3a2a6f87-5163-4f89-a72f-d25b67511d65::input-params ::GET::::{}
+2025-12-09 08:04:49::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::d0f8f5a3-44f0-48b7-bafc-ae8205b7e3be::input-params ::GET::::{}
+2025-12-09 08:09:44::info::/v1/api/folder/readFolders::a7064d60-e687-4e04-bb4e-87a8c7af2f95::input-params ::GET::::{}
+2025-12-09 08:09:44::info::/v1/api/folder/readFolders::4bf80542-8e42-4b80-8eb8-b8542c86752b::input-params ::GET::::{}
+2025-12-09 08:09:48::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::0b264d76-f925-4ae5-9b90-d579381dcf49::input-params ::GET::::{}
+2025-12-09 08:09:48::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::56a350ea-83ea-438d-b46c-0013501b327a::input-params ::GET::::{}
+2025-12-09 08:09:49::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::5a35c3f7-bcb1-48c3-95f8-ee74a3ff1857::input-params ::GET::::{}
+2025-12-09 08:09:50::info::/v1/api/patientRecord/readPatientRecord/69359c05a977de4cf1c0e576::c9b7c948-a2b9-4f81-b8d1-8e132a4d360d::input-params ::GET::::{}
+2025-12-09 08:09:59::info::/v1/api/folder/readFolders::113b354b-7145-445f-bb84-8790e6d391b0::input-params ::GET::::{}
+2025-12-09 08:09:59::info::/v1/api/folder/readFolders::9261c7c1-f6f7-4e3f-ab60-f44aa5b373d2::input-params ::GET::::{}
+2025-12-09 08:10:26::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::0950cc75-57cc-438a-8a46-9361d2a8dab7::input-params ::GET::::{}
+2025-12-09 08:10:26::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::5a452356-9166-4900-989f-10145331962f::input-params ::GET::::{}
+2025-12-09 08:10:35::info::/v1/api/folder/readFolders::27dbc11c-dce7-4f51-be41-136faa979469::input-params ::GET::::{}
+2025-12-09 08:10:35::info::/v1/api/folder/readFolders::7bd33d1c-7e08-4578-b6b4-ea1dfafa8074::input-params ::GET::::{}
+2025-12-09 08:10:37::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::062c231a-fe51-4c58-832d-c91a5e3c7490::input-params ::GET::::{}
+2025-12-09 08:10:37::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::d5f71091-9d0c-4867-bc99-25f13a9b7a16::input-params ::GET::::{}
+2025-12-09 08:10:39::info::/v1/api/patientRecord/readPatientRecord/6936e10fbff7e04ca5443d51::4e80dbbe-4d61-4270-b64a-6436e44d2b34::input-params ::GET::::{}
+2025-12-09 08:10:39::info::/v1/api/patientRecord/readPatientRecord/6936e10fbff7e04ca5443d51::2dc56913-9694-4bcd-b9db-8a639da14a07::input-params ::GET::::{}
+2025-12-09 08:12:39::info::/v1/api/folder/readFolders::4f8d1807-317c-4da2-aa39-51562f4bad46::input-params ::GET::::{}
+2025-12-09 08:12:40::info::/v1/api/folder/readFolders::89b37043-677c-4d76-bfe0-1c5713ba3ed6::input-params ::GET::::{}
+2025-12-09 08:25:43::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::4fbac4c2-e636-42bf-954e-fab9bbd60f9a::input-params ::GET::::{}
+2025-12-09 08:25:43::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::02755ca4-5314-4d42-9157-3c34ff0cbfc2::input-params ::GET::::{}
+2025-12-09 08:25:44::info::/v1/api/folder/readFolders::66b50d42-0be8-4e36-ae80-1c3dd83b2259::input-params ::GET::::{}
+2025-12-09 08:25:44::info::/v1/api/folder/readFolders::857b5e40-3d6f-4b2b-9fd0-14d68fce7ae0::input-params ::GET::::{}
+2025-12-09 08:25:59::info::/v1/api/patientRecord/createPatientRecord::aea4b1c4-db82-409e-882a-d21015803f45::input-params ::POST::::{"fullName":"Tai Ng","email":"taichinhlcp@gmail.com","dob":"","phoneNumber":"0374499251","role":"patient","relationship":"None","folderId":"6934f52eff2f4f064e0c1ff6"}
+2025-12-09 08:25:59::error::/v1/api/patientRecord/createPatientRecord::aea4b1c4-db82-409e-882a-d21015803f45::handler-error::{"status":500,"message":"Conversation is not defined"}
+2025-12-09 08:27:06::info::/v1/api/patientRecord/createPatientRecord::4de1aa0a-db60-4e3e-964b-cb05b6983d81::input-params ::POST::::{"fullName":"Tai Ng","email":"taichinhlcp@gmail.com","dob":"","phoneNumber":"0374499251","role":"patient","relationship":"None","folderId":"6934f52eff2f4f064e0c1ff6"}
+2025-12-09 08:27:06::error::/v1/api/patientRecord/createPatientRecord::4de1aa0a-db60-4e3e-964b-cb05b6983d81::handler-error::{"status":403,"message":"Patient already exists"}
+2025-12-09 08:27:24::info::/v1/api/patientRecord/createPatientRecord::6b660aec-6964-43d7-a466-cec479519d2b::input-params ::POST::::{"fullName":"Tai Ng","email":"taichin@gmail.com","dob":"","phoneNumber":"0374499251","role":"patient","relationship":"None","folderId":"6934f52eff2f4f064e0c1ff6"}

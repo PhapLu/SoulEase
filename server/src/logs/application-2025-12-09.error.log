@@ -1,0 +1,2 @@
+2025-12-09 08:25:59::error::/v1/api/patientRecord/createPatientRecord::aea4b1c4-db82-409e-882a-d21015803f45::handler-error::{"status":500,"message":"Conversation is not defined"}
+2025-12-09 08:27:06::error::/v1/api/patientRecord/createPatientRecord::4de1aa0a-db60-4e3e-964b-cb05b6983d81::handler-error::{"status":403,"message":"Patient already exists"}
