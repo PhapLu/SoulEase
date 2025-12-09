@@ -8,7 +8,7 @@ import { apiUtils } from '../../utils/newRequest'
 export default function WorkspaceTopBar() {
     const [openCreateModal, setOpenCreateModal] = useState(false)
     const { folderId } = useParams()
-    const { userInfo } = useAuth()
+    const { userInfo, logout } = useAuth()
     const [showModal, setShowModal] = useState(false)
     const isInsideFolder = !!folderId
 
@@ -77,7 +77,7 @@ export default function WorkspaceTopBar() {
                             <p>Clients</p>
                         </Link>
 
-                        <button className='dropdown-item dropdown-item-logout'>
+                        <button className='dropdown-item dropdown-item-logout' onClick={logout}>
                             <svg xmlns='http://www.w3.org/2000/svg' height='25px' viewBox='0 -960 960 960' width='25px' fill='#0c1317'>
                                 <path d='M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z' />
                             </svg>

@@ -124,7 +124,7 @@ class AuthService {
 
         // 5️⃣ Send OTP email
         try {
-            await sendOtpEmail(email, '[Pastal] OTP for Account Registration', 'Your verification code to complete account registration is:', otp)
+            await sendOtpEmail(email, '[SoulEase] OTP for Account Registration', 'Your verification code to complete account registration is:', otp)
         } catch (err) {
             console.error('OTP email error:', err)
             throw new BadRequestError('Failed to send verification email')
@@ -251,7 +251,7 @@ class AuthService {
 
         // 3. Send OTP email
         try {
-            const subject = `[Pastal] OTP for Password Change`
+            const subject = `[SoulEase] OTP for Password Change`
             const message = `Your verification code to change your password is:`
             const verificationCode = otp
 

@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }) => {
     // --------------------------------------------------
     const login = async (email, password) => {
         try {
-            const res = await newRequest.post('/auth/login', { email, password })
+            const res = await newRequest.post('/auth/signin', { email, password })
             await loadUserMe() // Refresh userInfo
             return true
         } catch (err) {

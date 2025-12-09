@@ -49,7 +49,7 @@ export async function verifyEmailTransport() {
 async function sendEmail({ to, subject, html, replyTo = 'info@pastal.app' }) {
     try {
         const info = await transporter.sendMail({
-            from: `BlooMart <info@pastal.app>`,
+            from: `SoulEase <phapluu2k5tqt@gmail.com>`,
             to,
             subject,
             html,

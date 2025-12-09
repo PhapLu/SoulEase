@@ -84,7 +84,7 @@ const otpTemplate = (toEmail, message = '', verificationCode) => {
         <body>
             <div class="container">
                 <div class="header">
-                    <img style="width: 40px; height: auto; object-fit: cover" src="https://res.cloudinary.com/fiyonce/image/upload/w_60/v1743152687/MKT_materials__5_-removebg-preview_1_ohm7lc.png" alt="Pastal">
+                    <img style="width: 40px; height: auto; object-fit: cover" src="https://res.cloudinary.com/fiyonce/image/upload/w_60/v1743152687/MKT_materials__5_-removebg-preview_1_ohm7lc.png" alt="SoulEase">
                 </div>
                 <div class="content">
                     <div class="content_container">
@@ -95,8 +95,8 @@ const otpTemplate = (toEmail, message = '', verificationCode) => {
                     </div>
                 </div>
                 <div style='font-size: 12px; text-align: justify;' class="footer">
-                    <p>Pastal is Vietnam’s leading platform for custom illustrations, bringing together talented young artists from a variety of art styles.</p>
-                    <span>We're currently in beta and always looking to improve. Your feedback and suggestions are incredibly valuable to us. We look forward to seeing you on Pastal!</span>
+                    <p>SoulEase is Vietnam’s leading platform for custom illustrations, bringing together talented young artists from a variety of art styles.</p>
+                    <span>We're currently in beta and always looking to improve. Your feedback and suggestions are incredibly valuable to us. We look forward to seeing you on SoulEase!</span>
                     <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
 
                     <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
@@ -125,7 +125,7 @@ const announcementTemplate = (subSubject = '', message = '', orderId) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pastal Violation Request Notification</title>
+        <title>SoulEase Violation Request Notification</title>
         <style>
             span .im {
                 color: #4d4d4d !important;
@@ -157,7 +157,7 @@ const announcementTemplate = (subSubject = '', message = '', orderId) => {
         <div style="max-width: 539px; margin: 0 auto; background-color: #fff; padding: 16px 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin-top: 30px;">
             <!-- Logo Section -->
             <div style="text-align: left; margin-bottom: 25px;">
-                <img style="width: 40px; height: auto; object-fit: cover" src="https://res.cloudinary.com/fiyonce/image/upload/w_60/v1743152687/MKT_materials__5_-removebg-preview_1_ohm7lc.png" alt="Pastal Logo"/>
+                <img style="width: 40px; height: auto; object-fit: cover" src="https://res.cloudinary.com/fiyonce/image/upload/w_60/v1743152687/MKT_materials__5_-removebg-preview_1_ohm7lc.png" alt="SoulEase Logo"/>
             </div>
 
             <!-- Content Section -->
@@ -166,7 +166,7 @@ const announcementTemplate = (subSubject = '', message = '', orderId) => {
                 <p style="font-size: 20px; font-weight: 600; margin-bottom: 25px; color: black;">${subSubject}</p>
                 <p style="font-size: 17px; color: black;">${message}</p>
                 <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
-                <p style="color: #4D4D4D; font-size: 14px">We hope you have a great experience commissioning on Pastal.</p>
+                <p style="color: #4D4D4D; font-size: 14px">We hope you have a great experience commissioning on SoulEase.</p>
                 <a class="btn" href="https://pastal.app" style="color: white; text-decoration: none; display: inline-block; text-align: center;">
                     <span style="float: left; height: 30px; line-height: 30px">Join Now</span>
                     <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
@@ -176,7 +176,7 @@ const announcementTemplate = (subSubject = '', message = '', orderId) => {
                 <div style="margin-top: 30px; font-size: 12px; color: #4D4D4D !important; line-height: 1.5; font-style: italic;">
                     <hr>
                     <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
-                    <p style="color: #4d4d4d;">Pastal is Vietnam’s leading platform for custom artwork, connecting you with talented young artists across a variety of styles. We're still in beta, so we truly value your feedback and suggestions to help us improve. Thank you for being part of Pastal!</p>
+                    <p style="color: #4d4d4d;">SoulEase is Vietnam’s leading platform for custom artwork, connecting you with talented young artists across a variety of styles. We're still in beta, so we truly value your feedback and suggestions to help us improve. Thank you for being part of SoulEase!</p>
                     <p>If you have any questions or feedback, feel free to contact us at 
                     <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
                     <a style='color: #6B07EE; font-size: 12px;' class="fiyonce_help" href="mailto:pastalltd@gmail.com">pastalltd@gmail.com</a></p>
@@ -196,7 +196,7 @@ const commissionTemplate = (user, message = '', subSubject = '', orderCode, pric
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pastal Commission Notification</title>
+        <title>SoulEase Commission Notification</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -342,7 +342,7 @@ const commissionTemplate = (user, message = '', subSubject = '', orderCode, pric
         <div class="container" style="font: 16px/1.5 Arial, Helvetica, sans-serif;">
             <!-- Logo Section -->
             <div class="logo">
-                    <img style="width: 40px; height: auto; object-fit: cover" src="https://res.cloudinary.com/fiyonce/image/upload/w_60/v1743152687/MKT_materials__5_-removebg-preview_1_ohm7lc.png" alt="Pastal">
+                    <img style="width: 40px; height: auto; object-fit: cover" src="https://res.cloudinary.com/fiyonce/image/upload/w_60/v1743152687/MKT_materials__5_-removebg-preview_1_ohm7lc.png" alt="SoulEase">
             </div>
 
             <!-- Content Section -->
@@ -370,7 +370,7 @@ const commissionTemplate = (user, message = '', subSubject = '', orderCode, pric
                     <!-- Order Code -->
                     ${orderCode ? `<p class="order_code"><span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>${orderCode}</p>` : ''}
                 </div>
-                <p class="pastal_note">We hope you have a great experience commissioning on Pastal.</p>
+                <p class="pastal_note">We hope you have a great experience commissioning on SoulEase.</p>
                 
                 <!-- Button -->
                 <a class="btn" href="https://pastal.app/my-commission-requests" style="color: white; text-decoration: none; display: inline-block; text-align: center;">
@@ -383,7 +383,7 @@ const commissionTemplate = (user, message = '', subSubject = '', orderCode, pric
                 <div class="footer">
                     <hr>
                     <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
-                    <p>Pastal is Vietnam’s leading platform for custom illustrations, home to many young and talented artists from a wide range of art styles. We're still in beta, and your feedback truly helps us grow and improve. Thank you for being with us on this journey!</p>
+                    <p>SoulEase is Vietnam’s leading platform for custom illustrations, home to many young and talented artists from a wide range of art styles. We're still in beta, and your feedback truly helps us grow and improve. Thank you for being with us on this journey!</p>
                     <p>If you have any questions or suggestions, feel free to reach out at <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
                     <a href="mailto:pastal@gmail.com">pastal@gmail.com</a> or via our <a href="mailto:pastal@gmail.com">Facebook Page</a></p>
                 </div>
@@ -403,7 +403,7 @@ const reportTemplate = (subSubject = '', reason) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pastal Violation Request Notification</title>
+        <title>SoulEase Violation Request Notification</title>
     </head>
     <body style="font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0; font: 16px/1.5 Arial, Helvetica, sans-serif;">
 
@@ -411,7 +411,7 @@ const reportTemplate = (subSubject = '', reason) => {
             <!-- Logo Section -->
             <div style="text-align: left; margin-bottom: 25px;">
                 <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
-                    <img style="width: 40px; height: auto; object-fit: cover" src="https://res.cloudinary.com/fiyonce/image/upload/w_60/v1743152687/MKT_materials__5_-removebg-preview_1_ohm7lc.png" alt="Pastal">
+                    <img style="width: 40px; height: auto; object-fit: cover" src="https://res.cloudinary.com/fiyonce/image/upload/w_60/v1743152687/MKT_materials__5_-removebg-preview_1_ohm7lc.png" alt="SoulEase">
             </div>
 
             <!-- Content Section -->
@@ -441,7 +441,7 @@ const announcementTemplateType2 = (subSubject = '', message = '', url) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pastal Violation Request Notification</title>
+        <title>SoulEase Violation Request Notification</title>
         <style>
             span .im {
                 color: #4d4d4d !important;
@@ -470,7 +470,7 @@ const announcementTemplateType2 = (subSubject = '', message = '', url) => {
         <div style="max-width: 539px; margin: 0 auto; background-color: #fff; padding: 16px 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin-top: 30px;">
             <!-- Logo Section -->
             <div style="text-align: left; margin-bottom: 25px;">
-                <img style="width: 40px; height: auto; object-fit: cover" src="https://res.cloudinary.com/fiyonce/image/upload/w_60/v1743152687/MKT_materials__5_-removebg-preview_1_ohm7lc.png" alt="Pastal Logo"/>
+                <img style="width: 40px; height: auto; object-fit: cover" src="https://res.cloudinary.com/fiyonce/image/upload/w_60/v1743152687/MKT_materials__5_-removebg-preview_1_ohm7lc.png" alt="SoulEase Logo"/>
             </div>
 
             <!-- Content Section -->
@@ -479,7 +479,7 @@ const announcementTemplateType2 = (subSubject = '', message = '', url) => {
                 <p style="font-size: 20px; font-weight: 600; margin-bottom: 25px; color: black;">${subSubject}</p>
                 <p style="font-size: 17px; color: black;">${message}</p>
                 <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
-                <p style="color: #4D4D4D; font-size: 14px">We hope you enjoy your experience with commissions on Pastal.</p>
+                <p style="color: #4D4D4D; font-size: 14px">We hope you enjoy your experience with commissions on SoulEase.</p>
                 <a class="btn" href="${url}" style="color: white; text-decoration: none; display: inline-block; text-align: center;">
                     <span style="float: left; height: 30px; line-height: 30px">View Details</span>
                     <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
@@ -489,7 +489,7 @@ const announcementTemplateType2 = (subSubject = '', message = '', url) => {
                 <div style="margin-top: 30px; font-size: 12px; color: #4D4D4D !important; line-height: 1.5; font-style: italic;">
                     <hr>
                     <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
-                    <p style="color: #4d4d4d;">Pastal is a creative platform where talented artists from all backgrounds come together to bring your ideas to life. We're still in beta, so your feedback means a lot and helps us make things better for everyone. Thank you for being here.</p>
+                    <p style="color: #4d4d4d;">SoulEase is a creative platform where talented artists from all backgrounds come together to bring your ideas to life. We're still in beta, so your feedback means a lot and helps us make things better for everyone. Thank you for being here.</p>
                     <p>If you have any questions or suggestions, feel free to reach out to us at 
                     <span aria-hidden="true" style="display:none;">${new Date().getTime()}</span>
                     <a style='color: #6B07EE; font-size: 12px;' class="fiyonce_help" href="mailto:pastalltd@gmail.com">pastalltd@gmail.com</a></p>

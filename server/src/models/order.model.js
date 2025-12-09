@@ -29,10 +29,6 @@ const OrderSchema = new mongoose.Schema(
                 ref: 'Character',
             },
         ],
-        pastalTicketId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'PastalTicket',
-        },
         status: {
             type: String,
             enum: ['waitlist', 'mockWaitlist', 'pending', 'approved', 'rejected', 'canceled', 'confirmed', 'in_progress', 'delivered', 'finished', 'under_processing', 'resolved', 'disbursed'],
