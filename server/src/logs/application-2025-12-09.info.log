@@ -55,3 +55,130 @@
 2025-12-09 08:27:06::info::/v1/api/patientRecord/createPatientRecord::4de1aa0a-db60-4e3e-964b-cb05b6983d81::input-params ::POST::::{"fullName":"Tai Ng","email":"taichinhlcp@gmail.com","dob":"","phoneNumber":"0374499251","role":"patient","relationship":"None","folderId":"6934f52eff2f4f064e0c1ff6"}
 2025-12-09 08:27:06::error::/v1/api/patientRecord/createPatientRecord::4de1aa0a-db60-4e3e-964b-cb05b6983d81::handler-error::{"status":403,"message":"Patient already exists"}
 2025-12-09 08:27:24::info::/v1/api/patientRecord/createPatientRecord::6b660aec-6964-43d7-a466-cec479519d2b::input-params ::POST::::{"fullName":"Tai Ng","email":"taichin@gmail.com","dob":"","phoneNumber":"0374499251","role":"patient","relationship":"None","folderId":"6934f52eff2f4f064e0c1ff6"}
+2025-12-09 11:41:38::info::/v1/api/user/readDoctorDetail/hello::d2a7fb0d-f710-4173-aa8c-ac0441dc48d8::input-params ::GET::::{}
+2025-12-09 11:41:38::error::/v1/api/user/readDoctorDetail/hello::d2a7fb0d-f710-4173-aa8c-ac0441dc48d8::handler-error::{"status":500,"message":"doctorId is not defined"}
+2025-12-09 11:41:38::info::/v1/api/user/me::69127990-0ce2-48fe-8f4f-6160ac92d161::input-params ::GET::::{}
+2025-12-09 11:41:38::info::/v1/api/user/readDoctorDetail/hello::b3cdfccc-9b17-4f4a-a96e-96fa6c685917::input-params ::GET::::{}
+2025-12-09 11:41:38::error::/v1/api/user/readDoctorDetail/hello::b3cdfccc-9b17-4f4a-a96e-96fa6c685917::handler-error::{"status":500,"message":"doctorId is not defined"}
+2025-12-09 11:41:40::info::/v1/api/user/me::7d4de384-da6b-4b02-af6d-d343be8ed296::input-params ::GET::::{}
+2025-12-09 11:41:52::info::/v1/api/user/readDoctorDetail/hello::4e6b3414-9f0a-42c6-a7df-48658406b03d::input-params ::GET::::{}
+2025-12-09 11:41:52::error::/v1/api/user/readDoctorDetail/hello::4e6b3414-9f0a-42c6-a7df-48658406b03d::handler-error::{"status":500,"message":"doctorId is not defined"}
+2025-12-09 11:41:52::info::/v1/api/user/me::c5a8674e-98e7-48b8-bb7d-47ac0009c296::input-params ::GET::::{}
+2025-12-09 11:41:52::info::/v1/api/user/readDoctorDetail/hello::9a7481bb-ee81-4843-a95e-277ae162051f::input-params ::GET::::{}
+2025-12-09 11:41:52::error::/v1/api/user/readDoctorDetail/hello::9a7481bb-ee81-4843-a95e-277ae162051f::handler-error::{"status":500,"message":"doctorId is not defined"}
+2025-12-09 11:41:52::info::/v1/api/user/me::4b5c6c3a-eff5-4724-8471-d6bb4f4e98e4::input-params ::GET::::{}
+2025-12-09 11:42:16::info::/v1/api/user/readDoctorDetail/hello::36df9ae0-2a54-4c2f-b979-0631e44c2328::input-params ::GET::::{}
+2025-12-09 11:42:16::error::/v1/api/user/readDoctorDetail/hello::36df9ae0-2a54-4c2f-b979-0631e44c2328::handler-error::{"status":500,"message":"doctorId is not defined"}
+2025-12-09 11:42:16::info::/v1/api/user/me::c600817c-afd6-4cef-96d3-1f7d267d76fb::input-params ::GET::::{}
+2025-12-09 11:42:16::info::/v1/api/user/readDoctorDetail/hello::1c7911c4-8ed8-4cbc-b89f-321011f0e3b0::input-params ::GET::::{}
+2025-12-09 11:42:16::error::/v1/api/user/readDoctorDetail/hello::1c7911c4-8ed8-4cbc-b89f-321011f0e3b0::handler-error::{"status":500,"message":"doctorId is not defined"}
+2025-12-09 11:42:16::info::/v1/api/user/me::337fd6f7-bf54-44b9-bc61-febb7c9a0f03::input-params ::GET::::{}
+2025-12-09 11:42:58::info::/v1/api/user/readDoctorDetail/hello::3639fcc7-c546-47d6-8ed5-5e2aeba3ac0a::input-params ::GET::::{}
+2025-12-09 11:42:58::error::/v1/api/user/readDoctorDetail/hello::3639fcc7-c546-47d6-8ed5-5e2aeba3ac0a::handler-error::{"status":500,"message":"doctorId is not defined"}
+2025-12-09 11:42:58::info::/v1/api/user/me::6a27ebdb-b109-4410-84cd-8da1233d8205::input-params ::GET::::{}
+2025-12-09 11:42:58::info::/v1/api/user/readDoctorDetail/hello::0723406f-4379-4150-a6b5-64db534846d8::input-params ::GET::::{}
+2025-12-09 11:42:58::error::/v1/api/user/readDoctorDetail/hello::0723406f-4379-4150-a6b5-64db534846d8::handler-error::{"status":500,"message":"doctorId is not defined"}
+2025-12-09 11:42:58::info::/v1/api/user/me::90871564-fad6-462e-8d78-94c734341eea::input-params ::GET::::{}
+2025-12-09 11:43:45::info::/v1/api/user/readDoctorDetail/hello::00fd25b6-88ce-4b31-9f26-8a3532012e71::input-params ::GET::::{}
+2025-12-09 11:43:45::error::/v1/api/user/readDoctorDetail/hello::00fd25b6-88ce-4b31-9f26-8a3532012e71::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:43:45::info::/v1/api/user/me::e1446335-8956-4f0d-81e0-c7bb780930b8::input-params ::GET::::{}
+2025-12-09 11:43:45::info::/v1/api/user/readDoctorDetail/hello::876a110c-b022-4059-aa5d-92cc618f5856::input-params ::GET::::{}
+2025-12-09 11:43:45::error::/v1/api/user/readDoctorDetail/hello::876a110c-b022-4059-aa5d-92cc618f5856::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:43:46::info::/v1/api/user/me::556633ba-ac84-4a89-8af9-a070b1f9187b::input-params ::GET::::{}
+2025-12-09 11:43:48::info::/v1/api/user/readDoctorDetail/hello::520dbddb-2c34-48d5-a41d-0044fa806c19::input-params ::GET::::{}
+2025-12-09 11:43:48::error::/v1/api/user/readDoctorDetail/hello::520dbddb-2c34-48d5-a41d-0044fa806c19::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:43:48::info::/v1/api/user/me::1d49636f-f7bf-461d-8562-f36473948b49::input-params ::GET::::{}
+2025-12-09 11:43:48::info::/v1/api/user/readDoctorDetail/hello::d5ede315-180e-43b4-bdac-30dc796b63a6::input-params ::GET::::{}
+2025-12-09 11:43:48::error::/v1/api/user/readDoctorDetail/hello::d5ede315-180e-43b4-bdac-30dc796b63a6::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:43:48::info::/v1/api/user/me::25fbb4c1-83df-4fd3-9ea7-0ae51664823c::input-params ::GET::::{}
+2025-12-09 11:45:40::info::/v1/api/user/readDoctorDetail/hello::533dab30-f4d2-4d41-bb7d-7327c89206d9::input-params ::GET::::{}
+2025-12-09 11:45:40::error::/v1/api/user/readDoctorDetail/hello::533dab30-f4d2-4d41-bb7d-7327c89206d9::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:45:40::info::/v1/api/user/me::b188ac70-c91e-4599-905d-0a2d4b749a0f::input-params ::GET::::{}
+2025-12-09 11:45:40::info::/v1/api/user/readDoctorDetail/hello::7b05b7e4-7ee9-4d81-8838-8f1b1c0fbe50::input-params ::GET::::{}
+2025-12-09 11:45:40::error::/v1/api/user/readDoctorDetail/hello::7b05b7e4-7ee9-4d81-8838-8f1b1c0fbe50::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:45:40::info::/v1/api/user/me::870b194c-9812-4c67-93db-c5e505100fc9::input-params ::GET::::{}
+2025-12-09 11:46:17::info::/v1/api/user/readDoctorDetail/hello::a9f8974d-492e-4905-b513-4ec79bf7f3b2::input-params ::GET::::{}
+2025-12-09 11:46:17::error::/v1/api/user/readDoctorDetail/hello::a9f8974d-492e-4905-b513-4ec79bf7f3b2::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:46:17::info::/v1/api/user/me::d3e72ac7-4376-45fa-9dbc-db3fd6d4a305::input-params ::GET::::{}
+2025-12-09 11:46:17::info::/v1/api/user/readDoctorDetail/hello::a13dd2a1-6a88-4037-80c0-93f8949e59e1::input-params ::GET::::{}
+2025-12-09 11:46:17::error::/v1/api/user/readDoctorDetail/hello::a13dd2a1-6a88-4037-80c0-93f8949e59e1::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:46:17::info::/v1/api/user/me::ce8aa536-2cf0-497e-8ec9-9b11070ccb17::input-params ::GET::::{}
+2025-12-09 11:46:19::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::8cff33aa-5835-4ed0-b212-bf2976554b48::input-params ::GET::::{}
+2025-12-09 11:46:19::info::/v1/api/user/me::df27d180-78fc-415c-a67d-a751083a4a90::input-params ::GET::::{}
+2025-12-09 11:46:19::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::fe2f8186-942e-4177-abc7-9a4670af0e9d::input-params ::GET::::{}
+2025-12-09 11:46:19::info::/v1/api/user/me::1ffbd23b-f16c-41af-97d7-e85c09bb9add::input-params ::GET::::{}
+2025-12-09 11:46:37::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::1913a8c5-8578-4f78-89aa-7de8cca67fb4::input-params ::GET::::{}
+2025-12-09 11:46:37::info::/v1/api/user/me::4c1160cb-00f3-403c-ad0e-97549f8237a9::input-params ::GET::::{}
+2025-12-09 11:46:37::error::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::1913a8c5-8578-4f78-89aa-7de8cca67fb4::handler-error::{"status":500,"message":"user is not defined"}
+2025-12-09 11:46:37::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::4bc53070-5c28-4387-88ae-b9dd052205ce::input-params ::GET::::{}
+2025-12-09 11:46:37::info::/v1/api/user/me::5f67ddb4-1dca-47a8-a7f3-4678b6beb26f::input-params ::GET::::{}
+2025-12-09 11:46:37::error::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::4bc53070-5c28-4387-88ae-b9dd052205ce::handler-error::{"status":500,"message":"user is not defined"}
+2025-12-09 11:47:02::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::91a9ec0e-65da-4389-bcd6-9f9b25af8c2f::input-params ::GET::::{}
+2025-12-09 11:47:02::info::/v1/api/user/me::386a5327-ef74-4012-81a1-275244ed930d::input-params ::GET::::{}
+2025-12-09 11:47:02::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::1b5eb5f1-2b20-4b46-9e3d-680f650c791b::input-params ::GET::::{}
+2025-12-09 11:47:03::info::/v1/api/user/me::8827f0eb-a4a9-4027-a466-60e80c6f704b::input-params ::GET::::{}
+2025-12-09 11:47:49::info::/v1/api/folder/readFolders::4f6338af-8f5b-419e-967b-4e95201be8ac::input-params ::GET::::{}
+2025-12-09 11:47:49::info::/v1/api/folder/readFolders::342f0dce-54c1-483f-abfc-7c2fee1ec30b::input-params ::GET::::{}
+2025-12-09 11:48:03::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::bb1a4f2e-af53-4939-ad2b-81062c310099::input-params ::GET::::{}
+2025-12-09 11:48:03::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::00831562-79ed-4bb2-abe0-4c3bbf9aa93a::input-params ::GET::::{}
+2025-12-09 11:48:04::info::/v1/api/patientRecord/readPatientRecord/693782942135d945d25c75f9::62d14b46-c100-4d27-af3c-3c8248c05ace::input-params ::GET::::{}
+2025-12-09 11:48:04::info::/v1/api/patientRecord/readPatientRecord/693782942135d945d25c75f9::621ccc4a-262b-494a-be0d-b103f2c7c076::input-params ::GET::::{}
+2025-12-09 11:48:25::info::/v1/api/folder/readFolders::4b079266-f056-4122-950d-e729c098355f::input-params ::GET::::{}
+2025-12-09 11:48:25::info::/v1/api/folder/readFolders::41f28362-3de4-48c4-bd47-e1b147d64d36::input-params ::GET::::{}
+2025-12-09 11:48:27::info::/v1/api/folder/readFolders::72742edf-1659-4a5a-a542-436776e548eb::input-params ::GET::::{}
+2025-12-09 11:48:27::info::/v1/api/folder/readFolders::79c1720c-ff5e-4360-af0c-3f4538769910::input-params ::GET::::{}
+2025-12-09 11:48:28::info::/v1/api/folder/readFolders::5ab57563-39b6-4acf-96c3-d59553912771::input-params ::GET::::{}
+2025-12-09 11:48:28::info::/v1/api/folder/readFolders::1ece2aca-62ee-443d-bb8c-cde55c82a719::input-params ::GET::::{}
+2025-12-09 11:48:28::info::/v1/api/patientRecord/readPatientRecord/693782942135d945d25c75f9::478dec46-8e33-46ec-afb7-478d33062c44::input-params ::GET::::{}
+2025-12-09 11:48:28::info::/v1/api/patientRecord/readPatientRecord/693782942135d945d25c75f9::c12cbc45-468f-4250-bcfe-9e167b6841db::input-params ::GET::::{}
+2025-12-09 11:48:28::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::9d7feead-5727-4bb5-81aa-d3aa1440de54::input-params ::GET::::{}
+2025-12-09 11:48:28::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::1f0559eb-c014-40bf-9e3d-3cfeec044ea9::input-params ::GET::::{}
+2025-12-09 11:48:29::info::/v1/api/folder/readFolders::a35d35a8-390c-4873-89d0-79c181caf32b::input-params ::GET::::{}
+2025-12-09 11:48:29::info::/v1/api/folder/readFolders::c9db5e63-bd15-4009-9dcf-43aa432f5dd5::input-params ::GET::::{}
+2025-12-09 11:48:30::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::aa558f0d-e6ba-4472-9670-57fcb5fd18b6::input-params ::GET::::{}
+2025-12-09 11:48:31::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::86800987-e695-4a5e-8ec8-509a683c1260::input-params ::GET::::{}
+2025-12-09 11:48:57::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::b0ce7e71-3850-4dc9-9cc1-52b934c2c0a0::input-params ::GET::::{}
+2025-12-09 11:48:58::info::/v1/api/user/me::e0585a56-6940-4953-b056-2286b8f26ad3::input-params ::GET::::{}
+2025-12-09 11:48:58::info::/v1/api/user/me::79922f45-3429-4992-81da-0b0c32198805::input-params ::GET::::{}
+2025-12-09 11:49:03::info::/v1/api/user/me::b77c3257-1271-4a98-bb20-b7aedc1a8cce::input-params ::GET::::{}
+2025-12-09 11:49:03::info::/v1/api/user/me::8a9192f8-8c9d-4c5c-9b76-f94a4d8faacc::input-params ::GET::::{}
+2025-12-09 11:50:22::info::/v1/api/user/readDoctorDetail/hello::6c92db02-9133-41fd-ae61-5dd80f885311::input-params ::GET::::{}
+2025-12-09 11:50:22::error::/v1/api/user/readDoctorDetail/hello::6c92db02-9133-41fd-ae61-5dd80f885311::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:50:22::info::/v1/api/user/me::b71d1371-ca8e-4ec6-9128-f5622fecc7e4::input-params ::GET::::{}
+2025-12-09 11:50:22::info::/v1/api/user/readDoctorDetail/hello::178d6ac0-04f3-43c3-b5bc-2f5a8ecfb5ef::input-params ::GET::::{}
+2025-12-09 11:50:22::error::/v1/api/user/readDoctorDetail/hello::178d6ac0-04f3-43c3-b5bc-2f5a8ecfb5ef::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:50:22::info::/v1/api/user/me::577e0da8-8e3d-415f-a82b-e3443697a2bd::input-params ::GET::::{}
+2025-12-09 11:50:53::info::/v1/api/user/readDoctorDetail/hello::0d2e8685-0785-4a99-88fc-d3623fdf8a59::input-params ::GET::::{}
+2025-12-09 11:50:53::error::/v1/api/user/readDoctorDetail/hello::0d2e8685-0785-4a99-88fc-d3623fdf8a59::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:51:02::info::/v1/api/user/readDoctorDetail/hello::5c082caa-9bb0-4674-baaf-73ac4cee1da5::input-params ::GET::::{}
+2025-12-09 11:51:02::error::/v1/api/user/readDoctorDetail/hello::5c082caa-9bb0-4674-baaf-73ac4cee1da5::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:51:15::info::/v1/api/user/readDoctorDetail/hello::305b891b-f822-4847-a19d-99e78f65a781::input-params ::GET::::{}
+2025-12-09 11:51:15::error::/v1/api/user/readDoctorDetail/hello::305b891b-f822-4847-a19d-99e78f65a781::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:51:30::info::/v1/api/user/readDoctorDetail/hello::c1b514f1-5ee8-4099-aae0-9e340f1c8048::input-params ::GET::::{}
+2025-12-09 11:51:30::error::/v1/api/user/readDoctorDetail/hello::c1b514f1-5ee8-4099-aae0-9e340f1c8048::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:51:48::info::/v1/api/user/readDoctorDetail/hello::6128572c-4e1d-46c2-957e-a042b229b494::input-params ::GET::::{}
+2025-12-09 11:51:48::error::/v1/api/user/readDoctorDetail/hello::6128572c-4e1d-46c2-957e-a042b229b494::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:51:48::info::/v1/api/user/readDoctorDetail/hello::a2d614bf-5dcd-45fc-bd55-312f09012973::input-params ::GET::::{}
+2025-12-09 11:51:48::error::/v1/api/user/readDoctorDetail/hello::a2d614bf-5dcd-45fc-bd55-312f09012973::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:51:57::info::/v1/api/user/readDoctorDetail/hello::1ca571cb-ce91-4561-a966-bd7701a35481::input-params ::GET::::{}
+2025-12-09 11:51:57::error::/v1/api/user/readDoctorDetail/hello::1ca571cb-ce91-4561-a966-bd7701a35481::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:52:12::info::/v1/api/user/readDoctorDetail/hello::ed01bc36-8f35-40b1-898e-3c1a0138025c::input-params ::GET::::{}
+2025-12-09 11:52:12::error::/v1/api/user/readDoctorDetail/hello::ed01bc36-8f35-40b1-898e-3c1a0138025c::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:52:17::info::/v1/api/user/readDoctorDetail/hello::06ce63d2-44b5-475d-80fd-f1e17aa376ff::input-params ::GET::::{}
+2025-12-09 11:52:17::error::/v1/api/user/readDoctorDetail/hello::06ce63d2-44b5-475d-80fd-f1e17aa376ff::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"_id\" for model \"User\""}
+2025-12-09 11:52:38::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::f726fff7-f93c-40a6-ab62-992ab2499ab1::input-params ::GET::::{}
+2025-12-09 11:52:38::info::/v1/api/user/me::ee766df6-edb3-4710-b6f7-6ce71125ddb1::input-params ::GET::::{}
+2025-12-09 11:52:38::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::41cd56d7-5a71-41bb-9ba4-f233c452bed8::input-params ::GET::::{}
+2025-12-09 11:52:38::info::/v1/api/user/me::13a9f407-5e0f-4d71-91f0-55b3011992e5::input-params ::GET::::{}
+2025-12-09 11:53:35::info::/v1/api/folder/readFolders::c15ae87f-8926-4484-9d55-fdad7e11c8f3::input-params ::GET::::{}
+2025-12-09 11:53:35::info::/v1/api/folder/readFolders::0c1b578a-b96d-44c1-bd00-23737375a676::input-params ::GET::::{}
+2025-12-09 11:53:37::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::77332cad-f9f7-4933-b606-85c052133a8f::input-params ::GET::::{}
+2025-12-09 11:53:37::info::/v1/api/folder/readFolder/6934f52eff2f4f064e0c1ff6::03e3fefc-e3c3-42aa-90a3-cb34ac6aa795::input-params ::GET::::{}
+2025-12-09 11:53:40::info::/v1/api/folder/readFolders::bbc2cd8b-fd1f-488a-ba8a-ad7cbd216a47::input-params ::GET::::{}
+2025-12-09 11:53:40::info::/v1/api/folder/readFolders::3f4327f2-059f-45d3-a325-39bb518d5089::input-params ::GET::::{}
+2025-12-09 11:53:41::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::f9536344-424c-41e1-827f-913d131660c1::input-params ::GET::::{}
+2025-12-09 11:53:41::info::/v1/api/folder/readFolder/6934e3bcc2b6a6c895a3a2da::cbe51211-9abf-4062-8087-73d3a8272dcf::input-params ::GET::::{}
+2025-12-09 11:53:47::info::/v1/api/folder/readFolders::9b12e842-69c3-4e08-82ac-1209053c748f::input-params ::GET::::{}
+2025-12-09 11:53:47::info::/v1/api/folder/readFolders::9711afd6-04c9-41b2-af4e-de3323088490::input-params ::GET::::{}
+2025-12-09 11:53:47::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::5ad2a979-4d96-40f6-bf4d-2baf619e2473::input-params ::GET::::{}
+2025-12-09 11:53:47::info::/v1/api/user/readDoctorDetail/692db0554d9393f00d0734f6::7b87d5e8-55ae-494f-914f-b9c14bc91359::input-params ::GET::::{}

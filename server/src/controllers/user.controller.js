@@ -26,6 +26,13 @@ class UserController {
             metadata: await UserService.meMobile(token), // Assuming `token` is not encrypted
         }).send(res)
     }
+
+    readDoctorDetail = async (req, res, next) => {
+        new SuccessResponse({
+            message: 'Read doctor detail success!',
+            metadata: await UserService.readDoctorDetail(req),
+        }).send(res)
+    }
 }
 
 export default new UserController()

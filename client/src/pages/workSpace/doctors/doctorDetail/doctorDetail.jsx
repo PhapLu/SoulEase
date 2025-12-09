@@ -1,7 +1,25 @@
+import { useEffect, useState } from 'react'
 import WorkspaceTopBar from '../../../../components/Workspace/WorkspaceTopBar'
 import './doctorDetail.css'
+import { useParams } from 'react-router-dom'
+import { apiUtils } from '../../../../utils/newRequest'
 
 export default function DoctorDetail() {
+    const doctorId = useParams().doctorId
+    const [doctorDetail, setDoctorDetail] = useState(null)
+
+    useEffect(() => {
+        const fetchDoctorDetail = async () => {
+            // Fetch doctor detail by ID
+            const response = await apiUtils.get(`/user/readDoctorDetail/${doctorId}`)
+            console.log(response.data.metadata)
+            if (response) {
+                setDoctorDetail(response.data.metadata.user)
+            }
+        }
+        fetchDoctorDetail()
+    }, [])
+
     return (
         <div className='dd-page'>
             <WorkspaceTopBar />
@@ -12,7 +30,7 @@ export default function DoctorDetail() {
 
                     <div className='dd-info'>
                         <div className='dd-info__row'>
-                            <h2>Dr. John Dante</h2>
+                            <h2>Dr. {doctorDetail?.fullName}</h2>
                             <span className='dd-info__sex'>F/M</span>
                             <button className='dd-icon-btn' aria-label='Edit profile'>
                                 <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'>
@@ -24,11 +42,11 @@ export default function DoctorDetail() {
                         <div className='dd-info__grid'>
                             <div className='dd-field'>
                                 <span className='dd-label'>Email:</span>
-                                <a href='mailto:abc@gmail.com'>abc@gmail.com</a>
+                                <a href='mailto:abc@gmail.com'>{doctorDetail?.email}</a>
                             </div>
                             <div className='dd-field'>
                                 <span className='dd-label'>Phone:</span>
-                                <span>091234567</span>
+                                <span>{doctorDetail?.phone}</span>
                             </div>
                             <div className='dd-field'>
                                 <span className='dd-label'>Birthday:</span>
@@ -36,11 +54,11 @@ export default function DoctorDetail() {
                             </div>
                             <div className='dd-field'>
                                 <span className='dd-label'>Age:</span>
-                                <span>{`{age}`}</span>
+                                <span>Age</span>
                             </div>
                             <div className='dd-field'>
                                 <span className='dd-label'>Address:</span>
-                                <span>{`{address}`}</span>
+                                <span>{doctorDetail?.address}</span>
                             </div>
                             <div className='dd-field'>
                                 <span className='dd-label'>Experience:</span>

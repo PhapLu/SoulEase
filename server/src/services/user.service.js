@@ -98,7 +98,7 @@ class UserService {
     }
 
     static readDoctorDetail = async (req) => {
-        const doctorId = req.userId
+        const doctorId = req.params.doctorId
 
         // 1. Check doctor
         const doctor = await User.findById(doctorId).select('-password -accessToken -googleId -followers -following')
@@ -107,7 +107,7 @@ class UserService {
         // 2. Return doctor detail
 
         return {
-            doctor,
+            user: doctor,
         }
     }
 
