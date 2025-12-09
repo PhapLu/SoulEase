@@ -51,3 +51,5 @@
 2025-12-09 13:45:20::error::/v1/api/user/me::219d92d8-c364-4936-8bcb-c60292b2be43::handler-error::{"status":403,"message":"Access token missing"}
 2025-12-09 13:52:39::error::/v1/api/auth/signin::a9514d76-d737-4385-bed4-bd19255b0520::handler-error::{"status":404,"message":"Not Found Route"}
 2025-12-09 13:53:44::error::/v1/api/auth/signin::4154ca40-5bd3-4af6-ad4e-922e9bedcec9::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-09 13:59:03::error::/v1/api/user/me::d5b862c9-95f2-4369-9b7c-4a1df34e6a6e::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-09 13:59:03::error::/v1/api/user/me::50855514-6be0-411f-978c-9c119c9a2ce9::handler-error::{"status":403,"message":"Access token missing"}

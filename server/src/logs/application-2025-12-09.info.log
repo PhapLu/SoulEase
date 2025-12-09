@@ -248,3 +248,7 @@
 2025-12-09 13:53:44::info::/v1/api/auth/signin::4154ca40-5bd3-4af6-ad4e-922e9bedcec9::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
 2025-12-09 13:53:44::error::/v1/api/auth/signin::4154ca40-5bd3-4af6-ad4e-922e9bedcec9::handler-error::{"status":404,"message":"Not Found Route"}
 2025-12-09 13:53:50::info::/v1/api/auth/signUp::716af531-df33-422b-8604-ea308153790c::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Francee","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-09 13:59:03::info::/v1/api/user/me::d5b862c9-95f2-4369-9b7c-4a1df34e6a6e::input-params ::GET::::{}
+2025-12-09 13:59:03::error::/v1/api/user/me::d5b862c9-95f2-4369-9b7c-4a1df34e6a6e::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-09 13:59:03::info::/v1/api/user/me::50855514-6be0-411f-978c-9c119c9a2ce9::input-params ::GET::::{}
+2025-12-09 13:59:03::error::/v1/api/user/me::50855514-6be0-411f-978c-9c119c9a2ce9::handler-error::{"status":403,"message":"Access token missing"}

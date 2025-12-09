@@ -50,7 +50,9 @@ const SignUp = () => {
             const res = await apiUtils.post('/auth/signUp', payload)
 
             if (res?.data?.metadata?.email) {
-                navigate('/auth/verification')
+                navigate('/auth/verification', {
+                    state: { email: inputs.email },
+                })
             }
         } catch (err) {
             setErrors({

@@ -1,13 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import Header from '../../components/header/Header'
 import './Auth.css'
+import { useLocation } from 'react-router-dom'
+import { apiUtils } from '../../utils/newRequest'
 
-const OTP_LENGTH = 4
+const OTP_LENGTH = 6
 
 export default function Verification() {
     const [otp, setOtp] = useState(Array(OTP_LENGTH).fill(''))
     const inputsRef = useRef([])
-
+    const location = useLocation()
+    const email = location.state?.email
+    console.log(location.state)
     const handleChange = (value, idx) => {
         if (!/^[0-9]?$/.test(value)) return
         const next = [...otp]
@@ -35,9 +39,22 @@ export default function Verification() {
         inputsRef.current[focusIndex]?.focus()
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        // placeholder submit
+
+        const code = otp.join('')
+
+        try {
+            await apiUtils.post('/auth/verifyOtp', {
+                email,
+                otp: code,
+            })
+
+            // Redirect to home or dashboard
+            navigate('/workspace')
+        } catch (err) {
+            alert(err?.response?.data?.message || 'Invalid OTP')
+        }
     }
 
     useEffect(() => {
@@ -51,7 +68,7 @@ export default function Verification() {
                 <div className='verify-card'>
                     <div className='verify-logo'>SoulEase.</div>
                     <h1 className='verify-title'>OTP Verification</h1>
-                    <p className='verify-subtitle'>Please enter 4 digit number that we send to your email</p>
+                    <p className='verify-subtitle'>Please enter 6 digit number that we send to your email</p>
 
                     <form className='verify-form' onSubmit={handleSubmit}>
                         <div className='verify-otp' onPaste={handlePaste}>
