@@ -46,12 +46,17 @@ const assistantMessages = [
 export default function Messages() {
     const [text, setText] = useState("");
     const [assistantText, setAssistantText] = useState("");
+    const [selectedConversation, setSelectedConversation] = useState(null);
 
     return (
         <div className="ws-messages">
             <WorkspaceTopBar />
 
-            <div className="ws-panels">
+            <div
+                className={`ws-panels ${
+                    selectedConversation ? "has-chat" : "no-chat"
+                }`}
+            >
                 <aside className="ws-threads">
                     <h2>Messages</h2>
                     <div className="ws-input">
@@ -63,8 +68,11 @@ export default function Messages() {
                             <li
                                 key={item.id}
                                 className={`ws-thread ${
-                                    item.id === 1 ? "active" : ""
+                                    selectedConversation?.id === item.id
+                                        ? "active"
+                                        : ""
                                 }`}
+                                onClick={() => setSelectedConversation(item)}
                             >
                                 <div className="ws-thread__avatar" />
                                 <div className="ws-thread__meta">
@@ -89,46 +97,64 @@ export default function Messages() {
                     </ul>
                 </aside>
 
-                <section className="ws-chat">
-                    <header className="ws-chat__header">
-                        <div className="ws-chat__avatar" />
-                        <div>
-                            <div className="ws-chat__name">Patient's name</div>
-                            <div className="ws-chat__status">Active now</div>
-                        </div>
-                    </header>
-
-                    <div className="ws-chat__body">
-                        {demoMessages.map((msg) => (
-                            <div
-                                key={msg.id}
-                                className={`ws-bubble ${
-                                    msg.sender === "me" ? "ws-bubble--me" : ""
-                                }`}
-                            >
-                                {msg.sender === "patient" && (
-                                    <div className="ws-avatar-circle" />
-                                )}
-                                <p>{msg.text}</p>
+                {selectedConversation ? (
+                    <section className="ws-chat">
+                        <header className="ws-chat__header">
+                            <div className="ws-chat__avatar" />
+                            <div>
+                                <div className="ws-chat__name">
+                                    {selectedConversation.name}
+                                </div>
+                                <div className="ws-chat__status">
+                                    Active now
+                                </div>
                             </div>
-                        ))}
-                    </div>
+                        </header>
 
-                    <form
-                        className="ws-chat__input"
-                        onSubmit={(e) => e.preventDefault()}
-                    >
-                        <input
-                            type="text"
-                            placeholder="Type your message..."
-                            value={text}
-                            onChange={(e) => setText(e.target.value)}
-                        />
-                        <button type="submit">
-                            <FontAwesomeIcon icon={faPaperPlane} />
-                        </button>
-                    </form>
-                </section>
+                        <div className="ws-chat__body">
+                            {demoMessages.map((msg) => (
+                                <div
+                                    key={msg.id}
+                                    className={`ws-bubble ${
+                                        msg.sender === "me"
+                                            ? "ws-bubble--me"
+                                            : ""
+                                    }`}
+                                >
+                                    {msg.sender === "patient" && (
+                                        <div className="ws-avatar-circle" />
+                                    )}
+                                    <p>{msg.text}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <form
+                            className="ws-chat__input"
+                            onSubmit={(e) => e.preventDefault()}
+                        >
+                            <input
+                                type="text"
+                                placeholder="Type your message..."
+                                value={text}
+                                onChange={(e) => setText(e.target.value)}
+                            />
+                            <button type="submit">
+                                <FontAwesomeIcon icon={faPaperPlane} />
+                            </button>
+                        </form>
+                    </section>
+                ) : (
+                    <section className="ws-empty">
+                        <div className="ws-empty__card">
+                            <h3>SoulEase xin chào</h3>
+                            <p>
+                                Choose a chat on the left to view messages and
+                                talk with your patient.
+                            </p>
+                        </div>
+                    </section>
+                )}
 
                 <aside className="ws-assistant">
                     <div className="ws-assistant__header">

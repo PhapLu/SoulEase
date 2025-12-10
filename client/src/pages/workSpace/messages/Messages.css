@@ -17,6 +17,37 @@
   border-radius: 12px;
 }
 
+.ws-empty {
+  grid-column: 2 / 3;
+  display: grid;
+  place-items: center;
+}
+
+.ws-empty__card {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: linear-gradient(135deg, #d0ede6 0%, #fff4ff 50%, #d0ede6 100%);
+  border: 1px solid #e5f1eb;
+  border-radius: 12px;
+  padding: 40px 24px;
+  box-shadow: 0 12px 18px rgba(12, 45, 36, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ws-empty__card h3 {
+  margin: 0 0 8px;
+  color: #A1A1A1;
+  font-size: 30px;
+}
+
+.ws-empty__card p {
+  margin: 0;
+  color: #A1A1A1;
+}
+
 .ws-threads,
 .ws-chat,
 .ws-assistant {
@@ -130,7 +161,7 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 14px;
-  background: linear-gradient(135deg, #e6fff8, #f9fffc);
+  background: linear-gradient(135deg, #d0ede6 0%, #fff4ff 50%, #d0ede6 100%);
 }
 
 .ws-chat__header {
@@ -230,9 +261,13 @@
 }
 
 .ws-assistant {
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  gap: 14px;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 14px;
+    padding-left: 30px;
+    border-left: 1px solid var(--tertiary-color);
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
 }
 
 .ws-assistant__header {
