@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }) => {
     // --------------------------------------------------
     const login = async (email, password) => {
         try {
-            const res = await newRequest.post('/auth/signin', { email, password })
+            const res = await newRequest.post('/auth/login', { email, password })
             await loadUserMe() // Refresh userInfo
             return true
         } catch (err) {
@@ -103,7 +103,7 @@ export const AuthProvider = ({ children }) => {
         setMyCharacters([])
         setCharacterInfo(null)
 
-        window.location.href = '/auth/login'
+        window.location.href = '/auth/signin'
     }
 
     // --------------------------------------------------

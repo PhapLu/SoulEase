@@ -92,8 +92,8 @@ class AuthService {
         password = String(password || '').trim()
         clinicians = String(clinicians || '').trim()
 
-        // 2️⃣ Hash password
-        const passwordHash = await bcrypt.hash(password, 10)
+        // // 2️⃣ Hash password
+        // const passwordHash = await bcrypt.hash(password, 10)
 
         // 3️⃣ Generate OTP
         const otp = crypto.randomInt(100000, 999999).toString()
@@ -106,7 +106,7 @@ class AuthService {
                 {
                     fullName,
                     email,
-                    password: passwordHash,
+                    password,
                     clinicians,
                     otp,
                     expiredAt,

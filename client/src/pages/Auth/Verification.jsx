@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import Header from '../../components/header/Header'
 import './Auth.css'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { apiUtils } from '../../utils/newRequest'
 
 const OTP_LENGTH = 6
 
 export default function Verification() {
     const [otp, setOtp] = useState(Array(OTP_LENGTH).fill(''))
+    const navigate = useNavigate()
     const inputsRef = useRef([])
     const location = useLocation()
     const email = location.state?.email
-    console.log(location.state)
     const handleChange = (value, idx) => {
         if (!/^[0-9]?$/.test(value)) return
         const next = [...otp]
@@ -49,10 +49,9 @@ export default function Verification() {
                 email,
                 otp: code,
             })
-
-            // Redirect to home or dashboard
             navigate('/workspace')
         } catch (err) {
+            console.log(err)
             alert(err?.response?.data?.message || 'Invalid OTP')
         }
     }

@@ -1,0 +1,26 @@
+2025-12-10 09:37:21::error::/v1/api/user/me::4f3499b9-3f3d-48c4-85c6-00caede01807::handler-error::{"status":500,"message":"jwt malformed"}
+2025-12-10 09:37:21::error::/v1/api/user/me::3fc7aab4-76c0-40b3-a181-de7b9ddbb3d3::handler-error::{"status":500,"message":"jwt malformed"}
+2025-12-10 09:40:19::error::/v1/api/user/me::f38bd78c-d0e9-4ef4-b531-bc15bc9bdee4::handler-error::{"status":500,"message":"jwt malformed"}
+2025-12-10 09:40:19::error::/v1/api/user/me::1ed71dcd-b648-489a-938d-987567877412::handler-error::{"status":500,"message":"jwt malformed"}
+2025-12-10 09:40:51::error::/v1/api/auth/signin::fa2ffa4c-82e0-40b6-901e-f227639fc6cb::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-10 09:41:59::error::/v1/api/auth/signin::72f05e07-99e0-4168-a7a4-5e77d7e39c0c::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-10 09:44:21::error::/v1/api/auth/signin::9a546603-ae78-4576-b3a9-99d08074f2da::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-10 09:44:33::error::/v1/api/auth/signin::9d55b399-7b12-42c4-83f5-40247617fcac::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-10 09:45:13::error::/v1/api/character/readCharacters/france::b758aaca-1433-43b5-8369-fe4ea0dd234b::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-10 09:45:26::error::/v1/api/user/me::77fba8a1-113e-4513-9e24-702c70c01b7d::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-10 09:45:26::error::/v1/api/user/me::53e88981-5846-4580-ac91-179f77541aca::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-10 09:46:43::error::/v1/api/user/me::aab4410e-6261-49a1-b367-189a6317ee04::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-10 09:46:43::error::/v1/api/user/me::9eeeacad-5fcd-407e-81cc-08e67f80391f::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-10 09:46:49::error::/v1/api/folder/readFolders::47b80184-6e5b-4341-ab8b-6d06935e7f31::handler-error::{"status":401,"message":"Please login to continue"}
+2025-12-10 09:46:49::error::/v1/api/user/me::c82d79bb-ee40-41a1-bf6f-83d8df2566ac::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-10 09:46:49::error::/v1/api/folder/readFolders::479e57d6-7ef8-4142-8e64-0ef276bd6433::handler-error::{"status":401,"message":"Please login to continue"}
+2025-12-10 09:46:49::error::/v1/api/user/me::49387210-1e7b-400d-a40a-4b73504363a7::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-10 09:46:49::error::/v1/api/folder/readFolders::16a7abd9-23c5-46ca-8976-49e38f6a8ab1::handler-error::{"status":401,"message":"Please login to continue"}
+2025-12-10 09:46:49::error::/v1/api/user/me::88eafd97-c8a1-4557-b41d-90ad456510be::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-10 09:46:49::error::/v1/api/folder/readFolders::af080f51-b447-4b36-9c3b-f3085e98ed6d::handler-error::{"status":401,"message":"Please login to continue"}
+2025-12-10 09:46:49::error::/v1/api/user/me::0540944b-42f9-4f4f-974d-461eb5555008::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-10 09:46:51::error::/v1/api/user/me::e98e72c4-feab-4c50-85f3-3f759390aff2::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-10 09:46:51::error::/v1/api/user/me::c8b3c02f-88b8-4615-9212-33536e37ea89::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-10 09:47:02::error::/v1/api/user/me::dc935025-cca0-4864-8e22-d77f48e2ad32::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-10 09:47:02::error::/v1/api/user/me::09db6a37-bd4c-480f-a948-39a3d41574e9::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-10 09:49:06::error::/v1/api/auth/verifyOtp::1d6283be-fae0-408e-9e2e-724b0da41bf1::handler-error::{"status":403,"message":"Invalid OTP code"}
