@@ -89,3 +89,9 @@
 2025-12-10 09:52:06::info::/v1/api/folder/readFolders::677d9b5b-1772-4b3d-b19d-305789e7e183::input-params ::GET::::{}
 2025-12-10 10:04:36::info::/v1/api/folder/readFolders::dc37e6b4-1bcc-432b-a3a7-120d6c184672::input-params ::GET::::{}
 2025-12-10 10:04:37::info::/v1/api/folder/readFolders::012a4d1a-9686-4318-bc9f-54a3edd8e050::input-params ::GET::::{}
+2025-12-10 19:52:38::info::/v1/api/user/me::e58ddbcc-8e64-408d-8091-5b67a6b65c3c::input-params ::GET::::{}
+2025-12-10 19:52:38::info::/v1/api/user/me::a6a77054-ad67-44ec-b2cc-aa67b09765df::input-params ::GET::::{}
+2025-12-10 19:53:18::info::/v1/api/auth/login::47af973f-91a8-499d-b006-34f79e335ed3::input-params ::POST::::{"email":"phapluudev2k5@gmail.com","password":"adminPastalLTD@123"}
+2025-12-10 19:53:18::info::/v1/api/user/me::04bd8165-57a8-4d05-872c-2a07595ee3cb::input-params ::GET::::{}
+2025-12-10 19:53:19::info::/v1/api/folder/readFolders::d1bdce5d-141a-4be3-accc-8e5646cc1d20::input-params ::GET::::{}
+2025-12-10 19:53:19::info::/v1/api/folder/readFolders::0408dd2e-12f5-4ba6-bc12-9e67a2a84f1e::input-params ::GET::::{}
