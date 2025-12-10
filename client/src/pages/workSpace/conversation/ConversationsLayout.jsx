@@ -3,7 +3,7 @@ import AssistantPanel from '../../../components/conversation/assistantPanel/Assi
 import { useParams } from 'react-router-dom'
 import ConversationDetail from '../../../components/conversation/conversationDetail/ConversationDetail'
 import './Conversations.css'
-import MessagesList from '../../../components/conversation/messagesList/MessageList'
+import Conversations from '../../../components/conversation/conversations/Conversations'
 
 export default function ConversationsLayout() {
     const { conversationId } = useParams()
@@ -15,7 +15,7 @@ export default function ConversationsLayout() {
             <div className='ws-panels'>
                 {/* LEFT PANEL */}
                 <aside className='ws-left-panel'>
-                    <MessagesList />
+                    <Conversations />
                 </aside>
 
                 {/* CENTER PANEL — controlled by layout */}

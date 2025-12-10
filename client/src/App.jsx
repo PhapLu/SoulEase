@@ -22,7 +22,7 @@ import Messages from './pages/workSpace/conversation/Conversations.jsx'
 import Doctors from './pages/workSpace/doctors/doctors.jsx'
 import Notifications from './pages/workSpace/notifications/Notifications.jsx'
 import DoctorDetail from './pages/workSpace/doctors/doctorDetail/doctorDetail.jsx'
-import MessagesList from './components/conversation/messagesList/MessageList.jsx'
+import MessagesList from './components/conversation/conversations/Conversations.jsx'
 import ConversationDetail from './components/conversation/conversationDetail/ConversationDetail.jsx'
 import ConversationsLayout from './pages/workSpace/conversation/ConversationsLayout.jsx'
 

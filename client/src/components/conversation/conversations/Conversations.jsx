@@ -7,7 +7,7 @@ const conversations = [
     { id: 3, name: "Patient's name", snippet: 'Hello, I am Lora...' },
 ]
 
-export default function MessagesList() {
+export default function Conversations() {
     return (
         <aside className='ws-threads'>
             <h2>Messages</h2>
