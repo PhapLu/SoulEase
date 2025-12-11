@@ -18,7 +18,7 @@ import FolderClients from './pages/workSpace/patients/folderClients/folderClient
 import PatientsDetail from './pages/workSpace/patients/patientsDetail/patientsDetail.jsx'
 import Services from './pages/Services/Services'
 import Pricing from './pages/Pricing/Pricing'
-import Messages from './pages/workSpace/conversation/Conversations.jsx'
+// import Messages from './pages/workSpace/conversation/Conversations.jsx'
 import Doctors from './pages/workSpace/doctors/doctors.jsx'
 import Notifications from './pages/workSpace/notifications/Notifications.jsx'
 import DoctorDetail from './pages/workSpace/doctors/doctorDetail/doctorDetail.jsx'
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
                 path: 'messages',
                 element: <ConversationsLayout />,
                 children: [
-                    { path: ':conversationId', element: null }, // Layout handles it
+                    { path: ':conversationId', element: null },
                 ],
             },
         ],

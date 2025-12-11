@@ -234,3 +234,17 @@ Error: Region is missing
     at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
     at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined
+2025-12-11 09:16:32::error::undefined::undefined::uncaughtException: Brevo SMTP credentials missing. Set BREVO_SMTP_USERNAME/BREVO_SMTP_PASSWORD.
+Error: Brevo SMTP credentials missing. Set BREVO_SMTP_USERNAME/BREVO_SMTP_PASSWORD.
+    at file:///D:/RMIT/SEM%20C-2025/SoulEase/server/src/configs/brevo.config.js:10:11
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:647:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)::undefined
+2025-12-11 09:20:31::error::undefined::undefined::uncaughtException: Brevo SMTP credentials missing. Set BREVO_SMTP_USERNAME/BREVO_SMTP_PASSWORD.
+Error: Brevo SMTP credentials missing. Set BREVO_SMTP_USERNAME/BREVO_SMTP_PASSWORD.
+    at file:///D:/RMIT/SEM%20C-2025/SoulEase/server/src/configs/brevo.config.js:10:11
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:647:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)::undefined

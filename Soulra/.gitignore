@@ -1,0 +1,6 @@
+.env
+venv
+# run venv ( virtual environment before install requirements.txt)
+# python -m venv venv
+# .\venv\Scripts\Activate.ps1
+# if has error: run this : Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass then: .\venv\Scripts\Activate.ps1
