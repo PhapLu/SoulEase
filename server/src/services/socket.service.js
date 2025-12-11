@@ -131,20 +131,18 @@ class SocketServices {
 
             try {
                 const conversation = await Conversation.findById(conversationId).lean()
-                if (!conversation) {
-                    console.warn(`⚠️ Conversation not found: ${conversationId}`)
-                    return
-                }
+                if (!conversation) return
 
-                // recipients = all members except sender
-                const recipientIds = (conversation.members || []).filter((m) => m.user._id.toString() !== String(senderId)).map((m) => m.user.toString())
-                // If you add mute support: .filter(m => !m.isMuted)
+                const recipientIds = conversation.members
+                    .map((m) => {
+                        if (typeof m.user === 'object' && m.user._id) return m.user._id.toString()
+                        return m.user.toString()
+                    })
+                    .filter((uid) => uid !== String(senderId))
 
-                recipientIds.forEach((uid) => {
-                    emitToUser(uid, 'getMessage', newMessage)
-                })
+                recipientIds.forEach((uid) => emitToUser(uid, 'getMessage', newMessage))
 
-                console.log(`💬 Sent message to ${recipientIds.length} recipients`)
+                console.log(`💬 Sent message → ${recipientIds.length} users`)
             } catch (err) {
                 console.error('sendMessage error:', err)
             }

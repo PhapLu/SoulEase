@@ -1,19 +1,23 @@
 import { useParams } from 'react-router-dom'
-import '../../../pages/workSpace/conversation/Conversations.css'
 import { useEffect, useState } from 'react'
 import { apiUtils } from '../../../utils/newRequest'
 import { useAuth } from '../../../contexts/auth/AuthContext'
 
 export default function ConversationDetail() {
     const { conversationId } = useParams()
-    const { userInfo } = useAuth()
-    const [conversation, setConversation] = useState(null)
+    const { userInfo, socket } = useAuth()
 
+    const [conversation, setConversation] = useState(null)
+    const [newMsg, setNewMsg] = useState('')
+    const [mediaFile, setMediaFile] = useState(null)
+
+    // -----------------------------
+    // Load conversation
+    // -----------------------------
     useEffect(() => {
         const fetchConversationDetail = async () => {
             try {
                 const response = await apiUtils.get(`/conversation/readConversationDetail/${conversationId}`)
-                console.log('Fetched conversation detail:', response.data.metadata.conversation)
                 setConversation(response.data.metadata.conversation)
             } catch (error) {
                 console.error('Error fetching conversation detail:', error)
@@ -22,9 +26,64 @@ export default function ConversationDetail() {
         fetchConversationDetail()
     }, [conversationId])
 
+    // -----------------------------
+    // SOCKET: Receive incoming message
+    // -----------------------------
+    useEffect(() => {
+        if (!socket) return
+        const handler = (msg) => {
+            if (msg.conversationId === conversationId) {
+                setConversation((prev) => ({
+                    ...prev,
+                    messages: [...prev.messages, msg],
+                }))
+            }
+        }
+        socket.on('getMessage', handler)
+
+        return () => socket.off('getMessage', handler)
+    }, [socket, conversationId])
+
+    // -----------------------------
+    // SEND MESSAGE (TEXT + FILE)
+    // -----------------------------
+    const handleSend = async (e) => {
+        e.preventDefault()
+
+        if (!newMsg.trim() && !mediaFile) return
+
+        try {
+            const formData = new FormData()
+            formData.append('conversationId', conversationId)
+            formData.append('content', newMsg)
+            if (mediaFile) formData.append('files', mediaFile)
+
+            const res = await apiUtils.post('/conversation/sendMessage', formData)
+
+            const saved = res.data.metadata.newMessage
+
+            // Update UI
+            setConversation((prev) => ({
+                ...prev,
+                messages: [...prev.messages, saved],
+            }))
+
+            // Emit via socket
+            socket.emit('sendMessage', {
+                ...saved,
+                conversationId,
+            })
+
+            // Reset input
+            setNewMsg('')
+            setMediaFile(null)
+        } catch (err) {
+            console.error('Send message error:', err)
+        }
+    }
+
     if (!conversation) return <div>Loading...</div>
 
-    // Determine chat partner's name
     const otherMembers = conversation.members.filter((m) => m.user._id !== userInfo._id)
     const displayName = otherMembers.map((m) => m.user.fullName).join(', ')
 
@@ -41,18 +100,21 @@ export default function ConversationDetail() {
             <div className='ws-chat__body'>
                 {conversation.messages.map((msg) => {
                     const isMe = msg.senderId === userInfo._id || msg.senderId?._id === userInfo._id
-
                     return (
-                        <div key={msg._id} className={`ws-bubble ${isMe ? 'ws-bubble--me' : ''}`}>
+                        <div key={msg._id || crypto.randomUUID()} className={`ws-bubble ${isMe ? 'ws-bubble--me' : ''}`}>
                             {!isMe && <div className='ws-avatar-circle' />}
-                            <p>{msg.content}</p>
+                            {msg.content && <p>{msg.content}</p>}
+                            {msg.media?.length > 0 && <img src={msg.media[0]} className='ws-chat-img' alt='attachment' />}
                         </div>
                     )
                 })}
             </div>
 
-            <form className='ws-chat__input' onSubmit={(e) => e.preventDefault()}>
-                <input type='text' placeholder='Type your message...' />
+            <form className='ws-chat__input' onSubmit={handleSend}>
+                <input type='text' placeholder='Type your message...' value={newMsg} onChange={(e) => setNewMsg(e.target.value)} />
+
+                {/* <input type='file' accept='image/*,video/*' onChange={(e) => setMediaFile(e.target.files[0])} /> */}
+
                 <button>Send</button>
             </form>
         </section>

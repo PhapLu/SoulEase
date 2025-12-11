@@ -131,7 +131,10 @@ class ConversationService {
 
     static sendMessage = async (req) => {
         const userId = req.userId
+        console.log(userId)
+        console.log(req.body)
         const { conversationId, otherUserId } = req.body
+
         let conversation
 
         if (conversationId) {
@@ -153,19 +156,19 @@ class ConversationService {
             throw new BadRequestError('Please provide content or media')
         }
 
-        // let media = []
-        // if (req.files && req.files.media) {
-        //     const uploadPromises = req.files.media.map((file) =>
-        //         uploadImageToS3({
-        //             buffer: file.buffer,
-        //             originalname: file.originalname,
-        //             width: 1920,
-        //             height: 1080,
-        //         })
-        //     )
-        //     const uploadResults = await Promise.all(uploadPromises)
-        //     media = uploadResults.map((r) => r.result.Key)
-        // }
+        let media = []
+        if (req.files?.media?.length > 0) {
+            const uploadPromises = req.files.media.map((file) =>
+                uploadImageToS3({
+                    buffer: file.buffer,
+                    originalname: file.originalname,
+                    width: 1920,
+                    height: 1080,
+                })
+            )
+            const uploadResults = await Promise.all(uploadPromises)
+            media = uploadResults.map((r) => r.result.Key)
+        }
 
         // Push new message with seenBy = [sender]
         const newMessage = {
@@ -178,9 +181,11 @@ class ConversationService {
         conversation.messages.push(newMessage)
         await conversation.save()
 
+        const saved = conversation.messages[conversation.messages.length - 1]
+
         return {
             conversation,
-            newMessage,
+            newMessage: saved,
         }
     }
 

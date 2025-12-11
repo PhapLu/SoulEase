@@ -139,3 +139,36 @@
 2025-12-11 16:22:05::info::/v1/api/conversation/readConversations::569d48ac-00ad-4e90-b278-77f7e3968903::input-params ::GET::::{}
 2025-12-11 16:22:07::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::cebfa3ce-1efb-4dd4-a95e-d0def54060ef::input-params ::GET::::{}
 2025-12-11 16:22:07::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::815b358e-b6ac-491a-bf15-1567b5525b0d::input-params ::GET::::{}
+2025-12-11 16:22:49::info::/v1/api/folder/readFolders::76d08760-f5b4-4c12-ae90-b1448de70e12::input-params ::GET::::{}
+2025-12-11 16:22:50::info::/v1/api/folder/readFolders::2dcfa7ac-7ee4-4a58-8190-aacdcaec9554::input-params ::GET::::{}
+2025-12-11 16:22:50::info::/v1/api/conversation/readConversations::8cf028b8-2e0b-444f-aacf-12e75398f968::input-params ::GET::::{}
+2025-12-11 16:22:50::info::/v1/api/conversation/readConversations::e41c3397-2378-4a5b-b82b-54b599de1be7::input-params ::GET::::{}
+2025-12-11 16:22:51::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::ef349bf0-2425-40ad-91f2-24df7e44ce74::input-params ::GET::::{}
+2025-12-11 16:22:51::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::92c4dec0-a29e-4f30-a0a1-85c6810a64d0::input-params ::GET::::{}
+2025-12-11 21:24:22::info::/v1/api/user/me::4c1b56e2-de24-4439-82f9-5b7bdbc33749::input-params ::GET::::{}
+2025-12-11 21:24:22::info::/v1/api/user/me::ebc25abe-cc9c-4bba-a174-1b0515783b4c::input-params ::GET::::{}
+2025-12-11 21:31:55::info::/v1/api/auth/login::7a68da3d-09d5-42fc-bfd1-5ba56f47e7dd::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-11 21:31:55::info::/v1/api/user/me::74789ce7-4486-43b6-a786-72fec2cc2afa::input-params ::GET::::{}
+2025-12-11 21:31:55::info::/v1/api/folder/readFolders::c66b05d3-4d3e-40eb-aa4e-c44e694dd069::input-params ::GET::::{}
+2025-12-11 21:31:56::info::/v1/api/folder/readFolders::40d9b9d5-45af-4185-bb52-9d651c80e14e::input-params ::GET::::{}
+2025-12-11 21:31:58::info::/v1/api/conversation/readConversations::5bcb9337-b0cc-440b-b97d-49d088af4ff6::input-params ::GET::::{}
+2025-12-11 21:31:59::info::/v1/api/conversation/readConversations::fa729783-88cb-410e-8dd5-9391ce0e7171::input-params ::GET::::{}
+2025-12-11 21:32:00::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::bbd89429-a18e-4f2a-a4f8-2b531f5a0661::input-params ::GET::::{}
+2025-12-11 21:32:00::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::02944bf3-9585-4d73-a7ce-db4b3e4099f8::input-params ::GET::::{}
+2025-12-11 21:40:48::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::cc1d21f7-f3c2-4ac8-ab63-013ada2fd302::input-params ::GET::::{}
+2025-12-11 21:40:49::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::0bc568fd-35d3-44e0-a5e5-287742559d55::input-params ::GET::::{}
+2025-12-11 21:40:52::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::1551bd47-2ab8-40e2-8e1f-1ecfe20412c9::input-params ::GET::::{}
+2025-12-11 21:44:34::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::76a44949-3443-48f9-b14c-7caa9312c3b3::input-params ::GET::::{}
+2025-12-11 21:46:17::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::2bf1b3db-c54f-4d2f-8c66-e7caeed99b5e::input-params ::GET::::{}
+2025-12-11 21:46:18::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::5cfdef24-b968-4abc-accb-b7ec0b85d50a::input-params ::GET::::{}
+2025-12-11 21:46:52::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::6bcb42fc-f700-49e6-82e0-91784fc6bf3f::input-params ::GET::::{}
+2025-12-11 21:47:04::info::/v1/api/conversation/sendMessage::e8b1901e-19b0-4c79-b290-239a17d39ca2::input-params ::POST::::undefined
+2025-12-11 21:47:04::error::/v1/api/conversation/sendMessage::e8b1901e-19b0-4c79-b290-239a17d39ca2::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-11 21:48:00::info::/v1/api/conversation/sendMessage::872d0bc8-a071-40fe-ab1a-286b7d8c8639::input-params ::POST::::undefined
+2025-12-11 21:48:00::error::/v1/api/conversation/sendMessage::872d0bc8-a071-40fe-ab1a-286b7d8c8639::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-11 21:48:18::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::a05af2c8-42e7-4179-af6a-95525df5ca8f::input-params ::GET::::{}
+2025-12-11 21:48:20::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::cc27fcd6-d437-496c-8e53-6278c7dcfdad::input-params ::GET::::{}
+2025-12-11 21:48:21::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::b01c92e0-9601-4f90-b1d1-2dd964ac11c8::input-params ::GET::::{}
+2025-12-11 21:48:46::info::/v1/api/conversation/sendMessage::e453a3bc-6b9b-46aa-9645-22b87f7ddf53::input-params ::POST::::undefined
+2025-12-11 21:48:46::error::/v1/api/conversation/sendMessage::e453a3bc-6b9b-46aa-9645-22b87f7ddf53::handler-error::{"status":500,"message":"Cannot destructure property 'conversationId' of 'req.body' as it is undefined."}
+2025-12-11 21:54:12::info::/v1/api/conversation/readConversationDetail/693a8c925dbe463b3ad4c21d::d59c78fe-0fa5-4f28-8e45-c7778aa4258e::input-params ::GET::::{}
