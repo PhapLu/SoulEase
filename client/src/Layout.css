@@ -2,6 +2,7 @@
 .app-layout {
     background-color: var(--bg);
 }
+
 .app-main {
     position: relative;
     z-index: 1;
