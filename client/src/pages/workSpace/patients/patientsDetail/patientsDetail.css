@@ -1,282 +1,409 @@
+/* --- original styles (kept) --- */
 .pd-page {
-  display: flex;
+    display: flex;
     flex-direction: column;
     gap: 8px;
     height: 100%;
 }
 
 .pd-inner {
-  flex: 1;
+    flex: 1;
     border-radius: 12px;
     border: 1px solid var(--border);
     padding: 1.75rem 2rem;
     background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(50px);
     display: flex;
     flex-direction: column;
-  gap: 30px;
+    gap: 30px;
 }
 
 .pd-header {
-  display: grid;
-  grid-template-columns: 240px 400px auto;
-  gap: 40px;
-  align-items: start;
-  padding-bottom: 30px;
-  border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 240px 400px auto;
+    gap: 40px;
+    align-items: start;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border);
 }
 
 .pd-avatar {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background: #d9e4df;
-  border-radius: 10px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #d9e4df;
+    border-radius: 10px;
 }
 
 .pd-info {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  height: 100%;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+    justify-content: space-between;
 }
 
 .pd-info__row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;  
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
 }
 
 .pd-info__row h2 {
-  margin: 0;
-  font-size: 25px;
-  color: var(--tertiary-color);
-  font-weight: 500;
+    margin: 0;
+    font-size: 25px;
+    color: var(--tertiary-color);
+    font-weight: 500;
 }
 
 .pd-info__sex {
-  font-weight: 500;
-  color: var(--text-color-dark);
-  padding-right: 50px;
-  font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color-dark);
+    padding-right: 50px;
+    font-size: 18px;
 }
 
 .pd-info__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px 0;
 }
 
 .pd-field {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  align-items: center;
-  column-gap: 14px;
-  font-size: 17px;
-  padding: 3px 0;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    column-gap: 14px;
+    font-size: 17px;
+    padding: 3px 0;
 }
 
 .pd-label {
-  font-weight: 600;
-  color: #4b6158;
+    font-weight: 600;
+    color: #4b6158;
 }
 
 .pd-field a {
-  color: var(--tertiary-color);
-  text-decoration: none;
+    color: var(--tertiary-color);
+    text-decoration: none;
 }
 
 .pd-icon-btn {
-  border: 1px solid var(--border);
-  background: #fff;
-  border-radius: 100%;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 14px;
-  box-shadow: 0 6px 12px rgba(12, 45, 36, 0.08);
+    border: 1px solid var(--border);
+    background: #fff;
+    border-radius: 100%;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 6px 12px rgba(12, 45, 36, 0.08);
 }
 
 .pd-import-btn {
-  border: 1px solid var(--border);
-  background: #fff;
-  border-radius: 8px;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow: 0 6px 12px rgba(12, 45, 36, 0.08);
-  width: 100px;
-  margin-left: auto;
+    border: 1px solid var(--border);
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    margin-left: auto;
 }
 
 .pd-import-btn:hover,
 .pd-icon-btn:hover {
-  transform: translateY(-5px) scale(1.02);
-  transition: transform 0.2s;
+    transform: translateY(-1px);
 }
 
 .pd-section-title {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
 }
 
 .pd-charts h3,
 .pd-storage h3,
 .pd-symptoms h3,
 .pd-treatment h3 {
-  margin: 0 0 20px;
-  font-size: 23px;
-  font-weight: 400;
-  color: var(--tertiary-color);
+    margin: 0 0 20px;
+    font-size: 23px;
+    font-weight: 400;
+    color: var(--tertiary-color);
 }
 
 .pd-chart-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
 }
 
 .pd-chart-blank {
-  background: #ffffff;
-  border: 1px solid #e5f1eb;
-  border-radius: 12px;
-  padding: 24px;
-  min-height: 260px;
-  box-shadow: 0 8px 14px rgba(12, 45, 36, 0.07);
+    background: #ffffff;
+    border: 1px solid #e5f1eb;
+    border-radius: 12px;
+    padding: 24px;
+    min-height: 260px;
+    box-shadow: 0 8px 14px rgba(12, 45, 36, 0.07);
 }
 
 .pd-card {
-  background: #ffffff;
-  border: 1px solid #e5f1eb;
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 8px 14px rgba(12, 45, 36, 0.07);
-  min-height: 180px;
+    background: #ffffff;
+    border: 1px solid #e5f1eb;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 8px 14px rgba(12, 45, 36, 0.07);
+    min-height: 180px;
 }
 
 .pd-card__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .pd-card__header h4 {
-  margin: 0;
-  font-size: 15px;
+    margin: 0;
+    font-size: 15px;
 }
 
 .pd-placeholder-chart {
-  background: linear-gradient(135deg, #e6fff8, #f9fffc);
-  border-radius: 10px;
-  height: 140px;
+    background: linear-gradient(135deg, #e6fff8, #f9fffc);
+    border-radius: 10px;
+    height: 140px;
 }
 
 .pd-chart {
-  background: linear-gradient(135deg, #e6fff8, #f9fffc);
-  border-radius: 10px;
-  padding: 10px;
+    background: linear-gradient(135deg, #e6fff8, #f9fffc);
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .pd-chart svg {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 6;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 6;
 }
 
 .pd-chart__labels {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  font-size: 11px;
-  color: #4b6158;
-  margin-top: 6px;
-  text-align: center;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    font-size: 11px;
+    color: #4b6158;
+    margin-top: 6px;
+    text-align: center;
 }
 
 .pd-progress {
-  display: grid;
-  place-items: center;
-  height: 140px;
+    display: grid;
+    place-items: center;
+    height: 140px;
 }
 
 .pd-progress__circle {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  border: 12px solid #0a8769;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  font-size: 20px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 12px solid #0a8769;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .pd-symptoms,
 .pd-treatment {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .pd-note-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .pd-note-card {
-  background: #ffffff;
-  border: 1px solid #e5f1eb;
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 8px 14px rgba(12, 45, 36, 0.07);
+    background: #ffffff;
+    border: 1px solid #e5f1eb;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 8px 14px rgba(12, 45, 36, 0.07);
 }
 
 .pd-note-placeholder {
-  margin: 0;
-  color: #6b7a74;
-  font-size: 14px;
+    margin: 0;
+    color: #6b7a74;
+    font-size: 14px;
 }
 
 .pd-storage__tabs {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0;
-  margin-bottom: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin-bottom: 12px;
 }
 
 .pd-storage__tabs button {
-  border: 1px solid #dfeee8;
-  background: #ffffff;
-  padding: 10px;
-  cursor: pointer;
-  font-weight: 600;
+    border: 1px solid #dfeee8;
+    background: #ffffff;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
 }
 
 .pd-storage__tabs .active {
-  background: #f2fffb;
-  color: #0a8769;
+    background: #f2fffb;
+    color: #0a8769;
 }
 
 .pd-storage__box {
-  border: 1px solid #e5f1eb;
-  background: #ffffff;
-  border-radius: 10px;
-  height: 240px;
-  box-shadow: inset 0 0 0 1px #f5fbf8;
+    border: 1px solid #e5f1eb;
+    background: #ffffff;
+    border-radius: 10px;
+    height: 240px;
+    box-shadow: inset 0 0 0 1px #f5fbf8;
 }
 
+/* --- added styles for edit form & buttons --- */
+.pd-input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #dfeee8;
+    background: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.pd-input:focus {
+    outline: 2px solid var(--primary-color);
+}
+
+.pd-input--title {
+    font-size: 18px;
+    padding: 6px 8px;
+}
+
+/* ========================= */
+/* SYMPTOMS SECTION  */
+/* ========================= */
+
+.pd-symptoms .pd-section-title > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pd-symptom-header {
+    font-weight: 600;
+    color: #4b6158;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e5f1eb;
+}
+
+.pd-symptom-col-title {
+    flex: 1;
+    font-size: 15px;
+}
+
+.pd-symptom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 80px;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.symptom-add-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 14px;
+}
+
+/* Add + button */
+.symptom-add-btn {
+    background: var(--tertiary-color);
+    color: white;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(12, 45, 36, 0.12);
+    transition: 0.15s;
+}
+.symptom-add-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Symptom row */
+.pd-symptom-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 2px;
+}
+
+/* Symptom input */
+.pd-input--symptom {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 15px;
+    background: #fff;
+}
+.pd-input--symptom:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Remove button */
+.symptom-remove-btn {
+    background: #fff;
+    border: 1px solid #f3b6b6;
+    color: var(--danger);
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.15s;
+    white-space: nowrap;
+}
+.symptom-remove-btn:hover {
+    background: #ffeaea;
+}
+
+/* Symptom text (view mode) */
+.pd-symptom-text {
+    padding: 6px 4px;
+    font-size: 15px;
+    color: #2b3b35;
+}
+
+/* Placeholder */
+.pd-note-placeholder {
+    padding: 12px 4px;
+    font-size: 14px;
+    color: #70827a;
+}
+
+/* Make symptoms container spacing consistent */
+.pd-symptoms .pd-note-card {
+    padding: 16px 14px;
+}
+
+/* responsive */
 @media (max-width: 1024px) {
-  .pd-header {
-    grid-template-columns: 1fr;
-  }
+    .pd-header {
+        grid-template-columns: 1fr;
+    }
 
-  .pd-info__grid {
-    grid-template-columns: 1fr;
-  }
+    .pd-info__grid {
+        grid-template-columns: 1fr;
+    }
 
-  .pd-chart-grid {
-    grid-template-columns: 1fr;
-  }
+    .pd-chart-grid {
+        grid-template-columns: 1fr;
+    }
 }

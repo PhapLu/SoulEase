@@ -1,0 +1,65 @@
+2025-12-12 00:01:34::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::92f55edb-671f-40f8-bac4-29efee2128a2::input-params ::GET::::{}
+2025-12-12 00:01:34::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::28b11536-16bd-4bae-b7f8-6875606dbc8c::input-params ::GET::::{}
+2025-12-12 00:01:55::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::c372a018-7007-4cdb-9ffa-3d95cf3bb251::input-params ::GET::::{}
+2025-12-12 00:01:55::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::22792431-056e-424b-8e8e-853f0aeb8d84::input-params ::GET::::{}
+2025-12-12 00:02:26::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::af5c6331-b6fe-4f32-aa3e-92c3445cd14d::input-params ::GET::::{}
+2025-12-12 00:02:26::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::a7a36207-1fd4-4223-bd14-c47973f84138::input-params ::GET::::{}
+2025-12-12 00:02:52::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::1b294f83-5f81-428a-a8dc-86b03b85524c::input-params ::GET::::{}
+2025-12-12 00:02:52::info::/v1/api/user/me::4b7c7db5-a625-4ab8-a00e-f14679218a08::input-params ::GET::::{}
+2025-12-12 00:02:52::info::/v1/api/user/me::60635a34-20e3-4336-b340-d5d9a7c8bbea::input-params ::GET::::{}
+2025-12-12 00:02:52::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::d824678e-f606-4ab0-8ccb-629b2dee76d6::input-params ::GET::::{}
+2025-12-12 00:06:48::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::49b119a2-cf95-4e7e-b462-a9a6d4c011d6::input-params ::GET::::{}
+2025-12-12 00:06:48::info::/v1/api/user/me::50ee740b-6ee2-422d-a0d6-7abfc3b20e51::input-params ::GET::::{}
+2025-12-12 00:06:48::info::/v1/api/user/me::bfbc719e-0234-4959-9aa2-6284db0ce690::input-params ::GET::::{}
+2025-12-12 00:06:48::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::544b1436-a8fc-47bc-9045-b543cc957e5d::input-params ::GET::::{}
+2025-12-12 00:14:07::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::8a430a16-4a0e-4423-af06-0933c17cd25e::input-params ::GET::::{}
+2025-12-12 00:15:17::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::5f64a20e-af88-4875-a7e4-14183bc4f4ab::input-params ::GET::::{}
+2025-12-12 00:15:46::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::f047853a-5541-4770-807d-e9e0d92c8d32::input-params ::GET::::{}
+2025-12-12 00:16:14::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::826894c6-a7a7-4e9d-983f-3f5b1c35e678::input-params ::GET::::{}
+2025-12-12 00:16:23::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::2704247e-c0b9-4b4e-97a1-7ef88df50248::input-params ::GET::::{}
+2025-12-12 00:23:03::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::bf438c40-df27-4e82-915b-6abe85571178::input-params ::GET::::{}
+2025-12-12 00:23:35::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::af131a3c-6759-437a-9f3f-6f88365b2408::input-params ::GET::::{}
+2025-12-12 00:23:58::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::28852f31-42bd-414e-9224-5c7bfec24275::input-params ::GET::::{}
+2025-12-12 00:24:16::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::a942a049-77f3-41b0-bd67-964f81678af4::input-params ::GET::::{}
+2025-12-12 00:24:34::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::c39f707c-cd56-480d-9162-f3855648cdba::input-params ::GET::::{}
+2025-12-12 00:26:12::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::0a459d46-6f70-4339-81c6-56ed5f2988cf::input-params ::GET::::{}
+2025-12-12 00:26:38::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::1487d44c-be15-4493-8f25-1fe95b9d2ea3::input-params ::GET::::{}
+2025-12-12 00:26:53::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::ec361729-0603-4661-9a31-57b362ab66bb::input-params ::GET::::{}
+2025-12-12 00:27:11::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::d0a0bba1-5998-40b1-ac00-ccde45913756::input-params ::GET::::{}
+2025-12-12 00:27:29::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::c55e9998-4757-4b21-a373-e1373288ac52::input-params ::GET::::{}
+2025-12-12 00:28:01::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::21381f64-6dce-40ac-a109-5fac7f5d8ed5::input-params ::GET::::{}
+2025-12-12 00:28:58::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::9c5c6f98-584b-40ba-acdc-f716aa99e90b::input-params ::GET::::{}
+2025-12-12 00:31:19::info::/v1/api/user/me::a4b0b072-27ac-4d69-bfec-1d7202e53aec::input-params ::GET::::{}
+2025-12-12 00:31:20::info::/v1/api/user/me::99e3bf98-7ade-4aab-93eb-cfd0a220263e::input-params ::GET::::{}
+2025-12-12 00:31:21::info::/v1/api/user/readDoctorDetail/doctor-1::e7e0fe56-443d-4e50-b9a5-4b8f554bad8b::input-params ::GET::::{}
+2025-12-12 00:31:21::error::/v1/api/user/readDoctorDetail/doctor-1::e7e0fe56-443d-4e50-b9a5-4b8f554bad8b::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:31:21::info::/v1/api/user/readDoctorDetail/doctor-1::68b2dd5e-d29d-4e13-a4bd-4cc88c3d90d5::input-params ::GET::::{}
+2025-12-12 00:31:21::error::/v1/api/user/readDoctorDetail/doctor-1::68b2dd5e-d29d-4e13-a4bd-4cc88c3d90d5::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:33:52::info::/v1/api/user/readDoctorDetail/doctor-1::f7a3c80f-6d0b-43ec-9c61-e0e3c398342b::input-params ::GET::::{}
+2025-12-12 00:33:52::error::/v1/api/user/readDoctorDetail/doctor-1::f7a3c80f-6d0b-43ec-9c61-e0e3c398342b::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:33:52::info::/v1/api/user/readDoctorDetail/doctor-1::5d4fe873-3539-4ea2-aa89-86c8298e490e::input-params ::GET::::{}
+2025-12-12 00:33:52::error::/v1/api/user/readDoctorDetail/doctor-1::5d4fe873-3539-4ea2-aa89-86c8298e490e::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:33:55::info::/v1/api/user/readDoctorDetail/doctor-1::3f45cf33-d4b9-4f96-9491-2f5c93095d08::input-params ::GET::::{}
+2025-12-12 00:33:55::error::/v1/api/user/readDoctorDetail/doctor-1::3f45cf33-d4b9-4f96-9491-2f5c93095d08::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:33:55::info::/v1/api/user/me::b8fd2f99-7911-4724-88ef-3e20de51869b::input-params ::GET::::{}
+2025-12-12 00:33:55::info::/v1/api/user/readDoctorDetail/doctor-1::718e0b4b-8696-4029-85eb-a4b651b132ab::input-params ::GET::::{}
+2025-12-12 00:33:55::error::/v1/api/user/readDoctorDetail/doctor-1::718e0b4b-8696-4029-85eb-a4b651b132ab::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:33:55::info::/v1/api/user/me::c55b8482-5834-41be-b46b-1d5e97d9729b::input-params ::GET::::{}
+2025-12-12 00:34:03::info::/v1/api/user/readDoctorDetail/doctor-1::6783f989-a896-48ad-9486-0e1eb22be6e8::input-params ::GET::::{}
+2025-12-12 00:34:03::error::/v1/api/user/readDoctorDetail/doctor-1::6783f989-a896-48ad-9486-0e1eb22be6e8::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:34:20::info::/v1/api/user/readDoctorDetail/doctor-1::4335645a-2f43-44fc-9d94-5992893cc3a7::input-params ::GET::::{}
+2025-12-12 00:34:20::error::/v1/api/user/readDoctorDetail/doctor-1::4335645a-2f43-44fc-9d94-5992893cc3a7::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:34:20::info::/v1/api/user/readDoctorDetail/doctor-1::be9a6ac0-6dce-4be1-8be4-7af99764b7c0::input-params ::GET::::{}
+2025-12-12 00:34:20::error::/v1/api/user/readDoctorDetail/doctor-1::be9a6ac0-6dce-4be1-8be4-7af99764b7c0::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:34:24::info::/v1/api/user/readDoctorDetail/doctor-1::21af90b8-e43a-4233-8c6a-a7f8d3fc777b::input-params ::GET::::{}
+2025-12-12 00:34:24::error::/v1/api/user/readDoctorDetail/doctor-1::21af90b8-e43a-4233-8c6a-a7f8d3fc777b::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:34:24::info::/v1/api/user/readDoctorDetail/doctor-1::292b719e-4699-4c53-8203-5cb001b1862d::input-params ::GET::::{}
+2025-12-12 00:34:24::error::/v1/api/user/readDoctorDetail/doctor-1::292b719e-4699-4c53-8203-5cb001b1862d::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:34:36::info::/v1/api/user/readDoctorDetail/doctor-1::6f35505f-08bd-4ee6-9a37-5ab46ad76ec1::input-params ::GET::::{}
+2025-12-12 00:34:36::error::/v1/api/user/readDoctorDetail/doctor-1::6f35505f-08bd-4ee6-9a37-5ab46ad76ec1::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:34:37::info::/v1/api/user/readDoctorDetail/doctor-1::0a33fb47-ff55-48b2-a286-553c9ae26e9f::input-params ::GET::::{}
+2025-12-12 00:34:37::error::/v1/api/user/readDoctorDetail/doctor-1::0a33fb47-ff55-48b2-a286-553c9ae26e9f::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:35:04::info::/v1/api/user/readDoctorDetail/doctor-1::922851c9-5659-47a3-b71c-6dbd02f6989f::input-params ::GET::::{}
+2025-12-12 00:35:04::error::/v1/api/user/readDoctorDetail/doctor-1::922851c9-5659-47a3-b71c-6dbd02f6989f::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 00:35:04::info::/v1/api/user/readDoctorDetail/doctor-1::6602d925-64e4-412a-bd9f-1f09c3b8d631::input-params ::GET::::{}
+2025-12-12 00:35:04::error::/v1/api/user/readDoctorDetail/doctor-1::6602d925-64e4-412a-bd9f-1f09c3b8d631::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-1\" (type string) at path \"_id\" for model \"User\""}
