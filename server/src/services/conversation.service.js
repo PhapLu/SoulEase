@@ -1,7 +1,7 @@
 import Conversation from '../models/conversation.model.js'
 import { User } from '../models/user.model.js'
 import { AuthFailureError, BadRequestError, NotFoundError } from '../core/error.response.js'
-import { uploadImageToS3 } from '../utils/s3.util.js'
+// import { uploadImageToS3 } from '../utils/s3.util.js'
 
 const DEFAULT_THUMB = '/uploads/default-bg.png'
 
@@ -252,19 +252,19 @@ class ConversationService {
             throw new BadRequestError('Please provide content or media')
         }
 
-        let media = []
-        if (req.files && req.files.media) {
-            const uploadPromises = req.files.media.map((file) =>
-                uploadImageToS3({
-                    buffer: file.buffer,
-                    originalname: file.originalname,
-                    width: 1920,
-                    height: 1080,
-                })
-            )
-            const uploadResults = await Promise.all(uploadPromises)
-            media = uploadResults.map((r) => r.result.Key)
-        }
+        // let media = []
+        // if (req.files && req.files.media) {
+        //     const uploadPromises = req.files.media.map((file) =>
+        //         uploadImageToS3({
+        //             buffer: file.buffer,
+        //             originalname: file.originalname,
+        //             width: 1920,
+        //             height: 1080,
+        //         })
+        //     )
+        //     const uploadResults = await Promise.all(uploadPromises)
+        //     media = uploadResults.map((r) => r.result.Key)
+        // }
 
         // Push new message with seenBy = [sender]
         const newMessage = {
