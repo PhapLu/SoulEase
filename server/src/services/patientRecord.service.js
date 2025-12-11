@@ -14,9 +14,7 @@ class PatientRecordService {
         // 1. Verify doctor and patient exists
         const doctor = await User.findById(doctorId)
 
-        if (!doctor || doctor.role !== 'doctor') {
-            throw new ForbiddenError('Only doctors can create clients')
-        }
+        if (!doctor || (doctor.role !== 'doctor' && doctor.role !== 'clinic')) throw new ForbiddenError('Only doctors can create clients')
 
         const patient = await User.findOne({ email })
         if (patient) throw new BadRequestError('Patient already exists')

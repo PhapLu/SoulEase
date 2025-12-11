@@ -6,88 +6,34 @@ import { AuthFailureError, BadRequestError, NotFoundError } from '../core/error.
 const DEFAULT_THUMB = '/uploads/default-bg.png'
 
 class ConversationService {
-    static readConversations = async (userId) => {
-        // 1) Validate user
-        const user = await User.findById(userId).select('_id').lean()
-        if (!user) throw new AuthFailureError('Please login to continue')
+    // GET /conversation/readConversations
+    static readConversations = async (req) => {
+        const userId = req.userId
 
-        // 2) Fetch conversations the user belongs to
         const conversations = await Conversation.find({
             'members.user': userId,
-            messages: { $exists: true, $not: { $size: 0 } },
         })
-            .populate('members.user', 'fullName avatar domainName activity')
-            .populate('galaxyId', 'title avatar')
-            .populate('roleplayRoomId', 'title artworks')
+            .populate('members.user', 'fullName avatar')
             .sort({ updatedAt: -1 })
-            .lean()
 
-        // 3) Compute title, thumbnail, and lastMessage
-        const resolved = conversations.map((c) => {
-            const type = c.type || ''
-            let title = ''
-            let thumbnail = c.thumbnail || DEFAULT_THUMB
-            let otherMember = null
+        const mapped = conversations.map((c) => {
+            const otherMembers = c.members.filter((m) => m.user._id.toString() !== userId.toString())
+            const displayName = otherMembers.map((m) => m.user.fullName).join(', ')
 
-            if (type === '') {
-                // Direct chat
-                const others = (c.members || []).filter((m) => m?.user?._id?.toString() !== userId.toString())
-
-                if (others.length === 1) {
-                    const u = others[0]?.user
-                    otherMember = u
-                        ? {
-                              _id: u._id,
-                              fullName: u.fullName,
-                              domainName: u.domainName,
-                              avatar: u.avatar,
-                              activity: u.activity,
-                          }
-                        : null
-
-                    title = u?.fullName?.trim() || u?.domainName?.trim() || 'Unknown user'
-                    thumbnail = u?.avatar || thumbnail || DEFAULT_THUMB
-                } else {
-                    const names = others
-                        .map((m) => m?.user?.fullName || m?.user?.domainName)
-                        .filter(Boolean)
-                        .slice(0, 3)
-                    title = names.length ? names.join(', ') : 'Direct conversation'
-                }
-            } else if (type === 'roleplayRoom') {
-                title = c.roleplayRoomId?.title || 'Untitled Roleplay Room'
-                thumbnail = c.thumbnail || c.roleplayRoomId?.artworks?.[0] || DEFAULT_THUMB
-            } else if (type === 'galaxy') {
-                title = c.galaxyId?.title || 'Untitled Galaxy'
-                thumbnail = c.thumbnail || c.galaxyId?.avatar || DEFAULT_THUMB
-            } else {
-                title = 'Conversation'
-                thumbnail = c.thumbnail || DEFAULT_THUMB
-            }
-
-            // Get the last message safely
-            const lastMessage = (c.messages && c.messages.length && c.messages[c.messages.length - 1]) || null
+            const lastMsg = c.messages[c.messages.length - 1]
 
             return {
-                _id: c._id,
-                type,
-                title,
-                thumbnail,
-                lastMessage, // includes senderId, content, createdAt, etc.
-                updatedAt: c.updatedAt,
-                createdAt: c.createdAt,
-                members: (c.members || []).map((m) => ({
-                    _id: m?.user?._id,
-                    fullName: m?.user?.fullName,
-                    domainName: m?.user?.domainName,
-                    avatar: m?.user?.avatar,
-                    activity: m?.user?.activity,
-                })),
-                ...(type === '' && otherMember ? { otherMember } : {}),
+                id: c._id,
+                displayName,
+                lastMessage: lastMsg?.content || '[media]',
+                lastTime: lastMsg?.createdAt,
+                unread: c.messages.filter((m) => !m.seenBy?.includes(userId)).length,
             }
         })
 
-        return { conversations: resolved }
+        return {
+            conversations: mapped,
+        }
     }
 
     static readMessages = async (req) => {
@@ -171,60 +117,15 @@ class ConversationService {
         }
     }
 
-    static readConversationWithOtherMember = async (userId, otherMemberId) => {
-        try {
-            // 1. Check user and other member
-            const user = await User.findById(userId).select('_id')
-            const otherMember = await User.findById(otherMemberId).select('fullName avatar domainName activity')
-            if (!user) throw new AuthFailureError('Please login to continue')
-            if (!otherMember) throw new BadRequestError('Something went wrong')
+    // GET /conversation/readConversation/:id
+    static readConversationDetail = async (req) => {
+        const { conversationId } = req.params
+        const userId = req.userId
 
-            // 2. Read conversation
-            const conversation = await Conversation.findOne({
-                'members.user': {
-                    $all: [userId, otherMemberId],
-                },
-            }).populate('members.user', 'fullName avatar domainName activity')
+        const conversation = await Conversation.findById(conversationId).populate('members.user', 'fullName avatar').populate('messages.senderId', 'fullName avatar')
 
-            if (!conversation) throw new NotFoundError('Conversation not found')
-
-            // 3. Mark all messages from otherMember as seen
-            let updated = false
-            conversation.messages.forEach((message) => {
-                if (message.senderId.toString() !== userId && !message.isSeen) {
-                    message.isSeen = true
-                    updated = true
-                }
-            })
-
-            if (updated) {
-                await conversation.save()
-            }
-
-            // 4. Format conversation
-            const sortedMessages = conversation.messages
-                .sort((a, b) => b.createdAt - a.createdAt)
-                .slice(0, 10)
-                .reverse() // Reverse to maintain ascending order
-
-            const formattedConversation = {
-                _id: conversation._id,
-                messages: sortedMessages,
-                otherMember: {
-                    _id: otherMember._id,
-                    fullName: otherMember.fullName,
-                    avatar: otherMember.avatar,
-                    domainName: otherMember.domainName,
-                    activity: otherMember.activity,
-                },
-            }
-
-            return {
-                conversation: formattedConversation,
-            }
-        } catch (error) {
-            console.error('Error in readConversationWithOtherMember:', error)
-            throw new Error('Failed to read conversation')
+        return {
+            conversation,
         }
     }
 

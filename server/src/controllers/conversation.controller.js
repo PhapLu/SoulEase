@@ -2,17 +2,17 @@ import { SuccessResponse } from '../core/success.response.js'
 import ConversationService from '../services/conversation.service.js'
 
 class ControllerController {
-    readConversationWithOtherMember = async (req, res, next) => {
+    readConversationDetail = async (req, res, next) => {
         new SuccessResponse({
             message: 'Read conversation success!',
-            metadata: await ConversationService.readConversationWithOtherMember(req.userId, req.params.otherMemberId),
+            metadata: await ConversationService.readConversationDetail(req),
         }).send(res)
     }
 
     readConversations = async (req, res, next) => {
         new SuccessResponse({
             message: 'Read conversations success!',
-            metadata: await ConversationService.readConversations(req.userId),
+            metadata: await ConversationService.readConversations(req),
         }).send(res)
     }
 
@@ -26,7 +26,7 @@ class ControllerController {
     readMobileConversation = async (req, res, next) => {
         new SuccessResponse({
             message: 'Read conversation success!',
-            metadata: await ConversationService.readMobileConversation(req.userId, req.params.conversationId, req),
+            metadata: await ConversationService.readMobileConversation(req),
         }).send(res)
     }
 }

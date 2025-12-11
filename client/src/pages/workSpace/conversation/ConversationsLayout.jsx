@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import ConversationDetail from '../../../components/conversation/conversationDetail/ConversationDetail'
 import './Conversations.css'
 import Conversations from '../../../components/conversation/conversations/Conversations'
+import { useEffect, useState } from 'react'
+import { apiUtils } from '../../../utils/newRequest'
 
 export default function ConversationsLayout() {
     const { conversationId } = useParams()
