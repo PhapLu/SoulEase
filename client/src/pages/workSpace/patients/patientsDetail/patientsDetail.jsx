@@ -10,7 +10,6 @@ import PatientsHeader from "./PatientsHeader";
 import SymptomsSection from "./SymptomsSection";
 import TreatmentSection from "./TreatmentSection";
 import StorageSection from "./StorageSection";
-// Giữ lại chart, tách sang file riêng
 import { chartSeries } from "./PatientCharts";
 
 export default function PatientsDetail() {
@@ -100,7 +99,6 @@ export default function PatientsDetail() {
 
     // -------- SYMPTOMS EDIT -------
     const handleEditSymptoms = () => {
-        // Hàm này trong code gốc chưa được dùng, vẫn giữ lại
         setOriginalSymptoms(editForm?.symptoms || []);
         setEditingSymptoms(true);
     };
@@ -128,35 +126,41 @@ export default function PatientsDetail() {
         setEditForm((prev) => ({
             ...prev,
             symptoms: [
-                ...(prev.symptoms || []),
+                ...prev.symptoms,
                 { id: `tmp-${Date.now()}`, name: "", sign: "" },
             ],
         }));
 
         setTimeout(() => {
             const inputs = document.querySelectorAll(".pd-input--symptom");
-            // Giữ nguyên logic focus input Name của dòng mới
             inputs[inputs.length - 2]?.focus();
         }, 50);
     };
 
+    const handleSymptomChange = (index, value) => {
+        setEditForm((prev) => {
+            const list = [...prev.symptoms];
+            list[index].text = value;
+            return { ...prev, symptoms: list };
+        });
+    };
+
+    // giữ luôn biến này cho đúng với code cũ, dù đang chưa dùng
+    let symptomSaveTimer = null;
+
     const handleSymptomFieldChange = (index, field, value) => {
         setEditForm((prev) => {
-            const list = [...(prev.symptoms || [])];
+            const list = [...prev.symptoms];
             list[index][field] = value;
             return { ...prev, symptoms: list };
         });
     };
 
-    // ENTER auto-save + auto-add new symptom
     const handleSymptomKeyDown = async (e, index) => {
         if (e.key !== "Enter") return;
         e.preventDefault();
 
-        const updated = {
-            ...editForm,
-            symptoms: [...(editForm.symptoms || [])],
-        };
+        const updated = { ...editForm, symptoms: [...editForm.symptoms] };
         updated.symptoms[index].name = updated.symptoms[index].name.trim();
         updated.symptoms[index].sign = updated.symptoms[index].sign.trim();
 
@@ -170,7 +174,7 @@ export default function PatientsDetail() {
     const handleRemoveSymptom = async (index) => {
         const updated = {
             ...editForm,
-            symptoms: (editForm.symptoms || []).filter((_, i) => i !== index),
+            symptoms: editForm.symptoms.filter((_, i) => i !== index),
         };
 
         setEditForm(updated);
@@ -198,6 +202,7 @@ export default function PatientsDetail() {
                 <SymptomsSection
                     symptoms={editForm.symptoms || []}
                     editingSymptoms={editingSymptoms}
+                    setEditingSymptoms={setEditingSymptoms}
                     onSaveSymptoms={handleSaveSymptoms}
                     onCancelSymptoms={handleCancelSymptoms}
                     onAddSymptom={handleAddSymptom}

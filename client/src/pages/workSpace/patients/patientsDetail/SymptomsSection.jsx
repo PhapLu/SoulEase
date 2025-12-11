@@ -2,6 +2,7 @@
 export default function SymptomsSection({
     symptoms,
     editingSymptoms,
+    setEditingSymptoms,
     onSaveSymptoms,
     onCancelSymptoms,
     onAddSymptom,
@@ -89,12 +90,29 @@ export default function SymptomsSection({
                     </div>
                 ))}
 
-                {/* ADD BUTTON — giống code gốc */}
-                <div className="symptom-add-container">
-                    <button className="symptom-add-btn" onClick={onAddSymptom}>
-                        Add +
-                    </button>
-                </div>
+                {/* ADD BUTTON — Y HỆT CODE GỐC */}
+                {!editingSymptoms ? (
+                    <div className="symptom-add-container">
+                        <button
+                            className="symptom-add-btn"
+                            onClick={() => {
+                                onAddSymptom();
+                                setEditingSymptoms(true); // switch to EDIT MODE
+                            }}
+                        >
+                            Add +
+                        </button>
+                    </div>
+                ) : (
+                    <div className="symptom-add-container">
+                        <button
+                            className="symptom-add-btn"
+                            onClick={onAddSymptom}
+                        >
+                            Add +
+                        </button>
+                    </div>
+                )}
             </div>
         </section>
     );
