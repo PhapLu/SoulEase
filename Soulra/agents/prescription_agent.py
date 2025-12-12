@@ -1,5 +1,5 @@
 # agents/prescription_agent.py
-from utils.local_llm import get_local_llm
+from utils.llm import get_local_llm
 from utils.prompts import PRESCRIPTION_PROMPT
 from langchain_core.messages import SystemMessage, HumanMessage
 
