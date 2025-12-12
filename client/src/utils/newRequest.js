@@ -29,6 +29,11 @@ const apiUtils = {
         return newRequest.post(url, data, requestConfig)
     },
 
+    async put(url, data = {}, config = {}) {
+        const requestConfig = { ...getLoggedInRequestConfig(data), ...config }
+        return newRequest.put(url, data, requestConfig)
+    },
+
     async patch(url, data = {}, config = {}) {
         const requestConfig = { ...getLoggedInRequestConfig(data), ...config }
         return newRequest.patch(url, data, requestConfig)

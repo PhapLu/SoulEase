@@ -83,8 +83,8 @@ export default function PatientsHeader({
                         label="Birthday"
                         isEditing={isEditing}
                         type="date"
-                        value={editForm?.birthday}
-                        display={patient?.birthday}
+                        value={editForm?.birthday || ""}
+                        display={editForm?.birthday || patient?.birthday}
                         onChange={(v) => onFieldChange("birthday", v)}
                     />
                     <InfoField
@@ -92,9 +92,11 @@ export default function PatientsHeader({
                         isEditing={isEditing}
                         type="number"
                         value={editForm?.age}
-                        display={patient?.age}
-                        onChange={(v) => onFieldChange("age", v)}
+                        display={editForm?.age || patient?.age}
+                        onChange={() => {}}
+                        locked
                     />
+
                     <InfoField
                         label="Address"
                         isEditing={isEditing}
@@ -116,12 +118,17 @@ export default function PatientsHeader({
                                 }
                             >
                                 <option value="">Select</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
                             </select>
                         ) : (
-                            <span>{patient?.gender || "N/A"}</span>
+                            <span>
+                                {patient?.gender
+                                    ? patient.gender[0].toUpperCase() +
+                                      patient.gender.slice(1)
+                                    : "N/A"}
+                            </span>
                         )}
                     </div>
                 </div>

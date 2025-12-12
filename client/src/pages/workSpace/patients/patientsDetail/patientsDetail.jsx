@@ -15,6 +15,26 @@ import { chartSeries } from "./PatientCharts";
 export default function PatientsDetail() {
     const { patientRecordId } = useParams();
 
+    const normalizeBirthday = (value) => {
+        if (!value) return "";
+        const d = new Date(value);
+        if (isNaN(d.getTime())) return "";
+        return d.toISOString().split("T")[0];
+    };
+
+    const calcAge = (birthday) => {
+        if (!birthday) return "";
+        const birthDate = new Date(birthday);
+        if (isNaN(birthDate.getTime())) return "";
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age >= 0 ? age : 0;
+    };
+
     // DATA
     const [patient, setPatient] = useState(null);
     const [editForm, setEditForm] = useState(null);
@@ -43,17 +63,23 @@ export default function PatientsDetail() {
                     res?.data?.patientRecord ||
                     null;
 
-                setPatient(fetched);
-                setEditForm(
-                    fetched
-                        ? {
-                              ...fetched,
-                              symptoms: fetched.symptoms
-                                  ? [...fetched.symptoms]
-                                  : [],
-                          }
-                        : null
-                );
+                if (fetched) {
+                    const birthday = normalizeBirthday(
+                        fetched.birthday || fetched.dob
+                    );
+                    const age = calcAge(birthday);
+                    const normalized = {
+                        ...fetched,
+                        birthday,
+                        age,
+                        symptoms: fetched.symptoms ? [...fetched.symptoms] : [],
+                    };
+                    setPatient(normalized);
+                    setEditForm(normalized);
+                } else {
+                    setPatient(null);
+                    setEditForm(null);
+                }
             } catch (err) {
                 console.error("Failed to fetch patient record", err);
             }
@@ -64,8 +90,11 @@ export default function PatientsDetail() {
 
     // UNIFIED SAVE FUNCTION
     const persistRecord = async (newForm) => {
-        await apiUtils.put(
-            `/patientRecord/updatePatientRecord/${patientRecordId}`,
+        const recordId = newForm?.recordId || patient?.recordId;
+        if (!recordId) throw new Error("Missing recordId");
+
+        await apiUtils.patch(
+            `/patientRecord/updatePatientRecord/${recordId}`,
             newForm
         );
         setPatient(newForm);
@@ -94,8 +123,30 @@ export default function PatientsDetail() {
     };
 
     const handleFieldChange = (field, value) => {
+        if (field === "phone") {
+            const digits = String(value || "").replace(/\D+/g, "").slice(0, 10);
+            setEditForm((prev) => ({ ...prev, phone: digits }));
+            return;
+        }
+        if (field === "gender") {
+            const g = String(value || "").toLowerCase();
+            setEditForm((prev) => ({ ...prev, gender: g }));
+            return;
+        }
         setEditForm((prev) => ({ ...prev, [field]: value }));
     };
+
+    // Auto-calc age from birthday
+    useEffect(() => {
+        if (!editForm) return;
+        const b = editForm.birthday;
+        if (!b) {
+            setEditForm((prev) => ({ ...prev, age: "" }));
+            return;
+        }
+        const age = calcAge(b);
+        setEditForm((prev) => ({ ...prev, age }));
+    }, [editForm?.birthday]);
 
     // -------- SYMPTOMS EDIT -------
     const handleEditSymptoms = () => {
@@ -114,8 +165,20 @@ export default function PatientsDetail() {
     const handleSaveSymptoms = async () => {
         setSaving(true);
         try {
-            await persistRecord(editForm);
+            const cleanedSymptoms = (editForm?.symptoms || [])
+                .map((s) => ({
+                    ...s,
+                    name: (s.name || "").trim(),
+                    sign: (s.sign || "").trim(),
+                }))
+                .filter((s) => s.name || s.sign);
+
+            const updated = { ...editForm, symptoms: cleanedSymptoms };
+            setEditForm(updated);
+
+            await persistRecord(updated);
             setEditingSymptoms(false);
+            setOriginalSymptoms(cleanedSymptoms);
         } catch (err) {
             console.error(err);
         }
@@ -127,7 +190,13 @@ export default function PatientsDetail() {
             ...prev,
             symptoms: [
                 ...prev.symptoms,
-                { id: `tmp-${Date.now()}`, name: "", sign: "" },
+                {
+                    id: `tmp-${Date.now()}`,
+                    name: "",
+                    sign: "",
+                    date: new Date().toISOString().split("T")[0],
+                    status: "Active",
+                },
             ],
         }));
 
@@ -137,23 +206,39 @@ export default function PatientsDetail() {
         }, 50);
     };
 
-    const handleSymptomChange = (index, value) => {
-        setEditForm((prev) => {
-            const list = [...prev.symptoms];
-            list[index].text = value;
-            return { ...prev, symptoms: list };
-        });
-    };
-
-    // giữ luôn biến này cho đúng với code cũ, dù đang chưa dùng
-    let symptomSaveTimer = null;
-
     const handleSymptomFieldChange = (index, field, value) => {
         setEditForm((prev) => {
             const list = [...prev.symptoms];
             list[index][field] = value;
             return { ...prev, symptoms: list };
         });
+    };
+
+    const handleToggleSymptomStatus = async (index) => {
+        const list =
+            editForm?.symptoms?.map((sym, i) =>
+                i === index
+                    ? {
+                          ...sym,
+                          status:
+                              sym.status === "Resolved" ? "Active" : "Resolved",
+                      }
+                    : sym
+            ) || [];
+
+        const updated = { ...editForm, symptoms: list };
+        setEditForm(updated);
+
+        // Nếu không ở chế độ edit Symptoms, lưu ngay
+        if (!editingSymptoms) {
+            setSaving(true);
+            try {
+                await persistRecord(updated);
+            } catch (err) {
+                console.error(err);
+            }
+            setSaving(false);
+        }
     };
 
     const handleSymptomKeyDown = async (e, index) => {
@@ -206,7 +291,8 @@ export default function PatientsDetail() {
                     onSaveSymptoms={handleSaveSymptoms}
                     onCancelSymptoms={handleCancelSymptoms}
                     onAddSymptom={handleAddSymptom}
-                    onSymptomFieldChange={handleSymptomFieldChange}
+                onSymptomFieldChange={handleSymptomFieldChange}
+                    onToggleSymptomStatus={handleToggleSymptomStatus}
                     onSymptomKeyDown={handleSymptomKeyDown}
                     onRemoveSymptom={handleRemoveSymptom}
                 />

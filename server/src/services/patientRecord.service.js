@@ -102,8 +102,8 @@ class PatientRecordService {
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
 
-        // 2. Check patient
-        const patient = await User.findById(patientId).select('fullName email phone gender birthday address').lean()
+        // 2. Check patient (include dob for backward compatibility)
+        const patient = await User.findById(patientId).select('fullName email phone gender birthday dob address').lean()
 
         if (!patient) throw new NotFoundError('Patient not found')
 
@@ -111,16 +111,35 @@ class PatientRecordService {
         const record = await PatientRecord.findOne({
             patientId,
             doctorId: userId,
-        }).lean()
+        })
+            .lean()
+            .exec()
 
         if (!record) throw new NotFoundError('Record not found')
 
         // 4. Merge into 1 clean FLAT object
+        // Normalize birthday to date-only string to avoid timezone suffix
+        const birthdayRaw = patient?.birthday || patient?.dob
+        const birthdayDateOnly =
+            birthdayRaw && !Number.isNaN(new Date(birthdayRaw).getTime())
+                ? new Date(birthdayRaw).toISOString().split('T')[0]
+                : undefined
+
         const mergedRecord = {
             recordId: record._id, // <— The REAL patientRecord ID
             ...patient, // patient info
             ...record, // record info
             _id: record._id, // keep `_id` as record ID too (optional)
+            birthday: birthdayDateOnly || record?.birthday,
+            symptoms: (record?.symptoms || []).map((s) => ({
+                name: s?.name || '',
+                sign: s?.sign || '',
+                date:
+                    s?.date && !Number.isNaN(new Date(s.date).getTime())
+                        ? new Date(s.date).toISOString().split('T')[0]
+                        : '',
+                status: s?.status || 'Active',
+            })),
         }
 
         return { patientRecord: mergedRecord }
@@ -131,6 +150,7 @@ class PatientRecordService {
         const recordId = req.params.recordId
 
         const { title, recordType, symptoms, diagnosis, moodLevel, treatmentPlan, medications, attachments, caregiverNotes, doctorNotes, visibility, folderId } = req.body
+        const { fullName, email, phone, address, gender, birthday, dob } = req.body
 
         // 1. Check user
         const user = await User.findById(userId)
@@ -140,6 +160,10 @@ class PatientRecordService {
         const record = await PatientRecord.findOne({ _id: recordId, doctorId: userId })
         if (!record) throw new NotFoundError('Record not found')
 
+        // 2.1 Load patient user for header updates
+        const patient = await User.findById(record.patientId)
+        if (!patient) throw new NotFoundError('Patient not found')
+
         // OPTIONAL: Check folder ownership if changing folder
         if (folderId) {
             const folder = await Folder.findOne({ _id: folderId, doctorId: userId })
@@ -147,10 +171,32 @@ class PatientRecordService {
             record.folderId = folderId
         }
 
-        // 3. Update fields
+        // 3. Update record fields
         if (title && title.trim() !== '') record.title = title.trim()
         if (recordType) record.recordType = recordType
-        if (symptoms) record.symptoms = symptoms
+        if (symptoms) {
+            const normalizedSymptoms = Array.isArray(symptoms)
+                ? symptoms.map((s) => {
+                      const name = s?.name ? String(s.name).trim() : ''
+                      const sign = s?.sign ? String(s.sign).trim() : ''
+                      const statusRaw = s?.status ? String(s.status) : 'Active'
+                      const status = statusRaw.toLowerCase() === 'resolved' ? 'Resolved' : 'Active'
+                      const dateRaw = s?.date || s?.createdAt || s?.updatedAt
+                      let date = null
+                      if (dateRaw) {
+                          const d = new Date(dateRaw)
+                          if (!Number.isNaN(d.getTime())) date = d
+                      }
+                      return {
+                          name,
+                          sign,
+                          status,
+                          date: date || new Date(),
+                      }
+                  })
+                : []
+            record.symptoms = normalizedSymptoms
+        }
         if (diagnosis !== undefined) record.diagnosis = diagnosis.trim()
         if (moodLevel !== undefined) record.moodLevel = moodLevel
         if (treatmentPlan !== undefined) record.treatmentPlan = treatmentPlan.trim()
@@ -161,6 +207,31 @@ class PatientRecordService {
         if (visibility) record.visibility = visibility
 
         await record.save()
+
+        // 4. Update patient profile fields (header)
+        const updates = {}
+        if (fullName !== undefined) updates.fullName = String(fullName).trim()
+        if (email !== undefined) updates.email = String(email).trim()
+        if (phone !== undefined) updates.phone = String(phone).trim()
+        if (address !== undefined) updates.address = String(address).trim()
+        if (gender !== undefined) {
+            const g = String(gender).toLowerCase()
+            if (['male', 'female', 'other'].includes(g)) {
+                updates.gender = g
+            }
+        }
+        const birthValue = birthday || dob
+        if (birthValue !== undefined && birthValue !== null && birthValue !== '') {
+            const date = new Date(birthValue)
+            if (!isNaN(date.getTime())) {
+                updates.dob = date
+            }
+        }
+
+        if (Object.keys(updates).length) {
+            Object.assign(patient, updates)
+            await patient.save()
+        }
 
         return { record }
     }
