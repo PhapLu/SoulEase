@@ -45,3 +45,7 @@
 2025-12-12 11:13:27::error::/v1/api/user/readDoctors::e059cbd9-2b54-4349-b320-6e021a3d21c8::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
 2025-12-12 11:16:02::error::/v1/api/user/readDoctors::14cecc98-1619-44f8-a7d5-8d0b978af86f::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
 2025-12-12 11:16:02::error::/v1/api/user/readDoctors::4f49d039-576b-4c1a-97d2-bdb75bcccac3::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
+2025-12-12 11:28:30::error::/v1/api/user/readDoctorDetail/undefined::f70f6490-2956-46d4-8ab0-8683d7a6e88e::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 11:28:30::error::/v1/api/user/readDoctorDetail/undefined::27a0aa2d-959f-4c6b-9c16-317f750a5ecd::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 11:28:38::error::/v1/api/user/readDoctorDetail/undefined::405b8d66-8e31-47d6-9162-b2845132b34e::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 11:28:38::error::/v1/api/user/readDoctorDetail/undefined::1e6da865-e21e-4a2f-8c3b-2f244060d751::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}

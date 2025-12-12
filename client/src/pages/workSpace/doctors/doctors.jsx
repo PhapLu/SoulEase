@@ -68,7 +68,7 @@ export default function Doctors() {
                             type='button'
                             className='doctors-item'
                             onClick={() =>
-                                navigate(`/workspace/doctors/${doctor.id}`, {
+                                navigate(`/workspace/doctors/${doctor._id}`, {
                                     state: { doctor },
                                 })
                             }

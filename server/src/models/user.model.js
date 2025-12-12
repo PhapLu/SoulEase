@@ -15,7 +15,7 @@ const UserSchema = new Schema(
             default: 'member',
         },
         clinicId: { type: Schema.Types.ObjectId, ref: 'User', default: null },
-        specialty: { type: String, default: '' },
+        speciality: { type: String, default: '' },
         description: { type: String, default: '' },
         clinicians: { type: String, default: '' },
         gender: { type: String, enum: ['male', 'female', 'other'], trim: true },
