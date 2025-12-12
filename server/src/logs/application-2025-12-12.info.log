@@ -1,0 +1,8 @@
+2025-12-12 09:24:20::info::/v1/api/user/me::bda8f04d-ea5a-4c9e-b7f7-2c5d42ca2758::input-params ::GET::::{}
+2025-12-12 09:24:21::info::/v1/api/user/me::d0fff05e-db38-4ef3-a158-c997dc4f17dc::input-params ::GET::::{}
+2025-12-12 09:25:30::info::/v1/api/auth/login::9b47616a-459d-4f4c-8191-d133fd6f6fe7::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-12 09:25:30::info::/v1/api/user/me::4ebe3b2a-bce6-4a3e-8a35-892e68720ab4::input-params ::GET::::{}
+2025-12-12 09:25:30::info::/v1/api/folder/readFolders::bc3b2738-6b90-4f5a-9e8b-8b520dbe4be8::input-params ::GET::::{}
+2025-12-12 09:25:30::info::/v1/api/folder/readFolders::ce4e6759-fc5e-49fb-8ea5-8e51910ca986::input-params ::GET::::{}
+2025-12-12 09:25:38::info::/v1/api/conversation/readConversations::ac81f2b1-8134-409b-9622-5cf8a676e992::input-params ::GET::::{}
+2025-12-12 09:25:38::info::/v1/api/conversation/readConversations::f4700e3b-6cde-4c78-854e-3d315281529f::input-params ::GET::::{}

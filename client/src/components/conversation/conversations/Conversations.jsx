@@ -5,7 +5,7 @@ import { apiUtils } from '../../../utils/newRequest'
 
 export default function Conversations() {
     const [conversations, setConversations] = useState([])
-
+    console.log(conversations)
     useEffect(() => {
         const fetchConversations = async () => {
             const response = await apiUtils.get('/conversation/readConversations')
@@ -40,8 +40,8 @@ export default function Conversations() {
                             <Link to={`/workspace/messages/${item.id}`} className='ws-thread-link'>
                                 <div className='ws-thread__avatar' />
                                 <div className='ws-thread__meta'>
-                                    <span className='ws-thread__name'>{item.name}</span>
-                                    <span className='ws-thread__snippet'>{item.snippet}</span>
+                                    <span className='ws-thread__name'>{item.displayName}</span>
+                                    <span className='ws-thread__snippet'>{item.lastMessage}</span>
                                 </div>
                                 <div className='ws-thread__time'>
                                     {item.time && <span>{item.time}</span>}
