@@ -6,6 +6,10 @@ import { encryptionMiddleware } from '../../middlewares/encryptFields.middleware
 
 const router = express.Router()
 router.get('/me', asyncHandler(userController.me))
+
+router.use(verifyToken)
+router.get('/readDoctors', asyncHandler(userController.readDoctors))
+router.post('/createDoctor', asyncHandler(userController.createDoctor))
 router.get('/readDoctorDetail/:doctorId', asyncHandler(userController.readDoctorDetail))
 
 export default router

@@ -27,23 +27,23 @@ export default function FolderClients() {
         description: '',
     })
 
-    useEffect(() => {
-        const fetchFolder = async () => {
-            try {
-                setIsLoading(true)
-                setError('')
+    const fetchFolder = async () => {
+        try {
+            setIsLoading(true)
+            setError('')
 
-                const res = await apiUtils.get(`/folder/readFolder/${folderId}`)
-                const folder = res.data.metadata.folder
-                setFolderInfo(folder)
-            } catch (err) {
-                console.log('Failed to load folder:', err)
-                setError('Failed to load folder.')
-            } finally {
-                setIsLoading(false)
-            }
+            const res = await apiUtils.get(`/folder/readFolder/${folderId}`)
+            const folder = res.data.metadata.folder
+            setFolderInfo(folder)
+        } catch (err) {
+            console.log('Failed to load folder:', err)
+            setError('Failed to load folder.')
+        } finally {
+            setIsLoading(false)
         }
+    }
 
+    useEffect(() => {
         fetchFolder()
     }, [folderId])
 

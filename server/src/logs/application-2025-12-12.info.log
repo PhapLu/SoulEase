@@ -202,3 +202,107 @@
 2025-12-12 02:03:02::info::/v1/api/user/me::8ea957e4-4190-47b6-ab32-e98c38d4d653::input-params ::GET::::{}
 2025-12-12 02:03:02::info::/v1/api/user/me::aaa3e94a-d6e4-4492-955b-4138ab6761f5::input-params ::GET::::{}
 >>>>>>> tracie1
+2025-12-12 10:10:23::info::/v1/api/user/me::8a4652d6-4f1f-41b2-8034-64f6c5fc7ee8::input-params ::GET::::{}
+2025-12-12 10:10:24::info::/v1/api/user/me::82c33bf5-d8dc-4aaf-8658-f172726571b0::input-params ::GET::::{}
+2025-12-12 10:11:09::info::/v1/api/auth/login::4bd12f31-8c55-431a-90bf-24520a34f683::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-12 10:11:09::info::/v1/api/user/me::a2279832-dc2d-4715-905e-f747aeceab98::input-params ::GET::::{}
+2025-12-12 10:11:09::info::/v1/api/folder/readFolders::e386291c-6c1f-4838-bf86-f4145f26b766::input-params ::GET::::{}
+2025-12-12 10:11:10::info::/v1/api/folder/readFolders::00f4ec7e-5f7e-4270-bd74-eb9395fcc8ff::input-params ::GET::::{}
+2025-12-12 10:58:28::info::/v1/api/user/me::5cd30edd-34d3-4652-a5cd-c70f43580880::input-params ::GET::::{}
+2025-12-12 10:58:28::info::/v1/api/user/me::36960301-e69f-496b-b1ab-44772c5adf31::input-params ::GET::::{}
+2025-12-12 10:58:31::info::/v1/api/auth/login::089e18c3-4294-488a-96d2-b686243199ee::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-12 10:58:31::info::/v1/api/user/me::1c484ee6-f687-4895-9fa4-1b2cd292f45a::input-params ::GET::::{}
+2025-12-12 10:58:31::info::/v1/api/folder/readFolders::b6daad27-e27a-45ba-a581-71e62b07d9f0::input-params ::GET::::{}
+2025-12-12 10:58:32::info::/v1/api/folder/readFolders::0f0e98f2-c30c-444b-8f49-3033788c562d::input-params ::GET::::{}
+2025-12-12 10:58:40::info::/v1/api/user/me::52f79652-9ef8-4621-b0f8-b7900f2d362b::input-params ::GET::::{}
+2025-12-12 10:58:40::info::/v1/api/user/me::d7581c42-fb92-4097-b962-8c11bae2dbe5::input-params ::GET::::{}
+2025-12-12 11:06:39::info::/v1/api/user/me::13866425-31b0-41ab-880a-dbaeb8ac3b1e::input-params ::GET::::{}
+2025-12-12 11:06:39::info::/v1/api/user/me::3d0199d5-2c24-4354-a768-c501f7adab73::input-params ::GET::::{}
+2025-12-12 11:08:10::info::/v1/api/user/me::7bcaf2ba-22fa-469c-b4c2-ab16b3d4c550::input-params ::GET::::{}
+2025-12-12 11:08:10::info::/v1/api/user/me::6adc0b83-9163-454d-ad42-08cdc1ce6d69::input-params ::GET::::{}
+2025-12-12 11:08:42::info::/v1/api/user/me::a26a01fb-0c4b-4d32-a79e-90c086c7a018::input-params ::GET::::{}
+2025-12-12 11:08:46::info::/v1/api/user/me::2bf162d7-ebcc-4e13-acb5-1a35b51f342c::input-params ::GET::::{}
+2025-12-12 11:08:48::info::/v1/api/user/me::5e2aa98e-287c-483e-a5e8-20b509b49e71::input-params ::GET::::{}
+2025-12-12 11:09:06::info::/v1/api/user/me::170e3fa2-44cc-4592-93f7-64e91d0df438::input-params ::GET::::{}
+2025-12-12 11:09:06::info::/v1/api/user/me::27b2ddd2-0286-4b26-92c7-d9df3ba7b6f9::input-params ::GET::::{}
+2025-12-12 11:09:28::info::/v1/api/user/me::2b019fdb-c1e3-420e-85f0-3079783089f9::input-params ::GET::::{}
+2025-12-12 11:09:28::info::/v1/api/user/me::35c2ff1b-aa3d-4d8d-bb54-6f563c721800::input-params ::GET::::{}
+2025-12-12 11:09:40::info::/v1/api/user/me::c56ffeef-492c-4e38-8c4d-9a926bad2904::input-params ::GET::::{}
+2025-12-12 11:09:40::info::/v1/api/user/me::39188774-2eaf-4f79-b0cc-82cc3b767d36::input-params ::GET::::{}
+2025-12-12 11:10:13::info::/v1/api/user/me::2c8b9e5a-ed29-488f-9a45-6c79eadad954::input-params ::GET::::{}
+2025-12-12 11:10:13::info::/v1/api/user/me::989280d3-2bc1-4819-af36-23148cb88b24::input-params ::GET::::{}
+2025-12-12 11:10:37::info::/v1/api/user/me::64803469-7ee4-4be7-a2b4-ac63a99171a7::input-params ::GET::::{}
+2025-12-12 11:10:37::info::/v1/api/user/me::13034fa6-a386-46e0-b92a-1d86b59e8dc0::input-params ::GET::::{}
+2025-12-12 11:10:47::info::/v1/api/user/me::ec2342b4-4ffd-4083-84f8-fa0708f7366a::input-params ::GET::::{}
+2025-12-12 11:10:47::info::/v1/api/user/me::2f9dce41-9a91-4158-8fc6-71932f99e7a9::input-params ::GET::::{}
+2025-12-12 11:11:16::info::/v1/api/user/doctors::6da925dd-d81d-486e-aa5b-b79edbbf8b68::input-params ::GET::::{}
+2025-12-12 11:11:16::error::/v1/api/user/doctors::6da925dd-d81d-486e-aa5b-b79edbbf8b68::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-12 11:11:16::info::/v1/api/user/doctors::e5775f2a-a861-45e9-b053-97f12e8d7ec0::input-params ::GET::::{}
+2025-12-12 11:11:16::error::/v1/api/user/doctors::e5775f2a-a861-45e9-b053-97f12e8d7ec0::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-12 11:11:19::info::/v1/api/user/doctors::77545d56-ca62-46ce-b9c7-dd0ffb958ea6::input-params ::GET::::{}
+2025-12-12 11:11:19::error::/v1/api/user/doctors::77545d56-ca62-46ce-b9c7-dd0ffb958ea6::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-12 11:11:19::info::/v1/api/user/me::4b2e352f-efd5-4b8b-ab1a-5eecca2d243d::input-params ::GET::::{}
+2025-12-12 11:11:19::info::/v1/api/user/doctors::430b7503-d640-45d9-9282-093a607159f4::input-params ::GET::::{}
+2025-12-12 11:11:19::error::/v1/api/user/doctors::430b7503-d640-45d9-9282-093a607159f4::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-12 11:11:19::info::/v1/api/user/me::126ce64d-9039-4cde-b5cf-17d7a9e258b5::input-params ::GET::::{}
+2025-12-12 11:11:38::info::/v1/api/user/doctors::64c57424-c036-4014-b9d2-e4255d07b53d::input-params ::GET::::{}
+2025-12-12 11:11:38::error::/v1/api/user/doctors::64c57424-c036-4014-b9d2-e4255d07b53d::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-12 11:11:38::info::/v1/api/user/me::0500e48a-a418-47c5-b1e8-b16f05e65260::input-params ::GET::::{}
+2025-12-12 11:11:38::info::/v1/api/user/doctors::6dd673b0-bfdc-4278-ba68-968173d43058::input-params ::GET::::{}
+2025-12-12 11:11:38::error::/v1/api/user/doctors::6dd673b0-bfdc-4278-ba68-968173d43058::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-12 11:11:39::info::/v1/api/user/me::a7314662-acdb-4095-8faf-8411664cee82::input-params ::GET::::{}
+2025-12-12 11:11:56::info::/v1/api/user/readDoctors::bb101410-1151-455b-9990-7e6773f36bb8::input-params ::GET::::{}
+2025-12-12 11:11:57::error::/v1/api/user/readDoctors::bb101410-1151-455b-9990-7e6773f36bb8::handler-error::{"status":404,"message":"Clinic not found"}
+2025-12-12 11:12:01::info::/v1/api/user/readDoctors::e40127c5-dbfd-49cf-b9ce-9d008885441a::input-params ::GET::::{}
+2025-12-12 11:12:01::info::/v1/api/user/me::806f5d12-5d65-420f-a17c-8ffb8c39955f::input-params ::GET::::{}
+2025-12-12 11:12:01::error::/v1/api/user/readDoctors::e40127c5-dbfd-49cf-b9ce-9d008885441a::handler-error::{"status":404,"message":"Clinic not found"}
+2025-12-12 11:12:01::info::/v1/api/user/readDoctors::33c0beb1-1e14-400c-8631-0d6d977f1395::input-params ::GET::::{}
+2025-12-12 11:12:01::info::/v1/api/user/me::9e413651-85e2-4d1a-8be1-9f12a2180ee0::input-params ::GET::::{}
+2025-12-12 11:12:01::error::/v1/api/user/readDoctors::33c0beb1-1e14-400c-8631-0d6d977f1395::handler-error::{"status":404,"message":"Clinic not found"}
+2025-12-12 11:13:06::info::/v1/api/user/readDoctors::1ecb8f98-94f6-4407-9c47-fc3e57513134::input-params ::GET::::{}
+2025-12-12 11:13:06::info::/v1/api/user/me::5cecea5f-7442-48ff-8653-d38e9df09ae3::input-params ::GET::::{}
+2025-12-12 11:13:06::error::/v1/api/user/readDoctors::1ecb8f98-94f6-4407-9c47-fc3e57513134::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
+2025-12-12 11:13:06::info::/v1/api/user/readDoctors::eb0d77dd-624b-487c-9f9b-efb852541324::input-params ::GET::::{}
+2025-12-12 11:13:06::info::/v1/api/user/me::17b5c72b-3101-441e-a13f-9ab1e15e60b9::input-params ::GET::::{}
+2025-12-12 11:13:06::error::/v1/api/user/readDoctors::eb0d77dd-624b-487c-9f9b-efb852541324::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
+2025-12-12 11:13:26::info::/v1/api/user/readDoctors::3e6b0933-e253-4515-b703-cd7cbe90810b::input-params ::GET::::{}
+2025-12-12 11:13:27::error::/v1/api/user/readDoctors::3e6b0933-e253-4515-b703-cd7cbe90810b::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
+2025-12-12 11:13:27::info::/v1/api/user/readDoctors::e059cbd9-2b54-4349-b320-6e021a3d21c8::input-params ::GET::::{}
+2025-12-12 11:13:27::error::/v1/api/user/readDoctors::e059cbd9-2b54-4349-b320-6e021a3d21c8::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
+2025-12-12 11:13:35::info::/v1/api/user/me::07b8bd8e-c9f2-4e26-bad3-bb98ed4e9125::input-params ::GET::::{}
+2025-12-12 11:13:36::info::/v1/api/user/me::5341f31c-ad7a-49af-a027-4b5f607b747a::input-params ::GET::::{}
+2025-12-12 11:13:51::info::/v1/api/user/me::47744d78-462e-4727-a143-8d07a0c5fad8::input-params ::GET::::{}
+2025-12-12 11:13:51::info::/v1/api/user/me::8224a973-e28f-4bab-9a7f-a523ae04d72d::input-params ::GET::::{}
+2025-12-12 11:14:25::info::/v1/api/user/me::2225dd26-e33d-4eed-80c8-0924a7d06212::input-params ::GET::::{}
+2025-12-12 11:14:25::info::/v1/api/user/me::331acfed-549f-44b3-8210-853d84d0966b::input-params ::GET::::{}
+2025-12-12 11:16:02::info::/v1/api/user/readDoctors::14cecc98-1619-44f8-a7d5-8d0b978af86f::input-params ::GET::::{}
+2025-12-12 11:16:02::info::/v1/api/user/me::513fea86-e1fb-4420-bb89-446a1a4eaa22::input-params ::GET::::{}
+2025-12-12 11:16:02::error::/v1/api/user/readDoctors::14cecc98-1619-44f8-a7d5-8d0b978af86f::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
+2025-12-12 11:16:02::info::/v1/api/user/readDoctors::4f49d039-576b-4c1a-97d2-bdb75bcccac3::input-params ::GET::::{}
+2025-12-12 11:16:02::info::/v1/api/user/me::fd5965d8-61f9-4564-b22d-fe68930803c4::input-params ::GET::::{}
+2025-12-12 11:16:02::error::/v1/api/user/readDoctors::4f49d039-576b-4c1a-97d2-bdb75bcccac3::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
+2025-12-12 11:16:51::info::/v1/api/user/readDoctors::2e08a2c4-d79c-4554-8150-b41b1138f22e::input-params ::GET::::{}
+2025-12-12 11:16:51::info::/v1/api/user/me::f089a779-bb62-427f-87d2-ca0dc146a308::input-params ::GET::::{}
+2025-12-12 11:16:51::info::/v1/api/user/me::b8a9396d-1826-4f28-8d50-9fd60a378db6::input-params ::GET::::{}
+2025-12-12 11:16:51::info::/v1/api/user/readDoctors::bcff8e86-9927-4964-aa66-4e3d3fb653f0::input-params ::GET::::{}
+2025-12-12 11:17:01::info::/v1/api/user/readDoctors::f88f0fd5-b4e6-4075-ba12-298e7b952af4::input-params ::GET::::{}
+2025-12-12 11:17:12::info::/v1/api/user/readDoctors::2e23a8c6-fd2e-4af6-a744-127319ba624b::input-params ::GET::::{}
+2025-12-12 11:17:22::info::/v1/api/user/readDoctors::b54ef9b5-20c1-4035-b06b-750c3c34f850::input-params ::GET::::{}
+2025-12-12 11:17:25::info::/v1/api/user/readDoctors::c80cd3ad-3817-4ea1-85e5-914c613e37ec::input-params ::GET::::{}
+2025-12-12 11:17:40::info::/v1/api/user/readDoctors::fbdc3e87-07a5-4b1a-92cd-4119739e76ea::input-params ::GET::::{}
+2025-12-12 11:18:00::info::/v1/api/user/readDoctors::e385caa3-74bb-45aa-9ef9-a6b82dfd4bd6::input-params ::GET::::{}
+2025-12-12 11:18:00::info::/v1/api/user/me::a81d04b7-3e56-4b0b-b338-46f0488b5b5b::input-params ::GET::::{}
+2025-12-12 11:18:03::info::/v1/api/user/me::957b85d6-27a1-4730-becb-ff5360c17644::input-params ::GET::::{}
+2025-12-12 11:18:03::info::/v1/api/user/readDoctors::96381cf0-ff69-4a5d-8f80-f85e9683e3e7::input-params ::GET::::{}
+2025-12-12 11:18:22::info::/v1/api/user/readDoctors::a227af10-885d-47bd-b33f-247b9e2d0131::input-params ::GET::::{}
+2025-12-12 11:18:51::info::/v1/api/user/readDoctors::fdb5e5a2-9df2-4ada-a1be-490a473ef4de::input-params ::GET::::{}
+2025-12-12 11:18:55::info::/v1/api/user/readDoctors::00cca1b1-f6c8-4cef-a488-5c00cc5b4c43::input-params ::GET::::{}
+2025-12-12 11:19:36::info::/v1/api/user/readDoctors::1fcca1d8-4ff1-42a4-818d-f3147b197f2e::input-params ::GET::::{}
+2025-12-12 11:20:45::info::/v1/api/user/readDoctors::8a0cf028-9429-4bea-8ba5-2d43521f9b36::input-params ::GET::::{}
+2025-12-12 11:21:04::info::/v1/api/user/readDoctors::6b63ae8e-e69b-412b-972c-984fecb5ba92::input-params ::GET::::{}
+2025-12-12 11:21:04::info::/v1/api/user/me::868751d7-4906-4c5f-a4ac-bf94ecdfcb78::input-params ::GET::::{}
+2025-12-12 11:21:04::info::/v1/api/user/me::b7c134db-37ab-4883-bdc4-cc4f0e6061eb::input-params ::GET::::{}
+2025-12-12 11:21:04::info::/v1/api/user/readDoctors::181ea509-caa9-40bf-9687-b797cd73a0de::input-params ::GET::::{}
+2025-12-12 11:21:36::info::/v1/api/user/readDoctors::3bfdaf99-5bef-4751-a9db-3908e4923903::input-params ::GET::::{}
+2025-12-12 11:23:53::info::/v1/api/user/readDoctors::eebcc500-cc40-480c-9dc3-44731e64b652::input-params ::GET::::{}
+2025-12-12 11:25:31::info::/v1/api/user/readDoctors::8f4781cd-0fcc-4849-8efb-693ba277d2b8::input-params ::GET::::{}

@@ -33,6 +33,34 @@ class UserService {
         }
     }
 
+    static createDoctor = async (req) => {
+        const clinicId = req.userId
+        const { fullName, phoneNumber, email, specialty, description } = req.body
+
+        // 1. Check clinic
+        const clinic = await User.findById(clinicId)
+        if (!clinic) throw new NotFoundError('Clinic not found')
+        if (clinic.role !== 'clinic') throw new AuthFailureError('You are not authorized to perform this action')
+
+        // 2. Create new doctor
+        const newDoctor = new User({
+            fullName,
+            phone: phoneNumber,
+            email,
+            specialty: specialty || '',
+            description: description || '',
+            role: 'doctor',
+            clinicId: clinicId,
+        })
+        await newDoctor.save()
+
+        // 3. Return created doctor without sensitive info
+        const createdDoctor = await User.findById(newDoctor._id).select('-password -accessToken -googleId -followers -following')
+        return {
+            doctor: createdDoctor,
+        }
+    }
+
     static meMobile = async (accessToken) => {
         // 1. Decode accessToken and check
         const decoded = jwt.verify(accessToken, process.env.JWT_SECRET)
@@ -94,6 +122,23 @@ class UserService {
 
         return {
             user: { ...userData, hasSetPinCode },
+        }
+    }
+
+    static readDoctors = async (req) => {
+        const clinicId = req.userId
+
+        // 1. Check clinic
+        const clinic = await User.findById(clinicId)
+        if (!clinic) throw new NotFoundError('Clinic not found')
+        if (clinic.role !== 'clinic') throw new AuthFailureError('You are not authorized to perform this action')
+
+        // 2. Find doctors associated with the clinic
+        const doctors = await User.find({ clinicId: clinicId, role: 'doctor' }).select('-password -accessToken -googleId -followers -following')
+
+        // 3. Return doctors list
+        return {
+            doctors,
         }
     }
 

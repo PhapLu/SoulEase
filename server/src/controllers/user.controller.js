@@ -11,6 +11,13 @@ class UserController {
         }).send(res)
     }
 
+    createDoctor = async (req, res, next) => {
+        new SuccessResponse({
+            message: 'Create doctor success!',
+            metadata: await UserService.createDoctor(req),
+        }).send(res)
+    }
+
     meMobile = async (req, res, next) => {
         const authHeader = req.headers.authorization
         let token
@@ -24,6 +31,13 @@ class UserController {
         new SuccessResponse({
             message: 'Me success!',
             metadata: await UserService.meMobile(token), // Assuming `token` is not encrypted
+        }).send(res)
+    }
+
+    readDoctors = async (req, res, next) => {
+        new SuccessResponse({
+            message: 'Read doctors success!',
+            metadata: await UserService.readDoctors(req),
         }).send(res)
     }
 

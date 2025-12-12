@@ -1,47 +1,48 @@
 // src/pages/workSpace/doctors/Doctors.jsx
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './doctors.css'
 
 import doctorAvatar from '../../../assets/doctor-avatar.svg'
 import WorkspaceTopBar from '../../../components/Workspace/WorkspaceTopBar'
 import DoctorModalForm from './doctorModelForm/doctorModelForm'
+import { apiUtils } from '../../../utils/newRequest'
 
 export default function Doctors() {
     const navigate = useNavigate()
     const [openDoctorModal, setOpenDoctorModal] = useState(false)
 
-    const [doctors, setDoctors] = useState([
-        {
-            id: 'doctor-1',
-            name: 'Dr. John Doe',
-            specialty: 'Cardiology',
-            description: 'Chuyên tim mạch',
-        },
-        {
-            id: 'doctor-2',
-            name: 'Dr. Jane Smith',
-            specialty: 'Dermatology',
-            description: 'Chuyên da liễu',
-        },
-        {
-            id: 'doctor-3',
-            name: 'Dr. Alex Nguyen',
-            specialty: 'Pediatrics',
-            description: 'Chuyên nhi',
-        },
-    ])
+    const [doctors, setDoctors] = useState(null)
 
-    const handleCreateDoctor = (data) => {
+    useEffect(() => {
+        const fecthDoctors = async () => {
+            try {
+                const response = await apiUtils.get('/user/readDoctors')
+                setDoctors(response.data.metadata.doctors)
+            } catch (error) {
+                console.error('Error fetching doctors:', error)
+            }
+        }
+        fecthDoctors()
+    }, [])
+
+    const handleCreateDoctor = async (data) => {
         const newDoctor = {
-            id: `doctor-${Date.now()}`,
-            name: data.name,
+            fullName: data.fullName,
+            phoneNumber: data.phoneNumber,
+            email: data.email,
             specialty: data.specialty || '',
             description: data.description || '',
         }
 
-        setDoctors((prev) => [...prev, newDoctor])
-        setOpenDoctorModal(false)
+        try {
+            const response = await apiUtils.post('/user/createDoctor', newDoctor)
+            console.log('Doctor created successfully:', response.data.metadata.doctor)
+            setDoctors((prevDoctors) => [...prevDoctors, response.data.metadata.doctor])
+            setOpenDoctorModal(false)
+        } catch (error) {
+            console.error('Error creating doctor:', error)
+        }
     }
 
     return (
@@ -61,7 +62,7 @@ export default function Doctors() {
                 </div>
 
                 <div className='doctors-grid'>
-                    {doctors.map((doctor) => (
+                    {doctors?.map((doctor) => (
                         <button
                             key={doctor.id}
                             type='button'

@@ -30,3 +30,18 @@
 2025-12-12 01:59:12::error::/v1/api/user/readDoctorDetail/doctor-2::d79acaa9-5f3e-424b-8a0e-57739a6c7926::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-2\" (type string) at path \"_id\" for model \"User\""}
 2025-12-12 01:59:18::error::/v1/api/user/readDoctorDetail/doctor-3::8c6c2f9a-4f7d-4c6f-a190-4cbddd9a0479::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-3\" (type string) at path \"_id\" for model \"User\""}
 2025-12-12 01:59:18::error::/v1/api/user/readDoctorDetail/doctor-3::201f8ea0-5071-45af-a386-c54b02ed361a::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"doctor-3\" (type string) at path \"_id\" for model \"User\""}
+2025-12-12 11:11:16::error::/v1/api/user/doctors::6da925dd-d81d-486e-aa5b-b79edbbf8b68::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-12 11:11:16::error::/v1/api/user/doctors::e5775f2a-a861-45e9-b053-97f12e8d7ec0::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-12 11:11:19::error::/v1/api/user/doctors::77545d56-ca62-46ce-b9c7-dd0ffb958ea6::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-12 11:11:19::error::/v1/api/user/doctors::430b7503-d640-45d9-9282-093a607159f4::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-12 11:11:38::error::/v1/api/user/doctors::64c57424-c036-4014-b9d2-e4255d07b53d::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-12 11:11:38::error::/v1/api/user/doctors::6dd673b0-bfdc-4278-ba68-968173d43058::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-12 11:11:57::error::/v1/api/user/readDoctors::bb101410-1151-455b-9990-7e6773f36bb8::handler-error::{"status":404,"message":"Clinic not found"}
+2025-12-12 11:12:01::error::/v1/api/user/readDoctors::e40127c5-dbfd-49cf-b9ce-9d008885441a::handler-error::{"status":404,"message":"Clinic not found"}
+2025-12-12 11:12:01::error::/v1/api/user/readDoctors::33c0beb1-1e14-400c-8631-0d6d977f1395::handler-error::{"status":404,"message":"Clinic not found"}
+2025-12-12 11:13:06::error::/v1/api/user/readDoctors::1ecb8f98-94f6-4407-9c47-fc3e57513134::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
+2025-12-12 11:13:06::error::/v1/api/user/readDoctors::eb0d77dd-624b-487c-9f9b-efb852541324::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
+2025-12-12 11:13:27::error::/v1/api/user/readDoctors::3e6b0933-e253-4515-b703-cd7cbe90810b::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
+2025-12-12 11:13:27::error::/v1/api/user/readDoctors::e059cbd9-2b54-4349-b320-6e021a3d21c8::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
+2025-12-12 11:16:02::error::/v1/api/user/readDoctors::14cecc98-1619-44f8-a7d5-8d0b978af86f::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
+2025-12-12 11:16:02::error::/v1/api/user/readDoctors::4f49d039-576b-4c1a-97d2-bdb75bcccac3::handler-error::{"status":401,"message":"You are not authorized to perform this action"}
