@@ -1,7 +1,0 @@
-2025-12-02 15:42:56::error::/v1/api/folder/createFolder::98c3624e-6636-494b-916f-76430c96f604::handler-error::{"status":401,"message":"Please login to continue"}
-2025-12-02 15:44:15::error::/v1/api/folder/readFolders::7d0abcf9-7ae9-4e07-b25f-b17ad1a96332::handler-error::{"status":404,"message":"Not Found Route"}
-2025-12-02 15:44:32::error::/v1/api/folder/readFolders::78c5d62e-a171-4ee2-ba29-5bfd557f7f01::handler-error::{"status":404,"message":"Not Found Route"}
-2025-12-02 15:44:32::error::/v1/api/folder/readFolders::f6cb9315-9068-462b-9985-bd197daba85a::handler-error::{"status":404,"message":"Not Found Route"}
-2025-12-02 15:46:00::error::/v1/api/folder/readFolders::b3f6b7a3-b1c7-4f1f-98c5-3b97e6ebcc65::handler-error::{"status":404,"message":"Not Found Route"}
-2025-12-02 16:04:47::error::/v1/api/folder/readFolders::1d372182-3b3b-44dd-b837-84fb501b7e6f::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-01.hebkgzl.mongodb.net"}
-2025-12-02 16:04:47::error::/v1/api/user/me::fa46789e-4df3-40ca-8caa-ab947bf2ae1a::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-01.hebkgzl.mongodb.net"}
