@@ -18,7 +18,18 @@ const PatientRecordSchema = new Schema(
             default: 'session_note',
         },
 
-        symptoms: [{ type: String, trim: true }],
+        symptoms: [
+            {
+                name: { type: String, trim: true },
+                sign: { type: String, trim: true },
+                date: { type: Date },
+                status: {
+                    type: String,
+                    enum: ['Active', 'Resolved'],
+                    default: 'Active',
+                },
+            },
+        ],
         diagnosis: { type: String, default: '', trim: true },
         moodLevel: { type: Number, min: 0, max: 10, default: null },
 

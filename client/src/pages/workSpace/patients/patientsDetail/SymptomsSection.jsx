@@ -9,6 +9,7 @@ export default function SymptomsSection({
     onSymptomFieldChange,
     onSymptomKeyDown,
     onRemoveSymptom,
+    onToggleSymptomStatus,
 }) {
     return (
         <section className="pd-symptoms">
@@ -35,14 +36,19 @@ export default function SymptomsSection({
 
             <div className="pd-note-card">
                 {/* TABLE HEADER */}
-                <div className="pd-symptom-row pd-symptom-header">
+                <div className="pd-symptom-row pd-symptom-header pd-symptom-row--grid">
                     <div className="pd-symptom-col-title">Name</div>
                     <div className="pd-symptom-col-title">Sign</div>
+                    <div className="pd-symptom-col-title">Date</div>
+                    <div className="pd-symptom-col-title">Status</div>
                     <div style={{ width: 70 }}></div>
                 </div>
 
                 {symptoms.map((s, idx) => (
-                    <div className="pd-symptom-row" key={s.id || idx}>
+                    <div
+                        className="pd-symptom-row pd-symptom-row--grid"
+                        key={s.id || idx}
+                    >
                         {editingSymptoms ? (
                             <>
                                 <input
@@ -73,6 +79,25 @@ export default function SymptomsSection({
                                     onKeyDown={(e) => onSymptomKeyDown(e, idx)}
                                 />
 
+                                <div className="pd-symptom-date">
+                                    {s.date || "—"}
+                                </div>
+
+                                <button
+                                    className={`pd-symptom-status ${
+                                        s.status === "Resolved"
+                                            ? "pd-symptom-status--resolved"
+                                            : "pd-symptom-status--active"
+                                    }`}
+                                    type="button"
+                                    onClick={() => onToggleSymptomStatus(idx)}
+                                >
+                                    <span className="pd-status-dot" />
+                                    {s.status === "Resolved"
+                                        ? "Resolved"
+                                        : "Active"}
+                                </button>
+
                                 <button
                                     className="symptom-remove-btn"
                                     onClick={() => onRemoveSymptom(idx)}
@@ -84,6 +109,23 @@ export default function SymptomsSection({
                             <>
                                 <div className="pd-symptom-text">{s.name}</div>
                                 <div className="pd-symptom-text">{s.sign}</div>
+                                <div className="pd-symptom-text">
+                                    {s.date || "—"}
+                                </div>
+                                <button
+                                    className={`pd-symptom-status pd-symptom-status--view ${
+                                        s.status === "Resolved"
+                                            ? "pd-symptom-status--resolved"
+                                            : "pd-symptom-status--active"
+                                    }`}
+                                    type="button"
+                                    onClick={() => onToggleSymptomStatus(idx)}
+                                >
+                                    <span className="pd-status-dot" />
+                                    {s.status === "Resolved"
+                                        ? "Resolved"
+                                        : "Active"}
+                                </button>
                                 <div></div>
                             </>
                         )}

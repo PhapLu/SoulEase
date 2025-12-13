@@ -278,6 +278,13 @@
     outline: 2px solid var(--primary-color);
 }
 
+.pd-input--locked {
+    background: #f6f8f7;
+    border-color: #dfe6e2;
+    color: #1f2a2f;
+    cursor: not-allowed;
+}
+
 .pd-input--title {
     font-size: 18px;
     padding: 6px 8px;
@@ -307,7 +314,7 @@
 
 .pd-symptom-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 80px;
+    grid-template-columns: 1fr 1fr 150px 150px 80px;
     gap: 12px;
     align-items: center;
     margin-bottom: 10px;
@@ -337,9 +344,6 @@
 
 /* Symptom row */
 .pd-symptom-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
     padding: 6px 2px;
 }
 
@@ -379,6 +383,46 @@
     padding: 6px 4px;
     font-size: 15px;
     color: #2b3b35;
+}
+
+.pd-symptom-date {
+    font-size: 14px;
+    color: #4b6158;
+}
+
+.pd-symptom-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.15s;
+    background: #f6f8f7;
+}
+
+.pd-symptom-status--active {
+    color: #0f8c5a;
+    border-color: #cfeee0;
+}
+.pd-symptom-status--resolved {
+    color: #d64545;
+    border-color: #f3c7c7;
+}
+
+.pd-symptom-status--view {
+    cursor: pointer;
+    width: fit-content;
+}
+
+.pd-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
 }
 
 /* Placeholder */
