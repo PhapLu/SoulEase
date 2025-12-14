@@ -1,6 +1,6 @@
 // TreatmentSection.jsx
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./treatmentSection.css";
 import { EditIcon, RemoveIcon, AddIcon } from "../../../Icons";
 
@@ -59,14 +59,22 @@ export default function TreatmentSection({
     loading,
     error,
     plan,
-    sessions,
+    sections,
     latest,
     onUpdatePlan,
     onUpdateLatest,
-    onCreateSession,
+    onCreateSection,
     onRefetch,
 }) {
     const navigate = useNavigate();
+    const { folderId, patientRecordId: prIdFromUrl } = useParams();
+
+    const prId = patientRecordId || prIdFromUrl;
+
+    const goCreateSectionPage = () => {
+        if (!folderId || !prId) return;
+        navigate(`/workspace/patients/folder/${folderId}/${prId}/section/new`);
+    };
 
     // ---- UI state
     const [query, setQuery] = useState("");
@@ -131,13 +139,13 @@ export default function TreatmentSection({
     // ---- Derived
     const filtered = useMemo(() => {
         const q = query.trim().toLowerCase();
-        if (!q) return sessions || [];
-        return (sessions || []).filter((s) => {
+        if (!q) return sections || [];
+        return (sections || []).filter((s) => {
             const hay =
                 `${s.date} ${s.focus} ${s.note} ${s.status} ${s.risk}`.toLowerCase();
             return hay.includes(q);
         });
-    }, [sessions, query]);
+    }, [sections, query]);
 
     // ---- Actions
     const handleSavePlan = async (e) => {
@@ -199,12 +207,8 @@ export default function TreatmentSection({
 
     const handleDeleteLatest = async () => {
         alert(
-            "There is no DELETE session endpoint yet. Add handler delete and connect it here."
+            "There is no DELETE section endpoint yet. Add handler delete and connect it here."
         );
-    };
-
-    const goCreateSessionPage = () => {
-        navigate(`/patientRecord/${patientRecordId}/session/new`);
     };
 
     return (
@@ -216,7 +220,6 @@ export default function TreatmentSection({
             <div className="tp-header" style={{ marginBottom: 14 }}>
                 <div>
                     <div className="pd-treatment">
-                        {" "}
                         <h3>Treatment Progress</h3>
                     </div>
                 </div>
@@ -232,10 +235,10 @@ export default function TreatmentSection({
 
                     <button
                         className="tp-btn-icon tp-btn-icon--primary"
-                        onClick={goCreateSessionPage}
+                        onClick={goCreateSectionPage}
                     >
                         <AddIcon size={16} color="#fff" />
-                        Create session
+                        Create section
                     </button>
                 </div>
             </div>
@@ -304,7 +307,7 @@ export default function TreatmentSection({
                                         STAGE 3
                                     </div>
                                     <div className="tp-card__title">
-                                        Latest session
+                                        Latest section
                                     </div>
                                 </div>
                                 <span className="tp-chip">Update</span>
@@ -312,7 +315,7 @@ export default function TreatmentSection({
 
                             {!latest ? (
                                 <div className="tp-empty">
-                                    No latest session.
+                                    No latest section.
                                 </div>
                             ) : (
                                 <>
@@ -414,13 +417,13 @@ export default function TreatmentSection({
                         <div className="tp-card__top">
                             <div>
                                 <div className="tp-card__kicker">STAGE 3</div>
-                                <div className="tp-card__title">Sessions</div>
+                                <div className="tp-card__title">Sections</div>
                             </div>
 
                             <div className="tp-list__tools">
                                 <input
                                     className="tp-input"
-                                    placeholder="Search sessions (date, focus, notes, status, risk)..."
+                                    placeholder="Search sections (date, focus, notes, status, risk)..."
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
                                 />
@@ -429,11 +432,11 @@ export default function TreatmentSection({
 
                         {!expandedStage3 ? (
                             <div className="tp-empty">
-                                Click the <b>Latest session</b> card to view the
+                                Click the <b>Latest section</b> card to view the
                                 full stage.
                             </div>
                         ) : !filtered?.length ? (
-                            <div className="tp-empty">No sessions.</div>
+                            <div className="tp-empty">No sections.</div>
                         ) : (
                             <div className="tp-table">
                                 <div className="tp-row tp-row--head">
@@ -565,7 +568,7 @@ export default function TreatmentSection({
                                         frequency: e.target.value,
                                     }))
                                 }
-                                placeholder="e.g. 1 session/week"
+                                placeholder="e.g. 1 section/week"
                             />
                         </label>
                     </div>
@@ -589,14 +592,14 @@ export default function TreatmentSection({
                 </form>
             </Modal>
 
-            {/* Stage 3 Modal: Edit latest session */}
+            {/* Stage 3 Modal: Edit latest section */}
             <Modal
                 open={openLatestModal}
-                title="Stage 3 · Edit latest session"
+                title="Stage 3 · Edit latest section"
                 onClose={() => setOpenLatestModal(false)}
             >
                 {!latest ? (
-                    <div className="tp-empty">No latest session.</div>
+                    <div className="tp-empty">No latest section.</div>
                 ) : (
                     <form className="tp-form" onSubmit={handleSaveLatest}>
                         <div className="tp-form__grid">
@@ -746,7 +749,7 @@ export default function TreatmentSection({
                 onClose={() => setOpenQuickUpdate(false)}
             >
                 {!latest ? (
-                    <div className="tp-empty">No latest session.</div>
+                    <div className="tp-empty">No latest section.</div>
                 ) : (
                     <form className="tp-form" onSubmit={handleQuickUpdate}>
                         <div className="tp-form__grid">
@@ -789,8 +792,10 @@ export default function TreatmentSection({
             </Modal>
 
             <div style={{ display: "none" }}>
-                <Link to={`/patientRecord/${patientRecordId}/session/new`}>
-                    Create session
+                <Link
+                    to={`/workspace/patients/folder/${folderId}/${prId}/section/new`}
+                >
+                    Create section
                 </Link>
             </div>
         </div>

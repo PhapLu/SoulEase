@@ -1,30 +1,47 @@
-import PatientRecord from '../models/patientRecord.model.js'
-import Folder from '../models/folder.model.js'
-import { User } from '../models/user.model.js'
-import { AuthFailureError, BadRequestError, ForbiddenError, NotFoundError } from '../core/error.response.js'
-import dotenv from 'dotenv'
-import Conversation from '../models/conversation.model.js'
-dotenv.config()
+import PatientRecord from "../models/patientRecord.model.js";
+import Folder from "../models/folder.model.js";
+import { User } from "../models/user.model.js";
+import {
+    AuthFailureError,
+    BadRequestError,
+    ForbiddenError,
+    NotFoundError,
+} from "../core/error.response.js";
+import dotenv from "dotenv";
+import Conversation from "../models/conversation.model.js";
+dotenv.config();
+
+const sortByDateDesc = (a, b) => (b.date || "").localeCompare(a.date || "");
 
 class PatientRecordService {
     static createPatientRecord = async (req) => {
-        const doctorId = req.userId
-        const { fullName, email, dob, phoneNumber, role, relationship, folderId } = req.body
+        const doctorId = req.userId;
+        const {
+            fullName,
+            email,
+            dob,
+            phoneNumber,
+            role,
+            relationship,
+            folderId,
+        } = req.body;
 
         // 1. Verify doctor and patient exists
-        const doctor = await User.findById(doctorId)
+        const doctor = await User.findById(doctorId);
 
-        if (!doctor || (doctor.role !== 'doctor' && doctor.role !== 'clinic')) throw new ForbiddenError('Only doctors can create clients')
+        if (!doctor || (doctor.role !== "doctor" && doctor.role !== "clinic"))
+            throw new ForbiddenError("Only doctors can create clients");
 
-        const patient = await User.findOne({ email })
-        if (patient) throw new BadRequestError('Patient already exists')
+        const patient = await User.findOne({ email });
+        if (patient) throw new BadRequestError("Patient already exists");
 
         // 2. Check folder belongs to this doctor
-        const folder = await Folder.findOne({ _id: folderId, doctorId })
-        if (!folder) throw new NotFoundError('Folder not found or unauthorized')
+        const folder = await Folder.findOne({ _id: folderId, doctorId });
+        if (!folder)
+            throw new NotFoundError("Folder not found or unauthorized");
 
         // 3. Create Client as User
-        const randomPassword = Math.random().toString(36).slice(-8)
+        const randomPassword = Math.random().toString(36).slice(-8);
 
         // 3. Create Client as User
         const newUser = await User.create({
@@ -32,15 +49,15 @@ class PatientRecordService {
             fullName,
             dob,
             phone: phoneNumber,
-            role: role === 'relative' ? 'family' : 'member',
+            role: role === "relative" ? "family" : "member",
             password: randomPassword,
-            status: 'active',
-        })
+            status: "active",
+        });
 
         // ⭐ ADD THIS: Create conversation between doctor and patient/family
         let existingConversation = await Conversation.findOne({
-            'members.user': { $all: [doctorId, newUser._id] },
-        })
+            "members.user": { $all: [doctorId, newUser._id] },
+        });
 
         if (!existingConversation) {
             existingConversation = await Conversation.create({
@@ -53,67 +70,71 @@ class PatientRecordService {
                         seenBy: [doctorId],
                     },
                 ],
-            })
+            });
         }
 
         // 4. Add patient to folder.records
-        folder.records.push(newUser._id)
-        await folder.save()
+        folder.records.push(newUser._id);
+        await folder.save();
 
         // 5. (Optional but recommended) Create default initial clinical record
         const intakeRecord = await PatientRecord.create({
             doctorId,
             patientId: newUser._id,
             folderId,
-            title: 'Initial Intake Record',
-            recordType: 'assessment',
-            visibility: 'doctor_only',
+            title: "Initial Intake Record",
+            recordType: "assessment",
+            visibility: "doctor_only",
             symptoms: [],
-            diagnosis: '',
-            treatmentPlan: '',
-            doctorNotes: '',
-            caregiverNotes: role === 'relative' ? relationship : '',
-        })
+            diagnosis: "",
+            treatmentPlan: "",
+            doctorNotes: "",
+            caregiverNotes: role === "relative" ? relationship : "",
+        });
 
         return {
             user: newUser,
             intakeRecord,
-        }
-    }
+        };
+    };
 
     static readPatientRecords = async (req) => {
-        const userId = req.userId
+        const userId = req.userId;
 
         // 1. Check user
-        const user = await User.findById(userId)
-        if (!user) throw new AuthFailureError('Please login to continue')
+        const user = await User.findById(userId);
+        if (!user) throw new AuthFailureError("Please login to continue");
 
         // 2. Fetch all records created by this doctor
-        const records = await PatientRecord.find({ doctorId: userId }).sort({ createdAt: -1 })
+        const records = await PatientRecord.find({ doctorId: userId }).sort({
+            createdAt: -1,
+        });
 
-        return { records }
-    }
+        return { records };
+    };
 
     static readPatientRecord = async (req) => {
-        const userId = req.userId
-        const patientId = req.params.patientId
+        const userId = req.userId;
+        const patientId = req.params.patientId;
 
         // 1. Check user
-        const user = await User.findById(userId)
-        if (!user) throw new AuthFailureError('Please login to continue')
+        const user = await User.findById(userId);
+        if (!user) throw new AuthFailureError("Please login to continue");
 
         // 2. Check patient
-        const patient = await User.findById(patientId).select('fullName email phone gender birthday address').lean()
+        const patient = await User.findById(patientId)
+            .select("fullName email phone gender birthday address")
+            .lean();
 
-        if (!patient) throw new NotFoundError('Patient not found')
+        if (!patient) throw new NotFoundError("Patient not found");
 
         // 3. Find patient record
         const record = await PatientRecord.findOne({
             patientId,
             doctorId: userId,
-        }).lean()
+        }).lean();
 
-        if (!record) throw new NotFoundError('Record not found')
+        if (!record) throw new NotFoundError("Record not found");
 
         // 4. Merge into 1 clean FLAT object
         const mergedRecord = {
@@ -121,67 +142,279 @@ class PatientRecordService {
             ...patient, // patient info
             ...record, // record info
             _id: record._id, // keep `_id` as record ID too (optional)
-        }
+        };
 
-        return { patientRecord: mergedRecord }
-    }
+        return { patientRecord: mergedRecord };
+    };
 
     static updatePatientRecord = async (req) => {
-        const userId = req.userId
-        const recordId = req.params.recordId
+        const userId = req.userId;
+        const recordId = req.params.recordId;
 
-        const { title, recordType, symptoms, diagnosis, moodLevel, treatmentPlan, medications, attachments, caregiverNotes, doctorNotes, visibility, folderId } = req.body
+        const {
+            title,
+            recordType,
+            symptoms,
+            diagnosis,
+            moodLevel,
+            treatmentPlan,
+            medications,
+            attachments,
+            caregiverNotes,
+            doctorNotes,
+            visibility,
+            folderId,
+        } = req.body;
 
         // 1. Check user
-        const user = await User.findById(userId)
-        if (!user) throw new AuthFailureError('Please login to continue')
+        const user = await User.findById(userId);
+        if (!user) throw new AuthFailureError("Please login to continue");
 
         // 2. Check record
-        const record = await PatientRecord.findOne({ _id: recordId, doctorId: userId })
-        if (!record) throw new NotFoundError('Record not found')
+        const record = await PatientRecord.findOne({
+            _id: recordId,
+            doctorId: userId,
+        });
+        if (!record) throw new NotFoundError("Record not found");
 
         // OPTIONAL: Check folder ownership if changing folder
         if (folderId) {
-            const folder = await Folder.findOne({ _id: folderId, doctorId: userId })
-            if (!folder) throw new NotFoundError('Folder not found or unauthorized')
-            record.folderId = folderId
+            const folder = await Folder.findOne({
+                _id: folderId,
+                doctorId: userId,
+            });
+            if (!folder)
+                throw new NotFoundError("Folder not found or unauthorized");
+            record.folderId = folderId;
         }
 
         // 3. Update fields
-        if (title && title.trim() !== '') record.title = title.trim()
-        if (recordType) record.recordType = recordType
-        if (symptoms) record.symptoms = symptoms
-        if (diagnosis !== undefined) record.diagnosis = diagnosis.trim()
-        if (moodLevel !== undefined) record.moodLevel = moodLevel
-        if (treatmentPlan !== undefined) record.treatmentPlan = treatmentPlan.trim()
-        if (medications) record.medications = medications
-        if (attachments) record.attachments = attachments
-        if (caregiverNotes !== undefined) record.caregiverNotes = caregiverNotes.trim()
-        if (doctorNotes !== undefined) record.doctorNotes = doctorNotes.trim()
-        if (visibility) record.visibility = visibility
+        if (title && title.trim() !== "") record.title = title.trim();
+        if (recordType) record.recordType = recordType;
+        if (symptoms) record.symptoms = symptoms;
+        if (diagnosis !== undefined) record.diagnosis = diagnosis.trim();
+        if (moodLevel !== undefined) record.moodLevel = moodLevel;
+        if (treatmentPlan !== undefined)
+            record.treatmentPlan = treatmentPlan.trim();
+        if (medications) record.medications = medications;
+        if (attachments) record.attachments = attachments;
+        if (caregiverNotes !== undefined)
+            record.caregiverNotes = caregiverNotes.trim();
+        if (doctorNotes !== undefined) record.doctorNotes = doctorNotes.trim();
+        if (visibility) record.visibility = visibility;
 
-        await record.save()
+        await record.save();
 
-        return { record }
-    }
+        return { record };
+    };
 
     static deletePatientRecord = async (req) => {
-        const userId = req.userId
-        const recordId = req.params.recordId
+        const userId = req.userId;
+        const recordId = req.params.recordId;
 
         // 1. Check user
-        const user = await User.findById(userId)
-        if (!user) throw new AuthFailureError('Please login to continue')
+        const user = await User.findById(userId);
+        if (!user) throw new AuthFailureError("Please login to continue");
 
         // 2. Check record
-        const record = await PatientRecord.findOne({ _id: recordId, doctorId: userId })
-        if (!record) throw new NotFoundError('Record not found')
+        const record = await PatientRecord.findOne({
+            _id: recordId,
+            doctorId: userId,
+        });
+        if (!record) throw new NotFoundError("Record not found");
 
         // 3. Delete
-        await record.deleteOne()
+        await record.deleteOne();
 
-        return { message: 'Record deleted successfully' }
-    }
+        return { message: "Record deleted successfully" };
+    };
+
+    // ----- TREATMENT -----
+
+    static getRecordByPatientId = async (doctorId, patientId) => {
+        const record = await PatientRecord.findOne({ doctorId, patientId });
+        if (!record) throw new NotFoundError("Record not found");
+        return record;
+    };
+
+    static getTreatmentPlan = async (req) => {
+        const doctorId = req.userId;
+        const { patientId } = req.params;
+
+        const user = await User.findById(doctorId);
+        if (!user) throw new AuthFailureError("Please login to continue");
+
+        const record = await PatientRecordService.getRecordByPatientId(
+            doctorId,
+            patientId
+        );
+        return { plan: record.treatmentPlanData || null };
+    };
+
+    static updateTreatmentPlan = async (req) => {
+        const doctorId = req.userId;
+        const { patientId } = req.params;
+        const payload = req.body || {};
+
+        const user = await User.findById(doctorId);
+        if (!user) throw new AuthFailureError("Please login to continue");
+
+        const record = await PatientRecordService.getRecordByPatientId(
+            doctorId,
+            patientId
+        );
+
+        record.treatmentPlanData = {
+            ...(record.treatmentPlanData || {}),
+            title: payload.title ?? record.treatmentPlanData?.title ?? "",
+            goals: payload.goals ?? record.treatmentPlanData?.goals ?? "",
+            startDate:
+                payload.startDate ?? record.treatmentPlanData?.startDate ?? "",
+            frequency:
+                payload.frequency ?? record.treatmentPlanData?.frequency ?? "",
+        };
+
+        await record.save();
+        return { plan: record.treatmentPlanData };
+    };
+
+    static listTreatmentSections = async (req) => {
+        const doctorId = req.userId;
+        const { patientId } = req.params;
+
+        const user = await User.findById(doctorId);
+        if (!user) throw new AuthFailureError("Please login to continue");
+
+        const record = await PatientRecordService.getRecordByPatientId(
+            doctorId,
+            patientId
+        );
+
+        const sections = Array.isArray(record.treatmentSections)
+            ? [...record.treatmentSections]
+            : [];
+
+        sections.sort(sortByDateDesc);
+        return { sections };
+    };
+
+    static getLatestTreatmentSection = async (req) => {
+        const doctorId = req.userId;
+        const { patientId } = req.params;
+
+        const user = await User.findById(doctorId);
+        if (!user) throw new AuthFailureError("Please login to continue");
+
+        const record = await PatientRecordService.getRecordByPatientId(
+            doctorId,
+            patientId
+        );
+
+        const sections = Array.isArray(record.treatmentSections)
+            ? [...record.treatmentSections]
+            : [];
+
+        sections.sort(sortByDateDesc);
+        return { section: sections[0] || null };
+    };
+
+    static createTreatmentSection = async (req) => {
+        const doctorId = req.userId;
+        const { patientId } = req.params;
+        const payload = req.body || {};
+
+        const user = await User.findById(doctorId);
+        if (!user) throw new AuthFailureError("Please login to continue");
+
+        const record = await PatientRecordService.getRecordByPatientId(
+            doctorId,
+            patientId
+        );
+
+        const section = {
+            id: payload.id || `sess-${Date.now()}`,
+            date: payload.date || "",
+            focus: payload.focus || "",
+            phq9: payload.phq9 ?? null,
+            gad7: payload.gad7 ?? null,
+            severity: Number(payload.severity ?? 0),
+            risk: payload.risk || "Low",
+            status: payload.status || "Planned",
+            note: payload.note || "",
+        };
+
+        record.treatmentSections = Array.isArray(record.treatmentSections)
+            ? record.treatmentSections
+            : [];
+
+        record.treatmentSections.push(section);
+        await record.save();
+
+        return { section };
+    };
+
+    static updateTreatmentSection = async (req) => {
+        const doctorId = req.userId;
+        const { patientId, sectionId } = req.params;
+        const payload = req.body || {};
+
+        const user = await User.findById(doctorId);
+        if (!user) throw new AuthFailureError("Please login to continue");
+
+        const record = await PatientRecordService.getRecordByPatientId(
+            doctorId,
+            patientId
+        );
+
+        const sections = Array.isArray(record.treatmentSections)
+            ? record.treatmentSections
+            : [];
+
+        const idx = sections.findIndex(
+            (s) => String(s.id) === String(sectionId)
+        );
+        if (idx === -1) throw new NotFoundError("Section not found");
+
+        sections[idx] = {
+            ...sections[idx],
+            ...payload,
+            severity:
+                payload.severity === undefined
+                    ? sections[idx].severity
+                    : Number(payload.severity),
+        };
+
+        record.treatmentSections = sections;
+        await record.save();
+
+        return { section: sections[idx] };
+    };
+
+    static deleteTreatmentSection = async (req) => {
+        const doctorId = req.userId;
+        const { patientId, sectionId } = req.params;
+
+        const user = await User.findById(doctorId);
+        if (!user) throw new AuthFailureError("Please login to continue");
+
+        const record = await PatientRecordService.getRecordByPatientId(
+            doctorId,
+            patientId
+        );
+
+        const sections = Array.isArray(record.treatmentSections)
+            ? record.treatmentSections
+            : [];
+
+        const next = sections.filter((s) => String(s.id) !== String(sectionId));
+        if (next.length === sections.length)
+            throw new NotFoundError("Section not found");
+
+        record.treatmentSections = next;
+        await record.save();
+
+        return { ok: true };
+    };
 }
 
-export default PatientRecordService
+export default PatientRecordService;

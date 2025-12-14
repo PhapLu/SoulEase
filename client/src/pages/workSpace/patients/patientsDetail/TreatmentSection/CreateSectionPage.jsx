@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { apiUtils } from "../../../../../utils/newRequest";
 import "./TreatmentSection.css";
 
-export default function CreateSessionPage() {
-    const { patientRecordId } = useParams();
+export default function CreateSectionPage() {
+    const { patientRecordId, folderId } = useParams();
     const navigate = useNavigate();
 
     const [saving, setSaving] = useState(false);
@@ -27,19 +27,27 @@ export default function CreateSessionPage() {
         setSaving(true);
 
         try {
+            // 1) fetch record by patientId
             const res = await apiUtils.get(
                 `/patientRecord/readPatientRecord/${patientRecordId}`
             );
+
             const record =
                 res?.data?.metadata?.patientRecord ||
                 res?.data?.patientRecord ||
                 null;
 
-            const prevSessions = Array.isArray(record?.treatmentSessions)
-                ? record.treatmentSessions
+            if (!record) throw new Error("Patient record not found");
+
+            // recordId for update
+            const recordId = record.recordId || record._id;
+            if (!recordId) throw new Error("Missing recordId to update record");
+
+            const prevSections = Array.isArray(record?.treatmentSections)
+                ? record.treatmentSections
                 : [];
 
-            const newSession = {
+            const newSection = {
                 id: `sess-${Date.now()}`,
                 date: form.date,
                 focus: form.focus,
@@ -51,23 +59,28 @@ export default function CreateSessionPage() {
                 note: form.note,
             };
 
-            const nextSessions = [newSession, ...prevSessions].sort((a, b) =>
-                (a.date || "") < (b.date || "") ? 1 : -1
+            const nextSections = [newSection, ...prevSections].sort((a, b) =>
+                (b.date || "").localeCompare(a.date || "")
             );
 
-            const nextRecord = {
-                ...record,
-                treatmentSessions: nextSessions,
-            };
-
-            await apiUtils.put(
-                `/patientRecord/updatePatientRecord/${patientRecordId}`,
-                nextRecord
+            // 2) update record by recordId (PATCH)
+            await apiUtils.patch(
+                `/patientRecord/updatePatientRecord/${recordId}`,
+                {
+                    treatmentSections: nextSections,
+                }
             );
 
-            navigate(-1);
+            // 3) back to detail page after success
+            navigate(
+                `/workspace/patients/folder/${folderId}/${patientRecordId}`
+            );
         } catch (e2) {
-            setErr(e2?.message || "Create session failed");
+            setErr(
+                e2?.response?.data?.message ||
+                    e2?.message ||
+                    "Create section failed"
+            );
         } finally {
             setSaving(false);
         }
@@ -77,11 +90,11 @@ export default function CreateSessionPage() {
         <div className="tp-page">
             <div className="tp-header" style={{ marginBottom: 14 }}>
                 <div>
-                    <div className="tp-title" style={{ fontSize: 28 }}>
-                        Create session
+                    <div className="pd-treatment">
+                        <h3>Create Section</h3>
                     </div>
                     <div className="tp-subtitle">
-                        PatientRecord: {patientRecordId}
+                        Patient: {patientRecordId}
                     </div>
                 </div>
 

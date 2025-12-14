@@ -8,7 +8,7 @@ import { apiUtils } from "../../../../utils/newRequest";
 
 import PatientsHeader from "./PatientsHeader";
 import SymptomsSection from "./SymptomSection/SymptomsSection";
-import TreatmentSection from "./TreatmetSection/TreatmentSection";
+import TreatmentSection from "./TreatmentSection/TreatmentSection";
 import StorageSection from "./StorageSection";
 // import { chartSeries } from "./PatientCharts";
 
@@ -30,8 +30,8 @@ export default function PatientsDetail() {
 
     // ---------------- TREATMENT DATA ----------------
     const [treatmentPlan, setTreatmentPlan] = useState(null);
-    const [sessions, setSessions] = useState([]);
-    const [latestSession, setLatestSession] = useState(null);
+    const [sections, setSections] = useState([]);
+    const [latestSection, setLatestSection] = useState(null);
 
     const [treatmentLoading, setTreatmentLoading] = useState(false);
     const [treatmentError, setTreatmentError] = useState("");
@@ -79,12 +79,12 @@ export default function PatientsDetail() {
     }, [patientRecordId]);
 
     // ---------------- FETCH TREATMENT ----------------
-    const normalizeList = (sessionsRes) => {
+    const normalizeList = (sectionsRes) => {
         const list =
-            sessionsRes?.data?.metadata?.sessions ||
-            sessionsRes?.data?.sessions ||
-            sessionsRes?.data?.items ||
-            sessionsRes?.data ||
+            sectionsRes?.data?.metadata?.sections ||
+            sectionsRes?.data?.sections ||
+            sectionsRes?.data?.items ||
+            sectionsRes?.data ||
             [];
         return Array.isArray(list) ? list : [];
     };
@@ -95,10 +95,10 @@ export default function PatientsDetail() {
         planRes?.data ||
         null;
 
-    const normalizeSession = (sessionRes) =>
-        sessionRes?.data?.metadata?.session ||
-        sessionRes?.data?.session ||
-        sessionRes?.data ||
+    const normalizeSection = (sectionRes) =>
+        sectionRes?.data?.metadata?.section ||
+        sectionRes?.data?.section ||
+        sectionRes?.data ||
         null;
 
     const fetchTreatment = useCallback(async () => {
@@ -108,15 +108,21 @@ export default function PatientsDetail() {
         setTreatmentError("");
 
         try {
-            const [planRes, sessionsRes, latestRes] = await Promise.all([
-                apiUtils.get(`/treatment/plan/${patientRecordId}`),
-                apiUtils.get(`/treatment/sessions/${patientRecordId}`),
-                apiUtils.get(`/treatment/sessions/latest/${patientRecordId}`),
+            const [planRes, sectionsRes, latestRes] = await Promise.all([
+                apiUtils.get(
+                    `/patientRecord/${patientRecordId}/treatment/plan`
+                ),
+                apiUtils.get(
+                    `/patientRecord/${patientRecordId}/treatment/sections`
+                ),
+                apiUtils.get(
+                    `/patientRecord/${patientRecordId}/treatment/sections/latest`
+                ),
             ]);
 
             setTreatmentPlan(normalizePlan(planRes));
-            setSessions(normalizeList(sessionsRes));
-            setLatestSession(normalizeSession(latestRes));
+            setSections(normalizeList(sectionsRes));
+            setLatestSection(normalizeSection(latestRes));
         } catch (err) {
             console.error("Failed to fetch treatment", err);
             setTreatmentError(err?.message || "Failed to fetch treatment");
@@ -135,19 +141,23 @@ export default function PatientsDetail() {
             setTreatmentError("");
 
             try {
-                const [planRes, sessionsRes, latestRes] = await Promise.all([
-                    apiUtils.get(`/treatment/plan/${patientRecordId}`),
-                    apiUtils.get(`/treatment/sessions/${patientRecordId}`),
+                const [planRes, sectionsRes, latestRes] = await Promise.all([
                     apiUtils.get(
-                        `/treatment/sessions/latest/${patientRecordId}`
+                        `/patientRecord/${patientRecordId}/treatment/plan`
+                    ),
+                    apiUtils.get(
+                        `/patientRecord/${patientRecordId}/treatment/sections`
+                    ),
+                    apiUtils.get(
+                        `/patientRecord/${patientRecordId}/treatment/sections/latest`
                     ),
                 ]);
 
                 if (!alive) return;
 
                 setTreatmentPlan(normalizePlan(planRes));
-                setSessions(normalizeList(sessionsRes));
-                setLatestSession(normalizeSession(latestRes));
+                setSections(normalizeList(sectionsRes));
+                setLatestSection(normalizeSection(latestRes));
             } catch (err) {
                 if (!alive) return;
                 console.error("Failed to fetch treatment", err);
@@ -171,40 +181,40 @@ export default function PatientsDetail() {
 
     const updateTreatmentPlan = useCallback(
         async (payload) => {
-            // payload: { title, goals, startDate, frequency, ... }
-            const res = await apiUtils.put(
-                `/treatment/plan/${patientRecordId}`,
+            const res = await apiUtils.patch(
+                `/patientRecord/${patientRecordId}/treatment/plan`,
                 payload
             );
             const updated = normalizePlan(res) || payload;
             setTreatmentPlan(updated);
-            return updated;
-        },
-        [patientRecordId]
-    );
-
-    const updateLatestSession = useCallback(
-        async (sessionId, payload) => {
-            const res = await apiUtils.put(
-                `/treatment/sessions/${patientRecordId}/${sessionId}`,
-                payload
-            );
-            const updated = normalizeSession(res) || payload;
-            setLatestSession(updated);
             await refetchTreatment();
             return updated;
         },
         [patientRecordId, refetchTreatment]
     );
 
-    const createSession = useCallback(
+    const updateLatestSection = useCallback(
+        async (sectionId, payload) => {
+            const res = await apiUtils.patch(
+                `/patientRecord/${patientRecordId}/treatment/sections/${sectionId}`,
+                payload
+            );
+            const updated = normalizeSection(res) || payload;
+            setLatestSection(updated);
+            await refetchTreatment();
+            return updated;
+        },
+        [patientRecordId, refetchTreatment]
+    );
+
+    const createSection = useCallback(
         async (payload) => {
             // NOTE: ensure apiUtils.post exists in utils/newRequest
             const res = await apiUtils.post(
-                `/treatment/sessions/${patientRecordId}`,
+                `/patientRecord/${patientRecordId}/treatment/sections`,
                 payload
             );
-            const created = normalizeSession(res) || payload;
+            const created = normalizeSection(res) || payload;
             await refetchTreatment();
             return created;
         },
@@ -213,12 +223,12 @@ export default function PatientsDetail() {
 
     // ---------------- PATIENT SAVE (UNIFIED) ----------------
     const persistRecord = async (newForm) => {
-        await apiUtils.put(
+        await apiUtils.patch(
             `/patientRecord/updatePatientRecord/${patientRecordId}`,
             newForm
         );
         setPatient(newForm);
-        setEditForm(newForm); // keep UI in sync after saving
+        setEditForm(newForm);
     };
 
     // ------- GLOBAL EDIT --------
@@ -383,11 +393,11 @@ export default function PatientsDetail() {
                     loading={treatmentLoading}
                     error={treatmentError}
                     plan={treatmentPlan}
-                    sessions={sessions}
-                    latest={latestSession}
+                    sections={sections}
+                    latest={latestSection}
                     onUpdatePlan={updateTreatmentPlan}
-                    onUpdateLatest={updateLatestSession}
-                    onCreateSession={createSession}
+                    onUpdateLatest={updateLatestSection}
+                    onCreateSection={createSection}
                     onRefetch={refetchTreatment}
                 />
 

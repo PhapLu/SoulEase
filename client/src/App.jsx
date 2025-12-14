@@ -25,6 +25,7 @@ import DoctorDetail from "./pages/workSpace/doctors/doctorDetail/DoctorDetail.js
 import MessagesList from "./components/conversation/conversations/Conversations.jsx";
 import ConversationDetail from "./components/conversation/conversationDetail/ConversationDetail.jsx";
 import ConversationsLayout from "./pages/workSpace/conversation/ConversationsLayout.jsx";
+import CreateSectionPage from "./pages/workSpace/patients/patientsDetail/TreatmentSection/CreateSectionPage.jsx";
 
 // import Message from "./pages/workSpace/message/message.jsx";
 
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
                 children: [{ path: ":conversationId", element: null }],
             },
             { path: "notifications", element: <Notifications /> },
+            {
+                path: "patients/folder/:folderId/:patientRecordId/section/new",
+                element: <CreateSectionPage />,
+            },
         ],
     },
 ]);
