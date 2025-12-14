@@ -1,41 +1,66 @@
 # utils/db.py
 from pymongo import MongoClient
 from datetime import datetime, timedelta
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, AIMessage
 from config import MONGO_URI
 
 client = MongoClient(MONGO_URI)
 db = client.get_database() 
 
-def load_conversations_from_mongo(limit: int = 200) -> list[HumanMessage]:
-    """
-    Returns the last 7 days of conversations from MongoDB
-    """
-    try:
-        # 7 days ago in UTC (MongoDB stores in UTC)
-        seven_days_ago = datetime.utcnow() - timedelta(days=7)
+def save_message(patient_id: str, sender: str, content: str, timestamp: datetime = None):
+    if timestamp is None:
+        timestamp = datetime.utcnow()
 
-        query = {"timestamp": {"$gte": seven_days_ago}}
+    doc = {
+        "patient_id": str(patient_id),
+        "sender": sender,       
+        "content": content,
+        "timestamp": timestamp,
+    }
 
-        cursor = (
-            db.conversations
-            .find(query)
-            .sort("timestamp", 1)
-            .limit(limit)
-        )
+    db.conversations.insert_one(doc)
+    return doc
+# load_conversations_from_mongo
+def load_conversations_from_mongo(patient_id: str, limit: int = 200):
+    seven_days_ago = datetime.utcnow() - timedelta(days=7)
 
-        messages = []
-        for doc in cursor:
-            content = (
-                doc.get("content") or
-                doc.get("message") or
-                doc.get("text") or
-                ""
-            )
-            if content.strip():
-                messages.append(HumanMessage(content=content.strip()))
-        return messages
+    cursor = (
+        db.conversations
+        .find({
+            "patient_id": patient_id,
+            "timestamp": {"$gte": seven_days_ago}
+        })
+        .sort("timestamp", 1)
+        .limit(limit)
+    )
 
-    except Exception as e:
-        print(f"[MongoDB Error] {e}")
-        return []
+    messages = []
+    for doc in cursor:
+        if doc["sender"] == "user":
+            messages.append(HumanMessage(content=doc["content"]))
+        else:
+            messages.append(AIMessage(content=doc["content"]))
+
+    return messages
+
+def load_conversations_for_ai(patient_id: str, limit: int = 200):
+    seven_days_ago = datetime.utcnow() - timedelta(days=7)
+
+    cursor = (
+        db.conversations
+        .find({
+            "patient_id": patient_id,
+            "timestamp": {"$gte": seven_days_ago}
+        })
+        .sort("timestamp", 1)
+        .limit(limit)
+    )
+
+    return [
+        {
+            "sender": doc["sender"],
+            "text": doc["content"],
+            "timestamp": doc["timestamp"].isoformat(),
+        }
+        for doc in cursor
+    ]

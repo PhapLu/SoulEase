@@ -14,7 +14,6 @@ def main():
     
     print("Soulra is ready")
     recent_convs = load_conversations()
-    # last_prescription = "Sertraline 50mg x 1 tablet/day, Alprazolam 0.25mg as needed."
 
     while True:
         user_input = input("\nYou: ")
@@ -24,7 +23,6 @@ def main():
         inputs = {
             "messages": [HumanMessage(content=user_input)],
             "recent_conversations": recent_convs,
-            # "last_prescription": last_prescription,
             "next_agent": None,
             "summary": "",
             "prescription": ""

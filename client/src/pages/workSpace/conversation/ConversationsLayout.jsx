@@ -27,7 +27,7 @@ export default function ConversationsLayout() {
                     ) : (
                         <div className='ws-empty'>
                             <div className='ws-empty__card'>
-                                <h3>SoulEase xin chào</h3>
+                                <h3>Hello Doctor</h3>
                                 <p>Choose a chat on the left to view messages and talk with your patient.</p>
                             </div>
                         </div>

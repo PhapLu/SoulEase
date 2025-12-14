@@ -323,7 +323,7 @@
     font-size: 14px;
 }
 
-.ws-assistant__bubble--reply {
+.ws-assistant__bubble--reply, .ws-assistant__bubble.ai {
     align-self: flex-start;
     align-items: center;
 }
