@@ -1,0 +1,16 @@
+2025-12-15 00:02:03::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::5576a5e2-f2a1-45e8-a7b2-d217ef71a5b7::input-params ::GET::::{}
+2025-12-15 00:02:03::info::/v1/api/treatment/plan/693a8c925dbe463b3ad4c21a::caaa728d-1461-4e0c-b707-56299575ffae::input-params ::GET::::{}
+2025-12-15 00:02:03::error::/v1/api/treatment/plan/693a8c925dbe463b3ad4c21a::caaa728d-1461-4e0c-b707-56299575ffae::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-15 00:02:03::info::/v1/api/treatment/sessions/693a8c925dbe463b3ad4c21a::b7bca5ce-5400-403f-af26-1ea260c1fee1::input-params ::GET::::{}
+2025-12-15 00:02:03::error::/v1/api/treatment/sessions/693a8c925dbe463b3ad4c21a::b7bca5ce-5400-403f-af26-1ea260c1fee1::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-15 00:02:03::info::/v1/api/treatment/sessions/latest/693a8c925dbe463b3ad4c21a::96e04dec-13ec-429b-b19d-f1896d6c0050::input-params ::GET::::{}
+2025-12-15 00:02:03::error::/v1/api/treatment/sessions/latest/693a8c925dbe463b3ad4c21a::96e04dec-13ec-429b-b19d-f1896d6c0050::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-15 00:02:03::info::/v1/api/user/me::291f800a-7e62-45cc-b171-c8e0582214a1::input-params ::GET::::{}
+2025-12-15 00:02:03::info::/v1/api/treatment/plan/693a8c925dbe463b3ad4c21a::b96467bd-4e49-4009-8a5b-40219279a9b7::input-params ::GET::::{}
+2025-12-15 00:02:03::error::/v1/api/treatment/plan/693a8c925dbe463b3ad4c21a::b96467bd-4e49-4009-8a5b-40219279a9b7::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-15 00:02:03::info::/v1/api/treatment/sessions/693a8c925dbe463b3ad4c21a::fbeea660-a6e5-4bb7-ac92-fb2d1a83c124::input-params ::GET::::{}
+2025-12-15 00:02:03::error::/v1/api/treatment/sessions/693a8c925dbe463b3ad4c21a::fbeea660-a6e5-4bb7-ac92-fb2d1a83c124::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-15 00:02:03::info::/v1/api/treatment/sessions/latest/693a8c925dbe463b3ad4c21a::01824662-e918-49ba-85d4-6e3099c6e713::input-params ::GET::::{}
+2025-12-15 00:02:03::error::/v1/api/treatment/sessions/latest/693a8c925dbe463b3ad4c21a::01824662-e918-49ba-85d4-6e3099c6e713::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-15 00:02:04::info::/v1/api/user/me::f1e22c90-ef49-4c06-836e-e78fcb6a5c6d::input-params ::GET::::{}
+2025-12-15 00:02:04::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::f2ae4fd9-d8fb-4b9a-8c61-d0844f0a9152::input-params ::GET::::{}

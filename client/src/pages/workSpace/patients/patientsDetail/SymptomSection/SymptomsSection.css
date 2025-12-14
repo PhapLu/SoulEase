@@ -1,0 +1,112 @@
+/* ========================= */
+/* SYMPTOMS SECTION  */
+/* ========================= */
+
+.pd-symptoms .pd-section-title > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pd-symptom-header {
+    font-weight: 600;
+    color: var(--text-color-dark);
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e5f1eb;
+}
+
+.pd-symptom-col-title {
+    flex: 1;
+    font-size: 15px;
+}
+
+.pd-symptom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 80px;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.symptom-add-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 14px;
+}
+
+/* Add + button */
+.symptom-add-btn {
+    background: var(--tertiary-color);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 0 4px 10px var(--border-shadow);
+    transition: 0.15s;
+}
+.symptom-add-btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Symptom row */
+.pd-symptom-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 2px;
+}
+
+/* Symptom input */
+.pd-input--symptom {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 15px;
+    background: #fff;
+}
+.pd-input--symptom:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Remove button */
+.symptom-remove-btn {
+    background: #fff;
+    border: 1px solid #f3b6b6;
+    color: var(--danger);
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.15s;
+    white-space: nowrap;
+}
+.symptom-remove-btn:hover {
+    background: #ffeaea;
+}
+
+/* Symptom text (view mode) */
+.pd-symptom-text {
+    padding: 6px 4px;
+    font-size: 15px;
+    color: var(--text-color-dark);
+}
+
+/* Placeholder */
+.pd-note-placeholder {
+    padding: 12px 4px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* Make symptoms container spacing consistent */
+.pd-symptoms .pd-note-card {
+    padding: 16px 14px;
+}
