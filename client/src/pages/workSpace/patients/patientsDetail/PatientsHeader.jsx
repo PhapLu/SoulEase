@@ -1,5 +1,5 @@
 // PatientsHeader.jsx
-import EditIcon from "../../EditIcon";
+import { EditIcon, RemoveIcon, AddIcon } from "../../Icon";
 import InfoField from "./PatientInfoField";
 
 export default function PatientsHeader({

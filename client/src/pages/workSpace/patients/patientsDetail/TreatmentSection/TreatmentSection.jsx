@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./treatmentSection.css";
-import { EditIcon, RemoveIcon, AddIcon } from "../../../Icons";
+import { EditIcon, RemoveIcon, AddIcon } from "../../../Icon.jsx";
 
 function RiskBadge({ level = "Low" }) {
     const norm = (level || "Low").toLowerCase();
