@@ -6,8 +6,6 @@ import dotenv from 'dotenv'
 import Conversation from '../models/conversation.model.js'
 dotenv.config()
 
-const sortByDateDesc = (a, b) => (b.date || '').localeCompare(a.date || '')
-
 class PatientRecordService {
     static createPatientRecord = async (req) => {
         const doctorId = req.userId
@@ -91,9 +89,7 @@ class PatientRecordService {
         if (!user) throw new AuthFailureError('Please login to continue')
 
         // 2. Fetch all records created by this doctor
-        const records = await PatientRecord.find({ doctorId: userId }).sort({
-            createdAt: -1,
-        })
+        const records = await PatientRecord.find({ doctorId: userId }).sort({ createdAt: -1 })
 
         return { records }
     }
@@ -106,8 +102,8 @@ class PatientRecordService {
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
 
-        // 2. Check patient
-        const patient = await User.findById(patientId).select('fullName email phone gender birthday address').lean()
+        // 2. Check patient (include dob for backward compatibility)
+        const patient = await User.findById(patientId).select('fullName email phone gender birthday dob address').lean()
 
         if (!patient) throw new NotFoundError('Patient not found')
 
@@ -115,20 +111,35 @@ class PatientRecordService {
         const record = await PatientRecord.findOne({
             patientId,
             doctorId: userId,
-        }).lean()
+        })
+            .lean()
+            .exec()
 
         if (!record) throw new NotFoundError('Record not found')
 
         // 4. Merge into 1 clean FLAT object
         // Normalize birthday to date-only string to avoid timezone suffix
         const birthdayRaw = patient?.birthday || patient?.dob
-        const birthdayDateOnly = birthdayRaw && !Number.isNaN(new Date(birthdayRaw).getTime()) ? new Date(birthdayRaw).toISOString().split('T')[0] : undefined
+        const birthdayDateOnly =
+            birthdayRaw && !Number.isNaN(new Date(birthdayRaw).getTime())
+                ? new Date(birthdayRaw).toISOString().split('T')[0]
+                : undefined
 
         const mergedRecord = {
             recordId: record._id, // <— The REAL patientRecord ID
             ...patient, // patient info
             ...record, // record info
             _id: record._id, // keep `_id` as record ID too (optional)
+            birthday: birthdayDateOnly || record?.birthday,
+            symptoms: (record?.symptoms || []).map((s) => ({
+                name: s?.name || '',
+                sign: s?.sign || '',
+                date:
+                    s?.date && !Number.isNaN(new Date(s.date).getTime())
+                        ? new Date(s.date).toISOString().split('T')[0]
+                        : '',
+                status: s?.status || 'Active',
+            })),
         }
 
         return { patientRecord: mergedRecord }
@@ -139,16 +150,14 @@ class PatientRecordService {
         const recordId = req.params.recordId
 
         const { title, recordType, symptoms, diagnosis, moodLevel, treatmentPlan, medications, attachments, caregiverNotes, doctorNotes, visibility, folderId } = req.body
+        const { fullName, email, phone, address, gender, birthday, dob } = req.body
 
         // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
 
         // 2. Check record
-        const record = await PatientRecord.findOne({
-            _id: recordId,
-            doctorId: userId,
-        })
+        const record = await PatientRecord.findOne({ _id: recordId, doctorId: userId })
         if (!record) throw new NotFoundError('Record not found')
 
         // 2.1 Load patient user for header updates
@@ -157,18 +166,37 @@ class PatientRecordService {
 
         // OPTIONAL: Check folder ownership if changing folder
         if (folderId) {
-            const folder = await Folder.findOne({
-                _id: folderId,
-                doctorId: userId,
-            })
+            const folder = await Folder.findOne({ _id: folderId, doctorId: userId })
             if (!folder) throw new NotFoundError('Folder not found or unauthorized')
             record.folderId = folderId
         }
 
-        // 3. Update fields
+        // 3. Update record fields
         if (title && title.trim() !== '') record.title = title.trim()
         if (recordType) record.recordType = recordType
-        if (symptoms) record.symptoms = symptoms
+        if (symptoms) {
+            const normalizedSymptoms = Array.isArray(symptoms)
+                ? symptoms.map((s) => {
+                      const name = s?.name ? String(s.name).trim() : ''
+                      const sign = s?.sign ? String(s.sign).trim() : ''
+                      const statusRaw = s?.status ? String(s.status) : 'Active'
+                      const status = statusRaw.toLowerCase() === 'resolved' ? 'Resolved' : 'Active'
+                      const dateRaw = s?.date || s?.createdAt || s?.updatedAt
+                      let date = null
+                      if (dateRaw) {
+                          const d = new Date(dateRaw)
+                          if (!Number.isNaN(d.getTime())) date = d
+                      }
+                      return {
+                          name,
+                          sign,
+                          status,
+                          date: date || new Date(),
+                      }
+                  })
+                : []
+            record.symptoms = normalizedSymptoms
+        }
         if (diagnosis !== undefined) record.diagnosis = diagnosis.trim()
         if (moodLevel !== undefined) record.moodLevel = moodLevel
         if (treatmentPlan !== undefined) record.treatmentPlan = treatmentPlan.trim()
@@ -179,6 +207,31 @@ class PatientRecordService {
         if (visibility) record.visibility = visibility
 
         await record.save()
+
+        // 4. Update patient profile fields (header)
+        const updates = {}
+        if (fullName !== undefined) updates.fullName = String(fullName).trim()
+        if (email !== undefined) updates.email = String(email).trim()
+        if (phone !== undefined) updates.phone = String(phone).trim()
+        if (address !== undefined) updates.address = String(address).trim()
+        if (gender !== undefined) {
+            const g = String(gender).toLowerCase()
+            if (['male', 'female', 'other'].includes(g)) {
+                updates.gender = g
+            }
+        }
+        const birthValue = birthday || dob
+        if (birthValue !== undefined && birthValue !== null && birthValue !== '') {
+            const date = new Date(birthValue)
+            if (!isNaN(date.getTime())) {
+                updates.dob = date
+            }
+        }
+
+        if (Object.keys(updates).length) {
+            Object.assign(patient, updates)
+            await patient.save()
+        }
 
         return { record }
     }
@@ -192,164 +245,13 @@ class PatientRecordService {
         if (!user) throw new AuthFailureError('Please login to continue')
 
         // 2. Check record
-        const record = await PatientRecord.findOne({
-            _id: recordId,
-            doctorId: userId,
-        })
+        const record = await PatientRecord.findOne({ _id: recordId, doctorId: userId })
         if (!record) throw new NotFoundError('Record not found')
 
         // 3. Delete
         await record.deleteOne()
 
         return { message: 'Record deleted successfully' }
-    }
-
-    // ----- TREATMENT -----
-
-    static getRecordByPatientId = async (doctorId, patientId) => {
-        const record = await PatientRecord.findOne({ doctorId, patientId })
-        if (!record) throw new NotFoundError('Record not found')
-        return record
-    }
-
-    static getTreatmentPlan = async (req) => {
-        const doctorId = req.userId
-        const { patientId } = req.params
-
-        const user = await User.findById(doctorId)
-        if (!user) throw new AuthFailureError('Please login to continue')
-
-        const record = await PatientRecordService.getRecordByPatientId(doctorId, patientId)
-        return { plan: record.treatmentPlanData || null }
-    }
-
-    static updateTreatmentPlan = async (req) => {
-        const doctorId = req.userId
-        const { patientId } = req.params
-        const payload = req.body || {}
-
-        const user = await User.findById(doctorId)
-        if (!user) throw new AuthFailureError('Please login to continue')
-
-        const record = await PatientRecordService.getRecordByPatientId(doctorId, patientId)
-
-        record.treatmentPlanData = {
-            ...(record.treatmentPlanData || {}),
-            title: payload.title ?? record.treatmentPlanData?.title ?? '',
-            goals: payload.goals ?? record.treatmentPlanData?.goals ?? '',
-            startDate: payload.startDate ?? record.treatmentPlanData?.startDate ?? '',
-            frequency: payload.frequency ?? record.treatmentPlanData?.frequency ?? '',
-        }
-
-        await record.save()
-        return { plan: record.treatmentPlanData }
-    }
-
-    static listTreatmentSections = async (req) => {
-        const doctorId = req.userId
-        const { patientId } = req.params
-
-        const user = await User.findById(doctorId)
-        if (!user) throw new AuthFailureError('Please login to continue')
-
-        const record = await PatientRecordService.getRecordByPatientId(doctorId, patientId)
-
-        const sections = Array.isArray(record.treatmentSections) ? [...record.treatmentSections] : []
-
-        sections.sort(sortByDateDesc)
-        return { sections }
-    }
-
-    static getLatestTreatmentSection = async (req) => {
-        const doctorId = req.userId
-        const { patientId } = req.params
-
-        const user = await User.findById(doctorId)
-        if (!user) throw new AuthFailureError('Please login to continue')
-
-        const record = await PatientRecordService.getRecordByPatientId(doctorId, patientId)
-
-        const sections = Array.isArray(record.treatmentSections) ? [...record.treatmentSections] : []
-
-        sections.sort(sortByDateDesc)
-        return { section: sections[0] || null }
-    }
-
-    static createTreatmentSection = async (req) => {
-        const doctorId = req.userId
-        const { patientId } = req.params
-        const payload = req.body || {}
-
-        const user = await User.findById(doctorId)
-        if (!user) throw new AuthFailureError('Please login to continue')
-
-        const record = await PatientRecordService.getRecordByPatientId(doctorId, patientId)
-
-        const section = {
-            id: payload.id || `sess-${Date.now()}`,
-            date: payload.date || '',
-            focus: payload.focus || '',
-            phq9: payload.phq9 ?? null,
-            gad7: payload.gad7 ?? null,
-            severity: Number(payload.severity ?? 0),
-            risk: payload.risk || 'Low',
-            status: payload.status || 'Planned',
-            note: payload.note || '',
-        }
-
-        record.treatmentSections = Array.isArray(record.treatmentSections) ? record.treatmentSections : []
-
-        record.treatmentSections.push(section)
-        await record.save()
-
-        return { section }
-    }
-
-    static updateTreatmentSection = async (req) => {
-        const doctorId = req.userId
-        const { patientId, sectionId } = req.params
-        const payload = req.body || {}
-
-        const user = await User.findById(doctorId)
-        if (!user) throw new AuthFailureError('Please login to continue')
-
-        const record = await PatientRecordService.getRecordByPatientId(doctorId, patientId)
-
-        const sections = Array.isArray(record.treatmentSections) ? record.treatmentSections : []
-
-        const idx = sections.findIndex((s) => String(s.id) === String(sectionId))
-        if (idx === -1) throw new NotFoundError('Section not found')
-
-        sections[idx] = {
-            ...sections[idx],
-            ...payload,
-            severity: payload.severity === undefined ? sections[idx].severity : Number(payload.severity),
-        }
-
-        record.treatmentSections = sections
-        await record.save()
-
-        return { section: sections[idx] }
-    }
-
-    static deleteTreatmentSection = async (req) => {
-        const doctorId = req.userId
-        const { patientId, sectionId } = req.params
-
-        const user = await User.findById(doctorId)
-        if (!user) throw new AuthFailureError('Please login to continue')
-
-        const record = await PatientRecordService.getRecordByPatientId(doctorId, patientId)
-
-        const sections = Array.isArray(record.treatmentSections) ? record.treatmentSections : []
-
-        const next = sections.filter((s) => String(s.id) !== String(sectionId))
-        if (next.length === sections.length) throw new NotFoundError('Section not found')
-
-        record.treatmentSections = next
-        await record.save()
-
-        return { ok: true }
     }
 }
 

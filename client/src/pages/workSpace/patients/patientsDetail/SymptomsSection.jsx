@@ -1,6 +1,4 @@
-import { EditIcon, RemoveIcon, AddIcon } from "../../../Icons";
-import "./SymptomsSection.css";
-
+// SymptomsSection.jsx
 export default function SymptomsSection({
     symptoms,
     editingSymptoms,
@@ -104,7 +102,7 @@ export default function SymptomsSection({
                                     className="symptom-remove-btn"
                                     onClick={() => onRemoveSymptom(idx)}
                                 >
-                                    <RemoveIcon />
+                                    Remove
                                 </button>
                             </>
                         ) : (
@@ -134,18 +132,17 @@ export default function SymptomsSection({
                     </div>
                 ))}
 
-                {/* ADD BUTTON  */}
+                {/* ADD BUTTON — Y HỆT CODE GỐC */}
                 {!editingSymptoms ? (
                     <div className="symptom-add-container">
                         <button
                             className="symptom-add-btn"
                             onClick={() => {
                                 onAddSymptom();
-                                setEditingSymptoms(true);
+                                setEditingSymptoms(true); // switch to EDIT MODE
                             }}
                         >
-                            <AddIcon color="white" />
-                            <span>Add</span>
+                            Add +
                         </button>
                     </div>
                 ) : (
@@ -154,8 +151,7 @@ export default function SymptomsSection({
                             className="symptom-add-btn"
                             onClick={onAddSymptom}
                         >
-                            <AddIcon color="white" />
-                            <span>Add</span>
+                            Add +
                         </button>
                     </div>
                 )}
