@@ -8,16 +8,13 @@ const SessionSchema = new Schema(
     {
         doctorId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
         patientId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-
         sessionDate: { type: Date, default: Date.now },
         sessionType: {
             type: String,
             enum: ['in_person', 'video_call', 'audio_call', 'chat'],
             default: 'in_person',
         },
-
         durationMinutes: { type: Number, default: 45 },
-
         summary: { type: String, default: '', trim: true },
         keyPoints: [{ type: String, trim: true }],
         riskLevel: {
@@ -25,9 +22,7 @@ const SessionSchema = new Schema(
             enum: ['low', 'medium', 'high'],
             default: 'low',
         },
-
         nextSteps: { type: String, default: '', trim: true },
-
         isCompleted: { type: Boolean, default: true },
     },
     {
