@@ -1,10 +1,10 @@
 // TreatmentSession.jsx
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./treatmentSession.css";
-import { EditIcon, RemoveIcon, AddIcon, EndIcon } from "../../../Icon.jsx";
 import StageModal from "./StageModal.jsx";
-import CreateSessionModal from "./CreateSessionPage.jsx"; // your existing modal/page component
+import { apiUtils } from "../../../../../utils/newRequest.js";
+import { AddIcon, EndIcon } from "../../../Icon.jsx";
 
 function RiskBadge({ level = "Low" }) {
     const norm = (level || "Low").toLowerCase();
@@ -25,17 +25,14 @@ function SeverityPill({ value = 0 }) {
                 className="tp-severity__bar"
                 aria-label={`Severity ${v} out of 10`}
             >
-                <div
-                    className="tp-severity__fill"
-                    style={{ width: `${(v / 10) * 100}%` }}
-                />
+                <div className="tp-severity__fill"></div>
             </div>
             <div className="tp-severity__value">{v}/10</div>
         </div>
     );
 }
 
-function ActionsDropdown({ onEndSession, onCreateSession }) {
+function ActionsDropdown({ onCompleteStage, onCreateSession }) {
     const [open, setOpen] = useState(false);
     const ref = useRef(null);
 
@@ -65,11 +62,11 @@ function ActionsDropdown({ onEndSession, onCreateSession }) {
                         type="button"
                         onClick={() => {
                             setOpen(false);
-                            onEndSession?.();
+                            onCompleteStage?.();
                         }}
                     >
                         <EndIcon size={16} />
-                        End session
+                        Complete Stage
                     </button>
 
                     <button
@@ -101,165 +98,96 @@ export default function TreatmentSession({
     const { folderId, patientRecordId: prIdFromUrl } = useParams();
     const prId = patientRecordId || prIdFromUrl;
     const navigate = useNavigate();
-
-    // ---- Modals
-    const [openEndSession, setOpenEndSession] = useState(false);
-    const [openQuickUpdate, setOpenQuickUpdate] = useState(false);
-    const [openCreateSession, setOpenCreateSession] = useState(false);
-
-    const [savingEnd, setSavingEnd] = useState(false);
-    const [savingQuick, setSavingQuick] = useState(false);
-
-    // ---- End-session draft
-    const [endDraft, setEndDraft] = useState({
-        endStatus: "Completed",
-        endNote: "",
-    });
-
-    useEffect(() => {
-        if (!openEndSession) return;
-        setEndDraft({
-            endStatus: "Completed",
-            endNote: "",
-        });
-    }, [openEndSession]);
-
-    // ---- Quick update
-    const [quickDraft, setQuickDraft] = useState({ noteAppend: "" });
-    useEffect(() => {
-        if (!openQuickUpdate) return;
-        setQuickDraft({ noteAppend: "" });
-    }, [openQuickUpdate]);
-
-    const handleEndSession = async (e) => {
-        e.preventDefault();
-        if (!onUpdateLatest || !latest?.id) return;
-
-        setSavingEnd(true);
-        try {
-            const append = (endDraft.endNote || "").trim();
-            const mergedNote =
-                (latest?.note || "") +
-                (append ? (latest?.note ? "\n" : "") + append : "");
-
-            // Mark the latest session as ended (status => Completed/Cancelled)
-            await onUpdateLatest(latest.id, {
-                status: endDraft.endStatus,
-                note: mergedNote,
-            });
-
-            setOpenEndSession(false);
-
-            // After ending, immediately open create-session modal for the next session
-            setOpenCreateSession(true);
-
-            onRefetch?.();
-        } finally {
-            setSavingEnd(false);
-        }
+    const goToTreatment = () => {
+        if (!folderId || !prId) return;
+        navigate(`/workspace/patients/folder/${folderId}/${prId}/treatment`);
+    };
+    const goToCreateSession = () => {
+        if (!folderId || !prId) return;
+        navigate(
+            `/workspace/patients/folder/${folderId}/${prId}/treatment/create-session`
+        );
     };
 
-    const handleQuickUpdate = async (e) => {
-        e.preventDefault();
-        if (!onUpdateLatest || !latest?.id) return;
+    // ---- Complete stage modal
+    const [confirmStage, setConfirmStage] = useState(false);
+    const [savingStage, setSavingStage] = useState(false);
 
-        const append = (quickDraft.noteAppend || "").trim();
-        if (!append) return;
-
-        setSavingQuick(true);
-        try {
-            const mergedNote =
-                (latest?.note || "") + (latest?.note ? "\n" : "") + append;
-
-            await onUpdateLatest(latest.id, { note: mergedNote });
-
-            setOpenQuickUpdate(false);
-            onRefetch?.();
-        } finally {
-            setSavingQuick(false);
-        }
-    };
-
-    const handleDeleteLatest = async () => {
-        // NOTE: There is no delete endpoint yet.
-        alert("There is no DELETE session endpoint yet.");
-    };
+    const currentLatest =
+        latest || (Array.isArray(sessions) && sessions.length ? sessions[0] : null);
+    const stageLabelRaw =
+        currentLatest?.stage || currentLatest?.status || "Stage 1";
+    const stageLabel = stageLabelRaw.replace(/&amp;/g, "&");
 
     return (
         <div
-            className="tp-page"
-            style={{ marginTop: 18, padding: 0, maxWidth: "unset" }}
-        >
+            className="tp">
             {/* Header */}
-            <div className="tp-header" style={{ marginBottom: 14 }}>
+            <div className="tp-header">
                 <div className="pd-treatment">
                     {/* CLICK TITLE => GO TO DETAIL PAGE */}
                     <h3
-                        style={{ cursor: "pointer" }}
                         title="Open treatment details"
-                        onClick={() => {
-                            if (!folderId || !prId) return;
-                            navigate(
-                                `/workspace/patients/folder/${folderId}/${prId}/treatment`
-                            );
-                        }}
+                        onClick={goToTreatment}
                     >
                         Treatment Progress
                     </h3>
                 </div>
 
                 <div className="tp-header__actions">
-                    <ActionsDropdown
-                        onEndSession={() => setOpenEndSession(true)}
-                        onCreateSession={() => setOpenCreateSession(true)}
-                    />
+                    {currentLatest ? (
+                        <ActionsDropdown
+                            onCompleteStage={() => setConfirmStage(true)}
+                            onCreateSession={goToCreateSession}
+                        />
+                    ) : null}
                 </div>
             </div>
 
             {error ? <div className="tp-error">{error}</div> : null}
 
             {loading ? (
-                <div className="tp-empty">Loading...</div>
+                <div className="tp-session">Loading...</div>
             ) : (
-                <div className="tp-grid">
+                <div>
                     {/* Latest session card */}
                     <section className="tp-card">
                         <div className="tp-card__top">
                             <div>
-                                <div className="tp-card__kicker">STAGE 3</div>
+                                <div className="tp-card__kicker">{stageLabel}</div>
                                 <div className="tp-card__title">
                                     Latest session
                                 </div>
                             </div>
-                            <span className="tp-chip">Update</span>
                         </div>
 
-                        {!latest ? (
-                            <div className="tp-empty">No latest session.</div>
+                        {!currentLatest ? (
+                            <button
+                                type="button"
+                                className="tp-session tp-session--link"
+                                onClick={goToTreatment}
+                            >
+                                No latest session.
+                            </button>
                         ) : (
                             <>
                                 {/* Click latest => go to detail page */}
                                 <button
                                     className="tp-latest-click"
-                                    onClick={() => {
-                                        if (!folderId || !prId) return;
-                                        navigate(
-                                            `/workspace/patients/folder/${folderId}/${prId}/treatment`
-                                        );
-                                    }}
+                                    onClick={goToTreatment}
                                     title="Click to view all sessions"
                                 >
                                     <div className="tp-latest__row">
                                         <div className="tp-latest__meta">
                                             <div className="tp-latest__date">
-                                                {latest.date || "—"}
+                                                {currentLatest.date || "—"}
                                             </div>
                                             <div className="tp-latest__focus">
-                                                {latest.focus || "—"}
+                                                {currentLatest.focus || "—"}
                                             </div>
                                         </div>
                                         <RiskBadge
-                                            level={latest.risk || "Low"}
+                                            level={currentLatest.risk || "Low"}
                                         />
                                     </div>
 
@@ -269,7 +197,7 @@ export default function TreatmentSession({
                                                 PHQ-9
                                             </div>
                                             <div className="tp-metric__value">
-                                                {latest.phq9 ?? "—"}
+                                                {currentLatest.phq9 ?? "—"}
                                             </div>
                                         </div>
                                         <div className="tp-metric">
@@ -277,202 +205,110 @@ export default function TreatmentSession({
                                                 GAD-7
                                             </div>
                                             <div className="tp-metric__value">
-                                                {latest.gad7 ?? "—"}
-                                            </div>
-                                        </div>
-                                        <div className="tp-metric">
-                                            <div className="tp-metric__label">
-                                                Status
-                                            </div>
-                                            <div className="tp-metric__value">
-                                                {latest.status ?? "—"}
+                                                {currentLatest.gad7 ?? "—"}
                                             </div>
                                         </div>
                                     </div>
 
                                     <SeverityPill
-                                        value={latest.severity ?? 0}
+                                        value={currentLatest.severity ?? 0}
                                     />
                                 </button>
 
-                                <div
-                                    className="tp-notes"
-                                    style={{ marginTop: 10 }}
-                                >
+                                <div className="tp-notes">
                                     <div className="tp-notes__label">Notes</div>
                                     <div className="tp-notes__text">
-                                        {latest.note || (
+                                        {currentLatest.note || (
                                             <span className="tp-muted">—</span>
                                         )}
                                     </div>
                                 </div>
 
-                                <div className="tp-actions">
-                                    <button
-                                        className="tp-btn-icon tp-btn-icon--ghost"
-                                        onClick={() => setOpenQuickUpdate(true)}
-                                    >
-                                        <EditIcon size={16} />
-                                        Quick update
-                                    </button>
-
-                                    <button
-                                        className="tp-btn-icon tp-btn-icon--danger"
-                                        onClick={handleDeleteLatest}
-                                    >
-                                        <RemoveIcon size={18} />
-                                        Delete
-                                    </button>
-                                </div>
                             </>
                         )}
                     </section>
                 </div>
             )}
 
-            {/* ================= MODALS ================= */}
-
-            {/* End session (replaces Edit plan) */}
+            {/* Complete stage modal */}
             <StageModal
-                open={openEndSession}
-                title="End session"
-                onClose={() => setOpenEndSession(false)}
+                open={confirmStage}
+                title="Complete stage"
+                onClose={() => setConfirmStage(false)}
             >
-                {!latest ? (
-                    <div className="tp-empty">No latest session.</div>
+                {!currentLatest ? (
+                    <button
+                        type="button"
+                        className="tp-session tp-session--link"
+                        onClick={goToTreatment}
+                    >
+                        No latest session.
+                    </button>
                 ) : (
-                    <form className="tp-form" onSubmit={handleEndSession}>
-                        <div className="tp-form__grid">
-                            <label className="tp-form__field">
-                                <div className="tp-form__label">End status</div>
-                                <select
-                                    className="tp-input"
-                                    value={endDraft.endStatus}
-                                    onChange={(e) =>
-                                        setEndDraft((p) => ({
-                                            ...p,
-                                            endStatus: e.target.value,
-                                        }))
-                                    }
-                                >
-                                    <option>Completed</option>
-                                    <option>Cancelled</option>
-                                </select>
-                            </label>
-
-                            <label className="tp-form__field tp-form__field--span2">
-                                <div className="tp-form__label">
-                                    Closing notes (optional)
-                                </div>
-                                <textarea
-                                    className="tp-input tp-textarea"
-                                    rows={6}
-                                    value={endDraft.endNote}
-                                    onChange={(e) =>
-                                        setEndDraft((p) => ({
-                                            ...p,
-                                            endNote: e.target.value,
-                                        }))
-                                    }
-                                    placeholder="Add a closing note for this session..."
-                                />
-                            </label>
-
-                            <div className="tp-empty" style={{ marginTop: 6 }}>
-                                This action marks the latest session as ended.
-                                After saving, you can create a new session.
-                            </div>
+                    <div className="tp-form">
+                        <div className="tp-session" style={{ marginBottom: 12 }}>
+                            Mark <strong>{stageLabel}</strong> as completed?
                         </div>
-
                         <div className="tp-form__actions">
                             <button
                                 type="button"
                                 className="tp-btn tp-btn--ghost"
-                                onClick={() => setOpenEndSession(false)}
+                                onClick={() => setConfirmStage(false)}
                             >
-                                Cancel
+                                No
                             </button>
-                            <button
-                                type="submit"
-                                className="tp-btn"
-                                disabled={savingEnd}
-                            >
-                                {savingEnd ? "Saving..." : "End session"}
-                            </button>
-                        </div>
-                    </form>
-                )}
-            </StageModal>
-
-            {/* Quick update */}
-            <StageModal
-                open={openQuickUpdate}
-                title="Quick update · Notes"
-                onClose={() => setOpenQuickUpdate(false)}
-            >
-                {!latest ? (
-                    <div className="tp-empty">No latest session.</div>
-                ) : (
-                    <form className="tp-form" onSubmit={handleQuickUpdate}>
-                        <div className="tp-form__grid">
-                            <label className="tp-form__field tp-form__field--span2">
-                                <div className="tp-form__label">
-                                    Append note
-                                </div>
-                                <textarea
-                                    className="tp-input tp-textarea"
-                                    rows={6}
-                                    value={quickDraft.noteAppend}
-                                    onChange={(e) =>
-                                        setQuickDraft({
-                                            noteAppend: e.target.value,
-                                        })
-                                    }
-                                    placeholder="Type a quick update to append to existing notes..."
-                                />
-                            </label>
-                        </div>
-
-                        <div className="tp-form__actions">
                             <button
                                 type="button"
-                                className="tp-btn tp-btn--ghost"
-                                onClick={() => setOpenQuickUpdate(false)}
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                type="submit"
                                 className="tp-btn"
-                                disabled={savingQuick}
+                                disabled={savingStage}
+                                onClick={async () => {
+                                    if (!patientRecordId) return;
+                                    setSavingStage(true);
+                                    try {
+                                        const recordRes = await apiUtils.get(
+                                            `/patientRecord/readPatientRecord/${patientRecordId}`
+                                        );
+                                        const recordData =
+                                            recordRes?.data?.metadata?.patientRecord ||
+                                            recordRes?.data?.patientRecord ||
+                                            null;
+                                        const recordId = recordData?.recordId || recordData?._id;
+                                        const stageKey = String(stageLabelRaw)
+                                            .toLowerCase()
+                                            .includes("stage 2")
+                                            ? "stage2"
+                                            : String(stageLabelRaw)
+                                                  .toLowerCase()
+                                                  .includes("stage 3")
+                                            ? "stage3"
+                                            : "stage1";
+                                        await apiUtils.patch(
+                                            `/patientRecord/updatePatientRecord/${recordId}`,
+                                            {
+                                                treatmentPlan: {
+                                                    ...(recordData?.treatmentPlan || {}),
+                                                    stageStatus: {
+                                                        ...(recordData?.treatmentPlan?.stageStatus ||
+                                                            {}),
+                                                        [stageKey]: true,
+                                                    },
+                                                },
+                                            }
+                                        );
+                                        setConfirmStage(false);
+                                        onRefetch?.();
+                                    } catch (err) {
+                                        console.error(err);
+                                    }
+                                    setSavingStage(false);
+                                }}
                             >
-                                {savingQuick ? "Saving..." : "Save"}
+                                {savingStage ? "Completing..." : "Yes"}
                             </button>
                         </div>
-                    </form>
+                    </div>
                 )}
             </StageModal>
-
-            {/* Create session modal */}
-            <CreateSessionModal
-                open={openCreateSession}
-                onClose={() => setOpenCreateSession(false)}
-                patientRecordId={prId}
-                folderId={folderId}
-                onCreated={() => {
-                    setOpenCreateSession(false);
-                    onRefetch?.();
-                }}
-            />
-
-            {/* hidden link */}
-            <div style={{ display: "none" }}>
-                <Link
-                    to={`/workspace/patients/folder/${folderId}/${prId}/treatment`}
-                >
-                    Treatment details
-                </Link>
-            </div>
         </div>
     );
 }

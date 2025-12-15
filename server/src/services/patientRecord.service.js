@@ -167,7 +167,7 @@ class PatientRecordService {
         const userId = req.userId
         const recordId = req.params.recordId
 
-        const { title, recordType, symptoms, diagnosis, moodLevel, treatmentPlan, medications, attachments, caregiverNotes, doctorNotes, visibility, folderId } = req.body
+        const { title, recordType, symptoms, diagnosis, moodLevel, treatmentPlan, treatmentSessions, treatmentSections, medications, attachments, caregiverNotes, doctorNotes, visibility, folderId } = req.body
         const { fullName, email, phone, address, gender, birthday, dob } = req.body
 
         // 1. Check user
@@ -217,7 +217,9 @@ class PatientRecordService {
         }
         if (diagnosis !== undefined) record.diagnosis = diagnosis.trim()
         if (moodLevel !== undefined) record.moodLevel = moodLevel
-        if (treatmentPlan !== undefined) record.treatmentPlan = treatmentPlan.trim()
+        if (treatmentPlan !== undefined) record.treatmentPlan = treatmentPlan
+        if (treatmentSessions) record.treatmentSessions = treatmentSessions
+        if (treatmentSections) record.treatmentSections = treatmentSections
         if (medications) record.medications = medications
         if (attachments) record.attachments = attachments
         if (caregiverNotes !== undefined) record.caregiverNotes = caregiverNotes.trim()

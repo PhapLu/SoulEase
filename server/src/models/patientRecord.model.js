@@ -33,7 +33,42 @@ const PatientRecordSchema = new Schema(
         diagnosis: { type: String, default: '', trim: true },
         moodLevel: { type: Number, min: 0, max: 10, default: null },
 
-        treatmentPlan: { type: String, default: '', trim: true },
+        // Flexible treatment plan object
+        treatmentPlan: { type: Schema.Types.Mixed, default: {} },
+        // Treatment sessions
+        treatmentSessions: [
+            {
+                id: { type: String, trim: true },
+                date: { type: String, trim: true },
+                focus: { type: String, trim: true },
+                // allow symptom objects or strings
+                symptoms: [{ type: Schema.Types.Mixed }],
+                phq9: { type: Number, min: 0, max: 27 },
+                gad7: { type: Number, min: 0, max: 21 },
+                severity: { type: Number, min: 0, max: 10 },
+                risk: { type: String, trim: true },
+                status: { type: String, trim: true },
+                note: { type: String, trim: true },
+                result: { type: String, trim: true },
+                treatment: { type: String, trim: true },
+            },
+        ],
+        treatmentSections: [
+            {
+                id: { type: String, trim: true },
+                date: { type: String, trim: true },
+                focus: { type: String, trim: true },
+                symptoms: [{ type: Schema.Types.Mixed }],
+                phq9: { type: Number, min: 0, max: 27 },
+                gad7: { type: Number, min: 0, max: 21 },
+                severity: { type: Number, min: 0, max: 10 },
+                risk: { type: String, trim: true },
+                status: { type: String, trim: true },
+                note: { type: String, trim: true },
+                result: { type: String, trim: true },
+                treatment: { type: String, trim: true },
+            },
+        ],
         medications: [
             {
                 name: { type: String, trim: true },

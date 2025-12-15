@@ -231,7 +231,6 @@ export default function PatientsDetail() {
         const updated = { ...editForm, symptoms: list };
         setEditForm(updated);
 
-        // Nếu không ở chế độ edit Symptoms, lưu ngay
         if (!editingSymptoms) {
             setSaving(true);
             try {
@@ -270,6 +269,14 @@ export default function PatientsDetail() {
 
     if (!editForm) return <div>Loading...</div>;
 
+    // treatment sessions sorted by date desc (latest first)
+    const sessions =
+        (Array.isArray(editForm?.treatmentSections) && [...editForm.treatmentSections]) ||
+        (Array.isArray(editForm?.treatmentSessions) && [...editForm.treatmentSessions]) ||
+        [];
+    sessions.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+    const latestSession = sessions[0] || null;
+
     return (
         <div className="pd-page">
             <WorkspaceTopBar />
@@ -299,7 +306,12 @@ export default function PatientsDetail() {
                     onRemoveSymptom={handleRemoveSymptom}
                 />
 
-                <TreatmentSession onStartEdit={handleStartEdit} />
+                <TreatmentSession
+                    patientRecordId={patientRecordId}
+                    sessions={sessions}
+                    latest={latestSession}
+                    onStartEdit={handleStartEdit}
+                />
 
                 <StorageSection />
 

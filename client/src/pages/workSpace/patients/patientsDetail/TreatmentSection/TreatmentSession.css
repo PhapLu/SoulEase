@@ -1,17 +1,13 @@
 .tp-page {
-    width: 100%;
-    max-width: 1100px;
-    margin: 26px auto 60px;
-    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
-
 /* ===== Header ===== */
 .tp-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 10px;
 }
 
 .tp-header__actions {
@@ -90,25 +86,34 @@
     color: #fff;
 }
 
-.tp-empty {
+.tp-session {
     color: var(--muted);
     background: rgba(255, 255, 255, 0.55);
     border: 1px solid var(--border);
     padding: 14px 16px;
     border-radius: 14px;
     line-height: 1.4;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+}
+
+.tp-session--link {
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.tp-session--link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(12, 45, 36, 0.08);
+}
+
+.tp-session--link:active {
+    transform: translateY(0);
 }
 
 .tp-muted {
     color: var(--muted);
-}
-
-/* ===== Grid / Cards ===== */
-.tp-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-bottom: 14px;
 }
 
 @media (max-width: 980px) {
@@ -118,11 +123,14 @@
 }
 
 .tp-card {
-    border-radius: 18px;
-    padding: 18px;
-    border: 1px solid var(--border);
-    background: #fff;
-    backdrop-filter: blur(10px);
+    background: #ffffff;
+    border: 1px solid #e5f1eb;
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 14px rgba(12, 45, 36, 0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
 }
 
 .tp-card--full {
@@ -133,22 +141,17 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 12px;
 }
 
 .tp-card__kicker {
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-dark-color);
+    padding: 6px 2px;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .tp-card__title {
-    margin-top: 4px;
     font-size: 20px;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .tp-chip {

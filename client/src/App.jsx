@@ -26,6 +26,7 @@ import MessagesList from "./components/conversation/conversations/Conversations.
 import ConversationDetail from "./components/conversation/conversationDetail/ConversationDetail.jsx";
 import ConversationsLayout from "./pages/workSpace/conversation/ConversationsLayout.jsx";
 import TreatmentDetailPage from "./pages/workSpace/patients/patientsDetail/TreatmentSection/TreatmentDetailPage.jsx";
+import CreateSessionPage from "./pages/workSpace/patients/patientsDetail/TreatmentSection/CreateSessionPage.jsx";
 // import Message from "./pages/workSpace/message/message.jsx";
 
 const router = createBrowserRouter([
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
             {
                 path: "patients/folder/:folderId/:patientRecordId/treatment",
                 element: <TreatmentDetailPage />,
+            },
+            {
+                path: "patients/folder/:folderId/:patientRecordId/treatment/create-session",
+                element: <CreateSessionPage />,
             },
         ],
     },

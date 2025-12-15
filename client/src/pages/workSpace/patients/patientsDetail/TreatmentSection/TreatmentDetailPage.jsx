@@ -2,9 +2,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./treatmentSession.css";
-import { EditIcon, RemoveIcon, AddIcon, EndIcon } from "../../../Icon.jsx";
+import { RemoveIcon, AddIcon, EndIcon } from "../../../Icon.jsx";
 import StageModal from "./StageModal.jsx";
-import CreateSessionModal from "./CreateSessionPage.jsx";
 import { apiUtils } from "../../../../../utils/newRequest.js";
 
 function RiskBadge({ level = "Low" }) {
@@ -26,17 +25,14 @@ function SeverityPill({ value = 0 }) {
                 className="tp-severity__bar"
                 aria-label={`Severity ${v} out of 10`}
             >
-                <div
-                    className="tp-severity__fill"
-                    style={{ width: `${(v / 10) * 100}%` }}
-                />
+                <div className="tp-severity__fill"/>
             </div>
             <div className="tp-severity__value">{v}/10</div>
         </div>
     );
 }
 
-function ActionsDropdown({ onEditPlan, onCreateSession }) {
+function ActionsDropdown({ onCompleteStage, onCreateSession }) {
     const [open, setOpen] = useState(false);
     const ref = useRef(null);
 
@@ -66,11 +62,11 @@ function ActionsDropdown({ onEditPlan, onCreateSession }) {
                         type="button"
                         onClick={() => {
                             setOpen(false);
-                            onEditPlan?.();
+                            onCompleteStage?.();
                         }}
                     >
-                        <EditIcon size={16} />
-                        Edit plan
+                        <EndIcon size={16} />
+                        Complete Stage
                     </button>
 
                     <button
@@ -93,6 +89,11 @@ function ActionsDropdown({ onEditPlan, onCreateSession }) {
 export default function TreatmentDetailPage() {
     const { folderId, patientRecordId } = useParams();
     const navigate = useNavigate();
+    const goToCreateSession = () => {
+        navigate(
+            `/workspace/patients/folder/${folderId}/${patientRecordId}/treatment/create-session`
+        );
+    };
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -105,9 +106,9 @@ export default function TreatmentDetailPage() {
     // Modals
     const [openPlanModal, setOpenPlanModal] = useState(false);
     const [openQuickUpdate, setOpenQuickUpdate] = useState(false);
-    const [openCreateSession, setOpenCreateSession] = useState(false);
 
     const [savingPlan, setSavingPlan] = useState(false);
+    const [confirmStage, setConfirmStage] = useState(false);
     const [savingQuick, setSavingQuick] = useState(false);
 
     // drafts
@@ -157,10 +158,30 @@ export default function TreatmentDetailPage() {
         record?.plan ||
         record?.treatmentProcess ||
         null;
+    const stageStatus = plan?.stageStatus || {};
     const sessions = Array.isArray(record?.treatmentSections)
         ? record.treatmentSections
         : [];
     const latest = sessions?.[0] || null;
+    const decodeText = (text) =>
+        typeof text === "string" ? text.replaceAll("&amp;", "&") : text;
+    const getStageNumber = (stage) => {
+        if (!stage) return 1;
+        const match = String(stage).match(/Stage\s*(\d)/i);
+        return match ? Number(match[1]) : 1;
+    };
+    const latestStage = latest ? getStageNumber(latest.stage || latest.status) : 1;
+
+    // group by stage
+    const groupedByStage = useMemo(() => {
+        const groups = { 1: [], 2: [], 3: [] };
+        sessions.forEach((s) => {
+            const n = getStageNumber(s.stage || s.status);
+            if (!groups[n]) groups[n] = [];
+            groups[n].push(s);
+        });
+        return groups;
+    }, [sessions]);
 
     // init drafts when open
     useEffect(() => {
@@ -188,7 +209,6 @@ export default function TreatmentDetailPage() {
         });
     }, [sessions, query]);
 
-    // update plan: patch whole record (giống style PatientsDetail đang làm)
     const handleSavePlan = async (e) => {
         e.preventDefault();
         if (!record) return;
@@ -214,6 +234,29 @@ export default function TreatmentDetailPage() {
             setError(
                 e2?.response?.data?.message || e2?.message || "Save plan failed"
             );
+        } finally {
+            setSavingPlan(false);
+        }
+    };
+
+    const handleCompleteStage = async () => {
+        if (!record || !latest) return;
+        const recordId = record.recordId || record._id;
+        if (!recordId) return;
+
+        const stageKey = `stage${latestStage}`;
+        setSavingPlan(true);
+        try {
+            await apiUtils.patch(`/patientRecord/updatePatientRecord/${recordId}`, {
+                treatmentPlan: {
+                    ...(record.treatmentPlan || {}),
+                    stageStatus: { ...(stageStatus || {}), [stageKey]: true },
+                },
+            });
+            setConfirmStage(false);
+            await refetch();
+        } catch (e2) {
+            setError(e2?.response?.data?.message || e2?.message || "Complete stage failed");
         } finally {
             setSavingPlan(false);
         }
@@ -264,19 +307,13 @@ export default function TreatmentDetailPage() {
     };
 
     return (
-        <div
-            className="tp-page"
-            style={{ marginTop: 18, padding: 0, maxWidth: "unset" }}
-        >
-            <div className="tp-header" style={{ marginBottom: 14 }}>
+        <div className="tp-page">
+            <div className="tp-header">
                 <div className="pd-treatment">
                     <h3>Treatment Progress</h3>
                 </div>
 
-                <div
-                    className="tp-header__actions"
-                    style={{ display: "flex", gap: 10 }}
-                >
+                <div className="tp-header__actions">
                     <button
                         className="tp-btn tp-btn--ghost"
                         type="button"
@@ -289,273 +326,132 @@ export default function TreatmentDetailPage() {
                         ← Back
                     </button>
 
-                    <ActionsDropdown
-                        onEditPlan={() => setOpenPlanModal(true)}
-                        onCreateSession={() => setOpenCreateSession(true)}
-                    />
+                    {latest ? (
+                        <ActionsDropdown
+                            onCompleteStage={() => setConfirmStage(true)}
+                            onCreateSession={goToCreateSession}
+                        />
+                    ) : null}
                 </div>
             </div>
 
             {error ? <div className="tp-error">{error}</div> : null}
             {loading ? (
-                <div className="tp-empty">Loading...</div>
+                <div className="tp-session">Loading...</div>
             ) : (
                 <>
-                    <div className="tp-grid">
-                        {/* STAGE 2 */}
-                        <section className="tp-card">
-                            <div className="tp-card__top">
-                                <div>
-                                    <div className="tp-card__kicker">
-                                        STAGE 2
-                                    </div>
-                                    <div className="tp-card__title">
-                                        Treatment process
-                                    </div>
-                                </div>
-                                <span className="tp-chip">Plan</span>
-                            </div>
 
-                            <div className="tp-plan">
-                                <div className="tp-field">
-                                    <div className="tp-field__label">TITLE</div>
-                                    <div className="tp-field__value">
-                                        {plan?.title || "—"}
+                    {[1, 2, 3].filter((stageNum) => (groupedByStage[stageNum] || []).length > 0).map((stageNum) => {
+                        const list = groupedByStage[stageNum] || [];
+                        const rawLabel = list[0]?.stage || list[0]?.status || `Stage ${stageNum}`;
+                        const stageLabel = decodeText(rawLabel);
+                        return (
+                            <section className="tp-card tp-card--full" key={stageNum}>
+                                <div className="tp-card__top">
+                                    <div>
+                                        <div className="tp-card__kicker">{stageLabel}</div>
+                                        <div className="tp-card__title">Sessions</div>
                                     </div>
-                                </div>
 
-                                <div className="tp-field">
-                                    <div className="tp-field__label">GOALS</div>
-                                    <div className="tp-field__value tp-muted">
-                                        {plan?.goals || "—"}
-                                    </div>
-                                </div>
-
-                                <div className="tp-plan__row">
-                                    <div className="tp-mini">
-                                        <div className="tp-mini__label">
-                                            Start
-                                        </div>
-                                        <div className="tp-mini__value">
-                                            {plan?.startDate || "—"}
-                                        </div>
-                                    </div>
-                                    <div className="tp-mini">
-                                        <div className="tp-mini__label">
-                                            Frequency
-                                        </div>
-                                        <div className="tp-mini__value">
-                                            {plan?.frequency || "—"}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* STAGE 3 - LATEST */}
-                        <section className="tp-card">
-                            <div className="tp-card__top">
-                                <div>
-                                    <div className="tp-card__kicker">
-                                        STAGE 3
-                                    </div>
-                                    <div className="tp-card__title">
-                                        Latest session
-                                    </div>
-                                </div>
-                                <span className="tp-chip">Update</span>
-                            </div>
-
-                            {!latest ? (
-                                <div className="tp-empty">
-                                    No latest session.
-                                </div>
-                            ) : (
-                                <>
-                                    <button
-                                        className="tp-latest-click"
-                                        onClick={() =>
-                                            setExpandedStage3((v) => !v)
-                                        }
-                                        title="Click to toggle session list"
-                                    >
-                                        <div className="tp-latest__row">
-                                            <div className="tp-latest__meta">
-                                                <div className="tp-latest__date">
-                                                    {latest.date || "—"}
-                                                </div>
-                                                <div className="tp-latest__focus">
-                                                    {latest.focus || "—"}
-                                                </div>
-                                            </div>
-                                            <RiskBadge
-                                                level={latest.risk || "Low"}
-                                            />
-                                        </div>
-
-                                        <div className="tp-metrics">
-                                            <div className="tp-metric">
-                                                <div className="tp-metric__label">
-                                                    PHQ-9
-                                                </div>
-                                                <div className="tp-metric__value">
-                                                    {latest.phq9 ?? "—"}
-                                                </div>
-                                            </div>
-                                            <div className="tp-metric">
-                                                <div className="tp-metric__label">
-                                                    GAD-7
-                                                </div>
-                                                <div className="tp-metric__value">
-                                                    {latest.gad7 ?? "—"}
-                                                </div>
-                                            </div>
-                                            <div className="tp-metric">
-                                                <div className="tp-metric__label">
-                                                    Status
-                                                </div>
-                                                <div className="tp-metric__value">
-                                                    {latest.status ?? "—"}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <SeverityPill
-                                            value={latest.severity ?? 0}
+                                    <div className="tp-list__tools">
+                                        <input
+                                            className="tp-input"
+                                            placeholder="Search sessions (date, focus, notes, status, risk)..."
+                                            value={query}
+                                            onChange={(e) => setQuery(e.target.value)}
                                         />
-                                    </button>
-
-                                    <div
-                                        className="tp-notes"
-                                        style={{ marginTop: 10 }}
-                                    >
-                                        <div className="tp-notes__label">
-                                            Notes
-                                        </div>
-                                        <div className="tp-notes__text">
-                                            {latest.note || (
-                                                <span className="tp-muted">
-                                                    —
-                                                </span>
-                                            )}
-                                        </div>
                                     </div>
-
-                                    <div className="tp-actions">
-                                        <button
-                                            className="tp-btn-icon tp-btn-icon--ghost"
-                                            onClick={() =>
-                                                setOpenQuickUpdate(true)
-                                            }
-                                        >
-                                            <EditIcon size={16} />
-                                            Quick update
-                                        </button>
-
-                                        <button
-                                            className="tp-btn-icon tp-btn-icon--danger"
-                                            onClick={handleDeleteLatest}
-                                        >
-                                            <RemoveIcon size={18} />
-                                            Delete
-                                        </button>
-                                    </div>
-                                </>
-                            )}
-                        </section>
-                    </div>
-
-                    {/* STAGE 3 LIST */}
-                    <section className="tp-card tp-card--full">
-                        <div className="tp-card__top">
-                            <div>
-                                <div className="tp-card__kicker">STAGE 3</div>
-                                <div className="tp-card__title">Sessions</div>
-                            </div>
-
-                            <div className="tp-list__tools">
-                                <input
-                                    className="tp-input"
-                                    placeholder="Search sessions (date, focus, notes, status, risk)..."
-                                    value={query}
-                                    onChange={(e) => setQuery(e.target.value)}
-                                />
-                            </div>
-                        </div>
-
-                        {!expandedStage3 ? (
-                            <div className="tp-empty">
-                                Click the <b>Latest session</b> card to view the
-                                full stage.
-                            </div>
-                        ) : !filtered?.length ? (
-                            <div className="tp-empty">No sessions.</div>
-                        ) : (
-                            <div className="tp-table">
-                                <div className="tp-row tp-row--head">
-                                    <div>DATE</div>
-                                    <div>FOCUS</div>
-                                    <div>SCORES</div>
-                                    <div>SEVERITY</div>
-                                    <div>RISK</div>
-                                    <div>STATUS</div>
-                                    <div />
                                 </div>
 
-                                {filtered.map((s) => (
-                                    <div
-                                        className="tp-row"
-                                        key={s.id || `${s.date}-${s.focus}`}
-                                    >
-                                        <div className="tp-td tp-td--mono">
-                                            {s.date || "—"}
-                                        </div>
-
-                                        <div className="tp-td">
-                                            <div className="tp-td__primary">
-                                                {s.focus || "—"}
-                                            </div>
-                                            {s.note ? (
-                                                <div className="tp-td__secondary">
-                                                    {s.note}
-                                                </div>
-                                            ) : null}
-                                        </div>
-
-                                        <div className="tp-td tp-td--mono">
-                                            <span className="tp-score">
-                                                PHQ {s.phq9 ?? "—"}
-                                            </span>
-                                            <span className="tp-score">
-                                                GAD {s.gad7 ?? "—"}
-                                            </span>
-                                        </div>
-
-                                        <div className="tp-td">
-                                            <span className="tp-badge">
-                                                {s.severity ?? 0}/10
-                                            </span>
-                                        </div>
-
-                                        <div className="tp-td">
-                                            <RiskBadge
-                                                level={s.risk || "Low"}
-                                            />
-                                        </div>
-
-                                        <div className="tp-td">
-                                            {s.status || "—"}
-                                        </div>
-                                        <div className="tp-td tp-td--right"></div>
+                                {!expandedStage3 ? (
+                                    <div className="tp-session">
+                                        Click the <b>Latest session</b> card to view the
+                                        full stage.
                                     </div>
-                                ))}
-                            </div>
-                        )}
-                    </section>
+                                ) : !filtered?.length ? (
+                                    <div className="tp-session">No sessions.</div>
+                                ) : (
+                                    <div className="tp-table">
+                                    <div className="tp-row tp-row--head">
+                                        <div>DATE</div>
+                                        <div>RESULT</div>
+                                        <div>SCORES</div>
+                                        <div>SEVERITY</div>
+                                        <div>RISK</div>
+                                        <div />
+                                    </div>
+
+                                        {filtered
+                                            .filter((s) => getStageNumber(s.stage || s.status) === stageNum)
+                                            .map((s) => (
+                                                <div className="tp-row" key={s.id || `${s.date}-${s.focus}`}>
+                                                    <div className="tp-td tp-td--mono">
+                                                        {s.date || "—"}
+                                                    </div>
+
+                                                    <div className="tp-td">
+                                                        <div className="tp-td__primary">
+                                                            {s.result || "—"}
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="tp-td tp-td--mono">
+                                                        <span className="tp-score">
+                                                            PHQ {s.phq9 ?? "—"}
+                                                        </span>
+                                                        <span className="tp-score">
+                                                            GAD {s.gad7 ?? "—"}
+                                                        </span>
+                                                    </div>
+
+                                                    <div className="tp-td">
+                                                        <span className="tp-badge">
+                                                            {s.severity ?? 0}/10
+                                                        </span>
+                                                    </div>
+
+                                                    <div className="tp-td">
+                                                        <RiskBadge level={s.risk || "Low"} />
+                                                    </div>
+                                                    <div className="tp-td tp-td--right"></div>
+                                                </div>
+                                            ))}
+                                    </div>
+                                )}
+                            </section>
+                        );
+                    })}
                 </>
             )}
 
             {/* MODALS */}
+            <StageModal
+                open={confirmStage}
+                title={`Complete Stage ${latestStage}`}
+                onClose={() => setConfirmStage(false)}
+            >
+                <div className="tp-session" style={{ marginBottom: 12 }}>
+                    Are you sure you want to complete this stage?
+                </div>
+                <div className="tp-form__actions">
+                    <button
+                        type="button"
+                        className="tp-btn tp-btn--ghost"
+                        onClick={() => setConfirmStage(false)}
+                    >
+                        No
+                    </button>
+                    <button
+                        type="button"
+                        className="tp-btn"
+                        onClick={handleCompleteStage}
+                        disabled={savingPlan}
+                    >
+                        {savingPlan ? "Completing..." : "Yes"}
+                    </button>
+                </div>
+            </StageModal>
+
             <StageModal
                 open={openPlanModal}
                 title="Stage 2 · Edit treatment plan"
@@ -648,7 +544,7 @@ export default function TreatmentDetailPage() {
                 onClose={() => setOpenQuickUpdate(false)}
             >
                 {!latest ? (
-                    <div className="tp-empty">No latest session.</div>
+                    <div className="tp-session">No latest session.</div>
                 ) : (
                     <form className="tp-form" onSubmit={handleQuickUpdate}>
                         <div className="tp-form__grid">
@@ -689,17 +585,6 @@ export default function TreatmentDetailPage() {
                 )}
             </StageModal>
 
-            <CreateSessionModal
-                open={openCreateSession}
-                onClose={() => setOpenCreateSession(false)}
-                patientRecordId={patientRecordId}
-                folderId={folderId}
-                onCreated={async () => {
-                    setOpenCreateSession(false);
-                    await refetch();
-                    setExpandedStage3(true);
-                }}
-            />
         </div>
     );
 }
