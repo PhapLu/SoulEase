@@ -8,3 +8,11 @@
 2025-12-15 22:58:16::error::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::29ec224c-88bf-4c87-9fd9-a6e995c7b573::handler-error::{"status":500,"message":"Session is not defined"}
 2025-12-15 22:58:24::info::/v1/api/folder/readFolder/6939a80b035dea9503dfca30::0a5e10a9-d597-4253-9249-730038b87835::input-params ::GET::::{}
 2025-12-15 22:58:25::info::/v1/api/folder/readFolder/6939a80b035dea9503dfca30::d7d2e791-c8e6-4f8d-9af3-b0d8e401bd7d::input-params ::GET::::{}
+2025-12-15 22:59:03::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::eb19e327-be00-4480-8e37-1c755b9ca36a::input-params ::GET::::{}
+2025-12-15 22:59:04::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::2112b845-98c6-497a-a275-69ec66128d0c::input-params ::GET::::{}
+2025-12-15 23:01:07::info::/v1/api/folder/readFolders::3e4573aa-86a8-4368-a49c-5aa6c58d17ca::input-params ::GET::::{}
+2025-12-15 23:01:07::info::/v1/api/folder/readFolders::a8323d6c-dfef-4d6d-af2e-2fa2012d35fc::input-params ::GET::::{}
+2025-12-15 23:01:08::info::/v1/api/folder/readFolder/6939a80b035dea9503dfca30::0867facf-80c9-477f-90e9-6deee0950bb5::input-params ::GET::::{}
+2025-12-15 23:01:08::info::/v1/api/folder/readFolder/6939a80b035dea9503dfca30::ca15ae91-46b8-47d5-98cf-cf9493d7bb7c::input-params ::GET::::{}
+2025-12-15 23:01:11::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::705cb1c9-3472-46d4-96b8-e99c752d581d::input-params ::GET::::{}
+2025-12-15 23:01:11::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::248ea82b-bad1-43ea-82db-5716f441aba5::input-params ::GET::::{}

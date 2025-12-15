@@ -10,23 +10,29 @@ class SessionService {
         const userId = req.userId
         const body = req.body
 
-        // 1. Check user, patient
+        // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new NotFoundError('User not found')
-        // if(user.role !== 'doctor') throw new ForbiddenError('Only doctors can create sessions')
 
+        // 2. Check patient
         const patient = await User.findById(body.patientId)
         if (!patient) throw new NotFoundError('Patient not found')
 
-        // 2. Create session
+        // 3. Create session (MATCHES schema exactly)
         const newSession = await Session.create({
             doctorId: userId,
             patientId: body.patientId,
-            title: body.title,
-            sessionType: body.sessionType,
-            notes: body.notes,
-            attachments: body.attachments || [],
-            visibility: body.visibility || 'doctor_only',
+
+            sessionDate: body.sessionDate || Date.now(),
+            sessionType: body.sessionType || 'in_person',
+            durationMinutes: body.durationMinutes ?? 45,
+
+            summary: body.summary || '',
+            keyPoints: Array.isArray(body.keyPoints) ? body.keyPoints : [],
+            riskLevel: body.riskLevel || 'low',
+            nextSteps: body.nextSteps || '',
+
+            isCompleted: body.isCompleted ?? true,
         })
 
         return {
