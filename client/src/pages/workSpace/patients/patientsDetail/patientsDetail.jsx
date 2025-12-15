@@ -8,7 +8,7 @@ import { apiUtils } from "../../../../utils/newRequest";
 
 import PatientsHeader from "./PatientsHeader";
 import SymptomsSection from "./SymptomsSection";
-import TreatmentSection from "./TreatmentSection";
+import TreatmentSection from "./TreatmentSection/TreatmentSection";
 import StorageSection from "./StorageSection";
 import { chartSeries } from "./PatientCharts";
 
@@ -124,7 +124,9 @@ export default function PatientsDetail() {
 
     const handleFieldChange = (field, value) => {
         if (field === "phone") {
-            const digits = String(value || "").replace(/\D+/g, "").slice(0, 10);
+            const digits = String(value || "")
+                .replace(/\D+/g, "")
+                .slice(0, 10);
             setEditForm((prev) => ({ ...prev, phone: digits }));
             return;
         }
@@ -291,7 +293,7 @@ export default function PatientsDetail() {
                     onSaveSymptoms={handleSaveSymptoms}
                     onCancelSymptoms={handleCancelSymptoms}
                     onAddSymptom={handleAddSymptom}
-                onSymptomFieldChange={handleSymptomFieldChange}
+                    onSymptomFieldChange={handleSymptomFieldChange}
                     onToggleSymptomStatus={handleToggleSymptomStatus}
                     onSymptomKeyDown={handleSymptomKeyDown}
                     onRemoveSymptom={handleRemoveSymptom}
