@@ -4,6 +4,7 @@ import { User } from '../models/user.model.js'
 import { AuthFailureError, BadRequestError, ForbiddenError, NotFoundError } from '../core/error.response.js'
 import dotenv from 'dotenv'
 import Conversation from '../models/conversation.model.js'
+import Session from '../models/session.model.js'
 dotenv.config()
 
 class PatientRecordService {
@@ -102,7 +103,7 @@ class PatientRecordService {
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
 
-        // 2. Check patient (include dob for backward compatibility)
+        // 2. Check patient
         const patient = await User.findById(patientId).select('fullName email phone gender birthday dob address').lean()
 
         if (!patient) throw new NotFoundError('Patient not found')
@@ -117,29 +118,46 @@ class PatientRecordService {
 
         if (!record) throw new NotFoundError('Record not found')
 
-        // 4. Merge into 1 clean FLAT object
-        // Normalize birthday to date-only string to avoid timezone suffix
-        const birthdayRaw = patient?.birthday || patient?.dob
-        const birthdayDateOnly =
-            birthdayRaw && !Number.isNaN(new Date(birthdayRaw).getTime())
-                ? new Date(birthdayRaw).toISOString().split('T')[0]
-                : undefined
+        // 4. Fetch latest completed session
+        const latestSession = await Session.findOne({
+            patientId: patientId,
+        })
+            .sort({ sessionDate: -1 })
+            .select('sessionDate sessionType durationMinutes riskLevel summary nextSteps')
+            .lean()
 
+        // 5. Normalize birthday
+        const birthdayRaw = patient?.birthday || patient?.dob
+        const birthdayDateOnly = birthdayRaw && !Number.isNaN(new Date(birthdayRaw).getTime()) ? new Date(birthdayRaw).toISOString().split('T')[0] : undefined
+
+        // 6. Normalize latest session date
+        const normalizedLatestSession = latestSession
+            ? {
+                  ...latestSession,
+                  sessionDate: latestSession.sessionDate && !Number.isNaN(new Date(latestSession.sessionDate).getTime()) ? new Date(latestSession.sessionDate).toISOString().split('T')[0] : null,
+              }
+            : null
+
+        // 7. Merge everything into ONE flat object
         const mergedRecord = {
-            recordId: record._id, // <— The REAL patientRecord ID
-            ...patient, // patient info
-            ...record, // record info
-            _id: record._id, // keep `_id` as record ID too (optional)
+            recordId: record._id,
+            _id: record._id,
+
+            // patient info
+            ...patient,
             birthday: birthdayDateOnly || record?.birthday,
+
+            // record info
+            ...record,
             symptoms: (record?.symptoms || []).map((s) => ({
                 name: s?.name || '',
                 sign: s?.sign || '',
-                date:
-                    s?.date && !Number.isNaN(new Date(s.date).getTime())
-                        ? new Date(s.date).toISOString().split('T')[0]
-                        : '',
+                date: s?.date && !Number.isNaN(new Date(s.date).getTime()) ? new Date(s.date).toISOString().split('T')[0] : '',
                 status: s?.status || 'Active',
             })),
+
+            // ⭐ NEW
+            latestSession: normalizedLatestSession,
         }
 
         return { patientRecord: mergedRecord }

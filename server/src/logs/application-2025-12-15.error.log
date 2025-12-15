@@ -1,0 +1,2 @@
+2025-12-15 22:58:15::error::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::fd1a5b1c-140d-4fc9-bede-5f8c3226262e::handler-error::{"status":500,"message":"Session is not defined"}
+2025-12-15 22:58:16::error::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::29ec224c-88bf-4c87-9fd9-a6e995c7b573::handler-error::{"status":500,"message":"Session is not defined"}
