@@ -1,5 +1,4 @@
-// PatientsHeader.jsx
-import EditIcon from "../../EditIcon";
+import { AddIcon, EditIcon, RemoveIcon } from "../../Icons";
 import InfoField from "./PatientInfoField";
 
 export default function PatientsHeader({
@@ -134,7 +133,10 @@ export default function PatientsHeader({
                 </div>
             </div>
 
-            <button className="pd-import-btn">Import +</button>
+            <button className="symptom-add-btn" style={{ marginLeft: "auto" }}>
+                <AddIcon color="white" />
+                <span>Import</span>
+            </button>
         </section>
     );
 }
