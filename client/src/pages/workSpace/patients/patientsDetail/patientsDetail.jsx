@@ -8,7 +8,7 @@ import { apiUtils } from "../../../../utils/newRequest";
 
 import PatientsHeader from "./PatientsHeader";
 import SymptomsSection from "./SymptomsSection";
-import TreatmentSection from "./TreatmentSection/TreatmentSection";
+import TreatmentSession from "./TreatmentSection/TreatmentSession.jsx";
 import StorageSection from "./StorageSection";
 import { chartSeries } from "./PatientCharts";
 
@@ -299,7 +299,7 @@ export default function PatientsDetail() {
                     onRemoveSymptom={handleRemoveSymptom}
                 />
 
-                <TreatmentSection onStartEdit={handleStartEdit} />
+                <TreatmentSession onStartEdit={handleStartEdit} />
 
                 <StorageSection />
 

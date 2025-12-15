@@ -1,5 +1,7 @@
+// StageModal.jsx
+
 import React from "react";
-import "./TreatmentSection.css";
+import "./treatmentSession.css";
 
 export default function StageModal({ open, title, onClose, children }) {
     if (!open) return null;

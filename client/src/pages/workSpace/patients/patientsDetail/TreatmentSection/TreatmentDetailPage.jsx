@@ -1,8 +1,11 @@
-// TreatmentSection.jsx
-import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import "./treatmentSection.css";
-import { EditIcon, RemoveIcon, AddIcon } from "../../../Icon.jsx";
+// TreatmentDetailPage.jsx
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import "./treatmentSession.css";
+import { EditIcon, RemoveIcon, AddIcon, EndIcon } from "../../../Icon.jsx";
+import StageModal from "./StageModal.jsx";
+import CreateSessionModal from "./CreateSessionPage.jsx";
+import { apiUtils } from "../../../../../utils/newRequest.js";
 
 function RiskBadge({ level = "Low" }) {
     const norm = (level || "Low").toLowerCase();
@@ -33,63 +36,81 @@ function SeverityPill({ value = 0 }) {
     );
 }
 
-function Modal({ open, title, onClose, children }) {
-    if (!open) return null;
+function ActionsDropdown({ onEditPlan, onCreateSession }) {
+    const [open, setOpen] = useState(false);
+    const ref = useRef(null);
+
+    useEffect(() => {
+        const onDoc = (e) => {
+            if (!ref.current) return;
+            if (!ref.current.contains(e.target)) setOpen(false);
+        };
+        document.addEventListener("mousedown", onDoc);
+        return () => document.removeEventListener("mousedown", onDoc);
+    }, []);
+
     return (
-        <div className="tp-modal__backdrop" role="dialog" aria-modal="true">
-            <div className="tp-modal">
-                <div className="tp-modal__header">
-                    <div className="tp-modal__title">{title}</div>
+        <div className="tp-dd" ref={ref}>
+            <button
+                className="tp-btn-icon tp-btn-icon--primary"
+                onClick={() => setOpen((v) => !v)}
+                type="button"
+            >
+                ⋮
+            </button>
+
+            {open && (
+                <div className="tp-dd__menu">
                     <button
-                        className="tp-icon-btn"
-                        onClick={onClose}
-                        aria-label="Close"
+                        className="tp-dd__item"
+                        type="button"
+                        onClick={() => {
+                            setOpen(false);
+                            onEditPlan?.();
+                        }}
                     >
-                        ✕
+                        <EditIcon size={16} />
+                        Edit plan
+                    </button>
+
+                    <button
+                        className="tp-dd__item"
+                        type="button"
+                        onClick={() => {
+                            setOpen(false);
+                            onCreateSession?.();
+                        }}
+                    >
+                        <AddIcon size={16} />
+                        Create session
                     </button>
                 </div>
-                <div className="tp-modal__body">{children}</div>
-            </div>
+            )}
         </div>
     );
 }
 
-export default function TreatmentSection({
-    patientRecordId,
-    loading,
-    error,
-    plan,
-    sections,
-    latest,
-    onUpdatePlan,
-    onUpdateLatest,
-    onCreateSection,
-    onRefetch,
-}) {
+export default function TreatmentDetailPage() {
+    const { folderId, patientRecordId } = useParams();
     const navigate = useNavigate();
-    const { folderId, patientRecordId: prIdFromUrl } = useParams();
 
-    const prId = patientRecordId || prIdFromUrl;
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+    const [record, setRecord] = useState(null);
 
-    const goCreateSectionPage = () => {
-        if (!folderId || !prId) return;
-        navigate(`/workspace/patients/folder/${folderId}/${prId}/section/new`);
-    };
-
-    // ---- UI state
+    // UI state
     const [query, setQuery] = useState("");
-    const [expandedStage3, setExpandedStage3] = useState(false);
+    const [expandedStage3, setExpandedStage3] = useState(true);
 
-    // ---- Modals
+    // Modals
     const [openPlanModal, setOpenPlanModal] = useState(false);
-    const [openLatestModal, setOpenLatestModal] = useState(false);
     const [openQuickUpdate, setOpenQuickUpdate] = useState(false);
+    const [openCreateSession, setOpenCreateSession] = useState(false);
 
     const [savingPlan, setSavingPlan] = useState(false);
-    const [savingLatest, setSavingLatest] = useState(false);
     const [savingQuick, setSavingQuick] = useState(false);
 
-    // ---- Drafts
+    // drafts
     const [planDraft, setPlanDraft] = useState({
         title: "",
         goals: "",
@@ -97,6 +118,51 @@ export default function TreatmentSection({
         frequency: "",
     });
 
+    const [quickDraft, setQuickDraft] = useState({ noteAppend: "" });
+
+    const refetch = async () => {
+        if (!patientRecordId) return;
+        setError("");
+        setLoading(true);
+        try {
+            const res = await apiUtils.get(
+                `/patientRecord/readPatientRecord/${patientRecordId}`
+            );
+
+            const fetched =
+                res?.data?.metadata?.patientRecord ||
+                res?.data?.patientRecord ||
+                null;
+
+            setRecord(fetched);
+        } catch (e) {
+            setError(
+                e?.response?.data?.message ||
+                    e?.message ||
+                    "Failed to load treatment data"
+            );
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        refetch();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [patientRecordId]);
+
+    // mapping data
+    const plan =
+        record?.treatmentPlan ||
+        record?.plan ||
+        record?.treatmentProcess ||
+        null;
+    const sessions = Array.isArray(record?.treatmentSections)
+        ? record.treatmentSections
+        : [];
+    const latest = sessions?.[0] || null;
+
+    // init drafts when open
     useEffect(() => {
         if (!openPlanModal) return;
         setPlanDraft({
@@ -107,108 +173,94 @@ export default function TreatmentSection({
         });
     }, [openPlanModal, plan]);
 
-    const [latestDraft, setLatestDraft] = useState({
-        focus: "",
-        phq9: "",
-        gad7: "",
-        severity: 5,
-        risk: "Low",
-        note: "",
-        status: "Planned",
-    });
-
-    useEffect(() => {
-        if (!openLatestModal) return;
-        setLatestDraft({
-            focus: latest?.focus || "",
-            phq9: latest?.phq9 ?? "",
-            gad7: latest?.gad7 ?? "",
-            severity: latest?.severity ?? 5,
-            risk: latest?.risk || "Low",
-            note: latest?.note || "",
-            status: latest?.status || "Planned",
-        });
-    }, [openLatestModal, latest]);
-
-    const [quickDraft, setQuickDraft] = useState({ noteAppend: "" });
     useEffect(() => {
         if (!openQuickUpdate) return;
         setQuickDraft({ noteAppend: "" });
     }, [openQuickUpdate]);
 
-    // ---- Derived
     const filtered = useMemo(() => {
         const q = query.trim().toLowerCase();
-        if (!q) return sections || [];
-        return (sections || []).filter((s) => {
+        if (!q) return sessions;
+        return sessions.filter((s) => {
             const hay =
                 `${s.date} ${s.focus} ${s.note} ${s.status} ${s.risk}`.toLowerCase();
             return hay.includes(q);
         });
-    }, [sections, query]);
+    }, [sessions, query]);
 
-    // ---- Actions
+    // update plan: patch whole record (giống style PatientsDetail đang làm)
     const handleSavePlan = async (e) => {
         e.preventDefault();
-        if (!onUpdatePlan) return;
+        if (!record) return;
+
+        const recordId = record.recordId || record._id;
+        if (!recordId) return;
+
         setSavingPlan(true);
         try {
-            await onUpdatePlan(planDraft);
+            await apiUtils.patch(
+                `/patientRecord/updatePatientRecord/${recordId}`,
+                {
+                    ...record,
+                    treatmentPlan: {
+                        ...(record.treatmentPlan || {}),
+                        ...planDraft,
+                    },
+                }
+            );
             setOpenPlanModal(false);
-            onRefetch?.();
+            await refetch();
+        } catch (e2) {
+            setError(
+                e2?.response?.data?.message || e2?.message || "Save plan failed"
+            );
         } finally {
             setSavingPlan(false);
         }
     };
 
-    const handleSaveLatest = async (e) => {
-        e.preventDefault();
-        if (!onUpdateLatest || !latest?.id) return;
-        setSavingLatest(true);
-        try {
-            await onUpdateLatest(latest.id, {
-                focus: latestDraft.focus,
-                phq9: latestDraft.phq9 === "" ? null : Number(latestDraft.phq9),
-                gad7: latestDraft.gad7 === "" ? null : Number(latestDraft.gad7),
-                severity: Number(latestDraft.severity),
-                risk: latestDraft.risk,
-                note: latestDraft.note,
-                status: latestDraft.status,
-            });
-            setOpenLatestModal(false);
-            onRefetch?.();
-        } finally {
-            setSavingLatest(false);
-        }
-    };
-
     const handleQuickUpdate = async (e) => {
         e.preventDefault();
-        if (!onUpdateLatest || !latest?.id) return;
+        if (!record || !latest?.id) return;
 
         const append = (quickDraft.noteAppend || "").trim();
         if (!append) return;
+
+        const recordId = record.recordId || record._id;
+        if (!recordId) return;
 
         setSavingQuick(true);
         try {
             const mergedNote =
                 (latest?.note || "") + (latest?.note ? "\n" : "") + append;
 
-            await onUpdateLatest(latest.id, {
-                note: mergedNote,
-            });
+            const nextSessions = sessions.map((s) =>
+                s.id === latest.id ? { ...s, note: mergedNote } : s
+            );
+
+            await apiUtils.patch(
+                `/patientRecord/updatePatientRecord/${recordId}`,
+                {
+                    ...record,
+                    treatmentSections: nextSessions,
+                }
+            );
 
             setOpenQuickUpdate(false);
-            onRefetch?.();
+            await refetch();
+        } catch (e2) {
+            setError(
+                e2?.response?.data?.message ||
+                    e2?.message ||
+                    "Quick update failed"
+            );
         } finally {
             setSavingQuick(false);
         }
     };
 
     const handleDeleteLatest = async () => {
-        alert(
-            "There is no DELETE section endpoint yet. Add handler delete and connect it here."
-        );
+        alert("No DELETE session endpoint yet.");
     };
 
     return (
@@ -216,30 +268,31 @@ export default function TreatmentSection({
             className="tp-page"
             style={{ marginTop: 18, padding: 0, maxWidth: "unset" }}
         >
-            {/* Header */}
             <div className="tp-header" style={{ marginBottom: 14 }}>
-                <div>
-                    <div className="pd-treatment">
-                        <h3>Treatment Progress</h3>
-                    </div>
+                <div className="pd-treatment">
+                    <h3>Treatment Progress</h3>
                 </div>
 
-                <div className="tp-header__actions">
+                <div
+                    className="tp-header__actions"
+                    style={{ display: "flex", gap: 10 }}
+                >
                     <button
-                        className="tp-btn-icon tp-btn-icon--ghost"
-                        onClick={() => setOpenPlanModal(true)}
+                        className="tp-btn tp-btn--ghost"
+                        type="button"
+                        onClick={() =>
+                            navigate(
+                                `/workspace/patients/folder/${folderId}/${patientRecordId}`
+                            )
+                        }
                     >
-                        <EditIcon size={16} />
-                        Edit plan
+                        ← Back
                     </button>
 
-                    <button
-                        className="tp-btn-icon tp-btn-icon--primary"
-                        onClick={goCreateSectionPage}
-                    >
-                        <AddIcon size={16} color="#fff" />
-                        Create section
-                    </button>
+                    <ActionsDropdown
+                        onEditPlan={() => setOpenPlanModal(true)}
+                        onCreateSession={() => setOpenCreateSession(true)}
+                    />
                 </div>
             </div>
 
@@ -299,7 +352,7 @@ export default function TreatmentSection({
                             </div>
                         </section>
 
-                        {/* STAGE 3 LATEST */}
+                        {/* STAGE 3 - LATEST */}
                         <section className="tp-card">
                             <div className="tp-card__top">
                                 <div>
@@ -307,7 +360,7 @@ export default function TreatmentSection({
                                         STAGE 3
                                     </div>
                                     <div className="tp-card__title">
-                                        Latest section
+                                        Latest session
                                     </div>
                                 </div>
                                 <span className="tp-chip">Update</span>
@@ -315,17 +368,16 @@ export default function TreatmentSection({
 
                             {!latest ? (
                                 <div className="tp-empty">
-                                    No latest section.
+                                    No latest session.
                                 </div>
                             ) : (
                                 <>
-                                    {/* click latest block => show full stage 3 */}
                                     <button
                                         className="tp-latest-click"
                                         onClick={() =>
                                             setExpandedStage3((v) => !v)
                                         }
-                                        title="Click to toggle full stage"
+                                        title="Click to toggle session list"
                                     >
                                         <div className="tp-latest__row">
                                             <div className="tp-latest__meta">
@@ -413,17 +465,18 @@ export default function TreatmentSection({
                         </section>
                     </div>
 
+                    {/* STAGE 3 LIST */}
                     <section className="tp-card tp-card--full">
                         <div className="tp-card__top">
                             <div>
                                 <div className="tp-card__kicker">STAGE 3</div>
-                                <div className="tp-card__title">Sections</div>
+                                <div className="tp-card__title">Sessions</div>
                             </div>
 
                             <div className="tp-list__tools">
                                 <input
                                     className="tp-input"
-                                    placeholder="Search sections (date, focus, notes, status, risk)..."
+                                    placeholder="Search sessions (date, focus, notes, status, risk)..."
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
                                 />
@@ -432,11 +485,11 @@ export default function TreatmentSection({
 
                         {!expandedStage3 ? (
                             <div className="tp-empty">
-                                Click the <b>Latest section</b> card to view the
+                                Click the <b>Latest session</b> card to view the
                                 full stage.
                             </div>
                         ) : !filtered?.length ? (
-                            <div className="tp-empty">No sections.</div>
+                            <div className="tp-empty">No sessions.</div>
                         ) : (
                             <div className="tp-table">
                                 <div className="tp-row tp-row--head">
@@ -493,7 +546,6 @@ export default function TreatmentSection({
                                         <div className="tp-td">
                                             {s.status || "—"}
                                         </div>
-
                                         <div className="tp-td tp-td--right"></div>
                                     </div>
                                 ))}
@@ -503,10 +555,8 @@ export default function TreatmentSection({
                 </>
             )}
 
-            {/* ---------------- MODALS ---------------- */}
-
-            {/* Stage 2 Modal: Edit plan */}
-            <Modal
+            {/* MODALS */}
+            <StageModal
                 open={openPlanModal}
                 title="Stage 2 · Edit treatment plan"
                 onClose={() => setOpenPlanModal(false)}
@@ -568,7 +618,7 @@ export default function TreatmentSection({
                                         frequency: e.target.value,
                                     }))
                                 }
-                                placeholder="e.g. 1 section/week"
+                                placeholder="e.g. 1 session/week"
                             />
                         </label>
                     </div>
@@ -590,166 +640,15 @@ export default function TreatmentSection({
                         </button>
                     </div>
                 </form>
-            </Modal>
+            </StageModal>
 
-            {/* Stage 3 Modal: Edit latest section */}
-            <Modal
-                open={openLatestModal}
-                title="Stage 3 · Edit latest section"
-                onClose={() => setOpenLatestModal(false)}
-            >
-                {!latest ? (
-                    <div className="tp-empty">No latest section.</div>
-                ) : (
-                    <form className="tp-form" onSubmit={handleSaveLatest}>
-                        <div className="tp-form__grid">
-                            <label className="tp-form__field tp-form__field--span2">
-                                <div className="tp-form__label">Focus</div>
-                                <input
-                                    className="tp-input"
-                                    value={latestDraft.focus}
-                                    onChange={(e) =>
-                                        setLatestDraft((d) => ({
-                                            ...d,
-                                            focus: e.target.value,
-                                        }))
-                                    }
-                                />
-                            </label>
-
-                            <label className="tp-form__field">
-                                <div className="tp-form__label">PHQ-9</div>
-                                <input
-                                    className="tp-input"
-                                    type="number"
-                                    min="0"
-                                    max="27"
-                                    value={latestDraft.phq9}
-                                    onChange={(e) =>
-                                        setLatestDraft((d) => ({
-                                            ...d,
-                                            phq9: e.target.value,
-                                        }))
-                                    }
-                                />
-                            </label>
-
-                            <label className="tp-form__field">
-                                <div className="tp-form__label">GAD-7</div>
-                                <input
-                                    className="tp-input"
-                                    type="number"
-                                    min="0"
-                                    max="21"
-                                    value={latestDraft.gad7}
-                                    onChange={(e) =>
-                                        setLatestDraft((d) => ({
-                                            ...d,
-                                            gad7: e.target.value,
-                                        }))
-                                    }
-                                />
-                            </label>
-
-                            <label className="tp-form__field">
-                                <div className="tp-form__label">
-                                    Severity (0–10)
-                                </div>
-                                <input
-                                    className="tp-input"
-                                    type="number"
-                                    min="0"
-                                    max="10"
-                                    value={latestDraft.severity}
-                                    onChange={(e) =>
-                                        setLatestDraft((d) => ({
-                                            ...d,
-                                            severity: e.target.value,
-                                        }))
-                                    }
-                                />
-                            </label>
-
-                            <label className="tp-form__field">
-                                <div className="tp-form__label">Risk</div>
-                                <select
-                                    className="tp-input"
-                                    value={latestDraft.risk}
-                                    onChange={(e) =>
-                                        setLatestDraft((d) => ({
-                                            ...d,
-                                            risk: e.target.value,
-                                        }))
-                                    }
-                                >
-                                    <option>Low</option>
-                                    <option>Medium</option>
-                                    <option>High</option>
-                                </select>
-                            </label>
-
-                            <label className="tp-form__field">
-                                <div className="tp-form__label">Status</div>
-                                <select
-                                    className="tp-input"
-                                    value={latestDraft.status}
-                                    onChange={(e) =>
-                                        setLatestDraft((d) => ({
-                                            ...d,
-                                            status: e.target.value,
-                                        }))
-                                    }
-                                >
-                                    <option>Planned</option>
-                                    <option>Completed</option>
-                                    <option>Cancelled</option>
-                                </select>
-                            </label>
-
-                            <label className="tp-form__field tp-form__field--span2">
-                                <div className="tp-form__label">Notes</div>
-                                <textarea
-                                    className="tp-input tp-textarea"
-                                    rows={6}
-                                    value={latestDraft.note}
-                                    onChange={(e) =>
-                                        setLatestDraft((d) => ({
-                                            ...d,
-                                            note: e.target.value,
-                                        }))
-                                    }
-                                />
-                            </label>
-                        </div>
-
-                        <div className="tp-form__actions">
-                            <button
-                                type="button"
-                                className="tp-btn tp-btn--ghost"
-                                onClick={() => setOpenLatestModal(false)}
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                type="submit"
-                                className="tp-btn"
-                                disabled={savingLatest}
-                            >
-                                {savingLatest ? "Saving..." : "Save"}
-                            </button>
-                        </div>
-                    </form>
-                )}
-            </Modal>
-
-            {/* Quick update modal (append note) */}
-            <Modal
+            <StageModal
                 open={openQuickUpdate}
                 title="Quick update · Notes"
                 onClose={() => setOpenQuickUpdate(false)}
             >
                 {!latest ? (
-                    <div className="tp-empty">No latest section.</div>
+                    <div className="tp-empty">No latest session.</div>
                 ) : (
                     <form className="tp-form" onSubmit={handleQuickUpdate}>
                         <div className="tp-form__grid">
@@ -766,7 +665,6 @@ export default function TreatmentSection({
                                             noteAppend: e.target.value,
                                         })
                                     }
-                                    placeholder="Type a quick update to append to existing notes..."
                                 />
                             </label>
                         </div>
@@ -789,15 +687,19 @@ export default function TreatmentSection({
                         </div>
                     </form>
                 )}
-            </Modal>
+            </StageModal>
 
-            <div style={{ display: "none" }}>
-                <Link
-                    to={`/workspace/patients/folder/${folderId}/${prId}/section/new`}
-                >
-                    Create section
-                </Link>
-            </div>
+            <CreateSessionModal
+                open={openCreateSession}
+                onClose={() => setOpenCreateSession(false)}
+                patientRecordId={patientRecordId}
+                folderId={folderId}
+                onCreated={async () => {
+                    setOpenCreateSession(false);
+                    await refetch();
+                    setExpandedStage3(true);
+                }}
+            />
         </div>
     );
 }
