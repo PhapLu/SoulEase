@@ -6,11 +6,21 @@ from langchain_core.messages import SystemMessage, HumanMessage
 llm = get_local_llm(temperature=0.5)
 
 def summary_agent_node(state):
-    recent_convs = state["recent_conversations"][-14:]
-    conv_text = "\n".join([f"{m.type}: {m.content}" for m in recent_convs])
+    # Use ALL available conversations from state
+    convs = state["recent_conversations"]
+
+    conv_text = "\n".join(
+        [f"{m.type}: {m.content}" for m in convs]
+    )
+
     messages = [
         SystemMessage(content=SUMMARY_PROMPT),
-        HumanMessage(content=f"Last 7 days conversation:\n{conv_text}")
+        HumanMessage(content=f"Conversation between doctor and patient:\n{conv_text}")
     ]
+
     response = llm.invoke(messages)
-    return {"messages": [response], "summary": response.content}
+
+    return {
+        "messages": [response],
+        "summary": response.content
+    }

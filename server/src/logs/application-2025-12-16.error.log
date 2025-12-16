@@ -1,2 +1,58 @@
 2025-12-16 02:05:25::error::/v1/api/patientRecord/updatePatientRecord/693a8c925dbe463b3ad4c223::1af717fd-780a-4ed0-a475-2190abecee71::handler-error::{"status":500,"message":"PatientRecord validation failed: treatmentSessions.0.symptoms.0: Cast to [string] failed for value \"[\\n' +\n  '  {\\n' +\n  \"    id: 'sym-1',\\n\" +\n  \"    name: 'noname',\\n\" +\n  \"    sign: 'noname',\\n\" +\n  \"    date: '2025-12-15',\\n\" +\n  \"    status: 'Active'\\n\" +\n  '  }\\n' +\n  ']\" (type string) at path \"symptoms.0\" because of \"CastError\", treatmentSections.0.symptoms.0: Cast to [string] failed for value \"[\\n' +\n  '  {\\n' +\n  \"    id: 'sym-1',\\n\" +\n  \"    name: 'noname',\\n\" +\n  \"    sign: 'noname',\\n\" +\n  \"    date: '2025-12-15',\\n\" +\n  \"    status: 'Active'\\n\" +\n  '  }\\n' +\n  ']\" (type string) at path \"symptoms.0\" because of \"CastError\""}
 2025-12-16 02:08:42::error::/v1/api/patientRecord/updatePatientRecord/693a8c925dbe463b3ad4c223::55529e1d-30f9-41dc-a15e-9353f6661bfd::handler-error::{"status":500,"message":"PatientRecord validation failed: treatmentSessions.0.symptoms.0: Cast to [string] failed for value \"[\\n' +\n  '  {\\n' +\n  \"    id: 'sym-0',\\n\" +\n  \"    name: 'test',\\n\" +\n  \"    sign: 'test',\\n\" +\n  \"    date: '2025-12-15',\\n\" +\n  \"    status: 'Resolved'\\n\" +\n  '  }\\n' +\n  ']\" (type string) at path \"symptoms.0\" because of \"CastError\", treatmentSections.0.symptoms.0: Cast to [string] failed for value \"[\\n' +\n  '  {\\n' +\n  \"    id: 'sym-0',\\n\" +\n  \"    name: 'test',\\n\" +\n  \"    sign: 'test',\\n\" +\n  \"    date: '2025-12-15',\\n\" +\n  \"    status: 'Resolved'\\n\" +\n  '  }\\n' +\n  ']\" (type string) at path \"symptoms.0\" because of \"CastError\""}
+2025-12-16 08:57:22::error::/v1/api/user/me::8a4bbdd0-1d68-4dfe-a52d-57684f440da8::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-16 08:57:22::error::/v1/api/user/me::6d51c962-5485-4861-ba2f-746aa18e900c::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-16 08:59:29::error::/v1/api/user/me::e3233639-4c5a-4e54-9e0c-5c26a2d7f9b5::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-16 08:59:30::error::/v1/api/user/me::7d11e8a6-0e1a-4d54-8b01-20ad61128456::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-16 09:25:58::error::/20MB.zip::0a7dab43-6eb9-4d2c-9d85-2c79382a4580::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 09:46:34::error::/20MB.zip::0ff949e5-3599-4155-a42d-27d04a597ad4::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 10:07:24::error::/20MB.zip::d65c4eb6-bbac-4962-9525-510b52e4de4b::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 10:23:51::error::/20MB.zip::949dbcab-5086-4006-b2fd-dc8ec8010c18::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 10:33:34::error::/20MB.zip::f9484b49-26bb-4283-bc8f-5a4c879939f7::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 10:41:40::error::/20MB.zip::df296fb2-d761-4395-adb6-0eb19f167b28::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 10:49:46::error::/20MB.zip::e578e93c-4106-4666-b25f-d46b8e1797af::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 10:57:52::error::/20MB.zip::8a6dbd15-51ae-40db-b412-0f5a3fb262db::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 11:05:19::error::/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::fd34cc3e-0971-4620-a8d0-3007a6de23f5::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 11:05:24::error::/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::244b8903-b4c4-4d50-8ac6-7ba468c45b84::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 11:05:51::error::/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::5f1a73b6-6c22-4496-b6c7-25832e6d4ace::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 11:05:58::error::/20MB.zip::95766f3c-ca68-461b-95c3-b0bce5d1a516::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 11:11:39::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::6bc6b293-1247-443f-a007-35ecf1e7554f::handler-error::{"status":403,"message":"Invalid token, please login again"}
+2025-12-16 11:11:44::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::18b21310-0b22-406b-9a47-7aed7edb28e8::handler-error::{"status":403,"message":"Invalid token, please login again"}
+2025-12-16 11:11:57::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::654a422f-ca2b-439a-9e36-6fa91051c1de::handler-error::{"status":403,"message":"Invalid token, please login again"}
+2025-12-16 11:12:25::error::/20MB.zip::b22f6deb-d704-431a-b569-3ba535db966e::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 11:28:03::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::0714f74a-88fc-4d20-ba4a-d7960958e06f::handler-error::{"status":403,"message":"Invalid token, please login again"}
+2025-12-16 11:51:09::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::c82b334b-fb24-4f99-b5c7-7c9dcda4b692::handler-error::{"status":403,"message":"Invalid token, please login again"}
+2025-12-16 11:51:10::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::247c9e0f-7238-4be5-a999-ff2d2d869739::handler-error::{"status":403,"message":"Invalid token, please login again"}
+2025-12-16 11:51:13::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::5183a53d-c0b9-4b1f-bc08-e8ca609cd99e::handler-error::{"status":403,"message":"Invalid token, please login again"}
+2025-12-16 11:51:36::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::d938d380-f51a-4abd-9943-d719edaa0bc6::handler-error::{"status":403,"message":"Invalid token, please login again"}
+2025-12-16 11:51:36::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::677461c3-3d15-49e7-b5f7-68bcdb62e0af::handler-error::{"status":403,"message":"Invalid token, please login again"}
+2025-12-16 11:52:07::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::a2bebc63-e170-4e3c-827b-5502ea0add21::handler-error::{"status":403,"message":"Invalid token, please login again"}
+2025-12-16 12:09:39::error::/20MB.zip::dbc69204-7605-4433-b137-68f9bd88fd06::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 12:22:09::error::/20MB.zip::08ba0d85-0a45-4290-b44f-552b38f5859d::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 12:34:07::error::/20MB.zip::953ddd8b-7427-41bb-8933-1884948e8a69::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 12:35:05::error::/v1/api/conversation/readConversations::59d7b98c-9b40-4887-b4ff-807c05c98f18::handler-error::{"status":500,"message":"Cannot read properties of null (reading '_id')"}
+2025-12-16 12:35:05::error::/v1/api/conversation/readConversations::80dec1b0-65c4-4693-b58d-0f13cd529ef9::handler-error::{"status":500,"message":"Cannot read properties of null (reading '_id')"}
+2025-12-16 12:35:06::error::/v1/api/conversation/readConversations::b28da052-ad9e-491d-bbbb-8e5083e34d1f::handler-error::{"status":500,"message":"Cannot read properties of null (reading '_id')"}
+2025-12-16 12:35:06::error::/v1/api/conversation/readConversations::b3b5aee6-3c5c-428a-9d61-e66276f76b6c::handler-error::{"status":500,"message":"Cannot read properties of null (reading '_id')"}
+2025-12-16 12:35:07::error::/v1/api/conversation/readConversations::67f8bfba-b20f-4c33-bd12-c02cc170d251::handler-error::{"status":500,"message":"Cannot read properties of null (reading '_id')"}
+2025-12-16 12:35:08::error::/v1/api/conversation/readConversations::1555ecc9-6cfa-4359-bef4-16ff66df6b49::handler-error::{"status":500,"message":"Cannot read properties of null (reading '_id')"}
+2025-12-16 12:35:09::error::/v1/api/conversation/readConversations::af920387-500a-4c3c-8fe4-e1eaea1728d9::handler-error::{"status":500,"message":"Cannot read properties of null (reading '_id')"}
+2025-12-16 12:35:09::error::/v1/api/conversation/readConversations::d6a82e00-63ba-41ff-ad0c-63a5a2d2369d::handler-error::{"status":500,"message":"Cannot read properties of null (reading '_id')"}
+2025-12-16 12:35:09::error::/v1/api/conversation/readConversations::8905bc30-e531-413e-bc97-05eb81369fcc::handler-error::{"status":500,"message":"Cannot read properties of null (reading '_id')"}
+2025-12-16 12:35:09::error::/v1/api/conversation/readConversations::8d916fa8-40b2-49fd-86ce-37e06a8aa5ac::handler-error::{"status":500,"message":"Cannot read properties of null (reading '_id')"}
+2025-12-16 12:46:06::error::/20MB.zip::b8802098-44f9-4682-92ce-59a817f203c5::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 13:11:13::error::/20MB.zip::360ee78b-3569-474f-b8de-8579cf1f2751::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 13:47:50::error::/v1/api/conversation/readConversations::1854f680-3813-4485-8759-79a6b15f0a4d::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-02.hebkgzl.mongodb.net"}
+2025-12-16 13:47:50::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::b23b4fdc-448b-46a2-acd5-9beb56394d7c::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-02.hebkgzl.mongodb.net"}
+2025-12-16 13:47:50::error::/v1/api/user/me::aaf61be3-6d22-4a08-b1a8-eeb09aa49316::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-02.hebkgzl.mongodb.net"}
+2025-12-16 14:07:45::error::/20MB.zip::5e7ed947-3221-4be8-9e9e-97815470334e::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 14:15:26::error::/20MB.zip::94286f93-3196-4742-92b1-8659b1f84f93::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 14:24:09::error::/20MB.zip::2054fc97-6f3d-42e0-8ba9-7b70042e94a9::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 18:04:06::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::c8240ded-ac32-4fb6-aac3-8852ce0991c6::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-02.hebkgzl.mongodb.net"}
+2025-12-16 18:04:08::error::/v1/api/user/me::a781465f-7dca-4fbc-a44f-ed377484afe7::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-02.hebkgzl.mongodb.net"}
+2025-12-16 18:04:22::error::/v1/api/conversation/readConversationDetail/6941093caec816160305eb7e::38886d54-eac4-4b05-8a93-47e8b6b8392a::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-02.hebkgzl.mongodb.net"}
+2025-12-16 18:04:30::error::/v1/api/conversation/readConversationDetail/6940631f5aabefe8be7f83ab::060073a8-1431-46db-b472-c887b6658fa2::handler-error::{"status":500,"message":"getaddrinfo ENOTFOUND ac-bjquvxa-shard-00-02.hebkgzl.mongodb.net"}
+2025-12-16 18:09:49::error::/20MB.zip::d1f41c97-5e75-4bfe-8cba-be599b547cfc::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 18:26:44::error::/20MB.zip::4f0ca4ef-063e-438e-9357-46f8cef62028::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 18:38:57::error::/20MB.zip::a08c0908-ffac-4d0a-8d23-dd7bd93dc66f::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-16 18:51:08::error::/20MB.zip::1ec431ee-fac7-4615-901f-71adbbc1871d::handler-error::{"status":404,"message":"Not Found Route"}

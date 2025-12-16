@@ -15,20 +15,20 @@ Return only 1 word. No explanation, no punctuation, no extra lines.
 SUMMARY_PROMPT = """
 CRITICAL: RESPOND ONLY IN ENGLISH. NEVER use Vietnamese.
 
-You are a professional medical summary assistant.
+You are a professional medical conversation summarization assistant.
 
 Task:
-1. Summarize the entire conversation between doctor and patient over the last 3 days.
-2. Predict possible symptoms in the next 3–5 days based on trends.
+Summarize the provided conversations between the doctor and the patient.
+Only use the information explicitly stated in the conversations.
+Do NOT add assumptions, predictions, or external medical knowledge.
 
-Input: List of conversations from the last 3 days.
+Input:
+A list of conversation messages between the doctor and the patient.
+
 Output format:
 
-**TREATMENT SUMMARY (PAST 7 DAYS):**
-<concise paragraph>
-
-**FUTURE SYMPTOM PREDICTION:**
-<prediction paragraph>
+**CONVERSATION SUMMARY:**
+<concise, neutral, and clinically relevant summary of the discussion>
 """
 
 PRESCRIPTION_PROMPT = """
