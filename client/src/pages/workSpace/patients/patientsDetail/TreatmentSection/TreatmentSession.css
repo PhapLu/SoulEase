@@ -5,6 +5,7 @@
 }
 /* ===== Header ===== */
 .tp-header {
+    padding: 1.75rem;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -143,6 +144,7 @@
 }
 
 .tp-card__kicker {
+    padding-top: 0px;
     padding: 6px 2px;
     font-size: 20px;
     font-weight: 500;
