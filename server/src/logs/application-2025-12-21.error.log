@@ -1,0 +1,6 @@
+2025-12-21 12:32:03::error::/v1/api/user/updateDoctor/693b99d6581778ff34818196::437973db-b4a7-478d-8321-4a8d2fd39176::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-21 12:32:04::error::/v1/api/user/updateDoctor/693b99d6581778ff34818196::5dd6e5a9-4cc5-47fe-a100-f9052ee04008::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-21 12:32:05::error::/v1/api/user/updateDoctor/693b99d6581778ff34818196::f216c3e7-8877-4a2b-ae6f-9ec135ef424a::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-21 12:32:05::error::/v1/api/user/updateDoctor/693b99d6581778ff34818196::b6cd7b68-2d9b-4933-9b1a-81d3c46db9ce::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-21 12:32:05::error::/v1/api/user/updateDoctor/693b99d6581778ff34818196::bab7b03d-79ec-4797-bab5-111e547f7a89::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-21 12:59:20::error::/v1/api/user/updateDoctor/693b99d6581778ff34818196::31a60535-b77b-443b-82c2-c35899af4acf::handler-error::{"status":404,"message":"Not Found Route"}

@@ -1,87 +1,136 @@
 // src/pages/workSpace/doctors/Doctors.jsx
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import './doctors.css'
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./doctors.css";
 
-import doctorAvatar from '../../../assets/doctor-avatar.svg'
-import WorkspaceTopBar from '../../../components/Workspace/WorkspaceTopBar'
-import DoctorModalForm from './doctorModelForm/doctorModelForm'
-import { apiUtils } from '../../../utils/newRequest'
+import doctorAvatar from "../../../assets/doctor-avatar.svg";
+import WorkspaceTopBar from "../../../components/Workspace/WorkspaceTopBar";
+import DoctorModalForm from "./doctorModelForm/doctorModelForm";
+import { apiUtils } from "../../../utils/newRequest";
 
 export default function Doctors() {
-    const navigate = useNavigate()
-    const [openDoctorModal, setOpenDoctorModal] = useState(false)
+    const navigate = useNavigate();
 
-    const [doctors, setDoctors] = useState(null)
+    const [openDoctorModal, setOpenDoctorModal] = useState(false);
+    const [doctors, setDoctors] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const fetchDoctors = async () => {
+        setLoading(true);
+        try {
+            const response = await apiUtils.get("/user/readDoctors");
+            const list = response?.data?.metadata?.doctors || [];
+            setDoctors(Array.isArray(list) ? list : []);
+        } catch (error) {
+            console.error("Error fetching doctors:", error);
+            setDoctors([]);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fecthDoctors = async () => {
-            try {
-                const response = await apiUtils.get('/user/readDoctors')
-                setDoctors(response.data.metadata.doctors)
-            } catch (error) {
-                console.error('Error fetching doctors:', error)
-            }
-        }
-        fecthDoctors()
-    }, [])
+        fetchDoctors();
+    }, []);
 
     const handleCreateDoctor = async (data) => {
-        const newDoctor = {
-            fullName: data.fullName,
-            phoneNumber: data.phoneNumber,
-            email: data.email,
-            specialty: data.specialty || '',
-            description: data.description || '',
-        }
+        // Normalize input from modal to match backend fields
+        const payload = {
+            fullName: data?.fullName || "",
+            phone: data?.phone || data?.phoneNumber || "",
+            email: data?.email || "",
+            speciality: data?.speciality || data?.specialty || "",
+            description: data?.description || "",
+        };
 
         try {
-            const response = await apiUtils.post('/user/createDoctor', newDoctor)
-            console.log('Doctor created successfully:', response.data.metadata.doctor)
-            setDoctors((prevDoctors) => [...prevDoctors, response.data.metadata.doctor])
-            setOpenDoctorModal(false)
+            const response = await apiUtils.post("/user/createDoctor", payload);
+            const created = response?.data?.metadata?.doctor;
+
+            // Option A: re-fetch to ensure consistency
+            await fetchDoctors();
+
+            // Option B (if you want append instead of refetch):
+            // if (created) setDoctors((prev) => [created, ...(prev || [])]);
+
+            setOpenDoctorModal(false);
         } catch (error) {
-            console.error('Error creating doctor:', error)
+            console.error("Error creating doctor:", error);
         }
-    }
+    };
+
+    const getDoctorId = (doctor) => doctor?._id || doctor?.id;
+    const getDoctorName = (doctor) =>
+        doctor?.fullName || doctor?.name || "Unnamed";
+    const getDoctorSpeciality = (doctor) =>
+        doctor?.speciality || doctor?.specialty || "";
 
     return (
-        <div className='doctors'>
+        <div className="doctors">
             <WorkspaceTopBar />
 
-            <section className='doctors-card'>
-                <div className='doctors-card-top'>
-                    <div className='doctors-tabs'>
-                        <p className='doctors-tab'>Clinic Doctors</p>
+            <section className="doctors-card">
+                <div className="doctors-card-top">
+                    <div className="doctors-tabs">
+                        <p className="doctors-tab">Clinic Doctors</p>
                     </div>
 
-                    <button className='doctors-btn-ghost' onClick={() => setOpenDoctorModal(true)}>
+                    <button
+                        className="doctors-btn-ghost"
+                        onClick={() => setOpenDoctorModal(true)}
+                        type="button"
+                    >
                         <span>＋</span>
                         <span>Doctor</span>
                     </button>
                 </div>
 
-                <div className='doctors-grid'>
-                    {doctors?.map((doctor) => (
-                        <button
-                            key={doctor.id}
-                            type='button'
-                            className='doctors-item'
-                            onClick={() =>
-                                navigate(`/workspace/doctors/${doctor._id}`, {
-                                    state: { doctor },
-                                })
-                            }
-                        >
-                            <img src={doctorAvatar} alt={doctor.name} className='doctors-avatar' />
-                            <span className='doctors-name'>{doctor.name}</span>
-                            {doctor.specialty && <span className='doctors-specialty'>{doctor.specialty}</span>}
-                        </button>
-                    ))}
-                </div>
+                {loading ? (
+                    <div className="doctors-empty">Loading...</div>
+                ) : doctors?.length ? (
+                    <div className="doctors-grid">
+                        {doctors.map((doctor) => {
+                            const id = getDoctorId(doctor);
+                            const name = getDoctorName(doctor);
+                            const spec = getDoctorSpeciality(doctor);
+
+                            return (
+                                <button
+                                    key={id}
+                                    type="button"
+                                    className="doctors-item"
+                                    onClick={() =>
+                                        navigate(`/workspace/doctors/${id}`, {
+                                            state: { doctor },
+                                        })
+                                    }
+                                >
+                                    <img
+                                        src={doctorAvatar}
+                                        alt={name}
+                                        className="doctors-avatar"
+                                    />
+                                    <span className="doctors-name">{name}</span>
+                                    {spec ? (
+                                        <span className="doctors-specialty">
+                                            {spec}
+                                        </span>
+                                    ) : null}
+                                </button>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <div className="doctors-empty">No doctors yet.</div>
+                )}
             </section>
 
-            {openDoctorModal && <DoctorModalForm onClose={() => setOpenDoctorModal(false)} onSubmit={handleCreateDoctor} />}
+            {openDoctorModal && (
+                <DoctorModalForm
+                    onClose={() => setOpenDoctorModal(false)}
+                    onSubmit={handleCreateDoctor}
+                />
+            )}
         </div>
-    )
+    );
 }
