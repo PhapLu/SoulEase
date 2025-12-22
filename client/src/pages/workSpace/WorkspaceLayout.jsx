@@ -2,6 +2,8 @@ import { Outlet, NavLink, Link, useNavigate, useLocation } from 'react-router-do
 import './WorkspaceLayout.css'
 import logo from '../../assets/logo.svg'
 import FinisherHeader from '../../components/BackgroundApp/FinisherHeader'
+// ví dụ: role lấy từ context/store
+// import { useAuth } from '../../context/AuthContext'
 import { useAuth } from '../../contexts/auth/AuthContext'
 import { useEffect } from 'react'
 
@@ -21,11 +23,15 @@ export default function WorkspaceLayout() {
             navigate('/workspace/patients', { replace: true })
         }
     }, [userInfo, location.pathname, navigate])
+    // const { role } = useAuth() // 'doctor' | 'clinic'
+    const role = 'doctor' // demo
+
+    const isDoctor = role === 'doctor'
+
     return (
         <>
             <FinisherHeader />
             <div className='workspace'>
-                {/* LEFT SIDEBAR */}
                 <aside className='workspace-sidebar'>
                     <Link to='/workspace' className='workspace-brand'>
                         <img src={logo} alt='SoulEase logo' className='workspace-logo' />
@@ -64,17 +70,20 @@ export default function WorkspaceLayout() {
                                 <NavLink to='/workspace/messages' className={({ isActive }) => (isActive ? 'workspace-nav-link active' : 'workspace-nav-link')}>
                                     <span>
                                         <svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#737373'>
-                                            <path d='M240-384h336v-72H240v72Zm0-132h480v-72H240v72Zm0-132h480v-72H240v72ZM96-96v-696q0-29.7 21.15-50.85Q138.3-864 168-864h624q29.7 0 50.85 21.15Q864-821.7 864-792v480q0 29.7-21.15 50.85Q821.7-240 792-240H240L96-96Zm114-216h582v-480H168v522l42-42Zm-42 0v-480 480Z' />
+                                            {' '}
+                                            <path d='M240-384h336v-72H240v72Zm0-132h480v-72H240v72Zm0-132h480v-72H240v72ZM96-96v-696q0-29.7 21.15-50.85Q138.3-864 168-864h624q29.7 0 50.85 21.15Q864-821.7 864-792v480q0 29.7-21.15 50.85Q821.7-240 792-240H240L96-96Zm114-216h582v-480H168v522l42-42Zm-42 0v-480 480Z' />{' '}
                                         </svg>
                                     </span>
                                     Messages
                                 </NavLink>
                             </li>
+
                             <li>
                                 <NavLink to='/workspace/notifications' className={({ isActive }) => (isActive ? 'workspace-nav-link active' : 'workspace-nav-link')}>
                                     <span>
                                         <svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#737373'>
-                                            <path d='M192-216v-72h48v-240q0-87 53.5-153T432-763v-53q0-20 14-34t34-14q20 0 34 14t14 34v53q85 16 138.5 82T720-528v240h48v72H192Zm288-276Zm-.21 396Q450-96 429-117.15T408-168h144q0 30-21.21 51t-51 21ZM312-288h336v-240q0-70-49-119t-119-49q-70 0-119 49t-49 119v240Z' />
+                                            {' '}
+                                            <path d='M192-216v-72h48v-240q0-87 53.5-153T432-763v-53q0-20 14-34t34-14q20 0 34 14t14 34v53q85 16 138.5 82T720-528v240h48v72H192Zm288-276Zm-.21 396Q450-96 429-117.15T408-168h144q0 30-21.21 51t-51 21ZM312-288h336v-240q0-70-49-119t-119-49q-70 0-119 49t-49 119v240Z' />{' '}
                                         </svg>
                                     </span>
                                     Notifications
@@ -89,7 +98,6 @@ export default function WorkspaceLayout() {
                     </div>
                 </aside>
 
-                {/* MAIN CONTENT - 10/12 col */}
                 <main className='workspace-main'>
                     <Outlet />
                 </main>

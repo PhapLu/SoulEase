@@ -11,29 +11,37 @@ import { apiUtils } from '../../../utils/newRequest'
 
 export default function Doctors() {
     const navigate = useNavigate()
-    const [openDoctorModal, setOpenDoctorModal] = useState(false)
 
-    const [doctors, setDoctors] = useState(null)
+    const [openDoctorModal, setOpenDoctorModal] = useState(false)
+    const [doctors, setDoctors] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    const fetchDoctors = async () => {
+        setLoading(true)
+        try {
+            const response = await apiUtils.get('/user/readDoctors')
+            const list = response?.data?.metadata?.doctors || []
+            setDoctors(Array.isArray(list) ? list : [])
+        } catch (error) {
+            console.error('Error fetching doctors:', error)
+            setDoctors([])
+        } finally {
+            setLoading(false)
+        }
+    }
 
     useEffect(() => {
-        const fecthDoctors = async () => {
-            try {
-                const response = await apiUtils.get('/user/readDoctors')
-                setDoctors(response.data.metadata.doctors)
-            } catch (error) {
-                console.error('Error fetching doctors:', error)
-            }
-        }
-        fecthDoctors()
+        fetchDoctors()
     }, [])
 
     const handleCreateDoctor = async (data) => {
-        const newDoctor = {
-            fullName: data.fullName,
-            phoneNumber: data.phoneNumber,
-            email: data.email,
-            specialty: data.specialty || '',
-            description: data.description || '',
+        // Normalize input from modal to match backend fields
+        const payload = {
+            fullName: data?.fullName || '',
+            phone: data?.phone || data?.phoneNumber || '',
+            email: data?.email || '',
+            speciality: data?.speciality || data?.specialty || '',
+            description: data?.description || '',
         }
 
         try {
@@ -45,6 +53,10 @@ export default function Doctors() {
         }
     }
 
+    const getDoctorId = (doctor) => doctor?._id || doctor?.id
+    const getDoctorName = (doctor) => doctor?.fullName || doctor?.name || 'Unnamed'
+    const getDoctorSpeciality = (doctor) => doctor?.speciality || doctor?.specialty || ''
+
     return (
         <div className='doctors'>
             <WorkspaceTopBar />
@@ -55,7 +67,7 @@ export default function Doctors() {
                         <p className='doctors-tab'>Clinic Doctors</p>
                     </div>
 
-                    <button className='doctors-btn-ghost' onClick={() => setOpenDoctorModal(true)}>
+                    <button className='doctors-btn-ghost' onClick={() => setOpenDoctorModal(true)} type='button'>
                         <span>＋</span>
                         <span>Staff</span>
                     </button>

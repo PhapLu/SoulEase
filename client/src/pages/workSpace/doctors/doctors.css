@@ -6,7 +6,6 @@
 }
 
 /* MAIN CARD */
-
 .doctors-card {
     flex: 1;
     border-radius: 24px;
@@ -26,7 +25,6 @@
 }
 
 /* Tabs */
-
 .doctors-tabs {
     display: flex;
     gap: 1.25rem;
@@ -44,7 +42,6 @@
 }
 
 /* Button tạo doctor */
-
 .doctors-btn-ghost {
     display: inline-flex;
     align-items: center;
@@ -58,11 +55,12 @@
 }
 
 /* Grid doctors */
-
 .doctors-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(6, minmax(120px, 1fr));
     gap: 2.5rem;
+    justify-items: center;
+    align-items: start;
 }
 
 .doctors-item {
@@ -74,7 +72,8 @@
     cursor: pointer;
     border: none;
     background: transparent;
-    padding: 1rem 0;
+    padding: 1rem 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .doctors-item:hover {
@@ -83,8 +82,7 @@
     border-radius: 16px;
 }
 
-/* Avatar bác sĩ */
-
+/* Avatar */
 .doctors-avatar {
     width: 80px;
     height: 80px;
@@ -93,7 +91,6 @@
 }
 
 /* Text */
-
 .doctors-name {
     font-weight: 600;
     color: #222;
@@ -104,9 +101,15 @@
     color: #666;
 }
 
-/* === RESPONSIVE === */
+/* Empty/Loading */
+.doctors-empty {
+    padding: 20px 4px;
+    color: #556;
+    opacity: 0.85;
+    font-weight: 500;
+}
 
-/* Tablet (≤ 1024px) */
+/* === RESPONSIVE === */
 @media (max-width: 1024px) {
     .doctors-card {
         padding: 1.25rem 1.25rem;
@@ -127,7 +130,6 @@
     }
 }
 
-/* Mobile (≤ 768px) */
 @media (max-width: 768px) {
     .doctors {
         gap: 1rem;
@@ -172,7 +174,6 @@
     }
 }
 
-/* Mobile (≤ 480px) */
 @media (max-width: 480px) {
     .doctors-card {
         padding: 0.85rem;
