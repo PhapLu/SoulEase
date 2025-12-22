@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import WorkspaceTopBar from '../../../../components/Workspace/WorkspaceTopBar'
 import { apiUtils } from '../../../../utils/newRequest'
-import './doctorDetail.css'
+import './StaffDetail.css'
 import { EditIcon } from '../../Icon'
 
 /** Presets */
@@ -52,7 +52,7 @@ function stripDrPrefix(name) {
 }
 
 export default function DoctorDetail() {
-    const { doctorId } = useParams()
+    const { staffId } = useParams()
 
     const [doctor, setDoctor] = useState(null)
     const [editForm, setEditForm] = useState(null)
@@ -64,8 +64,8 @@ export default function DoctorDetail() {
     useEffect(() => {
         const fetchDoctorDetail = async () => {
             try {
-                const res = await apiUtils.get(`/user/readDoctorDetail/${doctorId}`)
-                const data = res?.data?.metadata?.user || res?.data?.user || null
+                const res = await apiUtils.get(`/user/readStaffDetail/${staffId}`)
+                const data = res?.data?.metadata?.user
 
                 const normalized = {
                     ...data,
@@ -88,7 +88,7 @@ export default function DoctorDetail() {
         }
 
         fetchDoctorDetail()
-    }, [doctorId])
+    }, [staffId])
 
     /** Recompute age when birthday changes */
     useEffect(() => {
@@ -189,7 +189,7 @@ export default function DoctorDetail() {
             if (payload.experience !== undefined && payload.experience !== '') payload.experience = Number(payload.experience)
             if (payload.age !== undefined && payload.age !== '') payload.age = Number(payload.age)
 
-            await apiUtils.put(`/user/updateDoctor/${doctorId}`, payload)
+            await apiUtils.put(`/user/updateStaff/${staffId}`, payload)
 
             // update local view data
             setDoctor(payload)
@@ -346,9 +346,12 @@ export default function DoctorDetail() {
     /** Display helpers */
     const displayName = useMemo(() => {
         const name = String(editForm?.fullName || doctor?.fullName || '').trim()
-        if (!name) return 'Dr. —'
-        return `Dr. ${stripDrPrefix(name)}`
-    }, [doctor?.fullName, editForm?.fullName])
+        if (!name) return '—'
+
+        const cleanName = stripDrPrefix(name)
+
+        return doctor?.role === 'doctor' ? `Dr. ${cleanName}` : cleanName
+    }, [doctor?.fullName, editForm?.fullName, doctor?.role])
 
     const sexLabel = useMemo(() => {
         const raw = editForm?.gender || doctor?.gender || doctor?.sex || ''

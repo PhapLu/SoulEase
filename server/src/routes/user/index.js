@@ -8,8 +8,9 @@ const router = express.Router()
 router.get('/me', asyncHandler(userController.me))
 
 router.use(verifyToken)
+router.get('/readStaffs', asyncHandler(userController.readStaffs))
 router.get('/readDoctors', asyncHandler(userController.readDoctors))
 router.post('/createStaff', asyncHandler(userController.createStaff))
-router.get('/readDoctorDetail/:doctorId', asyncHandler(userController.readDoctorDetail))
+router.get('/readStaffDetail/:staffId', asyncHandler(userController.readStaffDetail))
 
 export default router

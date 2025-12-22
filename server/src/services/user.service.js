@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { AuthFailureError, NotFoundError } from '../core/error.response.js'
+import { AuthFailureError, BadRequestError, NotFoundError } from '../core/error.response.js'
 import { decrypt } from '../configs/encryption.config.js'
 import mongoose from 'mongoose'
 import { User } from '../models/user.model.js'
@@ -76,6 +76,7 @@ class UserService {
             clinicId,
             assistDoctorId: role === 'nurse' ? assistDoctorId : null,
             status: 'active',
+            password: 'staffPassword@123',
         })
 
         // 5. Return safe payload
@@ -150,6 +151,26 @@ class UserService {
         }
     }
 
+    static readStaffs = async (req) => {
+        const clinicId = req.userId
+
+        // 1. Check clinic
+        const clinic = await User.findById(clinicId)
+        if (!clinic) throw new NotFoundError('Clinic not found')
+        if (clinic.role !== 'clinic') throw new AuthFailureError('You are not authorized to perform this action')
+
+        // 2. Find doctors associated with the clinic
+        const staffs = await User.find({
+            clinicId: clinicId,
+            role: { $in: ['doctor', 'nurse'] },
+        }).select('-password -accessToken -googleId -followers -following')
+
+        // 3. Return doctors list
+        return {
+            staffs,
+        }
+    }
+
     static readDoctors = async (req) => {
         const clinicId = req.userId
 
@@ -159,7 +180,10 @@ class UserService {
         if (clinic.role !== 'clinic') throw new AuthFailureError('You are not authorized to perform this action')
 
         // 2. Find doctors associated with the clinic
-        const doctors = await User.find({ clinicId: clinicId, role: 'doctor' }).select('-password -accessToken -googleId -followers -following')
+        const doctors = await User.find({
+            clinicId: clinicId,
+            role: 'doctor',
+        }).select('-password -accessToken -googleId -followers -following')
 
         // 3. Return doctors list
         return {
@@ -167,17 +191,16 @@ class UserService {
         }
     }
 
-    static readDoctorDetail = async (req) => {
-        const doctorId = req.params.doctorId
+    static readStaffDetail = async (req) => {
+        const staffId = req.params.staffId
 
         // 1. Check doctor
-        const doctor = await User.findById(doctorId).select('-password -accessToken -googleId -followers -following')
-        if (!doctor || doctor.role !== 'doctor') throw new NotFoundError('Doctor not found')
+        const staff = await User.findById(staffId).select('-password -accessToken -googleId -followers -following')
+        if (!staff || (staff.role !== 'doctor' && staff.role !== 'nurse')) throw new NotFoundError('Staff not found')
 
         // 2. Return doctor detail
-
         return {
-            user: doctor,
+            user: staff,
         }
     }
 

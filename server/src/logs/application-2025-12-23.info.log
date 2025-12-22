@@ -1,0 +1,11 @@
+2025-12-23 00:00:22::info::/v1/api/user/readStaffs::27505483-2071-47f2-a1c8-34ebc66732d3::input-params ::GET::::{}
+2025-12-23 00:00:22::info::/v1/api/user/readStaffs::d6c5951e-338a-4781-bcd0-4870716c526e::input-params ::GET::::{}
+2025-12-23 00:00:34::info::/v1/api/user/readStaffs::384eda3e-7540-4183-aab4-6c825be10704::input-params ::GET::::{}
+2025-12-23 00:01:02::info::/v1/api/user/readStaffs::e64f8027-1b6b-437c-b5d3-a98b951aae97::input-params ::GET::::{}
+2025-12-23 00:01:35::info::/v1/api/user/readStaffs::e39613e9-b1e7-4870-b27f-e34fa9667201::input-params ::GET::::{}
+2025-12-23 00:01:35::info::/v1/api/user/readStaffs::0a549eb9-3279-4d15-b4e3-9e3a3066a44f::input-params ::GET::::{}
+2025-12-23 00:01:46::info::/v1/api/user/readStaffs::719b19b5-d38f-40b7-bef0-6db991dd50fa::input-params ::GET::::{}
+2025-12-23 00:01:58::info::/v1/api/user/readStaffDetail/undefined::965543b2-ed54-44a7-93e5-aaf5064b1906::input-params ::GET::::{}
+2025-12-23 00:01:58::error::/v1/api/user/readStaffDetail/undefined::965543b2-ed54-44a7-93e5-aaf5064b1906::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
+2025-12-23 00:01:58::info::/v1/api/user/readStaffDetail/undefined::b739c400-03d0-43b8-af62-2c39e93e6570::input-params ::GET::::{}
+2025-12-23 00:01:58::error::/v1/api/user/readStaffDetail/undefined::b739c400-03d0-43b8-af62-2c39e93e6570::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}

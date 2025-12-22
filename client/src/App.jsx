@@ -19,9 +19,9 @@ import PatientsDetail from './pages/workSpace/patients/patientsDetail/patientsDe
 import Services from './pages/Services/Services'
 import Pricing from './pages/Pricing/Pricing'
 // import Messages from './pages/workSpace/conversation/Conversations.jsx'
-import Doctors from './pages/workSpace/doctors/Doctors.jsx'
+import Staffs from './pages/workSpace/staffs/Staffs.jsx'
 import Notifications from './pages/workSpace/notifications/Notifications.jsx'
-import DoctorDetail from './pages/workSpace/doctors/doctorDetail/doctorDetail.jsx'
+import StaffDetail from './pages/workSpace/staffs/staffDetail/StaffDetail.jsx'
 import MessagesList from './components/conversation/conversations/Conversations.jsx'
 import ConversationDetail from './components/conversation/conversationDetail/ConversationDetail.jsx'
 import ConversationsLayout from './pages/workSpace/conversation/ConversationsLayout.jsx'
@@ -59,13 +59,13 @@ const router = createBrowserRouter([
         ),
         children: [
             { path: 'patients', element: <Patients /> },
-            { path: 'doctors', element: <Doctors /> },
+            { path: 'staffs', element: <Staffs /> },
             { path: 'patients/folder/:folderId', element: <FolderClients /> },
             {
                 path: 'patients/folder/:folderId/:patientRecordId',
                 element: <PatientsDetail />,
             },
-            { path: 'doctors/:doctorId', element: <DoctorDetail /> },
+            { path: 'staffs/:staffId', element: <StaffDetail /> },
             {
                 path: 'messages',
                 element: <ConversationsLayout />,

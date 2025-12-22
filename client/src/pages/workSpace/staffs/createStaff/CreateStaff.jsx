@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import './doctorModelForm.css'
-import { useEffect } from 'react'
+import './CreateStaff.css'
 import { motion, AnimatePresence } from 'framer-motion'
-import { apiUtils } from '../../../../utils/newRequest'
 
-export default function DoctorModalForm({ onClose, onSubmit }) {
+export default function DoctorModalForm({ onClose, onSubmit, doctors }) {
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -32,21 +30,6 @@ export default function DoctorModalForm({ onClose, onSubmit }) {
         })
     }
 
-    const [doctors, setDoctors] = useState([])
-
-    useEffect(() => {
-        const fetchDoctors = async () => {
-            try {
-                const res = await apiUtils.get('/user/readDoctors')
-                setDoctors(res.data.metadata.doctors || [])
-            } catch (err) {
-                console.error(err)
-            }
-        }
-
-        fetchDoctors()
-    }, [])
-
     return (
         <div className='doctor-modal-overlay'>
             <div className='doctor-modal'>
@@ -61,7 +44,7 @@ export default function DoctorModalForm({ onClose, onSubmit }) {
                     <div className='form-group'>
                         <label className='form-label'>Full name</label>
                         <div className='input-with-icon'>
-                            <input type='text' name='fullName' className='form-input' placeholder="Enter doctor's full name" value={formData.fullName} onChange={handleChange} required />
+                            <input type='text' name='fullName' className='form-input' placeholder="Enter staff's full name" value={formData.fullName} onChange={handleChange} required />
                         </div>
                     </div>
 
@@ -91,7 +74,7 @@ export default function DoctorModalForm({ onClose, onSubmit }) {
 
                     <div className='form-group'>
                         <label className='form-label'>Role</label>
-                        <select name='role' className='form-input' value={formData.role} onChange={handleChange}>
+                        <select name='role' className='input-with-icon' value={formData.role} onChange={handleChange}>
                             <option value='doctor'>Doctor</option>
                             <option value='nurse'>Nurse</option>
                         </select>
@@ -101,7 +84,7 @@ export default function DoctorModalForm({ onClose, onSubmit }) {
                         {formData.role === 'nurse' && (
                             <motion.div className='form-group' initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.25 }}>
                                 <label className='form-label'>Assist doctor</label>
-                                <select name='assistDoctorId' className='form-input' value={formData.assistDoctorId} onChange={handleChange} required>
+                                <select name='assistDoctorId' className='input-with-icon' value={formData.assistDoctorId} onChange={handleChange} required>
                                     <option value=''>Select doctor</option>
                                     {doctors.map((doc) => (
                                         <option key={doc._id} value={doc._id}>

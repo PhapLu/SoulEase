@@ -1,29 +1,35 @@
 // src/pages/workSpace/doctors/Doctors.jsx
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './doctors.css'
+import './Staffs.css'
 
 import emptyDoctor from '../../../assets/empty_profile.png'
 import doctorAvatar from '../../../assets/doctor-avatar.svg'
 import WorkspaceTopBar from '../../../components/Workspace/WorkspaceTopBar'
-import DoctorModalForm from './doctorModelForm/doctorModelForm'
+import CreateStaff from './createStaff/CreateStaff'
 import { apiUtils } from '../../../utils/newRequest'
 
 export default function Doctors() {
     const navigate = useNavigate()
 
-    const [openDoctorModal, setOpenDoctorModal] = useState(false)
+    const [openCreateStaffModal, setOpenCreateStaffModal] = useState(false)
+    const [staffs, setStaffs] = useState([])
     const [doctors, setDoctors] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const fetchDoctors = async () => {
+    const fetchStaffs = async () => {
         setLoading(true)
         try {
-            const response = await apiUtils.get('/user/readDoctors')
-            const list = response?.data?.metadata?.doctors || []
-            setDoctors(Array.isArray(list) ? list : [])
+            const response = await apiUtils.get('/user/readStaffs')
+            const list = response?.data?.metadata?.staffs || []
+
+            const doctors = list.filter((u) => u.role === 'doctor')
+
+            setStaffs(list)
+            setDoctors(doctors)
         } catch (error) {
-            console.error('Error fetching doctors:', error)
+            console.error('Error fetching staffs:', error)
+            setStaffs([])
             setDoctors([])
         } finally {
             setLoading(false)
@@ -31,7 +37,7 @@ export default function Doctors() {
     }
 
     useEffect(() => {
-        fetchDoctors()
+        fetchStaffs()
     }, [])
 
     const handleCreateDoctor = async (data) => {
@@ -42,20 +48,18 @@ export default function Doctors() {
             email: data?.email || '',
             speciality: data?.speciality || data?.specialty || '',
             description: data?.description || '',
+            role: data?.role,
+            assistDoctorId: data?.assistDoctorId || null,
         }
 
         try {
-            const response = await apiUtils.post('/user/createStaff', newDoctor)
-            setDoctors((prevDoctors) => [...prevDoctors, response.data.metadata.doctor])
-            setOpenDoctorModal(false)
+            const response = await apiUtils.post('/user/createStaff', payload)
+            setStaffs((prevDoctors) => [...prevDoctors, response.data.metadata.staff])
+            setOpenCreateStaffModal(false)
         } catch (error) {
             console.error('Error creating doctor:', error)
         }
     }
-
-    const getDoctorId = (doctor) => doctor?._id || doctor?.id
-    const getDoctorName = (doctor) => doctor?.fullName || doctor?.name || 'Unnamed'
-    const getDoctorSpeciality = (doctor) => doctor?.speciality || doctor?.specialty || ''
 
     return (
         <div className='doctors'>
@@ -67,45 +71,45 @@ export default function Doctors() {
                         <p className='doctors-tab'>Clinic Doctors</p>
                     </div>
 
-                    <button className='doctors-btn-ghost' onClick={() => setOpenDoctorModal(true)} type='button'>
+                    <button className='doctors-btn-ghost' onClick={() => setOpenCreateStaffModal(true)} type='button'>
                         <span>＋</span>
                         <span>Staff</span>
                     </button>
                 </div>
 
                 <div className='doctors-grid'>
-                    {doctors && doctors.length === 0 && (
+                    {staffs && staffs.length === 0 && (
                         <div className='doctors-empty'>
                             <img src={emptyDoctor} alt='Empty doctor profile' className='doctors-empty-avatar' />
                             <h3 className='doctors-empty-title'>No doctor profile yet</h3>
                             <p className='doctors-empty-text'>Doctor profiles will appear here once they are created or invited.</p>
 
-                            <button className='doctors-btn-primary' onClick={() => setOpenDoctorModal(true)}>
+                            <button className='doctors-btn-primary' onClick={() => setOpenCreateStaffModal(true)}>
                                 + Add your first doctor
                             </button>
                         </div>
                     )}
 
-                    {doctors?.map((doctor) => (
+                    {staffs?.map((staff) => (
                         <button
-                            key={doctor._id}
+                            key={staff?._id}
                             type='button'
                             className='doctors-item'
                             onClick={() =>
-                                navigate(`/workspace/doctors/${doctor._id}`, {
-                                    state: { doctor },
+                                navigate(`/workspace/staffs/${staff?._id}`, {
+                                    state: { staff },
                                 })
                             }
                         >
-                            <img src={doctorAvatar} alt={doctor.fullName} className='doctors-avatar' />
-                            <span className='doctors-name'>{doctor.fullName}</span>
-                            {doctor.specialty && <span className='doctors-specialty'>{doctor.specialty}</span>}
+                            <img src={doctorAvatar} alt={staff?.fullName} className='doctors-avatar' />
+                            <span className='doctors-name'>{staff?.fullName}</span>
+                            {staff?.specialty && <span className='doctors-specialty'>{staff?.specialty}</span>}
                         </button>
                     ))}
                 </div>
             </section>
 
-            {openDoctorModal && <DoctorModalForm onClose={() => setOpenDoctorModal(false)} onSubmit={handleCreateDoctor} />}
+            {openCreateStaffModal && <CreateStaff onClose={() => setOpenCreateStaffModal(false)} onSubmit={handleCreateDoctor} doctors={doctors} />}
         </div>
     )
 }

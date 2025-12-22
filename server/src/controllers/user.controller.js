@@ -34,6 +34,13 @@ class UserController {
         }).send(res)
     }
 
+    readStaffs = async (req, res, next) => {
+        new SuccessResponse({
+            message: 'Read doctors success!',
+            metadata: await UserService.readStaffs(req),
+        }).send(res)
+    }
+
     readDoctors = async (req, res, next) => {
         new SuccessResponse({
             message: 'Read doctors success!',
@@ -41,10 +48,10 @@ class UserController {
         }).send(res)
     }
 
-    readDoctorDetail = async (req, res, next) => {
+    readStaffDetail = async (req, res, next) => {
         new SuccessResponse({
             message: 'Read doctor detail success!',
-            metadata: await UserService.readDoctorDetail(req),
+            metadata: await UserService.readStaffDetail(req),
         }).send(res)
     }
 }

@@ -2,20 +2,20 @@ import { useState } from 'react'
 import { Link, useParams, useLocation } from 'react-router-dom'
 import './WorkspaceTopBar.css'
 import PatientModalForm from '../../pages/workSpace/patients/folderClients/patientModelForm/patientModelForm'
-import DoctorModalForm from '../../pages/workSpace/doctors/doctorModelForm/doctorModelForm'
+import CreateStaff from '../../pages/workSpace/staffs/createStaff/CreateStaff'
 import { useAuth } from '../../contexts/auth/AuthContext'
 import { apiUtils } from '../../utils/newRequest'
 
 export default function WorkspaceTopBar() {
     const [openCreatePatientModal, setOpenCreatePatientModal] = useState(false)
-    const [openCreateDoctorModal, setOpenCreateDoctorModal] = useState(false)
+    const [openCreateStaffModal, setOpenCreateStaffModal] = useState(false)
 
     const { folderId } = useParams()
     const location = useLocation()
     const { userInfo, logout } = useAuth()
 
     const isPatientsPage = location.pathname.startsWith('/workspace/patients')
-    const isDoctorsPage = location.pathname.startsWith('/workspace/doctors')
+    const isStaffsPage = location.pathname.startsWith('/workspace/staffs')
 
     const handleCreateClient = async (data) => {
         try {
@@ -37,7 +37,7 @@ export default function WorkspaceTopBar() {
         }
     }
 
-    const handleCreateDoctor = async (data) => {
+    const handleCreateStaff = async (data) => {
         try {
             const payload = {
                 fullName: data.fullName,
@@ -47,10 +47,10 @@ export default function WorkspaceTopBar() {
             }
 
             await apiUtils.post('/user/createStaff', payload)
-            setOpenCreateDoctorModal(false)
+            setOpenCreateStaffModal(false)
         } catch (err) {
             console.log(err)
-            alert('Failed to create doctor.')
+            alert('Failed to create staff.')
         }
     }
 
@@ -61,12 +61,12 @@ export default function WorkspaceTopBar() {
             </div>
 
             <div className='workspace-topbar-actions'>
-                {(isPatientsPage || isDoctorsPage) && (
+                {(isPatientsPage || isStaffsPage) && (
                     <button
                         className='workspace-topbar-btn'
                         onClick={() => {
                             if (isPatientsPage) setOpenCreatePatientModal(true)
-                            if (isDoctorsPage) setOpenCreateDoctorModal(true)
+                            if (isStaffsPage) setOpenCreateStaffModal(true)
                         }}
                     >
                         <span>
@@ -76,7 +76,7 @@ export default function WorkspaceTopBar() {
                         </span>
                         <span>
                             {isPatientsPage && 'Create Client'}
-                            {isDoctorsPage && 'Create Doctor'}
+                            {isStaffsPage && 'Create Staff'}
                         </span>
                     </button>
                 )}
@@ -112,11 +112,11 @@ export default function WorkspaceTopBar() {
                         )}
 
                         {userInfo?.role === 'clinic' && (
-                            <Link to='/workspace/doctors' className='dropdown-item'>
+                            <Link to='/workspace/staffs' className='dropdown-item'>
                                 <svg xmlns='http://www.w3.org/2000/svg' height='25px' viewBox='0 -960 960 960' width='25px' fill='#0c1317'>
                                     <path d='M96-192v-92q0-25.78 12.5-47.39T143-366q54-32 114.5-49T384-432q66 0 126.5 17T625-366q22 13 34.5 34.61T672-284v92H96Zm648 0v-92q0-42-19.5-78T672-421q39 8 75.5 21.5T817-366q22 13 34.5 34.67Q864-309.65 864-284v92H744ZM384-480q-60 0-102-42t-42-102q0-60 42-102t102-42q60 0 102 42t42 102q0 60-42 102t-102 42Zm336-144q0 60-42 102t-102 42q-8 0-15-.5t-15-2.5q25-29 39.5-64.5T600-624q0-41-14.5-76.5T546-765q8-2 15-2.5t15-.5q60 0 102 42t42 102ZM168-264h432v-20q0-6.47-3.03-11.76-3.02-5.3-7.97-8.24-47-27-99-41.5T384-360q-54 0-106 14t-99 42q-4.95 2.83-7.98 7.91-3.02 5.09-3.02 12V-264Zm216.21-288Q414-552 435-573.21t21-51Q456-654 434.79-675t-51-21Q354-696 333-674.79t-21 51Q312-594 333.21-573t51 21ZM384-264Zm0-360Z' />
                                 </svg>
-                                <p>Doctors</p>
+                                <p>Staffs</p>
                             </Link>
                         )}
 
@@ -135,7 +135,7 @@ export default function WorkspaceTopBar() {
 
             {openCreatePatientModal && <PatientModalForm onClose={() => setOpenCreatePatientModal(false)} onSubmit={handleCreateClient} lockFolder={false} />}
 
-            {openCreateDoctorModal && <DoctorModalForm onClose={() => setOpenCreateDoctorModal(false)} onSubmit={handleCreateDoctor} />}
+            {openCreateStaffModal && <CreateStaff onClose={() => setOpenCreateStaffModal(false)} onSubmit={handleCreateStaff} />}
         </header>
     )
 }

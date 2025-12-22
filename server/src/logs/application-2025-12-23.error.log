@@ -1,0 +1,2 @@
+2025-12-23 00:01:58::error::/v1/api/user/readStaffDetail/undefined::965543b2-ed54-44a7-93e5-aaf5064b1906::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
+2025-12-23 00:01:58::error::/v1/api/user/readStaffDetail/undefined::b739c400-03d0-43b8-af62-2c39e93e6570::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
