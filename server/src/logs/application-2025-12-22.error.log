@@ -1,0 +1,5 @@
+2025-12-22 17:09:38::error::/v1/api/user/me::2b59c9e8-ed66-4ef5-ad8d-ff8e0619a298::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-22 17:09:38::error::/v1/api/user/me::89af676e-948d-4735-a5f9-576139b20a50::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-22 17:10:05::error::/v1/api/auth/login::a3b2ccf7-3010-410c-8f3e-ffeb0fc01b5b::handler-error::{"status":403,"message":"User not found"}
+2025-12-22 20:16:31::error::/v1/api/doctor/createDoctor::e70fef68-dc0a-4a6a-b1c3-dbfc771d6fa4::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-22 20:55:33::error::/v1/api/user/updateDoctor/6949450282130873b5b05519::b97ec3ed-80c1-4576-b24a-e0f3298932fd::handler-error::{"status":404,"message":"Not Found Route"}

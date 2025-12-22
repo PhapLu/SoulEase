@@ -9,7 +9,7 @@ router.get('/me', asyncHandler(userController.me))
 
 router.use(verifyToken)
 router.get('/readDoctors', asyncHandler(userController.readDoctors))
-router.post('/createDoctor', asyncHandler(userController.createDoctor))
+router.post('/createStaff', asyncHandler(userController.createStaff))
 router.get('/readDoctorDetail/:doctorId', asyncHandler(userController.readDoctorDetail))
 
 export default router

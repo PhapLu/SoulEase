@@ -164,7 +164,7 @@ class AuthService {
             email: otpRecord.email,
             password: otpRecord.password,
             domainName: domainNameUnique,
-            role: 'member',
+            role: 'clinic',
         })
 
         await newUser.save()

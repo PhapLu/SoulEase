@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import './doctorModelForm.css'
+import { useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { apiUtils } from '../../../../utils/newRequest'
 
 export default function DoctorModalForm({ onClose, onSubmit }) {
     const [formData, setFormData] = useState({
@@ -7,7 +10,8 @@ export default function DoctorModalForm({ onClose, onSubmit }) {
         email: '',
         specialty: '',
         phoneNumber: '',
-        description: '',
+        role: 'doctor',
+        assistDoctorId: '',
     })
 
     const handleChange = (e) => {
@@ -17,8 +21,31 @@ export default function DoctorModalForm({ onClose, onSubmit }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        onSubmit?.(formData)
+
+        onSubmit?.({
+            fullName: formData.fullName,
+            email: formData.email,
+            specialty: formData.specialty,
+            phoneNumber: formData.phoneNumber,
+            role: formData.role,
+            assistDoctorId: formData.role === 'nurse' ? formData.assistDoctorId : null,
+        })
     }
+
+    const [doctors, setDoctors] = useState([])
+
+    useEffect(() => {
+        const fetchDoctors = async () => {
+            try {
+                const res = await apiUtils.get('/user/readDoctors')
+                setDoctors(res.data.metadata.doctors || [])
+            } catch (err) {
+                console.error(err)
+            }
+        }
+
+        fetchDoctors()
+    }, [])
 
     return (
         <div className='doctor-modal-overlay'>
@@ -27,7 +54,7 @@ export default function DoctorModalForm({ onClose, onSubmit }) {
                     ✕
                 </button>
 
-                <h2 className='doctor-modal-title'>Create doctor</h2>
+                <h2 className='doctor-modal-title'>Create staff</h2>
 
                 <form className='doctor-form' onSubmit={handleSubmit}>
                     {/* Name */}
@@ -62,13 +89,29 @@ export default function DoctorModalForm({ onClose, onSubmit }) {
                         </div>
                     </div>
 
-                    {/* Description / Bio */}
                     <div className='form-group'>
-                        <label className='form-label'>Description / Bio</label>
-                        <div className='input-with-icon'>
-                            <textarea name='description' className='form-textarea' placeholder='Short bio, experience, notes...' value={formData.description} onChange={handleChange} />
-                        </div>
+                        <label className='form-label'>Role</label>
+                        <select name='role' className='form-input' value={formData.role} onChange={handleChange}>
+                            <option value='doctor'>Doctor</option>
+                            <option value='nurse'>Nurse</option>
+                        </select>
                     </div>
+
+                    <AnimatePresence>
+                        {formData.role === 'nurse' && (
+                            <motion.div className='form-group' initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.25 }}>
+                                <label className='form-label'>Assist doctor</label>
+                                <select name='assistDoctorId' className='form-input' value={formData.assistDoctorId} onChange={handleChange} required>
+                                    <option value=''>Select doctor</option>
+                                    {doctors.map((doc) => (
+                                        <option key={doc._id} value={doc._id}>
+                                            {doc.fullName}
+                                        </option>
+                                    ))}
+                                </select>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
 
                     <button type='submit' className='doctor-submit-btn'>
                         Create

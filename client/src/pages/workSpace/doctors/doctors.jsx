@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './doctors.css'
 
+import emptyDoctor from '../../../assets/empty_profile.png'
 import doctorAvatar from '../../../assets/doctor-avatar.svg'
 import WorkspaceTopBar from '../../../components/Workspace/WorkspaceTopBar'
 import DoctorModalForm from './doctorModelForm/doctorModelForm'
@@ -36,8 +37,7 @@ export default function Doctors() {
         }
 
         try {
-            const response = await apiUtils.post('/user/createDoctor', newDoctor)
-            console.log('Doctor created successfully:', response.data.metadata.doctor)
+            const response = await apiUtils.post('/user/createStaff', newDoctor)
             setDoctors((prevDoctors) => [...prevDoctors, response.data.metadata.doctor])
             setOpenDoctorModal(false)
         } catch (error) {
@@ -57,14 +57,26 @@ export default function Doctors() {
 
                     <button className='doctors-btn-ghost' onClick={() => setOpenDoctorModal(true)}>
                         <span>＋</span>
-                        <span>Doctor</span>
+                        <span>Staff</span>
                     </button>
                 </div>
 
                 <div className='doctors-grid'>
+                    {doctors && doctors.length === 0 && (
+                        <div className='doctors-empty'>
+                            <img src={emptyDoctor} alt='Empty doctor profile' className='doctors-empty-avatar' />
+                            <h3 className='doctors-empty-title'>No doctor profile yet</h3>
+                            <p className='doctors-empty-text'>Doctor profiles will appear here once they are created or invited.</p>
+
+                            <button className='doctors-btn-primary' onClick={() => setOpenDoctorModal(true)}>
+                                + Add your first doctor
+                            </button>
+                        </div>
+                    )}
+
                     {doctors?.map((doctor) => (
                         <button
-                            key={doctor.id}
+                            key={doctor._id}
                             type='button'
                             className='doctors-item'
                             onClick={() =>
@@ -73,8 +85,8 @@ export default function Doctors() {
                                 })
                             }
                         >
-                            <img src={doctorAvatar} alt={doctor.name} className='doctors-avatar' />
-                            <span className='doctors-name'>{doctor.name}</span>
+                            <img src={doctorAvatar} alt={doctor.fullName} className='doctors-avatar' />
+                            <span className='doctors-name'>{doctor.fullName}</span>
                             {doctor.specialty && <span className='doctors-specialty'>{doctor.specialty}</span>}
                         </button>
                     ))}

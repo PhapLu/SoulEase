@@ -19,12 +19,24 @@ const SignUp = () => {
         email: '',
         fullName: '',
         password: '',
+        confirmPassword: '',
         clinicians: '',
     })
 
     const onChange = (e) => {
         const { name, value } = e.target
-        setInputs((prev) => ({ ...prev, [name]: value }))
+
+        setInputs((prev) => {
+            const updated = { ...prev, [name]: value }
+
+            // If password changes, reset confirmPassword error
+            if (name === 'password' && prev.confirmPassword) {
+                setErrors((e) => ({ ...e, confirmPassword: '' }))
+            }
+
+            return updated
+        })
+
         setErrors((prev) => ({ ...prev, [name]: '' }))
     }
 
@@ -66,24 +78,35 @@ const SignUp = () => {
     const validateInputs = () => {
         let errs = {}
 
+        // Email
         if (!isFilled(inputs.email)) {
             errs.email = 'Please enter your email'
         } else if (!isValidEmail(inputs.email)) {
             errs.email = 'Invalid email'
         }
 
+        // Password
         if (!isFilled(inputs.password)) {
             errs.password = 'Please enter a password'
         } else if (!isValidPassword(inputs.password)) {
             errs.password = 'Password must contain at least 6 characters, 1 number, and 1 special character.'
         }
 
+        // Confirm Password
+        if (!isFilled(inputs.confirmPassword)) {
+            errs.confirmPassword = 'Please confirm your password'
+        } else if (inputs.confirmPassword !== inputs.password) {
+            errs.confirmPassword = 'Passwords do not match'
+        }
+
+        // Full name
         if (!isFilled(inputs.fullName)) {
             errs.fullName = 'Please enter your full name'
         } else if (!minLength(inputs.fullName, 4)) {
             errs.fullName = 'Full name must be at least 4 characters'
         }
 
+        // Clinicians
         if (!isFilled(inputs.clinicians)) {
             errs.clinicians = 'Please select clinicians count'
         }
@@ -139,6 +162,20 @@ const SignUp = () => {
                                     </button>
                                 </div>
                                 {errors.password && <p className='signin-error'>{errors.password}</p>}
+                            </label>
+
+                            <label className='signin-field'>
+                                <span className='signin-label'>Confirm Password</span>
+                                <div className='signin-input-wrapper'>
+                                    <span className='signin-input-icon'>
+                                        <i className='fa-solid fa-lock'></i>
+                                    </span>
+                                    <input type={showPassword ? 'text' : 'password'} name='confirmPassword' placeholder='Enter your password' value={inputs.confirmPassword} onChange={onChange} required />
+                                    <button type='button' className='signin-eye-btn' onClick={() => setShowPassword((v) => !v)}>
+                                        {showPassword ? <i className='fa-regular fa-eye-slash'></i> : <i className='fa-regular fa-eye'></i>}
+                                    </button>
+                                </div>
+                                {errors.confirmPassword && <p className='signin-error'>{errors.confirmPassword}</p>}
                             </label>
 
                             {/* Clinicians dropdown */}

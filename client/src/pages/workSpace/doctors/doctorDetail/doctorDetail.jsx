@@ -269,7 +269,8 @@ export default function DoctorDetail() {
 
             <div className="dd-inner">
                 <section className="dd-header">
-                    <div className="dd-avatar" />
+                    <img className='dd-avatar' src={doctor?.avatar} alt={doctor?.fullName} />
+
 
                     <div className="dd-info">
                         <div className="dd-info__row">

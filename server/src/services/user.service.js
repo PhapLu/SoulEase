@@ -33,31 +33,56 @@ class UserService {
         }
     }
 
-    static createDoctor = async (req) => {
+    static createStaff = async (req) => {
         const clinicId = req.userId
-        const { fullName, phoneNumber, email, specialty, description } = req.body
+        const { fullName, phoneNumber, email, specialty, role, assistDoctorId } = req.body
 
         // 1. Check clinic
         const clinic = await User.findById(clinicId)
         if (!clinic) throw new NotFoundError('Clinic not found')
-        if (clinic.role !== 'clinic') throw new AuthFailureError('You are not authorized to perform this action')
+        if (clinic.role !== 'clinic') {
+            throw new AuthFailureError('Only clinics can create staff')
+        }
 
-        // 2. Create new doctor
-        const newDoctor = new User({
+        // 2. Validate role
+        if (!['doctor', 'nurse'].includes(role)) {
+            throw new BadRequestError('Invalid staff role')
+        }
+
+        // 3. Nurse must be assigned to a doctor
+        if (role === 'nurse') {
+            if (!assistDoctorId) {
+                throw new BadRequestError('Nurse must be assigned to a doctor')
+            }
+
+            const doctor = await User.findOne({
+                _id: assistDoctorId,
+                role: 'doctor',
+                clinicId,
+            })
+
+            if (!doctor) {
+                throw new NotFoundError('Assigned doctor not found')
+            }
+        }
+
+        // 4. Create staff
+        const staff = await User.create({
             fullName,
             phone: phoneNumber,
             email,
-            specialty: specialty || '',
-            description: description || '',
-            role: 'doctor',
-            clinicId: clinicId,
+            speciality: specialty || '',
+            role,
+            clinicId,
+            assistDoctorId: role === 'nurse' ? assistDoctorId : null,
+            status: 'active',
         })
-        await newDoctor.save()
 
-        // 3. Return created doctor without sensitive info
-        const createdDoctor = await User.findById(newDoctor._id).select('-password -accessToken -googleId -followers -following')
+        // 5. Return safe payload
+        const createdStaff = await User.findById(staff._id).select('-password -accessToken -googleId')
+
         return {
-            doctor: createdDoctor,
+            staff: createdStaff,
         }
     }
 

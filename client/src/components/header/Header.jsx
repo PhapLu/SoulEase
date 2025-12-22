@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Header.css'
 import logo from '../../assets/logo.svg'
+import { useAuth } from '../../contexts/auth/AuthContext'
 
 const Header = () => {
     const [isMobileOpen, setIsMobileOpen] = useState(false)
-
+    const { userInfo } = useAuth()
     const toggleMobile = () => setIsMobileOpen((prev) => !prev)
     const closeMobile = () => setIsMobileOpen(false)
 
@@ -38,23 +39,43 @@ const Header = () => {
 
                     {/* Actions MOBILE */}
                     <div className='se-nav__mobile-actions'>
-                        <Link to='/signin' className='se-actions__signin se-actions__signin--mobile' onClick={closeMobile}>
-                            Sign in
-                        </Link>
-                        <Link to='/auth/signup' onClick={closeMobile}>
-                            <button className='se-actions__trial se-actions__trial--mobile'>Start free trial</button>
-                        </Link>
+                        {userInfo ? (
+                            <>
+                                <Link to='/workspace' className='se-actions__dashboard se-actions__dashboard--mobile' onClick={closeMobile}>
+                                    My Account Dashboard
+                                </Link>
+                            </>
+                        ) : (
+                            <>
+                                <Link to='/auth/signin' className='se-actions__signin se-actions__signin--mobile' onClick={closeMobile}>
+                                    Sign in
+                                </Link>
+                                <Link to='/auth/signup' onClick={closeMobile}>
+                                    <button className='se-actions__trial se-actions__trial--mobile'>Start free trial</button>
+                                </Link>
+                            </>
+                        )}
                     </div>
                 </nav>
 
                 {/* Actions DESKTOP */}
                 <div className='se-actions'>
-                    <Link to='/auth/signin' className='se-actions__signin'>
-                        Sign in
-                    </Link>
-                    <Link to='/auth/signup'>
-                        <button className='se-actions__trial'>Start free trial</button>
-                    </Link>
+                    {userInfo ? (
+                        <>
+                            <Link to='/workspace' className='se-actions__dashboard'>
+                                My Account Dashboard
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <Link to='/auth/signin' className='se-actions__signin'>
+                                Sign in
+                            </Link>
+                            <Link to='/auth/signup'>
+                                <button className='se-actions__trial'>Start free trial</button>
+                            </Link>
+                        </>
+                    )}
                 </div>
 
                 {/* Hamburger mobile */}

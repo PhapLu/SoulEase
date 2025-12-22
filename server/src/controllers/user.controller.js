@@ -11,10 +11,10 @@ class UserController {
         }).send(res)
     }
 
-    createDoctor = async (req, res, next) => {
+    createStaff = async (req, res, next) => {
         new SuccessResponse({
             message: 'Create doctor success!',
-            metadata: await UserService.createDoctor(req),
+            metadata: await UserService.createStaff(req),
         }).send(res)
     }
 

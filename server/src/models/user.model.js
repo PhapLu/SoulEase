@@ -11,7 +11,7 @@ const UserSchema = new Schema(
         password: { type: String, default: '' },
         role: {
             type: String,
-            enum: ['member', 'family', 'doctor', 'clinic'],
+            enum: ['member', 'family', 'doctor', 'clinic', 'nurse'],
             default: 'member',
         },
         clinicId: { type: Schema.Types.ObjectId, ref: 'User', default: null },
@@ -22,7 +22,12 @@ const UserSchema = new Schema(
         jobTitle: { type: String, trim: true },
         avatar: {
             type: String,
-            default: '/uploads/pastal_system_default_avatar.png',
+            default: '/uploads/default_avatar.jpg',
+        },
+        assistDoctorId: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            default: null,
         },
         phone: { type: String },
         address: { type: String, default: '' },
