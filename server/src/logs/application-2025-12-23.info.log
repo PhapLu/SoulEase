@@ -9,3 +9,27 @@
 2025-12-23 00:01:58::error::/v1/api/user/readStaffDetail/undefined::965543b2-ed54-44a7-93e5-aaf5064b1906::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
 2025-12-23 00:01:58::info::/v1/api/user/readStaffDetail/undefined::b739c400-03d0-43b8-af62-2c39e93e6570::input-params ::GET::::{}
 2025-12-23 00:01:58::error::/v1/api/user/readStaffDetail/undefined::b739c400-03d0-43b8-af62-2c39e93e6570::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
+2025-12-23 00:02:00::info::/v1/api/user/readStaffs::fe8d5967-e070-406c-8809-7951e8ced82f::input-params ::GET::::{}
+2025-12-23 00:02:01::info::/v1/api/user/readStaffs::5ded6f4c-3615-4e6d-b925-f91820875c49::input-params ::GET::::{}
+2025-12-23 00:02:01::info::/v1/api/user/readStaffDetail/undefined::89259754-e15c-4e09-b433-6f85da483f32::input-params ::GET::::{}
+2025-12-23 00:02:01::error::/v1/api/user/readStaffDetail/undefined::89259754-e15c-4e09-b433-6f85da483f32::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
+2025-12-23 00:02:01::info::/v1/api/user/readStaffDetail/undefined::2933b795-b134-4c42-ad83-2040f40dc9dd::input-params ::GET::::{}
+2025-12-23 00:02:01::error::/v1/api/user/readStaffDetail/undefined::2933b795-b134-4c42-ad83-2040f40dc9dd::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
+2025-12-23 00:02:46::info::/v1/api/user/readStaffDetail/6949450282130873b5b05519::e0804759-2d5d-4344-a7bd-81fba46e493a::input-params ::GET::::{}
+2025-12-23 00:02:46::info::/v1/api/user/readStaffDetail/6949450282130873b5b05519::dbe07465-20da-42ea-83d2-217a28040fe9::input-params ::GET::::{}
+2025-12-23 00:02:48::info::/v1/api/user/readStaffs::2072708c-6a91-4832-bd66-e06718eeef41::input-params ::GET::::{}
+2025-12-23 00:02:48::info::/v1/api/user/readStaffs::fbd41e3e-c0b5-4cb9-a829-64062588f951::input-params ::GET::::{}
+2025-12-23 00:02:49::info::/v1/api/user/readStaffDetail/6949450282130873b5b05519::266a18c4-abc8-47f3-8887-7192ed814de3::input-params ::GET::::{}
+2025-12-23 00:02:49::info::/v1/api/user/readStaffDetail/6949450282130873b5b05519::588f5e97-3a36-42a2-957d-38e4c04a0a49::input-params ::GET::::{}
+2025-12-23 00:02:50::info::/v1/api/user/readStaffs::d27d5ed8-ad3e-4b01-91be-d693aaf46d08::input-params ::GET::::{}
+2025-12-23 00:02:50::info::/v1/api/user/readStaffs::600512d7-7cf4-4bf3-879c-f292d0d6920a::input-params ::GET::::{}
+2025-12-23 00:02:50::info::/v1/api/user/readStaffDetail/69496e70a747b79baf2ae4ea::c621e17c-2c87-463e-94b1-b455ed2fbbf5::input-params ::GET::::{}
+2025-12-23 00:02:50::info::/v1/api/user/readStaffDetail/69496e70a747b79baf2ae4ea::81cbb480-ebed-4f6b-9ede-9369051b60d4::input-params ::GET::::{}
+2025-12-23 00:02:58::info::/v1/api/user/readStaffs::9deb2b94-c41e-427e-9187-c4a9a657e776::input-params ::GET::::{}
+2025-12-23 00:02:59::info::/v1/api/user/readStaffs::4b513805-1c4a-4e67-92d0-0db9ae6051ee::input-params ::GET::::{}
+2025-12-23 00:03:17::info::/v1/api/user/createStaff::b9766724-e177-4726-85b3-1ad9cb727182::input-params ::POST::::{"fullName":"Staff1","phone":"0374499251","email":"staff1@gmail.com","speciality":"Cardiology","description":"","role":"nurse","assistDoctorId":"6949450282130873b5b05519"}
+2025-12-23 00:03:21::info::/v1/api/user/readStaffDetail/694979d6bcda5c6ad22c164d::bd64235f-f931-4a96-85b1-6d31c2fba159::input-params ::GET::::{}
+2025-12-23 00:03:21::info::/v1/api/user/readStaffDetail/694979d6bcda5c6ad22c164d::d4a8d4d0-85f9-4c33-a409-e33aff0e6d17::input-params ::GET::::{}
+2025-12-23 00:06:19::info::/v1/api/user/readStaffDetail/694979d6bcda5c6ad22c164d::c647939d-b662-4efe-b141-34a6a146d6ad::input-params ::GET::::{}
+2025-12-23 00:08:43::info::/v1/api/user/readStaffDetail/694979d6bcda5c6ad22c164d::2bfc9449-745d-4350-bfc1-092a826a8a34::input-params ::GET::::{}
+2025-12-23 00:09:01::info::/v1/api/user/readStaffDetail/694979d6bcda5c6ad22c164d::d3ac3d01-8478-4659-9e5c-401f2ca954c7::input-params ::GET::::{}

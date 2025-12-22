@@ -165,46 +165,48 @@ export default function DoctorDetail() {
 
         setSaving(true)
         try {
-            // prepare payload for backend
+            // 🔹 Prepare payload for backend
             const payload = {
-                ...editForm,
                 fullName: String(editForm?.fullName || '').trim(),
+                email: editForm?.email || '',
+                phone: editForm?.phone || '',
+                address: editForm?.address || '',
                 gender: editForm?.gender || '',
+                birthday: editForm?.birthday || null,
+                experience: editForm?.experience !== '' && editForm?.experience !== undefined ? Number(editForm.experience) : undefined,
 
-                // keep backward compatible string fields:
                 language: (editForm?.languages || [])
                     .map((s) => String(s).trim())
                     .filter(Boolean)
                     .join(', '),
+
                 speciality: (editForm?.specialities || [])
                     .map((s) => String(s).trim())
                     .filter(Boolean)
                     .join(', '),
-
-                // age computed; you can still send it if backend stores it; or remove if backend ignores
-                age: calcAgeFromBirthday(editForm?.birthday),
             }
 
-            // numeric
-            if (payload.experience !== undefined && payload.experience !== '') payload.experience = Number(payload.experience)
-            if (payload.age !== undefined && payload.age !== '') payload.age = Number(payload.age)
+            // 🔹 Call backend
+            const res = await apiUtils.patch(`/user/updateStaffInfo/${staffId}`, payload)
 
-            await apiUtils.put(`/user/updateStaff/${staffId}`, payload)
+            const updatedStaff = res?.data?.metadata?.staff
 
-            // update local view data
-            setDoctor(payload)
+            // 🔹 Sync view state
+            setDoctor(updatedStaff)
 
-            // keep edit arrays for UI
-            setEditForm((prev) => ({
-                ...payload,
-                languages: prev?.languages || splitCSV(payload.language),
-                specialities: ensureMinFields(prev?.specialities || splitCSV(payload.speciality), MIN_SPEC_FIELDS),
-                age: calcAgeFromBirthday(payload.birthday),
-            }))
+            setEditForm({
+                ...updatedStaff,
+                fullName: stripDrPrefix(updatedStaff?.fullName),
+                gender: updatedStaff?.gender || '',
+                languages: splitCSV(updatedStaff?.language),
+                specialities: ensureMinFields(splitCSV(updatedStaff?.speciality), MIN_SPEC_FIELDS),
+                age: calcAgeFromBirthday(updatedStaff?.birthday),
+            })
 
             setIsEditing(false)
         } catch (err) {
-            console.error('save doctor fail', err)
+            console.error('Update staff failed', err)
+            alert('Failed to update staff information.')
         } finally {
             setSaving(false)
         }

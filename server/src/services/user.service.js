@@ -9,6 +9,12 @@ import Notification from '../models/notification.model.js'
 import dotenv from 'dotenv'
 dotenv.config()
 
+const normalizeStaff = (u) => ({
+    ...u.toObject(),
+    speciality: u.doctorProfile?.speciality || '',
+    assistDoctorId: u.nurseProfile?.assistDoctorId || null,
+})
+
 const COLLECTIONS = {
     Orders: Order,
     Users: User,
@@ -37,19 +43,15 @@ class UserService {
         const clinicId = req.userId
         const { fullName, phoneNumber, email, specialty, role, assistDoctorId } = req.body
 
-        // 1. Check clinic
         const clinic = await User.findById(clinicId)
-        if (!clinic) throw new NotFoundError('Clinic not found')
-        if (clinic.role !== 'clinic') {
+        if (!clinic || clinic.role !== 'clinic') {
             throw new AuthFailureError('Only clinics can create staff')
         }
 
-        // 2. Validate role
         if (!['doctor', 'nurse'].includes(role)) {
             throw new BadRequestError('Invalid staff role')
         }
 
-        // 3. Nurse must be assigned to a doctor
         if (role === 'nurse') {
             if (!assistDoctorId) {
                 throw new BadRequestError('Nurse must be assigned to a doctor')
@@ -66,24 +68,34 @@ class UserService {
             }
         }
 
-        // 4. Create staff
-        const staff = await User.create({
+        const staffData = {
             fullName,
             phone: phoneNumber,
             email,
-            speciality: specialty || '',
             role,
             clinicId,
-            assistDoctorId: role === 'nurse' ? assistDoctorId : null,
             status: 'active',
-            password: 'staffPassword@123',
-        })
+            password: 'staffPassword@123', // ⚠️ still risky, see note below
+        }
 
-        // 5. Return safe payload
-        const createdStaff = await User.findById(staff._id).select('-password -accessToken -googleId')
+        if (role === 'doctor') {
+            staffData.doctorProfile = {
+                speciality: specialty || '',
+            }
+        }
+
+        if (role === 'nurse') {
+            staffData.nurseProfile = {
+                assistDoctorId,
+            }
+        }
+
+        const staff = await User.create(staffData)
+
+        const createdStaff = await User.findById(staff._id).select('-password -accessToken -googleId -followers -following')
 
         return {
-            staff: createdStaff,
+            staff: normalizeStaff(createdStaff),
         }
     }
 
@@ -103,32 +115,6 @@ class UserService {
         //4. Update user activity visit
         user.activity.lastVisit = new Date()
         await user.save()
-
-        // 5. Determine hasSetPinCode before removing pinCode
-        let hasSetPinCode = false
-        if (user.pinCode) {
-            hasSetPinCode = true
-        }
-
-        // Fetch unseen conversations
-        // Fetch unseen conversations
-        const unSeenConversations = await Conversation.find({
-            members: { $elemMatch: { user: userId } },
-        })
-            .populate('members.user messages.senderId')
-            .lean()
-
-        const filteredUnSeenConversations = unSeenConversations.filter((conversation) => {
-            const last = conversation.messages?.[conversation.messages.length - 1]
-            if (!last) return false
-
-            const senderId = last.senderId && last.senderId._id ? last.senderId._id.toString() : last.senderId?.toString()
-
-            const seenBy = (last.seenBy || []).map((id) => id.toString())
-            const me = userId.toString()
-
-            return senderId !== me && !seenBy.includes(me)
-        })
 
         // Fetch unseen notifications
         const unSeenNotifications = await Notification.find({
@@ -167,27 +153,7 @@ class UserService {
 
         // 3. Return doctors list
         return {
-            staffs,
-        }
-    }
-
-    static readDoctors = async (req) => {
-        const clinicId = req.userId
-
-        // 1. Check clinic
-        const clinic = await User.findById(clinicId)
-        if (!clinic) throw new NotFoundError('Clinic not found')
-        if (clinic.role !== 'clinic') throw new AuthFailureError('You are not authorized to perform this action')
-
-        // 2. Find doctors associated with the clinic
-        const doctors = await User.find({
-            clinicId: clinicId,
-            role: 'doctor',
-        }).select('-password -accessToken -googleId -followers -following')
-
-        // 3. Return doctors list
-        return {
-            doctors,
+            staffs: staffs.map(normalizeStaff),
         }
     }
 
@@ -200,7 +166,7 @@ class UserService {
 
         // 2. Return doctor detail
         return {
-            user: staff,
+            user: normalizeStaff(staff),
         }
     }
 
@@ -213,15 +179,81 @@ class UserService {
         if (!user) throw new NotFoundError('User not found')
 
         // 2. Update user profile
-        Object.keys(updateData).forEach((key) => {
-            user[key] = updateData[key]
+        const allowed = ['fullName', 'phone', 'address', 'gender', 'dob', 'avatar']
+
+        allowed.forEach((key) => {
+            if (updateData[key] !== undefined) {
+                user[key] = updateData[key]
+            }
         })
+
         await user.save()
 
         // 3. Return updated user without sensitive info
         const updatedUser = await User.findById(userId).select('-password -accessToken -googleId -followers -following')
         return {
             user: updatedUser,
+        }
+    }
+
+    static updateStaffInfo = async (req) => {
+        const requesterId = req.userId
+        const { staffId } = req.params
+        const payload = req.body
+
+        // 1. Validate staff exists
+        const staff = await User.findById(staffId)
+        if (!staff) {
+            throw new NotFoundError('Staff not found')
+        }
+
+        // 2. Validate requester exists
+        const requester = await User.findById(requesterId)
+        if (!requester) {
+            throw new NotFoundError('User not found')
+        }
+
+        // 3. Authorization check
+        const isOwner = staff._id.toString() === requesterId.toString()
+        const isClinicOwner = requester.role === 'clinic' && staff.clinicId && staff.clinicId.toString() === requesterId.toString()
+
+        if (!isOwner && !isClinicOwner) {
+            throw new AuthFailureError('You are not authorized to update this staff information')
+        }
+
+        // 4. Allowed fields (VERY IMPORTANT – prevent privilege escalation)
+        const updateData = {}
+
+        // shared fields
+        if (payload.fullName) updateData.fullName = payload.fullName
+        if (payload.email) updateData.email = payload.email
+        if (payload.phone) updateData.phone = payload.phone
+        if (payload.address) updateData.address = payload.address
+        if (payload.gender) updateData.gender = payload.gender
+        if (payload.dob) updateData.dob = payload.dob
+
+        // role-specific
+        if (staff.role === 'doctor' && payload.speciality !== undefined) {
+            updateData['doctorProfile.speciality'] = payload.speciality
+        }
+
+        if (staff.role === 'nurse' && payload.assistDoctorId !== undefined) {
+            updateData['nurseProfile.assistDoctorId'] = payload.assistDoctorId
+        }
+
+        // 5. Update staff
+        const updatedStaff = await User.findByIdAndUpdate(
+            staffId,
+            { $set: updateData },
+            {
+                new: true,
+                runValidators: true,
+            }
+        ).select('-password -accessToken -googleId -followers -following')
+
+        // 6. Return safe response
+        return {
+            staff: normalizeStaff(updatedStaff),
         }
     }
 }

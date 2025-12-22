@@ -6,38 +6,61 @@ const COLLECTION_NAME = 'Users'
 
 const UserSchema = new Schema(
     {
+        // =========================
+        // ACCOUNT
+        // =========================
         email: { type: String, required: true, trim: true, unique: true },
-        fullName: { type: String, required: true, trim: true },
         password: { type: String, default: '' },
         role: {
             type: String,
             enum: ['member', 'family', 'doctor', 'clinic', 'nurse'],
             default: 'member',
         },
-        clinicId: { type: Schema.Types.ObjectId, ref: 'User', default: null },
-        speciality: { type: String, default: '' },
-        description: { type: String, default: '' },
-        clinicians: { type: String, default: '' },
-        gender: { type: String, enum: ['male', 'female', 'other'], trim: true },
-        jobTitle: { type: String, trim: true },
-        avatar: {
+        status: {
             type: String,
-            default: '/uploads/default_avatar.jpg',
+            enum: ['pending', 'active', 'block', 'inactive'],
+            default: 'pending',
         },
-        assistDoctorId: {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-            default: null,
-        },
+
+        // =========================
+        // BASIC PROFILE
+        // =========================
+        fullName: { type: String, required: true, trim: true },
+        avatar: { type: String, default: '/uploads/default_avatar.jpg' },
+        gender: { type: String, enum: ['male', 'female', 'other'] },
         phone: { type: String },
         address: { type: String, default: '' },
         country: { type: String, default: 'Vietnam' },
         dob: { type: Date, default: null },
-        status: {
-            type: String,
-            default: 'pending',
-            enum: ['pending', 'active', 'block', 'inactive'],
+
+        // =========================
+        // ORGANIZATION RELATION
+        // =========================
+        clinicId: { type: Schema.Types.ObjectId, ref: 'User', default: null },
+
+        // =========================
+        // ROLE-SPECIFIC PROFILES
+        // =========================
+        doctorProfile: {
+            speciality: { type: String, default: '' },
+            description: { type: String, default: '' },
         },
+
+        nurseProfile: {
+            assistDoctorId: {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+                default: null,
+            },
+        },
+
+        clinicProfile: {
+            clinicians: { type: String, default: '' },
+        },
+
+        // =========================
+        // SYSTEM
+        // =========================
         accessToken: { type: String, default: '' },
         lastViewConversations: { type: Date, default: Date.now },
         lastViewNotifications: { type: Date, default: Date.now },
