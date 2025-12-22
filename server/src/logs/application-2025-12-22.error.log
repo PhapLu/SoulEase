@@ -1,0 +1,6 @@
+2025-12-22 23:02:14::error::/v1/api/auth/login::0e7f46f4-c634-4fa4-83ef-28837242c495::handler-error::{"status":401,"message":"Account or password is invalid"}
+2025-12-22 23:04:15::error::/v1/api/patientRecord/createPatientRecord::5b9d379d-aa44-4194-973f-eafbc3d756be::handler-error::{"status":403,"message":"Patient already exists"}
+2025-12-22 23:05:04::error::/v1/api/patientRecord/createPatientRecord::a94cfd04-451c-4d45-9697-a712fbf5d503::handler-error::{"status":403,"message":"Patient already exists"}
+2025-12-22 23:05:08::error::/v1/api/patientRecord/createPatientRecord::43b3080b-ceae-4bd4-9eb9-d8ce6a012253::handler-error::{"status":403,"message":"Patient already exists"}
+2025-12-22 23:05:36::error::/v1/api/patientRecord/createPatientRecord::7043225c-0862-48a1-bd3e-fd2a619bfdf3::handler-error::{"status":403,"message":"Patient already exists"}
+2025-12-22 23:07:57::error::/v1/api/patientRecord/createPatientRecord::275e2284-6a4b-4483-8608-134c77f7d2a8::handler-error::{"status":403,"message":"Patient already exists"}
