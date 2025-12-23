@@ -33,3 +33,149 @@
 2025-12-23 00:06:19::info::/v1/api/user/readStaffDetail/694979d6bcda5c6ad22c164d::c647939d-b662-4efe-b141-34a6a146d6ad::input-params ::GET::::{}
 2025-12-23 00:08:43::info::/v1/api/user/readStaffDetail/694979d6bcda5c6ad22c164d::2bfc9449-745d-4350-bfc1-092a826a8a34::input-params ::GET::::{}
 2025-12-23 00:09:01::info::/v1/api/user/readStaffDetail/694979d6bcda5c6ad22c164d::d3ac3d01-8478-4659-9e5c-401f2ca954c7::input-params ::GET::::{}
+2025-12-23 00:24:09::info::/v1/api/conversation/readConversations::3adc9110-3c4b-46c3-9c79-b682cb7d69d4::input-params ::GET::::{}
+2025-12-23 00:24:09::info::/v1/api/user/me::80e60bd8-6699-47e3-aef3-8095c90ad052::input-params ::GET::::{}
+2025-12-23 00:24:09::info::/v1/api/conversation/readConversations::93f0afc5-d823-413f-88f4-42edb3cb4f71::input-params ::GET::::{}
+2025-12-23 00:24:09::info::/v1/api/user/me::bee580cb-3e84-4e61-958d-078d60351f0e::input-params ::GET::::{}
+2025-12-23 00:24:15::info::/v1/api/user/readStaffs::9e81020d-e199-492e-a3c6-d837ee25d880::input-params ::GET::::{}
+2025-12-23 00:24:16::info::/v1/api/user/readStaffs::097f2c99-8f72-47ba-b574-2db83b466377::input-params ::GET::::{}
+2025-12-23 00:24:17::info::/v1/api/user/readStaffDetail/69496e70a747b79baf2ae4ea::0bfd50b9-6a4f-4a7f-971d-4ee83b89fbf8::input-params ::GET::::{}
+2025-12-23 00:24:17::info::/v1/api/user/readStaffDetail/69496e70a747b79baf2ae4ea::318c3280-0124-47ea-a5c0-0e9909255fa6::input-params ::GET::::{}
+2025-12-23 00:24:18::info::/v1/api/user/readStaffs::2f474f5b-1093-4abc-ab40-6f2fa581357c::input-params ::GET::::{}
+2025-12-23 00:24:18::info::/v1/api/user/readStaffs::d1c3dc53-a1b5-473b-8d4a-a69f918dca48::input-params ::GET::::{}
+2025-12-23 00:24:19::info::/v1/api/user/readStaffDetail/694979d6bcda5c6ad22c164d::6881815f-2594-4cb2-93ca-037623e20add::input-params ::GET::::{}
+2025-12-23 00:24:19::info::/v1/api/user/readStaffDetail/694979d6bcda5c6ad22c164d::ee96b5f1-a71a-4519-851f-79f57155c331::input-params ::GET::::{}
+2025-12-23 00:24:35::info::/v1/api/user/readStaffs::40ff15eb-491b-4ed3-9fc4-aaaaf349fb59::input-params ::GET::::{}
+2025-12-23 00:24:36::info::/v1/api/user/readStaffs::b74a025e-5e29-46fe-acc2-22c8461ac792::input-params ::GET::::{}
+2025-12-23 00:24:36::info::/v1/api/user/readStaffDetail/694979d6bcda5c6ad22c164d::34eb0a72-e0a3-4cc3-958e-8ec01ea7e3cf::input-params ::GET::::{}
+2025-12-23 00:24:36::info::/v1/api/user/readStaffDetail/694979d6bcda5c6ad22c164d::259c5abc-788f-4233-bb4a-6704a3f1cfbe::input-params ::GET::::{}
+2025-12-23 12:04:15::info::/v1/api/user/me::b3e4f835-43cb-4ec0-9bda-ab8c1b97be6c::input-params ::GET::::{}
+2025-12-23 12:04:15::info::/v1/api/user/me::c0b2ca27-f316-4879-aee2-5ae214488847::input-params ::GET::::{}
+2025-12-23 12:04:16::info::/v1/api/user/me::1211cf67-d3fc-4109-856f-b262ccfa7441::input-params ::GET::::{}
+2025-12-23 12:04:16::info::/v1/api/user/me::ebd50432-f38d-41e6-bce8-246e7ef2f246::input-params ::GET::::{}
+2025-12-23 12:04:23::info::/v1/api/user/readStaffs::bf715335-45f5-4f22-a25f-c806a944ae31::input-params ::GET::::{}
+2025-12-23 12:04:23::info::/v1/api/user/readStaffs::0f87e200-95b2-447d-ab69-9fb172c91adb::input-params ::GET::::{}
+2025-12-23 12:04:39::info::/v1/api/auth/logout::4e1808e8-92a5-48ad-a21b-9987ae8334e0::input-params ::POST::::{}
+2025-12-23 12:04:40::info::/v1/api/user/me::a14544c1-cc11-4fa0-ad76-440c0c5067a6::input-params ::GET::::{}
+2025-12-23 12:04:40::error::/v1/api/user/me::a14544c1-cc11-4fa0-ad76-440c0c5067a6::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 12:04:40::info::/v1/api/user/me::facdbef0-595e-4fd5-8199-87deee35f934::input-params ::GET::::{}
+2025-12-23 12:04:40::error::/v1/api/user/me::facdbef0-595e-4fd5-8199-87deee35f934::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 12:04:56::info::/v1/api/auth/login::1eda5fc2-00ec-4a5b-8a4f-56d818e6a5c2::input-params ::POST::::{"email":"doctor2@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-23 12:04:56::info::/v1/api/user/me::cd03b36b-5e1a-47fe-afba-861c9f281c54::input-params ::GET::::{}
+2025-12-23 12:04:57::info::/v1/api/folder/readFolders::10d82eba-1280-4e88-8aee-b4ed89c42b89::input-params ::GET::::{}
+2025-12-23 12:04:57::info::/v1/api/folder/readFolders::6aaf4e31-c6ee-4479-9a93-092e3015b739::input-params ::GET::::{}
+2025-12-23 12:05:02::info::/v1/api/folder/readFolder/69496be99bc2fb43a6df32ae::46c7360f-efad-4b38-ab70-28ebf44b9818::input-params ::GET::::{}
+2025-12-23 12:05:02::info::/v1/api/folder/readFolder/69496be99bc2fb43a6df32ae::ef2a7db0-464a-4486-8f28-9cffc12975cb::input-params ::GET::::{}
+2025-12-23 12:05:04::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::9cb537e0-f3c7-4141-b370-73f889ed300a::input-params ::GET::::{}
+2025-12-23 12:05:04::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::b9ef9db6-01bc-4a00-b0d8-6db96d7770bf::input-params ::GET::::{}
+2025-12-23 12:05:08::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::cec0e5b1-9c69-440b-b6c2-31489b7039f0::input-params ::GET::::{}
+2025-12-23 12:05:08::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::a6a847b2-ca5b-42af-9b36-de8a25acb106::input-params ::GET::::{}
+2025-12-23 12:05:10::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::d792dec5-3e61-43a4-942c-a8a816a309ae::input-params ::GET::::{}
+2025-12-23 12:05:11::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::6761bbf3-1ca1-4b44-b20b-5eea13643cbf::input-params ::GET::::{}
+2025-12-23 12:05:17::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::93f60535-d5d4-431e-b873-c98c0120a2d9::input-params ::GET::::{}
+2025-12-23 12:05:17::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::6fd9298f-e13e-4e52-813a-fd2cd835200c::input-params ::GET::::{}
+2025-12-23 12:05:18::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::33305a9c-802d-4c3c-adb8-8768f9594982::input-params ::GET::::{}
+2025-12-23 12:05:19::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::7fc39c83-cd73-420b-8697-c70adc712a89::input-params ::GET::::{}
+2025-12-23 12:05:21::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::bd930064-abe9-4966-83ba-01f2bcf7cc61::input-params ::GET::::{}
+2025-12-23 12:05:22::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::4a90c35a-1825-4313-9f72-9694cfce867c::input-params ::GET::::{}
+2025-12-23 12:06:01::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::a9707d62-0087-4d4c-9f2b-22f8b18e6049::input-params ::GET::::{}
+2025-12-23 12:06:01::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::518861af-a0c9-4a38-ae57-fddbf2ddbada::input-params ::GET::::{}
+2025-12-23 12:06:03::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::19c38e3c-8829-469b-8c51-1cc0ccb1e14c::input-params ::GET::::{}
+2025-12-23 12:06:04::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::c6340872-497c-4f64-a7b4-b40e170111e0::input-params ::GET::::{}
+2025-12-23 19:52:15::info::/v1/api/user/me::512f38c5-75c2-44ad-8436-50f62752db86::input-params ::GET::::{}
+2025-12-23 19:52:15::info::/v1/api/user/me::c09435d9-5b48-451e-aefb-e2316050ebfe::input-params ::GET::::{}
+2025-12-23 19:52:21::info::/v1/api/folder/readFolders::b061082f-5aaf-4222-9add-392f6da15de4::input-params ::GET::::{}
+2025-12-23 19:52:21::info::/v1/api/folder/readFolders::867fadea-3b64-44b5-9364-62b5a2cc6e9a::input-params ::GET::::{}
+2025-12-23 19:52:23::info::/v1/api/conversation/readConversations::2025d263-3443-4568-a0e8-16e76b2826ef::input-params ::GET::::{}
+2025-12-23 19:52:24::info::/v1/api/conversation/readConversations::c60ba0e5-1ff5-419e-acf4-916ce467a188::input-params ::GET::::{}
+2025-12-23 19:52:25::info::/v1/api/conversation/readConversations::adae8e56-2374-44ac-b1a0-6e84f3262866::input-params ::GET::::{}
+2025-12-23 19:52:25::info::/v1/api/conversation/readConversations::27e905a3-e8d0-47ad-9412-80c394404249::input-params ::GET::::{}
+2025-12-23 19:52:29::info::/v1/api/folder/readFolders::00ba6a62-6095-425d-ada8-e27419634ea3::input-params ::GET::::{}
+2025-12-23 19:52:29::info::/v1/api/folder/readFolders::b9482d6f-c816-4bd3-935f-b2b1ef44f134::input-params ::GET::::{}
+2025-12-23 19:52:32::info::/v1/api/auth/logout::67a0373d-39a6-4cd9-be03-73ff52cb9381::input-params ::POST::::{}
+2025-12-23 19:52:33::info::/v1/api/user/me::d243bf0e-31cf-4562-b715-b718483fa999::input-params ::GET::::{}
+2025-12-23 19:52:33::error::/v1/api/user/me::d243bf0e-31cf-4562-b715-b718483fa999::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 19:52:33::info::/v1/api/user/me::bea17558-6e15-4dd4-a640-d1c1d843761a::input-params ::GET::::{}
+2025-12-23 19:52:33::error::/v1/api/user/me::bea17558-6e15-4dd4-a640-d1c1d843761a::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 19:52:40::info::/v1/api/auth/login::a2471e0e-6b1a-4492-a6fd-b24b4429081e::input-params ::POST::::{"email":"taichinhlcp@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-23 19:52:40::error::/v1/api/auth/login::a2471e0e-6b1a-4492-a6fd-b24b4429081e::handler-error::{"status":401,"message":"Account or password is invalid"}
+2025-12-23 19:58:49::info::/v1/api/auth/login::ca9b5cb6-ee0b-4ba5-8ea8-c2d919352794::input-params ::POST::::{"email":"taichinhlcp@gmail.com","password":"phapnhat987@"}
+2025-12-23 19:58:50::info::/v1/api/user/me::73a94243-a11d-477e-8cac-e544704cc664::input-params ::GET::::{}
+2025-12-23 19:58:50::info::/v1/api/user/readStaffs::88bdd3f2-8aab-454f-9f12-2b079ae3c9db::input-params ::GET::::{}
+2025-12-23 19:58:50::info::/v1/api/user/readStaffs::266e6d4a-2ccb-4605-87e8-139a53ee58f8::input-params ::GET::::{}
+2025-12-23 20:02:16::info::/v1/api/conversation/readConversations::a1ae62be-6d5c-471f-b045-9c4ef28c5960::input-params ::GET::::{}
+2025-12-23 20:02:16::info::/v1/api/conversation/readConversations::15d51195-a4ed-4e7e-8049-fe621fa0e271::input-params ::GET::::{}
+2025-12-23 20:02:17::info::/v1/api/conversation/readConversations::b9a5f4ef-2fba-41e4-9f67-80ed8e801b72::input-params ::GET::::{}
+2025-12-23 20:02:17::info::/v1/api/conversation/readConversations::89c85f5e-a72b-420b-85cd-b8c49f1c7dc7::input-params ::GET::::{}
+2025-12-23 20:02:18::info::/v1/api/user/readStaffs::0649130e-d1a3-4777-bac0-7247f5052b31::input-params ::GET::::{}
+2025-12-23 20:02:18::info::/v1/api/user/readStaffs::16676d40-d63b-4150-a121-bc3a4ca353c9::input-params ::GET::::{}
+2025-12-23 20:02:41::info::/v1/api/auth/logout::d92666bf-421f-4d2c-8ac2-91ae1a9873e1::input-params ::POST::::{}
+2025-12-23 20:02:41::info::/v1/api/user/me::a13ee285-6ce8-4fd9-b0f4-1aba589aafe7::input-params ::GET::::{}
+2025-12-23 20:02:41::error::/v1/api/user/me::a13ee285-6ce8-4fd9-b0f4-1aba589aafe7::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:02:41::info::/v1/api/user/me::b000ed4f-2eb2-4196-8530-48d863a0a896::input-params ::GET::::{}
+2025-12-23 20:02:41::error::/v1/api/user/me::b000ed4f-2eb2-4196-8530-48d863a0a896::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:03:11::info::/v1/api/auth/signUp::d642c5dd-7101-4da3-a6fc-d2f40ee4988d::input-params ::POST::::{"email":"phapluudev2k5@gmail.com","fullName":"Phap's Clinic","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-23 20:03:31::info::/v1/api/auth/verifyOtp::01635243-d795-42b1-be30-bf417b29a5aa::input-params ::POST::::{"email":"phapluudev2k5@gmail.com","otp":"182942"}
+2025-12-23 20:04:13::info::/v1/api/user/me::b8467c4c-0501-496d-b501-ee72fa4c201e::input-params ::GET::::{}
+2025-12-23 20:04:13::info::/v1/api/user/me::f15d021a-f7b0-4918-b890-748f303c96d2::input-params ::GET::::{}
+2025-12-23 20:04:13::info::/v1/api/user/readStaffs::aeb71dd5-f579-481c-936b-6cc1647167c7::input-params ::GET::::{}
+2025-12-23 20:04:13::info::/v1/api/user/readStaffs::db0ecb28-1fa9-4c2a-a083-c9cd9380cb92::input-params ::GET::::{}
+2025-12-23 20:04:46::info::/v1/api/user/readStaffs::29def3d8-7619-4d1e-8782-36b71dc6f68f::input-params ::GET::::{}
+2025-12-23 20:04:50::info::/v1/api/conversation/readConversations::ba06973e-0931-4fbc-bea1-a67da30f90c0::input-params ::GET::::{}
+2025-12-23 20:04:50::info::/v1/api/conversation/readConversations::c43f50c7-0638-4368-b025-8738c0130057::input-params ::GET::::{}
+2025-12-23 20:04:51::info::/v1/api/user/readStaffs::7467e1f6-4754-43de-99ff-652e39935e26::input-params ::GET::::{}
+2025-12-23 20:04:51::info::/v1/api/user/readStaffs::62833800-b87b-4edf-afac-cd0ad49d2c6c::input-params ::GET::::{}
+2025-12-23 20:04:52::info::/v1/api/conversation/readConversations::e7d62eb3-cc50-49a0-b219-9faa914bd51f::input-params ::GET::::{}
+2025-12-23 20:04:52::info::/v1/api/conversation/readConversations::00648bd7-159d-485c-9343-fa91c5cd6c54::input-params ::GET::::{}
+2025-12-23 20:04:52::info::/v1/api/user/readStaffs::b07e6a6a-9187-40ec-b813-43ae597892d3::input-params ::GET::::{}
+2025-12-23 20:04:52::info::/v1/api/user/readStaffs::4d2583e9-aeb7-4dc3-a2f1-127d288e00e7::input-params ::GET::::{}
+2025-12-23 20:10:56::info::/v1/api/auth/logout::d21d07f8-14b0-4b82-964d-7950a0cd5ac5::input-params ::POST::::{}
+2025-12-23 20:10:57::info::/v1/api/user/me::4a897100-a597-490a-b63d-87076d938ee2::input-params ::GET::::{}
+2025-12-23 20:10:57::error::/v1/api/user/me::4a897100-a597-490a-b63d-87076d938ee2::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:10:57::info::/v1/api/user/me::d3f1697a-882c-4b57-a354-b1b2393b21d3::input-params ::GET::::{}
+2025-12-23 20:10:57::error::/v1/api/user/me::d3f1697a-882c-4b57-a354-b1b2393b21d3::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:11:33::info::/v1/api/auth/signUp::55362d60-8712-4b37-88ee-5782bd5621ba::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Phap's Clinic","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-23 20:11:51::info::/v1/api/auth/verifyOtp::8a510b26-8dc6-4338-8994-72220115bb2a::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","otp":"534076"}
+2025-12-23 20:12:35::info::/v1/api/auth/verifyOtp::ccb4ba2d-13e6-4258-b62f-e419f0421d29::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","otp":"534076"}
+2025-12-23 20:12:35::error::/v1/api/auth/verifyOtp::ccb4ba2d-13e6-4258-b62f-e419f0421d29::handler-error::{"status":403,"message":"Invalid OTP code"}
+2025-12-23 20:13:52::info::/v1/api/user/me::b04e1647-ff80-4dc5-8e5c-c3cbd63d0c90::input-params ::GET::::{}
+2025-12-23 20:13:52::info::/v1/api/user/me::5a678c19-01ce-487b-929e-f873013d1a3d::input-params ::GET::::{}
+2025-12-23 20:13:58::info::/v1/api/user/readStaffs::fc11674f-274d-4c58-9a0e-9070246f9607::input-params ::GET::::{}
+2025-12-23 20:13:58::info::/v1/api/user/readStaffs::7aff44d2-7bc4-4d4e-a5de-904578a6fc3e::input-params ::GET::::{}
+2025-12-23 20:13:59::info::/v1/api/auth/logout::00d64d1a-7597-413f-914f-13c491e56e79::input-params ::POST::::{}
+2025-12-23 20:13:59::info::/v1/api/user/me::d3cf5596-f2fb-4a0e-abb5-bc5fef008eac::input-params ::GET::::{}
+2025-12-23 20:13:59::error::/v1/api/user/me::d3cf5596-f2fb-4a0e-abb5-bc5fef008eac::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:13:59::info::/v1/api/user/me::cc9fa68e-3777-405a-9c52-727879db1bcb::input-params ::GET::::{}
+2025-12-23 20:13:59::error::/v1/api/user/me::cc9fa68e-3777-405a-9c52-727879db1bcb::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:14:17::info::/v1/api/auth/signUp::adb545fc-3e31-4174-95a0-6f85165f0426::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Lưu Quốc Pháp","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-23 20:14:39::info::/v1/api/auth/verifyOtp::d252b698-5649-4bb7-b431-d58ba14414d1::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","otp":"935879"}
+2025-12-23 20:15:37::info::/v1/api/user/me::d1cf2a93-43d1-4cfe-a684-185d8b4c371a::input-params ::GET::::{}
+2025-12-23 20:15:37::info::/v1/api/user/me::317beb9e-574c-456c-83a8-4ecdc91c384a::input-params ::GET::::{}
+2025-12-23 20:15:43::info::/v1/api/user/me::2a7c2c82-b338-4e11-a548-f0a0d0f5f9b8::input-params ::GET::::{}
+2025-12-23 20:15:44::info::/v1/api/user/me::56435295-e07a-4afd-bd29-54dc4d8bfd13::input-params ::GET::::{}
+2025-12-23 20:15:54::info::/v1/api/user/readStaffs::822f0500-3590-4ee6-aaa3-1152848364c8::input-params ::GET::::{}
+2025-12-23 20:15:55::info::/v1/api/user/readStaffs::311ec1be-3d81-4fb3-aeae-0719c9a4e0e1::input-params ::GET::::{}
+2025-12-23 20:15:56::info::/v1/api/auth/logout::62135e78-1657-4eec-962e-6f0ea9f3b8fe::input-params ::POST::::{}
+2025-12-23 20:15:57::info::/v1/api/user/me::c558609b-4bfb-45bc-a596-a6eefa6b6cad::input-params ::GET::::{}
+2025-12-23 20:15:57::error::/v1/api/user/me::c558609b-4bfb-45bc-a596-a6eefa6b6cad::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:15:57::info::/v1/api/user/me::a2f7bf56-83c2-4ac8-a1eb-fd54100a3232::input-params ::GET::::{}
+2025-12-23 20:15:57::error::/v1/api/user/me::a2f7bf56-83c2-4ac8-a1eb-fd54100a3232::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:16:25::info::/v1/api/auth/signUp::d9e72222-943d-4214-9558-9bfee5b28c8b::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Lưu Quốc Pháp","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-23 20:16:25::error::/v1/api/auth/signUp::d9e72222-943d-4214-9558-9bfee5b28c8b::handler-error::{"status":403,"message":"Failed to send verification email"}
+2025-12-23 20:16:57::info::/v1/api/auth/signUp::b7c2729b-4b07-4d02-b98c-151934706a59::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","fullName":"Lưu Quốc Pháp","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2025-12-23 20:17:07::info::/v1/api/auth/verifyOtp::405e8bea-f3f7-46af-ab2e-981a8d689046::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","otp":"941059"}
+2025-12-23 20:17:07::info::/v1/api/user/me::e857c49e-ca52-4cd8-93ae-57b345cfbead::input-params ::GET::::{}
+2025-12-23 20:17:07::info::/v1/api/user/readStaffs::b281d3ff-6177-425a-90f2-65de12c29e19::input-params ::GET::::{}
+2025-12-23 20:17:07::info::/v1/api/user/readStaffs::731dec14-4f58-4a24-9502-59baa52fb1b0::input-params ::GET::::{}
+2025-12-23 20:20:27::info::/v1/api/conversation/readConversations::4eef98de-3240-46e7-a88a-f2188c22f0d7::input-params ::GET::::{}
+2025-12-23 20:20:27::info::/v1/api/conversation/readConversations::eda44d0f-8b6e-45da-a6cb-5e8eac339e3b::input-params ::GET::::{}
+2025-12-23 20:20:28::info::/v1/api/conversation/readConversations::faf35a15-b78b-4af9-95ed-32214daf9905::input-params ::GET::::{}
+2025-12-23 20:20:28::info::/v1/api/conversation/readConversations::3ae56c69-80f5-4271-bfe2-27bb5104004a::input-params ::GET::::{}
+2025-12-23 20:20:31::info::/v1/api/user/readStaffs::ff86b94f-014d-40ca-8b90-020552619448::input-params ::GET::::{}
+2025-12-23 20:20:31::info::/v1/api/user/readStaffs::79b2e4c6-c514-4a22-ac1d-56fffcc32c1f::input-params ::GET::::{}
+2025-12-23 20:20:44::info::/v1/api/user/readStaffs::a6c30d9c-192a-4406-bb14-c922dd82ed35::input-params ::GET::::{}
+2025-12-23 20:20:58::info::/v1/api/user/readStaffs::9c25201f-bccc-45ff-a7f7-0029b95c3a96::input-params ::GET::::{}
+2025-12-23 20:21:08::info::/v1/api/user/readStaffs::f98d311a-30c5-46d8-b30d-34a4696f2d08::input-params ::GET::::{}
+2025-12-23 20:24:34::info::/v1/api/user/readStaffs::a1ab7e53-e974-4b73-b5a5-ce3733399570::input-params ::GET::::{}
+2025-12-23 20:24:34::info::/v1/api/user/readStaffs::67722789-8c71-4f1a-bfa6-c145f4943524::input-params ::GET::::{}
+2025-12-23 20:30:54::info::/v1/api/user/createStaff::9f7dc307-ec3d-4450-a8bb-7f03b5566d90::input-params ::POST::::{"fullName":"Lưu Quốc Pháp","phone":"","email":"phapluudev2k5@gmail.com","speciality":"Cardiology","description":"","role":"doctor","assistDoctorId":null}

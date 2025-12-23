@@ -3,12 +3,14 @@ import Header from '../../components/header/Header'
 import './Auth.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { apiUtils } from '../../utils/newRequest'
+import { useAuth } from '../../contexts/auth/AuthContext'
 
 const OTP_LENGTH = 6
 
 export default function Verification() {
     const [otp, setOtp] = useState(Array(OTP_LENGTH).fill(''))
     const navigate = useNavigate()
+    const { loadUserMe } = useAuth()
     const inputsRef = useRef([])
     const location = useLocation()
     const email = location.state?.email
@@ -49,6 +51,9 @@ export default function Verification() {
                 email,
                 otp: code,
             })
+
+            await loadUserMe()
+
             navigate('/workspace')
         } catch (err) {
             console.log(err)

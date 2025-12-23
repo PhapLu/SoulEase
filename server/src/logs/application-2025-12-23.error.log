@@ -2,3 +2,18 @@
 2025-12-23 00:01:58::error::/v1/api/user/readStaffDetail/undefined::b739c400-03d0-43b8-af62-2c39e93e6570::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
 2025-12-23 00:02:01::error::/v1/api/user/readStaffDetail/undefined::89259754-e15c-4e09-b433-6f85da483f32::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
 2025-12-23 00:02:01::error::/v1/api/user/readStaffDetail/undefined::2933b795-b134-4c42-ad83-2040f40dc9dd::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\""}
+2025-12-23 12:04:40::error::/v1/api/user/me::a14544c1-cc11-4fa0-ad76-440c0c5067a6::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 12:04:40::error::/v1/api/user/me::facdbef0-595e-4fd5-8199-87deee35f934::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 19:52:33::error::/v1/api/user/me::d243bf0e-31cf-4562-b715-b718483fa999::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 19:52:33::error::/v1/api/user/me::bea17558-6e15-4dd4-a640-d1c1d843761a::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 19:52:40::error::/v1/api/auth/login::a2471e0e-6b1a-4492-a6fd-b24b4429081e::handler-error::{"status":401,"message":"Account or password is invalid"}
+2025-12-23 20:02:41::error::/v1/api/user/me::a13ee285-6ce8-4fd9-b0f4-1aba589aafe7::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:02:41::error::/v1/api/user/me::b000ed4f-2eb2-4196-8530-48d863a0a896::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:10:57::error::/v1/api/user/me::4a897100-a597-490a-b63d-87076d938ee2::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:10:57::error::/v1/api/user/me::d3f1697a-882c-4b57-a354-b1b2393b21d3::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:12:35::error::/v1/api/auth/verifyOtp::ccb4ba2d-13e6-4258-b62f-e419f0421d29::handler-error::{"status":403,"message":"Invalid OTP code"}
+2025-12-23 20:13:59::error::/v1/api/user/me::d3cf5596-f2fb-4a0e-abb5-bc5fef008eac::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:13:59::error::/v1/api/user/me::cc9fa68e-3777-405a-9c52-727879db1bcb::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:15:57::error::/v1/api/user/me::c558609b-4bfb-45bc-a596-a6eefa6b6cad::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:15:57::error::/v1/api/user/me::a2f7bf56-83c2-4ac8-a1eb-fd54100a3232::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-23 20:16:25::error::/v1/api/auth/signUp::d9e72222-943d-4214-9558-9bfee5b28c8b::handler-error::{"status":403,"message":"Failed to send verification email"}

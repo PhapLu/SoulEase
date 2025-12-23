@@ -14,7 +14,6 @@ export default function Doctors() {
 
     const [openCreateStaffModal, setOpenCreateStaffModal] = useState(false)
     const [staffs, setStaffs] = useState([])
-    const [doctors, setDoctors] = useState([])
     const [loading, setLoading] = useState(false)
 
     const fetchStaffs = async () => {
@@ -23,18 +22,16 @@ export default function Doctors() {
             const response = await apiUtils.get('/user/readStaffs')
             const list = response?.data?.metadata?.staffs || []
 
-            const doctors = list.filter((u) => u.role === 'doctor')
-
             setStaffs(list)
-            setDoctors(doctors)
         } catch (error) {
             console.error('Error fetching staffs:', error)
             setStaffs([])
-            setDoctors([])
         } finally {
             setLoading(false)
         }
     }
+
+    const doctors = staffs.filter((u) => u.role === 'doctor')
 
     useEffect(() => {
         fetchStaffs()
@@ -54,7 +51,7 @@ export default function Doctors() {
 
         try {
             const response = await apiUtils.post('/user/createStaff', payload)
-            setStaffs((prevDoctors) => [...prevDoctors, response.data.metadata.staff])
+            setStaffs((prev) => [...prev, response.data.metadata.staff])
             setOpenCreateStaffModal(false)
         } catch (error) {
             console.error('Error creating doctor:', error)
@@ -76,20 +73,18 @@ export default function Doctors() {
                         <span>Staff</span>
                     </button>
                 </div>
+                {staffs && staffs.length === 0 && (
+                    <div className='doctors-empty'>
+                        <img src={emptyDoctor} alt='Empty doctor profile' className='doctors-empty-avatar' />
+                        <h3 className='doctors-empty-title'>No staff profile yet</h3>
+                        <p className='doctors-empty-text'>Staff profiles will appear here once they are created or invited.</p>
 
+                        <button className='doctors-btn-primary' onClick={() => setOpenCreateStaffModal(true)}>
+                            + Add your first staff
+                        </button>
+                    </div>
+                )}
                 <div className='doctors-grid'>
-                    {staffs && staffs.length === 0 && (
-                        <div className='doctors-empty'>
-                            <img src={emptyDoctor} alt='Empty doctor profile' className='doctors-empty-avatar' />
-                            <h3 className='doctors-empty-title'>No doctor profile yet</h3>
-                            <p className='doctors-empty-text'>Doctor profiles will appear here once they are created or invited.</p>
-
-                            <button className='doctors-btn-primary' onClick={() => setOpenCreateStaffModal(true)}>
-                                + Add your first doctor
-                            </button>
-                        </div>
-                    )}
-
                     {staffs?.map((staff) => (
                         <button
                             key={staff?._id}
