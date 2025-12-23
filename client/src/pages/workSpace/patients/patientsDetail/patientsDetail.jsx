@@ -10,7 +10,7 @@ import PatientsHeader from "./PatientsHeader";
 import SymptomsSection from "./SymptomsSection";
 import TreatmentSession from "./TreatmentSection/TreatmentSession.jsx";
 import StorageSection from "./StorageSection";
-import { chartSeries } from "./PatientCharts";
+import PatientCharts from "./PatientCharts";
 
 export default function PatientsDetail() {
     const { patientRecordId } = useParams();
@@ -293,6 +293,10 @@ export default function PatientsDetail() {
                     onCancelEdit={handleCancelEdit}
                 />
 
+                {/* ChartSection */}
+                <PatientCharts patientData={patient} />
+
+
                 <SymptomsSection
                     symptoms={editForm.symptoms || []}
                     editingSymptoms={editingSymptoms}
@@ -315,7 +319,7 @@ export default function PatientsDetail() {
 
                 <StorageSection />
 
-                {/* <PatientChartsSection series={chartSeries} /> */}
+                
             </div>
         </div>
     );

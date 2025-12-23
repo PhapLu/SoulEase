@@ -1,11 +1,11 @@
 .tp-page {
+    padding: 1.75rem;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 /* ===== Header ===== */
 .tp-header {
-    padding: 1.75rem;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
