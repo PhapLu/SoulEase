@@ -11,7 +11,7 @@ router.use(verifyToken)
 router.get('/readStaffs', asyncHandler(userController.readStaffs))
 router.get('/readDoctors', asyncHandler(userController.readDoctors))
 router.post('/createStaff', asyncHandler(userController.createStaff))
-router.post('/updateStaffInfo', asyncHandler(userController.updateStaffInfo))
+router.patch('/updateStaffInfo/:staffId', asyncHandler(userController.updateStaffInfo))
 router.get('/readStaffDetail/:staffId', asyncHandler(userController.readStaffDetail))
 
 export default router

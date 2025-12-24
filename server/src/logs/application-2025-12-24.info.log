@@ -1,0 +1,3 @@
+2025-12-24 22:17:39::info::/v1/api/user/readStaffDetail/6949450282130873b5b05519::2e276da4-0d8f-4fbb-991a-f460f231dc04::input-params ::GET::::{}
+2025-12-24 22:17:48::info::/v1/api/user/updateStaffInfo/6949450282130873b5b05519::b061a28f-8af9-4fa1-96ae-28c6f5950b9b::input-params ::PATCH::::{"fullName":"Doctor 1","email":"doctor1@gmail.com","phone":"0374499276","address":"","gender":"","birthday":null,"language":"","speciality":""}
+2025-12-24 22:17:48::error::/v1/api/user/updateStaffInfo/6949450282130873b5b05519::b061a28f-8af9-4fa1-96ae-28c6f5950b9b::handler-error::{"status":404,"message":"Not Found Route"}
