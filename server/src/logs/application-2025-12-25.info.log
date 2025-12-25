@@ -83,3 +83,23 @@
 2025-12-25 18:24:39::info::/v1/api/folder/readFolder/PatientsProfilePage.jsx::1f82cdd2-495d-4589-97a5-f21c6e247114::input-params ::GET::::{}
 2025-12-25 18:24:39::info::/v1/api/user/me::bf7c9876-f8b9-4858-9909-cef6675c1d88::input-params ::GET::::{}
 2025-12-25 18:24:39::error::/v1/api/folder/readFolder/PatientsProfilePage.jsx::1f82cdd2-495d-4589-97a5-f21c6e247114::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"PatientsProfilePage.jsx\" (type string) at path \"_id\" for model \"Folder\""}
+2025-12-25 18:24:48::info::/v1/api/user/me::9602ad58-a5f6-4dde-aa7d-8b9469df39c2::input-params ::GET::::{}
+2025-12-25 18:24:48::info::/v1/api/user/me::b78954cf-a9d0-4954-b430-ec37265ff7d9::input-params ::GET::::{}
+2025-12-25 18:26:46::info::/v1/api/user/me::5c204aed-bc81-4f5c-a87f-cfc86997086f::input-params ::GET::::{}
+2025-12-25 18:26:46::info::/v1/api/user/me::d5c4b7cc-f459-4810-a584-416cac5f448b::input-params ::GET::::{}
+2025-12-25 18:27:41::info::/v1/api/user/me::640c5f2c-015b-4963-9a1e-742e8198a674::input-params ::GET::::{}
+2025-12-25 18:27:41::info::/v1/api/user/me::88a8235b-4882-403b-831b-371b8246e80d::input-params ::GET::::{}
+2025-12-25 18:27:57::info::/v1/api/user/me::7911196a-b19f-43a1-acd1-cfc26c3ae21c::input-params ::GET::::{}
+2025-12-25 18:27:57::info::/v1/api/user/me::65c0ec58-ca2e-467b-b645-438be4a542b2::input-params ::GET::::{}
+2025-12-25 18:28:23::info::/v1/api/user/me::7868b5d6-41ad-40f8-9c1e-70ef8938eaa4::input-params ::GET::::{}
+2025-12-25 18:28:23::info::/v1/api/user/me::5174db03-8001-4c9f-8c0f-99aef0bb22b4::input-params ::GET::::{}
+2025-12-25 18:28:32::info::/v1/api/user/me::ebc6483a-f32f-4c06-95b2-fcf16e2d15eb::input-params ::GET::::{}
+2025-12-25 18:28:32::info::/v1/api/user/me::ccea5e5b-ac7e-4f43-9bca-ea7faac6f5d2::input-params ::GET::::{}
+2025-12-25 18:29:16::info::/v1/api/user/me::1a5c3057-6e28-47c0-8f7a-b4db94921a33::input-params ::GET::::{}
+2025-12-25 18:29:16::info::/v1/api/user/me::828ee26c-f9ac-4fe5-ab54-cab8799aaa55::input-params ::GET::::{}
+2025-12-25 18:29:28::info::/v1/api/user/me::21ed350c-e79f-4e37-8b9c-84216c768f0c::input-params ::GET::::{}
+2025-12-25 18:29:28::info::/v1/api/user/me::b04f1f1c-0eb7-4254-8b03-a2562abe24e8::input-params ::GET::::{}
+2025-12-25 18:29:30::info::/v1/api/folder/readFolders::5060d736-2a6b-4733-b799-534f8df57ba2::input-params ::GET::::{}
+2025-12-25 18:29:30::info::/v1/api/folder/readFolders::fa0155c0-7f4b-4120-a261-f6527a776c14::input-params ::GET::::{}
+2025-12-25 18:29:39::info::/v1/api/user/me::f8671f23-900a-494b-a9c2-d713f10fa728::input-params ::GET::::{}
+2025-12-25 18:29:40::info::/v1/api/user/me::900d18ed-a079-4c44-b519-5fe532f7bd5e::input-params ::GET::::{}

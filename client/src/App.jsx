@@ -27,7 +27,7 @@ import ConversationDetail from "./components/conversation/conversationDetail/Con
 import ConversationsLayout from "./pages/workSpace/conversation/ConversationsLayout.jsx";
 import TreatmentDetailPage from "./pages/workSpace/patients/patientsDetail/TreatmentSection/TreatmentDetailPage.jsx";
 import CreateSessionPage from "./pages/workSpace/patients/patientsDetail/TreatmentSection/CreateSessionPage.jsx";
-import PatientsProfilePage from "./pages/workSpace/patients/patientsProfile/PatientsProfilePage.jsx";
+import PatientsProfilePage from "./pages/workSpace/patientsProfile/PatientsProfilePage.jsx";
 // import Message from "./pages/workSpace/message/message.jsx";
 
 const router = createBrowserRouter([

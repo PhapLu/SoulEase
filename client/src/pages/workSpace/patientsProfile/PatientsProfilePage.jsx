@@ -1,7 +1,7 @@
 // PatientsProfilePage.jsx
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { apiUtils } from "../../../../utils/newRequest";
+import { apiUtils } from "../../../utils/newRequest";
 import "./patientsProfile.css";
 
 const ROLE_TABS = [
