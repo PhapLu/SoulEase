@@ -1,0 +1,2 @@
+2025-12-25 18:24:39::error::/v1/api/folder/readFolder/PatientsProfilePage.jsx::82068a09-6169-416b-bd17-03e5468d03d0::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"PatientsProfilePage.jsx\" (type string) at path \"_id\" for model \"Folder\""}
+2025-12-25 18:24:39::error::/v1/api/folder/readFolder/PatientsProfilePage.jsx::1f82cdd2-495d-4589-97a5-f21c6e247114::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"PatientsProfilePage.jsx\" (type string) at path \"_id\" for model \"Folder\""}
