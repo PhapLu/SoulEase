@@ -1,0 +1,89 @@
+.rel-wrap {
+    margin-top: 1rem;
+}
+
+/* giống style tiêu đề xanh + nền nhạt */
+.rel-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0 0.75rem;
+}
+
+.rel-title {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #0a8f7a;
+}
+
+.rel-create-btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    padding: 0.5rem 0.9rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* CARD giống Symptoms */
+.rel-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem;
+}
+
+/* header row */
+.rel-table-head {
+    display: grid;
+    grid-template-columns: 1.4fr 1.6fr 1fr 1fr;
+    gap: 1rem;
+    padding: 0.25rem 0 0.75rem;
+    color: #4b5b58;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* body rows */
+.rel-table-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.rel-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1.6fr 1fr 1fr;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.rel-row:last-child {
+    border-bottom: none;
+}
+
+.rel-col {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rel-empty {
+    padding: 1rem 0.15rem 0.25rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+/* responsive */
+@media (max-width: 920px) {
+    .rel-table-head,
+    .rel-row {
+        grid-template-columns: 1.2fr 1.4fr 1fr;
+    }
+    .rel-col--relationship {
+        display: none;
+    }
+}

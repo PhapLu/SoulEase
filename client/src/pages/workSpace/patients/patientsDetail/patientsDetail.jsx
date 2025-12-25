@@ -10,7 +10,8 @@ import PatientsHeader from "./PatientsHeader";
 import SymptomsSection from "./SymptomsSection";
 import TreatmentSession from "./TreatmentSection/TreatmentSession.jsx";
 import StorageSection from "./StorageSection";
-import PatientCharts from "./PatientCharts";
+import PatientCharts from "./PatientCharts/PatientCharts.jsx";
+import Relative from "./Relative/Relative.jsx";
 
 export default function PatientsDetail() {
     const { patientRecordId } = useParams();
@@ -150,6 +151,58 @@ export default function PatientsDetail() {
         setEditForm((prev) => ({ ...prev, age }));
     }, [editForm?.birthday]);
 
+    // ------- RELATIVE SECTION -------
+    const fetchPatient = async () => {
+        try {
+            const res = await apiUtils.get(
+                `/patientRecord/readPatientRecord/${patientRecordId}`
+            );
+
+            const fetched =
+                res?.data?.metadata?.patientRecord ||
+                res?.data?.patientRecord ||
+                null;
+
+            if (fetched) {
+                const birthday = normalizeBirthday(
+                    fetched.birthday || fetched.dob
+                );
+                const age = calcAge(birthday);
+                const normalized = {
+                    ...fetched,
+                    birthday,
+                    age,
+                    symptoms: fetched.symptoms ? [...fetched.symptoms] : [],
+                };
+                setPatient(normalized);
+                setEditForm(normalized);
+            } else {
+                setPatient(null);
+                setEditForm(null);
+            }
+        } catch (err) {
+            console.error("Failed to fetch patient record", err);
+        }
+    };
+
+    useEffect(() => {
+        if (!patientRecordId) return;
+        fetchPatient();
+    }, [patientRecordId]);
+
+    const handleCreateRelative = async (payload) => {
+        try {
+            await apiUtils.post("/relative/createRelativeAccount", {
+                patientRecordId,
+                ...payload,
+            });
+
+            await fetchPatient();
+        } catch (err) {
+            console.error("Failed to create relative", err);
+        }
+    };
+
     // -------- SYMPTOMS EDIT -------
     const handleEditSymptoms = () => {
         setOriginalSymptoms(editForm?.symptoms || []);
@@ -271,8 +324,12 @@ export default function PatientsDetail() {
 
     // treatment sessions sorted by date desc (latest first)
     const sessions =
-        (Array.isArray(editForm?.treatmentSections) && [...editForm.treatmentSections]) ||
-        (Array.isArray(editForm?.treatmentSessions) && [...editForm.treatmentSessions]) ||
+        (Array.isArray(editForm?.treatmentSections) && [
+            ...editForm.treatmentSections,
+        ]) ||
+        (Array.isArray(editForm?.treatmentSessions) && [
+            ...editForm.treatmentSessions,
+        ]) ||
         [];
     sessions.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
     const latestSession = sessions[0] || null;
@@ -293,9 +350,17 @@ export default function PatientsDetail() {
                     onCancelEdit={handleCancelEdit}
                 />
 
+                <Relative
+                    relatives={
+                        editForm?.relatives || editForm?.caregivers || []
+                    }
+                    folderId={editForm?.folderId || editForm?.folder?._id || ""}
+                    lockFolder={true}
+                    onCreateRelative={handleCreateRelative}
+                />
+
                 {/* ChartSection */}
                 <PatientCharts patientData={patient} />
-
 
                 <SymptomsSection
                     symptoms={editForm.symptoms || []}
@@ -318,8 +383,6 @@ export default function PatientsDetail() {
                 />
 
                 <StorageSection />
-
-                
             </div>
         </div>
     );
