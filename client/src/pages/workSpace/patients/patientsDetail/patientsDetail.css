@@ -17,6 +17,11 @@
     gap: 50px;
 }
 
+.breadcrumb {
+    margin-top: -30px;
+    margin-bottom: -30px;
+}
+
 .pd-header {
     display: grid;
     grid-template-columns: 240px 400px auto;
@@ -443,7 +448,6 @@
     border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(12, 45, 36, 0.12);
     transition: 0.15s;
 }
 .symptom-add-btn:hover {
@@ -503,7 +507,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: 0.15s;
-    background: #f6f8f7;
+    background: transparent;
 }
 
 .pd-symptom-status--active {

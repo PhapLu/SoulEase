@@ -13,9 +13,11 @@ import TreatmentSession from "./TreatmentSection/TreatmentSession.jsx";
 import StorageSection from "./StorageSection";
 import PatientCharts from "./PatientCharts/PatientCharts.jsx";
 import Relative from "./Relative/Relative.jsx";
+import Breadcrumb from "../../../../components/Breadcrumb/Breadcrumb.jsx";
 
 export default function PatientsDetail() {
     const { patientRecordId } = useParams();
+
     const { userInfo } = useAuth();
     const isReadOnly = userInfo?.role === "family";
 
@@ -43,6 +45,19 @@ export default function PatientsDetail() {
     const [patient, setPatient] = useState(null);
     const [editForm, setEditForm] = useState(null);
 
+    const breadcrumbItems = [
+        { label: "Workspace", href: "/workspace" },
+        patient?.folderId
+            ? {
+                  label: "Folder",
+                  href: `/workspace/patients/folder/${patient.folderId}`,
+              }
+            : { label: "Folder" },
+        {
+            label: patient?.fullName,
+        },
+    ];
+
     // GLOBAL EDIT MODE
     const [isEditing, setIsEditing] = useState(false);
 
@@ -58,19 +73,12 @@ export default function PatientsDetail() {
 
         const fetchPatient = async () => {
             try {
-                const res = await apiUtils.get(
-                    `/patientRecord/readPatientRecord/${patientRecordId}`
-                );
+                const res = await apiUtils.get(`/patientRecord/readPatientRecord/${patientRecordId}`);
 
-                const fetched =
-                    res?.data?.metadata?.patientRecord ||
-                    res?.data?.patientRecord ||
-                    null;
+                const fetched = res?.data?.metadata?.patientRecord || res?.data?.patientRecord || null;
 
                 if (fetched) {
-                    const birthday = normalizeBirthday(
-                        fetched.birthday || fetched.dob
-                    );
+                    const birthday = normalizeBirthday(fetched.birthday || fetched.dob);
                     const age = calcAge(birthday);
                     const normalized = {
                         ...fetched,
@@ -98,10 +106,7 @@ export default function PatientsDetail() {
         const recordId = newForm?.recordId || patient?.recordId;
         if (!recordId) throw new Error("Missing recordId");
 
-        await apiUtils.patch(
-            `/patientRecord/updatePatientRecord/${recordId}`,
-            newForm
-        );
+        await apiUtils.patch(`/patientRecord/updatePatientRecord/${recordId}`, newForm);
         setPatient(newForm);
     };
 
@@ -162,32 +167,20 @@ export default function PatientsDetail() {
     // ------- RELATIVE SECTION -------
     const fetchPatient = async () => {
         try {
-            const res = await apiUtils.get(
-                `/patientRecord/readPatientRecord/${patientRecordId}`
-            );
+            const res = await apiUtils.get(`/patientRecord/readPatientRecord/${patientRecordId}`);
 
-            const fetched =
-                res?.data?.metadata?.patientRecord ||
-                res?.data?.patientRecord ||
-                null;
+            const fetched = res?.data?.metadata?.patientRecord || res?.data?.patientRecord || null;
 
             if (fetched) {
-                const birthday = normalizeBirthday(
-                    fetched.birthday || fetched.dob
-                );
+                const birthday = normalizeBirthday(fetched.birthday || fetched.dob);
                 const age = calcAge(birthday);
                 const recordId = fetched.recordId || fetched._id;
                 let relatives = fetched.relatives || fetched.caregivers || [];
 
                 if (recordId) {
                     try {
-                        const relRes = await apiUtils.get(
-                            `/relative/readRelatives/${recordId}`
-                        );
-                        relatives =
-                            relRes?.data?.metadata?.relatives ||
-                            relRes?.data?.relatives ||
-                            relatives;
+                        const relRes = await apiUtils.get(`/relative/readRelatives/${recordId}`);
+                        relatives = relRes?.data?.metadata?.relatives || relRes?.data?.relatives || relatives;
                     } catch (e) {
                         // keep existing relatives if API not available
                     }
@@ -309,8 +302,7 @@ export default function PatientsDetail() {
                 i === index
                     ? {
                           ...sym,
-                          status:
-                              sym.status === "Resolved" ? "Active" : "Resolved",
+                          status: sym.status === "Resolved" ? "Active" : "Resolved",
                       }
                     : sym
             ) || [];
@@ -363,11 +355,7 @@ export default function PatientsDetail() {
         const today = new Date().toISOString().split("T")[0];
 
         const list = [...(editForm?.symptoms || [])];
-        const idx = list.findIndex(
-            (s) =>
-                (s.name || "").trim().toLowerCase() === normName.toLowerCase() &&
-                (s.sign || "").trim().toLowerCase() === normSign.toLowerCase()
-        );
+        const idx = list.findIndex((s) => (s.name || "").trim().toLowerCase() === normName.toLowerCase() && (s.sign || "").trim().toLowerCase() === normSign.toLowerCase());
 
         if (checked && idx === -1) {
             list.push({
@@ -397,14 +385,7 @@ export default function PatientsDetail() {
     if (!editForm) return <div>Loading...</div>;
 
     // treatment sessions sorted by date desc (latest first)
-    const sessions =
-        (Array.isArray(editForm?.treatmentSections) && [
-            ...editForm.treatmentSections,
-        ]) ||
-        (Array.isArray(editForm?.treatmentSessions) && [
-            ...editForm.treatmentSessions,
-        ]) ||
-        [];
+    const sessions = (Array.isArray(editForm?.treatmentSections) && [...editForm.treatmentSections]) || (Array.isArray(editForm?.treatmentSessions) && [...editForm.treatmentSessions]) || [];
     sessions.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
     const latestSession = sessions[0] || null;
 
@@ -413,51 +394,19 @@ export default function PatientsDetail() {
             <WorkspaceTopBar />
 
             <div className="pd-inner">
-                <PatientsHeader
-                    patient={patient}
-                    editForm={editForm}
-                    isEditing={isEditing}
-                    readOnly={isReadOnly}
-                    saving={saving}
-                    onFieldChange={handleFieldChange}
-                    onStartEdit={handleStartEdit}
-                    onSaveEdit={handleSaveEdit}
-                    onCancelEdit={handleCancelEdit}
-                />
+                <div className="breadcrumb">
+                    <Breadcrumb items={breadcrumbItems} />
+                </div>
+                <PatientsHeader patient={patient} editForm={editForm} isEditing={isEditing} readOnly={isReadOnly} saving={saving} onFieldChange={handleFieldChange} onStartEdit={handleStartEdit} onSaveEdit={handleSaveEdit} onCancelEdit={handleCancelEdit} />
 
-                <Relative
-                    relatives={
-                        editForm?.relatives || editForm?.caregivers || []
-                    }
-                    readOnly={isReadOnly}
-                    onCreateRelative={handleCreateRelative}
-                />
+                <Relative relatives={editForm?.relatives || editForm?.caregivers || []} readOnly={isReadOnly} onCreateRelative={handleCreateRelative} />
 
                 {/* ChartSection */}
                 <PatientCharts patientData={patient} />
 
-                <SymptomsSection
-                    symptoms={editForm.symptoms || []}
-                    editingSymptoms={editingSymptoms}
-                    setEditingSymptoms={setEditingSymptoms}
-                    readOnly={isReadOnly}
-                    onSaveSymptoms={handleSaveSymptoms}
-                    onCancelSymptoms={handleCancelSymptoms}
-                    onAddSymptom={handleAddSymptom}
-                    onSymptomFieldChange={handleSymptomFieldChange}
-                    onToggleSymptomStatus={handleToggleSymptomStatus}
-                    onSymptomKeyDown={handleSymptomKeyDown}
-                    onRemoveSymptom={handleRemoveSymptom}
-                    onTogglePresetSymptom={handleTogglePresetSymptom}
-                />
+                <SymptomsSection symptoms={editForm.symptoms || []} editingSymptoms={editingSymptoms} setEditingSymptoms={setEditingSymptoms} readOnly={isReadOnly} onSaveSymptoms={handleSaveSymptoms} onCancelSymptoms={handleCancelSymptoms} onAddSymptom={handleAddSymptom} onSymptomFieldChange={handleSymptomFieldChange} onToggleSymptomStatus={handleToggleSymptomStatus} onSymptomKeyDown={handleSymptomKeyDown} onRemoveSymptom={handleRemoveSymptom} onTogglePresetSymptom={handleTogglePresetSymptom} />
 
-                <TreatmentSession
-                    patientRecordId={patientRecordId}
-                    sessions={sessions}
-                    latest={latestSession}
-                    readOnly={isReadOnly}
-                    onStartEdit={handleStartEdit}
-                />
+                <TreatmentSession patientRecordId={patientRecordId} sessions={sessions} latest={latestSession} readOnly={isReadOnly} onStartEdit={handleStartEdit} />
 
                 <StorageSection />
             </div>

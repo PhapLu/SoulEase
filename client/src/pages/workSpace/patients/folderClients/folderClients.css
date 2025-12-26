@@ -4,7 +4,9 @@
   gap: 8px;
   height: 100%;
 }
-
+.breadcrumb_folder {
+  padding-bottom: 30px;
+}
 .folder-card {
   flex: 1;
   border-radius: 12px;
