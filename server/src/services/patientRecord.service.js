@@ -9,25 +9,32 @@ dotenv.config()
 
 class PatientRecordService {
     static createPatientRecord = async (req) => {
-        const doctorId = req.userId
+        const userId = req.userId
         const { fullName, email, dob, phoneNumber, role, relationship, folderId } = req.body
 
-        // 1. Verify doctor and patient exists
-        const doctor = await User.findById(doctorId)
+        const user = await User.findById(userId)
+        if (!user) throw new AuthFailureError('Please login to continue')
 
-        if (!doctor || (doctor.role !== 'doctor' && doctor.role !== 'clinic')) throw new ForbiddenError('Only doctors can create clients')
+        let doctorId
+        if (user.role === 'doctor') {
+            doctorId = userId
+        } else if (user.role === 'nurse') {
+            if (!user.nurseProfile?.assistDoctorId) {
+                throw new BadRequestError('Nurse is not assigned to any doctor')
+            }
+            doctorId = user.nurseProfile.assistDoctorId
+        } else {
+            throw new ForbiddenError('You do not have permission to create patient records')
+        }
 
-        const patient = await User.findOne({ email })
-        if (patient) throw new BadRequestError('Patient already exists')
+        const existingUser = await User.findOne({ email })
+        if (existingUser) throw new BadRequestError('Patient already exists')
 
-        // 2. Check folder belongs to this doctor
         const folder = await Folder.findOne({ _id: folderId, doctorId })
         if (!folder) throw new NotFoundError('Folder not found or unauthorized')
 
-        // 3. Create Client as User
         const randomPassword = Math.random().toString(36).slice(-8)
 
-        // 3. Create Client as User
         const newUser = await User.create({
             email,
             fullName,
@@ -38,30 +45,21 @@ class PatientRecordService {
             status: 'active',
         })
 
-        // ⭐ ADD THIS: Create conversation between doctor and patient/family
-        let existingConversation = await Conversation.findOne({
-            'members.user': { $all: [doctorId, newUser._id] },
+        await Conversation.create({
+            members: [{ user: doctorId }, { user: newUser._id }],
+            messages: [
+                {
+                    senderId: doctorId,
+                    content: `Welcome ${newUser.fullName}! This is your private chat with your care team.`,
+                    createdAt: new Date(),
+                    seenBy: [doctorId],
+                },
+            ],
         })
 
-        if (!existingConversation) {
-            existingConversation = await Conversation.create({
-                members: [{ user: doctorId }, { user: newUser._id }],
-                messages: [
-                    {
-                        senderId: doctorId,
-                        content: `Welcome ${newUser.fullName}! This is your private chat with Dr. ${doctor.fullName}.`,
-                        createdAt: new Date(),
-                        seenBy: [doctorId],
-                    },
-                ],
-            })
-        }
-
-        // 4. Add patient to folder.records
         folder.records.push(newUser._id)
         await folder.save()
 
-        // 5. (Optional but recommended) Create default initial clinical record
         const intakeRecord = await PatientRecord.create({
             doctorId,
             patientId: newUser._id,
@@ -69,28 +67,29 @@ class PatientRecordService {
             title: 'Initial Intake Record',
             recordType: 'assessment',
             visibility: 'doctor_only',
-            symptoms: [],
-            diagnosis: '',
-            treatmentPlan: '',
-            doctorNotes: '',
             caregiverNotes: role === 'relative' ? relationship : '',
         })
 
-        return {
-            user: newUser,
-            intakeRecord,
-        }
+        return { user: newUser, intakeRecord }
     }
 
     static readPatientRecords = async (req) => {
         const userId = req.userId
 
-        // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
 
-        // 2. Fetch all records created by this doctor
-        const records = await PatientRecord.find({ doctorId: userId }).sort({ createdAt: -1 })
+        let doctorId
+        if (user.role === 'doctor') {
+            doctorId = userId
+        } else if (user.role === 'nurse') {
+            doctorId = user.nurseProfile?.assistDoctorId
+            if (!doctorId) throw new BadRequestError('Nurse is not assigned to a doctor')
+        } else {
+            throw new ForbiddenError('You do not have permission to view records')
+        }
+
+        const records = await PatientRecord.find({ doctorId }).sort({ createdAt: -1 })
 
         return { records }
     }
@@ -109,21 +108,33 @@ class PatientRecordService {
         if (!patient) throw new NotFoundError('Patient not found')
 
         // 3. Find patient record
-        const recordQuery =
-            user.role === 'family'
-                ? {
-                      patientId,
-                      $or: [{ 'relatives.userId': userId }, { 'relatives.email': user.email }],
-                  }
-                : {
-                      patientId,
-                      doctorId: userId,
-                  }
+        let recordQuery
 
-        const record = await PatientRecord.findOne(recordQuery)
-            .lean()
-            .exec()
+        if (user.role === 'family') {
+            recordQuery = {
+                patientId,
+                $or: [{ 'relatives.userId': userId }, { 'relatives.email': user.email }],
+            }
+        } else if (user.role === 'doctor') {
+            recordQuery = {
+                patientId,
+                doctorId: userId,
+            }
+        } else if (user.role === 'nurse') {
+            const doctorId = user.nurseProfile?.assistDoctorId
+            if (!doctorId) {
+                throw new BadRequestError('Nurse is not assigned to a doctor')
+            }
 
+            recordQuery = {
+                patientId,
+                doctorId,
+            }
+        } else {
+            throw new ForbiddenError('You do not have permission to view this record')
+        }
+
+        const record = await PatientRecord.findOne(recordQuery).lean().exec()
         if (!record) throw new NotFoundError('Record not found')
 
         // 4. Fetch latest completed session
@@ -184,7 +195,20 @@ class PatientRecordService {
         if (user.role === 'family') throw new ForbiddenError('You do not have permission to update this record')
 
         // 2. Check record
-        const record = await PatientRecord.findOne({ _id: recordId, doctorId: userId })
+        let doctorId
+        if (user.role === 'doctor') {
+            doctorId = userId
+        } else if (user.role === 'nurse') {
+            doctorId = user.nurseProfile?.assistDoctorId
+            if (!doctorId) throw new BadRequestError('Nurse is not assigned to a doctor')
+        } else {
+            throw new ForbiddenError('You do not have permission to update this record')
+        }
+
+        const record = await PatientRecord.findOne({
+            _id: recordId,
+            doctorId,
+        })
         if (!record) throw new NotFoundError('Record not found')
 
         // 2.1 Load patient user for header updates
@@ -193,7 +217,7 @@ class PatientRecordService {
 
         // OPTIONAL: Check folder ownership if changing folder
         if (folderId) {
-            const folder = await Folder.findOne({ _id: folderId, doctorId: userId })
+            const folder = await Folder.findOne({ _id: folderId, doctorId })
             if (!folder) throw new NotFoundError('Folder not found or unauthorized')
             record.folderId = folderId
         }
