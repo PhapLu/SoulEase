@@ -16,3 +16,79 @@
 2025-12-26 09:06:17::info::/v1/api/user/me::72bb3116-8197-41f9-ba94-ec63fbb291e4::input-params ::GET::::{}
 2025-12-26 09:06:18::info::/v1/api/patientRecord/readPatientRecord/693a8c925dbe463b3ad4c21a::b92db5ef-d4c9-4e0a-93d9-1476b674ab3a::input-params ::GET::::{}
 2025-12-26 09:06:18::info::/v1/api/user/me::7a9201aa-096f-43d3-a5a0-9775c985a92b::input-params ::GET::::{}
+2025-12-26 13:22:11::info::/v1/api/user/me::be1319b6-1f39-401b-ae2e-c782a190d995::input-params ::GET::::{}
+2025-12-26 13:22:11::info::/v1/api/user/me::8bc0ea56-9b19-458c-ac8c-074d5753b4b7::input-params ::GET::::{}
+2025-12-26 13:22:14::info::/v1/api/user/me::109ed995-1f7e-4a07-a7e3-525960e3dc1b::input-params ::GET::::{}
+2025-12-26 13:22:14::info::/v1/api/user/me::793d9287-26b0-4703-b339-de501d5a4afb::input-params ::GET::::{}
+2025-12-26 13:22:17::info::/v1/api/folder/readFolders::d50bb338-8b11-429c-9996-51af0d54b081::input-params ::GET::::{}
+2025-12-26 13:22:17::info::/v1/api/folder/readFolders::84677094-dbed-409e-abe7-1d0aa5318754::input-params ::GET::::{}
+2025-12-26 13:22:19::info::/v1/api/auth/logout::2426ffef-0265-48bb-a537-a180ceaca114::input-params ::POST::::{}
+2025-12-26 13:22:20::info::/v1/api/user/me::9bf65886-7650-40e4-ad76-32fc48e5551d::input-params ::GET::::{}
+2025-12-26 13:22:20::error::/v1/api/user/me::9bf65886-7650-40e4-ad76-32fc48e5551d::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:22:20::info::/v1/api/user/me::586acb01-53f9-46eb-b8da-cb742362f47e::input-params ::GET::::{}
+2025-12-26 13:22:20::error::/v1/api/user/me::586acb01-53f9-46eb-b8da-cb742362f47e::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:27:51::info::/v1/api/auth/login::da29cde3-a37e-4a7d-90e9-9b0290ce5830::input-params ::POST::::{"email":"doctor2@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-26 13:27:51::info::/v1/api/user/me::a91efb19-527e-4951-8993-9aad54c60bbd::input-params ::GET::::{}
+2025-12-26 13:27:51::info::/v1/api/folder/readFolders::97376fc2-fdec-4214-8e8d-38595ca8ec80::input-params ::GET::::{}
+2025-12-26 13:27:52::info::/v1/api/folder/readFolders::fc40144c-180d-41c6-84dd-9f778605fe75::input-params ::GET::::{}
+2025-12-26 13:28:03::info::/v1/api/folder/readFolder/69496be99bc2fb43a6df32ae::ed86662b-c580-419e-8ff6-2b4e49b0d7a6::input-params ::GET::::{}
+2025-12-26 13:28:03::info::/v1/api/folder/readFolder/69496be99bc2fb43a6df32ae::67d791d1-b7b2-444d-97c4-76a399950799::input-params ::GET::::{}
+2025-12-26 13:28:06::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::749707ac-7fe4-4560-9c53-7a80b1add714::input-params ::GET::::{}
+2025-12-26 13:28:07::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::4ac19ee5-a58e-40e6-a6db-3ca6cc37b026::input-params ::GET::::{}
+2025-12-26 13:28:57::info::/v1/api/patientRecord/updatePatientRecord/69496bff9bc2fb43a6df32c6::c7d4bfba-f466-4424-899f-f76cbc723680::input-params ::PATCH::::{"recordId":"69496bff9bc2fb43a6df32c6","_id":"69496bff9bc2fb43a6df32c6","email":"bunboforever@gmail.com","fullName":"Pháp Lu","phone":"0399091516","address":"RMIT","dob":"2004-04-24T00:00:00.000Z","gender":"female","birthday":"2004-04-24","doctorId":"69494ac882130873b5b05529","patientId":"69496bfe9bc2fb43a6df32bd","folderId":"69496be99bc2fb43a6df32ae","title":"Initial Intake Record","recordType":"assessment","symptoms":[{"id":"tmp-1766730518836","name":"Fatigue","sign":"Constant tiredness","date":"2025-12-26","status":"Active"},{"id":"tmp-1766730525356","name":"Depressed Mood","sign":"Prolonged sadness","date":"2025-12-26","status":"Active"},{"id":"tmp-1766730531207","name":"Low Motivation","sign":"Lack of interest in daily activities","date":"2025-12-26","status":"Active"}],"diagnosis":"","moodLevel":null,"treatmentPlan":"","attachments":[],"caregiverNotes":"","doctorNotes":"","visibility":"doctor_only","treatmentSessions":[{"id":"sess-1766660766190","date":"2025-12-25","focus":"giống thằng tuấn","symptoms":[{"id":"sym-1766660723536","name":"khùng","sign":"khùng","date":"2025-12-25","status":"Active"}],"phq9":12,"gad7":12,"severity":5,"risk":"Low","status":"Stage 1: Stabilization &amp; coping skills","note":"giống pháp lưu","result":"giống thằng tuấn","treatment":"giống anh hy","_id":"694d1a9e89668401b01b2e98"}],"treatmentSections":[{"id":"sess-1766660766190","date":"2025-12-25","focus":"giống thằng tuấn","symptoms":[{"id":"sym-1766660723536","name":"khùng","sign":"khùng","date":"2025-12-25","status":"Active"}],"phq9":12,"gad7":12,"severity":5,"risk":"Low","status":"Stage 1: Stabilization &amp; coping skills","note":"giống pháp lưu","result":"giống thằng tuấn","treatment":"giống anh hy","_id":"694d1a9e89668401b01b2e99"}],"medications":[],"createdAt":"2025-12-22T16:04:15.048Z","updatedAt":"2025-12-25T11:06:06.455Z","__v":1,"latestSession":null,"age":21}
+2025-12-26 13:30:22::info::/v1/api/auth/logout::9ed3b27f-789a-4ebe-9ab7-d4de56ec0c19::input-params ::POST::::{}
+2025-12-26 13:30:22::info::/v1/api/user/me::ec9b93d7-bd7c-4963-91e9-13509ad8a629::input-params ::GET::::{}
+2025-12-26 13:30:22::error::/v1/api/user/me::ec9b93d7-bd7c-4963-91e9-13509ad8a629::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:30:22::info::/v1/api/user/me::aacbaf68-3550-449c-883c-91ab4074426d::input-params ::GET::::{}
+2025-12-26 13:30:22::error::/v1/api/user/me::aacbaf68-3550-449c-883c-91ab4074426d::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:44:22::info::/v1/api/user/me::2c976582-4a3a-488a-8878-64e7617674b0::input-params ::GET::::{}
+2025-12-26 13:44:22::error::/v1/api/user/me::2c976582-4a3a-488a-8878-64e7617674b0::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:44:22::info::/v1/api/user/me::5f08bbb4-ae2c-4b9b-84f6-b69243bc31c4::input-params ::GET::::{}
+2025-12-26 13:44:22::error::/v1/api/user/me::5f08bbb4-ae2c-4b9b-84f6-b69243bc31c4::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:44:23::info::/v1/api/user/me::fa342791-d4c8-4443-b438-ac975aa0a3c9::input-params ::GET::::{}
+2025-12-26 13:44:23::error::/v1/api/user/me::fa342791-d4c8-4443-b438-ac975aa0a3c9::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:44:23::info::/v1/api/user/me::d50b5318-7c78-4349-819d-c4dd08fbefb2::input-params ::GET::::{}
+2025-12-26 13:44:23::error::/v1/api/user/me::d50b5318-7c78-4349-819d-c4dd08fbefb2::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:47:56::info::/v1/api/user/me::6cfc26fc-8291-4a91-8fa0-2bf3a0298cdf::input-params ::GET::::{}
+2025-12-26 13:47:56::error::/v1/api/user/me::6cfc26fc-8291-4a91-8fa0-2bf3a0298cdf::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:47:56::info::/v1/api/user/me::6a22b7c3-22e3-47ce-a48d-d675bbd46de6::input-params ::GET::::{}
+2025-12-26 13:47:56::error::/v1/api/user/me::6a22b7c3-22e3-47ce-a48d-d675bbd46de6::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:50:45::info::/v1/api/user/me::8f22f553-392d-4bfe-9557-7a538a7ccc85::input-params ::GET::::{}
+2025-12-26 13:50:45::error::/v1/api/user/me::8f22f553-392d-4bfe-9557-7a538a7ccc85::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:50:45::info::/v1/api/user/me::2d4dc8c6-d395-4b66-ac20-10d75283383e::input-params ::GET::::{}
+2025-12-26 13:50:45::error::/v1/api/user/me::2d4dc8c6-d395-4b66-ac20-10d75283383e::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 14:01:56::info::/v1/api/auth/login::8a9c4131-5716-4acf-afb7-2f20115faa3a::input-params ::POST::::{"email":"doctor2@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-26 14:01:56::info::/v1/api/user/me::6fdbf395-7c34-48e6-a327-a155ff873865::input-params ::GET::::{}
+2025-12-26 14:01:56::info::/v1/api/folder/readFolders::a7e64507-6068-4c8d-8b62-08f6e2c196a0::input-params ::GET::::{}
+2025-12-26 14:01:56::info::/v1/api/folder/readFolders::8f78558d-13dd-403c-bade-8c2e905d6b84::input-params ::GET::::{}
+2025-12-26 14:01:57::info::/v1/api/folder/readFolder/69496be99bc2fb43a6df32ae::ed1c787e-a0b5-413e-8400-3887505fc92f::input-params ::GET::::{}
+2025-12-26 14:01:58::info::/v1/api/folder/readFolder/69496be99bc2fb43a6df32ae::fab7563a-ab56-496b-ac13-549ff367719d::input-params ::GET::::{}
+2025-12-26 14:01:59::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::da9c249a-e56e-4f61-88ab-d6629a95dd89::input-params ::GET::::{}
+2025-12-26 14:01:59::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::76da846b-8987-4d23-b087-ef3dcb5865f1::input-params ::GET::::{}
+2025-12-26 14:16:01::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::baa9c122-7d58-4ec9-8886-d051d7cc3747::input-params ::GET::::{}
+2025-12-26 14:16:01::info::/v1/api/user/me::7ac5ce20-13ba-4730-a6dc-850231bf060e::input-params ::GET::::{}
+2025-12-26 14:16:01::info::/v1/api/user/me::50f8cdac-5d20-490d-a74e-5f6b050c49d2::input-params ::GET::::{}
+2025-12-26 14:16:01::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::3825c7b2-d048-4116-8b0c-ece7652cd803::input-params ::GET::::{}
+2025-12-26 14:18:21::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::cea61b19-52df-4b26-8341-857df05c1ba9::input-params ::GET::::{}
+2025-12-26 14:18:21::info::/v1/api/user/me::bde12999-8f4b-4c34-a0b5-7d19e7c17b8c::input-params ::GET::::{}
+2025-12-26 14:18:21::info::/v1/api/user/me::9b9e1e1e-a511-4443-ae96-3b42ff39c20d::input-params ::GET::::{}
+2025-12-26 14:18:21::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::6119d06b-2e2b-41fd-9695-c1a4e42b577e::input-params ::GET::::{}
+2025-12-26 14:18:30::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::ee14b426-f713-49cc-b6d4-b05c894f55e8::input-params ::GET::::{}
+2025-12-26 14:18:30::info::/v1/api/user/me::f4039e1c-9938-4244-adeb-4e49f6d6eca1::input-params ::GET::::{}
+2025-12-26 14:18:30::info::/v1/api/user/me::2b11fb13-2266-45a0-8c97-2419f1aeb932::input-params ::GET::::{}
+2025-12-26 14:18:30::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::34d47c43-1982-48d1-83e1-abd0141f4f9f::input-params ::GET::::{}
+2025-12-26 14:34:06::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::20f7f209-6923-4173-83d2-2e6606400825::input-params ::GET::::{}
+2025-12-26 14:34:06::info::/v1/api/user/me::665f3dce-432d-4d30-8255-49e73c07579d::input-params ::GET::::{}
+2025-12-26 14:34:06::info::/v1/api/user/me::8cffd810-ba71-4dac-b80f-0d834c125cbb::input-params ::GET::::{}
+2025-12-26 14:34:06::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::01f42b1a-04c6-45ad-9d34-7e2144c4036b::input-params ::GET::::{}
+2025-12-26 14:36:34::info::/v1/api/folder/readFolders::992f0445-3ecc-4114-8765-2a0e0145c3fd::input-params ::GET::::{}
+2025-12-26 14:36:34::info::/v1/api/folder/readFolders::2d8febd3-80b0-4528-a0f9-574b7954a3b5::input-params ::GET::::{}
+2025-12-26 14:36:37::info::/v1/api/auth/logout::726657bc-f5e6-4c9c-a7da-7abc568e0d89::input-params ::POST::::{}
+2025-12-26 14:36:37::info::/v1/api/user/me::7bded09d-eb0d-4fa4-886d-4b878c293901::input-params ::GET::::{}
+2025-12-26 14:36:37::error::/v1/api/user/me::7bded09d-eb0d-4fa4-886d-4b878c293901::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 14:36:37::info::/v1/api/user/me::80ad5438-8110-4e07-a0ba-7a2524d59aee::input-params ::GET::::{}
+2025-12-26 14:36:37::error::/v1/api/user/me::80ad5438-8110-4e07-a0ba-7a2524d59aee::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 14:48:58::info::/v1/api/user/me::a79045ce-4b77-4eb1-b5e9-6129daf34b2c::input-params ::GET::::{}
+2025-12-26 14:48:58::error::/v1/api/user/me::a79045ce-4b77-4eb1-b5e9-6129daf34b2c::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 14:48:58::info::/v1/api/user/me::822cb61a-86a0-4d32-82b1-baefdd4ca7db::input-params ::GET::::{}
+2025-12-26 14:48:58::error::/v1/api/user/me::822cb61a-86a0-4d32-82b1-baefdd4ca7db::handler-error::{"status":403,"message":"Access token missing"}
