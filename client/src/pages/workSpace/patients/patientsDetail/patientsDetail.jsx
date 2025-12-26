@@ -13,9 +13,11 @@ import TreatmentSession from './TreatmentSection/TreatmentSession.jsx'
 import StorageSection from './StorageSection'
 import PatientCharts from './PatientCharts/PatientCharts.jsx'
 import Relative from './Relative/Relative.jsx'
+import Breadcrumb from '../../../../components/Breadcrumb/Breadcrumb.jsx'
 
 export default function PatientsDetail() {
     const { patientRecordId } = useParams()
+
     const { userInfo } = useAuth()
     const isReadOnly = userInfo?.role === 'family'
 
@@ -42,6 +44,19 @@ export default function PatientsDetail() {
     // DATA
     const [patient, setPatient] = useState(null)
     const [editForm, setEditForm] = useState(null)
+
+    const breadcrumbItems = [
+        { label: 'Workspace', href: '/workspace' },
+        patient?.folderId
+            ? {
+                  label: 'Folder',
+                  href: `/workspace/patients/folder/${patient.folderId}`,
+              }
+            : { label: 'Folder' },
+        {
+            label: patient?.fullName,
+        },
+    ]
 
     // GLOBAL EDIT MODE
     const [isEditing, setIsEditing] = useState(false)
@@ -370,6 +385,9 @@ export default function PatientsDetail() {
             <WorkspaceTopBar />
 
             <div className='pd-inner'>
+                <div className='breadcrumb'>
+                    <Breadcrumb items={breadcrumbItems} />
+                </div>
                 <PatientsHeader patient={patient} editForm={editForm} isEditing={isEditing} readOnly={isReadOnly} saving={saving} onFieldChange={handleFieldChange} onStartEdit={handleStartEdit} onSaveEdit={handleSaveEdit} onCancelEdit={handleCancelEdit} />
 
                 <Relative relatives={editForm?.relatives || editForm?.caregivers || []} readOnly={isReadOnly} onCreateRelative={handleCreateRelative} />

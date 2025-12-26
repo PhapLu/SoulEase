@@ -22,7 +22,7 @@
     border: none;
     cursor: pointer;
     user-select: none;
-    border-radius: 999px;
+    border-radius: 8px;
     padding: 12px 18px;
     font-weight: 900;
     font-size: 14px;
@@ -125,7 +125,7 @@
 .tp-card {
     background: #ffffff;
     border: 1px solid #e5f1eb;
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 20px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     display: flex;
@@ -134,7 +134,7 @@
 }
 
 .tp-card--full {
-    padding: 16px;
+    padding: 20px;
 }
 
 .tp-card__top {
@@ -414,7 +414,7 @@
 
 .tp-table {
     margin-top: 12px;
-    border-radius: 16px;
+    border-radius: 6px;
     overflow: hidden;
     border: 1px solid var(--border);
     background: rgba(255, 255, 255, 0.75);
@@ -506,7 +506,7 @@
     width: min(760px, 100%);
     background: rgba(255, 255, 255, 0.95);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 18px;
+    border-radius: 8px;
     box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
     overflow: hidden;
     backdrop-filter: blur(10px);
@@ -517,7 +517,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 14px 16px;
+    padding: 16px 20px;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
 }
@@ -528,7 +528,7 @@
 }
 
 .tp-modal__body {
-    padding: 16px;
+    padding: 20px;
 }
 
 /* ===== Form ===== */

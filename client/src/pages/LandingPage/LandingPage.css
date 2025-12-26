@@ -179,12 +179,12 @@
 
 .metric-top-left {
   top: 48px;
-  left: -16%;
+  left: -12%;
 }
 
 .metric-bottom-right {
   bottom: 48px;
-  right: -16%;
+  right: -12%;
 }
 
 .landing-hero__panel-glow img {
@@ -292,7 +292,6 @@
 .landing-tab.is-active {
     background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
     color: var(--text-color-light);
-    box-shadow: 0 12px 20px rgba(10, 135, 105, 0.18);
 }
 
 .landing-tab:hover {

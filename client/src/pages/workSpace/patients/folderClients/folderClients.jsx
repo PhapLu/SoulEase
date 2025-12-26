@@ -5,6 +5,7 @@ import folderIcon from '../../../../assets/folder.svg'
 import PatientModalForm from '../folderClients/patientModelForm/patientModelForm'
 import WorkspaceTopBar from '../../../../components/Workspace/WorkspaceTopBar'
 import { apiUtils } from '../../../../utils/newRequest'
+import Breadcrumb from '../../../../components/Breadcrumb/Breadcrumb'
 
 export default function FolderClients() {
     const navigate = useNavigate()
@@ -26,6 +27,16 @@ export default function FolderClients() {
         title: '',
         description: '',
     })
+
+    const breadcrumbItems = [
+    { label: "Workspace", href: "/workspace" },
+    folderId
+        ? {
+              label: "Folder",
+              href: `/workspace/patients/folder/${folderId}`,
+          }
+        : { label: "Folder" },
+];
 
     const fetchFolder = async () => {
         try {
@@ -161,11 +172,16 @@ export default function FolderClients() {
         )
     }
 
+    
+
     return (
         <>
             <section className='folder-page'>
                 <WorkspaceTopBar />
                 <div className='folder-card'>
+                <div className="breadcrumb_folder">
+                    <Breadcrumb items={breadcrumbItems} />
+                </div>
                     {/* HEADER */}
                     <div className='folder-card-header'>
                         <div className='folder-info-main'>
