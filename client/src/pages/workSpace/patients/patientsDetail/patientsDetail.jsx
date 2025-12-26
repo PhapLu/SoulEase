@@ -267,6 +267,43 @@ export default function PatientsDetail() {
         await persistRecord(updated);
     };
 
+    const handleTogglePresetSymptom = async (preset, checked) => {
+        const normName = (preset.name || "").trim();
+        const normSign = (preset.sign || "").trim();
+        const today = new Date().toISOString().split("T")[0];
+
+        const list = [...(editForm?.symptoms || [])];
+        const idx = list.findIndex(
+            (s) =>
+                (s.name || "").trim().toLowerCase() === normName.toLowerCase() &&
+                (s.sign || "").trim().toLowerCase() === normSign.toLowerCase()
+        );
+
+        if (checked && idx === -1) {
+            list.push({
+                id: preset.id || `sym-${Date.now()}`,
+                name: normName || preset.sign || "Symptom",
+                sign: normSign,
+                date: preset.date || today,
+                status: preset.status || "Active",
+            });
+        } else if (!checked && idx !== -1) {
+            list.splice(idx, 1);
+        } else {
+            return;
+        }
+
+        const updated = { ...editForm, symptoms: list };
+        setEditForm(updated);
+        setSaving(true);
+        try {
+            await persistRecord(updated);
+        } catch (err) {
+            console.error(err);
+        }
+        setSaving(false);
+    };
+
     if (!editForm) return <div>Loading...</div>;
 
     // treatment sessions sorted by date desc (latest first)
@@ -304,6 +341,7 @@ export default function PatientsDetail() {
                     onToggleSymptomStatus={handleToggleSymptomStatus}
                     onSymptomKeyDown={handleSymptomKeyDown}
                     onRemoveSymptom={handleRemoveSymptom}
+                    onTogglePresetSymptom={handleTogglePresetSymptom}
                 />
 
                 <TreatmentSession

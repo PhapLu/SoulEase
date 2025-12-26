@@ -14,7 +14,7 @@
     background-color: rgba(255, 255, 255, 0.5);
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 50px;
 }
 
 .pd-header {
@@ -221,14 +221,6 @@
     margin-bottom: 10px;
 }
 
-.pd-note-card {
-    background: #ffffff;
-    border: 1px solid #e5f1eb;
-    border-radius: 12px;
-    padding: 14px;
-    box-shadow: 0 8px 14px rgba(12, 45, 36, 0.07);
-}
-
 .pd-note-placeholder {
     margin: 0;
     color: #6b7a74;
@@ -305,6 +297,123 @@
     color: #4b6158;
     padding-bottom: 6px;
     border-bottom: 1px solid #e5f1eb;
+}
+
+.pd-note-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #e5f1eb;
+    box-shadow: 0 8px 14px rgba(12, 45, 36, 0.07);
+    display: grid;
+    gap: 14px;
+}
+
+.pd-preset-symptoms {
+    border: 1px dashed var(--border);
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(245, 250, 248, 0.6);
+}
+
+.pd-preset-title {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #0c1317;
+}
+
+.pd-preset-grid {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.pd-preset-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.pd-preset-item input {
+    margin-top: 3px;
+}
+
+.pd-preset-name {
+    font-weight: 700;
+}
+
+.pd-preset-sign {
+    font-size: 13px;
+    color: #4b6158;
+}
+
+.pd-preset-hint {
+    font-size: 13px;
+    color: #4b6158;
+    margin-top: 6px;
+}
+
+.pd-add-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.pd-add-menu__left {
+    position: relative;
+}
+
+.pd-add-menu__dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 30;
+    min-width: 320px;
+    max-height: 320px;
+    overflow: auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    display: grid;
+    gap: 6px;
+    padding: 8px;
+}
+
+.pd-add-menu__item {
+    text-align: left;
+    border: 1px solid var(--border);
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: grid;
+    gap: 4px;
+}
+.pd-add-menu__item:hover {
+    background: rgba(10, 135, 105, 0.06);
+}
+.pd-add-menu__item:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.pd-pill {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: var(--primary-color);
+    color: var(--tertiary-color);
+    font-weight: 700;
+    font-size: 12px;
+    justify-self: start;
 }
 
 .pd-symptom-col-title {
