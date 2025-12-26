@@ -581,3 +581,144 @@
 2025-12-26 17:33:11::info::/v1/api/folder/readFolder/694e531e26a4578c756f0ad2::380fb76c-e1e4-45a9-a130-bd1f1b13f600::input-params ::GET::::{}
 2025-12-26 17:33:13::info::/v1/api/folder/readFolders::1ad5e2a8-2d75-499d-83d5-41cc67046370::input-params ::GET::::{}
 2025-12-26 17:33:13::info::/v1/api/folder/readFolders::5c3d52df-7d94-48f1-8289-4fc9b8858097::input-params ::GET::::{}
+2025-12-26 17:56:51::info::/v1/api/user/me::97463631-b8f5-45c3-8a2e-1fc99a8e94ad::input-params ::GET::::{}
+2025-12-26 17:56:51::info::/v1/api/user/me::4fa2aa2b-ca0c-4b50-93a4-e63162ad0df1::input-params ::GET::::{}
+2025-12-26 17:56:59::info::/v1/api/user/me::c3c50837-78be-401f-82c3-0e87b9afd4e0::input-params ::GET::::{}
+2025-12-26 17:56:59::info::/v1/api/user/me::5f4996fa-a9bc-4add-8077-06419b3dca28::input-params ::GET::::{}
+2025-12-26 17:56:59::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::9ca3125f-9129-4bf2-9daf-0663375ee29f::input-params ::GET::::{}
+2025-12-26 17:56:59::error::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::9ca3125f-9129-4bf2-9daf-0663375ee29f::handler-error::{"status":403,"message":"You do not have permission to view this record"}
+2025-12-26 17:56:59::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::48155954-470a-403b-ac72-6c54fc49a714::input-params ::GET::::{}
+2025-12-26 17:56:59::error::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::48155954-470a-403b-ac72-6c54fc49a714::handler-error::{"status":403,"message":"You do not have permission to view this record"}
+2025-12-26 17:58:26::info::/v1/api/user/me::77edeea9-df12-45c2-b6ff-ce350a50f4a7::input-params ::GET::::{}
+2025-12-26 17:58:27::info::/v1/api/user/me::b7905c74-8664-4c3b-ab69-033a592e2607::input-params ::GET::::{}
+2025-12-26 17:58:27::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::bf6d8807-6842-423b-a76f-b6fafaa9a626::input-params ::GET::::{}
+2025-12-26 17:58:27::error::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::bf6d8807-6842-423b-a76f-b6fafaa9a626::handler-error::{"status":403,"message":"You do not have permission to view this record"}
+2025-12-26 17:58:27::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::22bf4742-20b5-4c8e-8ff5-e447c10ca44f::input-params ::GET::::{}
+2025-12-26 17:58:27::error::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::22bf4742-20b5-4c8e-8ff5-e447c10ca44f::handler-error::{"status":403,"message":"You do not have permission to view this record"}
+2025-12-26 17:59:10::info::/v1/api/user/me::102f51e3-1519-4d37-8437-2079152b6a80::input-params ::GET::::{}
+2025-12-26 17:59:10::info::/v1/api/user/me::79d9b092-a7ca-4e27-ab51-064eba020f19::input-params ::GET::::{}
+2025-12-26 17:59:10::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::4ef5e5c3-a93c-4192-b45c-91b1f506b2eb::input-params ::GET::::{}
+2025-12-26 17:59:10::error::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::4ef5e5c3-a93c-4192-b45c-91b1f506b2eb::handler-error::{"status":403,"message":"You do not have permission to view this record"}
+2025-12-26 17:59:10::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::dc2b11ec-38f8-40cc-a549-0598ac091022::input-params ::GET::::{}
+2025-12-26 17:59:10::error::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::dc2b11ec-38f8-40cc-a549-0598ac091022::handler-error::{"status":403,"message":"You do not have permission to view this record"}
+2025-12-26 18:00:23::info::/v1/api/user/me::820bb513-3aa5-4197-93b3-bd3ed0bf9368::input-params ::GET::::{}
+2025-12-26 18:00:23::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::c8f896ae-7d4d-4242-a845-b279ffe23110::input-params ::GET::::{}
+2025-12-26 18:00:23::info::/v1/api/user/me::6516907b-d163-4b7a-a19d-8dac88903e56::input-params ::GET::::{}
+2025-12-26 18:00:23::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::bb49aa2c-dae2-4855-a89d-67c5662148b6::input-params ::GET::::{}
+2025-12-26 18:00:24::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::bb4e083c-da20-471c-9ce3-36f5dd2fea33::input-params ::GET::::{}
+2025-12-26 18:00:24::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::5d56ac90-4be7-49de-ba78-fd4f8276ffd9::input-params ::GET::::{}
+2025-12-26 18:00:24::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::918581f4-4a17-4b9e-9884-e3f568b8a38a::input-params ::GET::::{}
+2025-12-26 18:00:24::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::19419128-2cfb-4d1e-909c-58307d55b6df::input-params ::GET::::{}
+2025-12-26 18:00:24::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::19419128-2cfb-4d1e-909c-58307d55b6df::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:00:24::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::14a786ad-fd1a-407d-abe4-d168ed528f61::input-params ::GET::::{}
+2025-12-26 18:00:25::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::cf930915-7024-45b4-878a-305a208e1863::input-params ::GET::::{}
+2025-12-26 18:00:25::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::cf930915-7024-45b4-878a-305a208e1863::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:03:54::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::51bba650-1a4d-4f8d-ab94-b6f021602748::input-params ::GET::::{}
+2025-12-26 18:03:54::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::75993513-c579-424d-99fb-7ad4597bd907::input-params ::GET::::{}
+2025-12-26 18:03:54::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::ead050ce-aa48-47f7-ad4a-319b19701cb8::input-params ::GET::::{}
+2025-12-26 18:03:54::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::ead050ce-aa48-47f7-ad4a-319b19701cb8::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:06:17::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::a9ff0486-d6f0-47d4-92e3-83dcc9e7c817::input-params ::GET::::{}
+2025-12-26 18:06:17::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::02b0dfff-2bb6-4683-9807-6a6e99f3fc36::input-params ::GET::::{}
+2025-12-26 18:06:18::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::066dc2a6-468a-423f-a33b-039028052265::input-params ::GET::::{}
+2025-12-26 18:06:18::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::bd9d1b5d-43b8-4b8e-8a4d-8b43606f241e::input-params ::GET::::{}
+2025-12-26 18:06:18::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::bd9d1b5d-43b8-4b8e-8a4d-8b43606f241e::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:06:18::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::d3ea423b-6fbb-485d-82af-697552072cbe::input-params ::GET::::{}
+2025-12-26 18:06:18::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::173babe6-49a8-40bf-b78b-f4e60d79b6b9::input-params ::GET::::{}
+2025-12-26 18:06:18::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::173babe6-49a8-40bf-b78b-f4e60d79b6b9::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:06:20::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::64c9854b-168e-47b7-a33a-1208b4b26894::input-params ::GET::::{}
+2025-12-26 18:06:20::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::b2ebbbc2-ebe4-49f8-84ed-30880d6f6495::input-params ::GET::::{}
+2025-12-26 18:06:20::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::cd198626-516b-4bfa-9a98-b85ce846aeaa::input-params ::GET::::{}
+2025-12-26 18:06:20::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::c00861cb-a861-4b8b-a046-bcd0865ee002::input-params ::GET::::{}
+2025-12-26 18:06:21::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::c00861cb-a861-4b8b-a046-bcd0865ee002::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:06:21::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::5429e05d-3611-4ffc-91ce-c3a76f6e44a1::input-params ::GET::::{}
+2025-12-26 18:06:21::info::/v1/api/user/me::0842d857-3e05-4a36-9d57-b466538d57c2::input-params ::GET::::{}
+2025-12-26 18:06:21::info::/v1/api/user/me::851ee186-f05e-44e0-917e-caaefda988ca::input-params ::GET::::{}
+2025-12-26 18:06:21::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::cb9d45bf-20e4-44cc-b2ad-fab2f5a29d29::input-params ::GET::::{}
+2025-12-26 18:06:21::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::f162822a-b9cd-4017-80f9-7ec089e4f2cd::input-params ::GET::::{}
+2025-12-26 18:06:22::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::17f187a5-d158-43d5-a9ce-bf3801c068f1::input-params ::GET::::{}
+2025-12-26 18:06:22::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::17f187a5-d158-43d5-a9ce-bf3801c068f1::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:06:22::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::de7c74af-7f1e-4c81-9b04-92816b4c42bb::input-params ::GET::::{}
+2025-12-26 18:06:22::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::bb12576b-6445-47db-8b64-9e9585160a7b::input-params ::GET::::{}
+2025-12-26 18:06:22::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::bb12576b-6445-47db-8b64-9e9585160a7b::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:07:07::info::/v1/api/user/me::bca308ff-4884-4d0f-bd50-39aa7cda1300::input-params ::GET::::{}
+2025-12-26 18:07:07::info::/v1/api/user/me::02d8ef68-7be7-45d9-a8a1-ce1382f332c9::input-params ::GET::::{}
+2025-12-26 18:08:31::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::6f436539-63a6-41fa-927c-1022464252eb::input-params ::GET::::{}
+2025-12-26 18:08:31::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::77d66ca7-0ef5-4f31-8c12-f8cfc54ddaf3::input-params ::GET::::{}
+2025-12-26 18:08:31::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::1e5abfd2-7c26-4e6b-b45c-d412f90229db::input-params ::GET::::{}
+2025-12-26 18:08:31::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::1e5abfd2-7c26-4e6b-b45c-d412f90229db::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:08:36::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::7d6010e9-b6fd-4683-830d-022d431e15bb::input-params ::GET::::{}
+2025-12-26 18:08:36::info::/v1/api/user/me::fe29e7e1-4e5c-4d6f-a1de-3a285b7f4516::input-params ::GET::::{}
+2025-12-26 18:08:36::info::/v1/api/user/me::972a488b-9ab9-40e5-92bc-3da8840fc0b8::input-params ::GET::::{}
+2025-12-26 18:08:36::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::87d8e175-a75f-49d2-b82b-c4b83b0f930f::input-params ::GET::::{}
+2025-12-26 18:08:36::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::fa77bc97-cebd-4a88-8448-b331fe5239e2::input-params ::GET::::{}
+2025-12-26 18:08:36::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::de06820e-96af-44cf-8127-62b547eadc02::input-params ::GET::::{}
+2025-12-26 18:08:36::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::de06820e-96af-44cf-8127-62b547eadc02::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:08:36::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::ada26355-e860-4e8c-9fba-70e385d524f1::input-params ::GET::::{}
+2025-12-26 18:08:37::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::dc24063a-d64b-4b5e-a868-ba83063a83fd::input-params ::GET::::{}
+2025-12-26 18:08:37::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::dc24063a-d64b-4b5e-a868-ba83063a83fd::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:08:39::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::f3957771-f3e3-4df6-b6e2-42edd86bdf5c::input-params ::GET::::{}
+2025-12-26 18:08:39::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::b8a58d1b-fd50-4000-8862-69685471d1d7::input-params ::GET::::{}
+2025-12-26 18:08:39::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::3e9a6c12-8ec3-43b4-ba97-680100333dcd::input-params ::GET::::{}
+2025-12-26 18:08:39::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::378d322b-f5f0-4f7f-9466-723c065608b1::input-params ::GET::::{}
+2025-12-26 18:08:39::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::378d322b-f5f0-4f7f-9466-723c065608b1::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:08:39::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::442f6e68-91df-4563-9d56-9e966009792a::input-params ::GET::::{}
+2025-12-26 18:08:40::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::97d4663b-3e4a-4543-b64a-1154a7591bc6::input-params ::GET::::{}
+2025-12-26 18:08:40::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::97d4663b-3e4a-4543-b64a-1154a7591bc6::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:08:42::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::cc2d96f7-1ef0-423e-9b01-0b05480fae5b::input-params ::GET::::{}
+2025-12-26 18:08:42::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::ac4e4103-348d-4d27-a9c3-56eff1a7f626::input-params ::GET::::{}
+2025-12-26 18:08:43::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::599a45d4-a4e2-4795-a88c-06559009aaeb::input-params ::GET::::{}
+2025-12-26 18:08:43::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::d44fbc58-9c65-41c4-9f59-0679454a25ee::input-params ::GET::::{}
+2025-12-26 18:08:43::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::d44fbc58-9c65-41c4-9f59-0679454a25ee::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:08:43::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::e8c64e2f-e358-4991-8fc5-57c9617229f3::input-params ::GET::::{}
+2025-12-26 18:08:43::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::d30d9733-8aa8-4b1e-a23f-91e3b329b827::input-params ::GET::::{}
+2025-12-26 18:08:43::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::d30d9733-8aa8-4b1e-a23f-91e3b329b827::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:08:44::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::b5e3203d-64f1-48f3-8400-b69d71d0d9bd::input-params ::GET::::{}
+2025-12-26 18:08:44::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::f31119cb-78f3-4b25-86a7-7698c905ed5c::input-params ::GET::::{}
+2025-12-26 18:08:44::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::91288ff9-33df-48bc-88ba-d9988cc7deaa::input-params ::GET::::{}
+2025-12-26 18:08:44::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::53dae8f1-9afb-448e-83f5-74d083aed47b::input-params ::GET::::{}
+2025-12-26 18:08:44::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::53dae8f1-9afb-448e-83f5-74d083aed47b::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:08:44::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::f590b96c-009b-4900-9697-69e2950b93c1::input-params ::GET::::{}
+2025-12-26 18:08:45::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::37c8b1de-cf83-4954-bf7b-fb7853b7c838::input-params ::GET::::{}
+2025-12-26 18:08:45::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::37c8b1de-cf83-4954-bf7b-fb7853b7c838::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:10:45::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::0e82fba0-54ff-4e2b-9e2a-67ecf224e0a6::input-params ::GET::::{}
+2025-12-26 18:10:45::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::2140f608-84f1-42ed-b359-e27cdbc70686::input-params ::GET::::{}
+2025-12-26 18:10:45::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::9a0b772a-af76-4294-9a77-909c6f40f13f::input-params ::GET::::{}
+2025-12-26 18:10:45::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::17bea352-ff46-4198-9187-c179d3840188::input-params ::GET::::{}
+2025-12-26 18:10:45::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::7e4990c9-1749-4ed0-ab97-8068464c1425::input-params ::GET::::{}
+2025-12-26 18:10:45::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::9c87e23e-7960-46ed-8cee-455f26d92cd8::input-params ::GET::::{}
+2025-12-26 18:10:45::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::4889cf4a-ad7d-454f-8e8a-aa1b9faee547::input-params ::GET::::{}
+2025-12-26 18:10:45::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::4889cf4a-ad7d-454f-8e8a-aa1b9faee547::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:10:45::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::e630ebfc-4d71-4fc6-9bf7-e401b8dc7f5e::input-params ::GET::::{}
+2025-12-26 18:10:45::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::72985e04-5812-45c5-9372-d4cb1ec83f36::input-params ::GET::::{}
+2025-12-26 18:10:46::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::cca02ef5-8c31-4212-9fbf-d9f0ebbfebf7::input-params ::GET::::{}
+2025-12-26 18:10:46::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::cca02ef5-8c31-4212-9fbf-d9f0ebbfebf7::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:10:46::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::8411285e-3233-4f5d-825a-08c47cc630b1::input-params ::GET::::{}
+2025-12-26 18:10:46::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::8411285e-3233-4f5d-825a-08c47cc630b1::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:10:46::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::236980e3-4b48-47fe-b743-d40e74b5d770::input-params ::GET::::{}
+2025-12-26 18:10:46::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::236980e3-4b48-47fe-b743-d40e74b5d770::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:10:46::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::32839b0c-ed78-4a03-b617-bcea9fa5bb6c::input-params ::GET::::{}
+2025-12-26 18:10:47::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::c3746c34-c1ed-4081-88c6-cc927d1995e8::input-params ::GET::::{}
+2025-12-26 18:10:47::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::db082f3b-974a-45b5-ab16-80fdd82753c0::input-params ::GET::::{}
+2025-12-26 18:10:47::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::a93f7fc6-167f-4f34-801e-a3197b42ae09::input-params ::GET::::{}
+2025-12-26 18:10:47::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::a93f7fc6-167f-4f34-801e-a3197b42ae09::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:10:47::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::6630e58a-b49c-4853-a8bd-02b9751a4018::input-params ::GET::::{}
+2025-12-26 18:10:47::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::67fd7450-7bf5-4b68-953d-04ca8006659d::input-params ::GET::::{}
+2025-12-26 18:10:48::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::67fd7450-7bf5-4b68-953d-04ca8006659d::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:10:49::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::c006ce0c-6eb5-447f-9a9b-b6e69471a643::input-params ::GET::::{}
+2025-12-26 18:10:49::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::ca73e665-15af-428c-b4b0-1df7f2b9005a::input-params ::GET::::{}
+2025-12-26 18:10:49::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::c0901948-9b6f-45f4-8309-1870e9ad99bf::input-params ::GET::::{}
+2025-12-26 18:10:49::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::7d32d98e-b599-4314-b27d-e67056104176::input-params ::GET::::{}
+2025-12-26 18:10:49::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::7d32d98e-b599-4314-b27d-e67056104176::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:10:50::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::a8bdb3bf-5d90-49b9-859b-6e3dfd752bbb::input-params ::GET::::{}
+2025-12-26 18:10:50::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::3aed0837-0bc6-4103-b899-bca43c8a83d0::input-params ::GET::::{}
+2025-12-26 18:10:50::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::3aed0837-0bc6-4103-b899-bca43c8a83d0::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:10:51::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::23f0d105-b944-428e-bc40-7f5f242689ac::input-params ::GET::::{}
+2025-12-26 18:10:51::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::5af27fac-54c3-41c3-90b5-e9d2911032f9::input-params ::GET::::{}
+2025-12-26 18:10:51::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::c4092217-8354-45c4-a830-58e4f642346f::input-params ::GET::::{}
+2025-12-26 18:10:51::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::46e28812-6044-40dd-8f8b-f3b87a5de37e::input-params ::GET::::{}
+2025-12-26 18:10:51::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::46e28812-6044-40dd-8f8b-f3b87a5de37e::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:10:52::info::/v1/api/patientRecord/readPatientRecord/694e6464826e3b010f90b2ec::07526fee-8590-4c21-92e9-5d74fda3b52e::input-params ::GET::::{}
+2025-12-26 18:10:52::info::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::4f44bee7-9333-4f9d-b2f0-b724c391427f::input-params ::GET::::{}
+2025-12-26 18:10:52::error::/v1/api/relative/readRelatives/694e6464826e3b010f90b2f4::4f44bee7-9333-4f9d-b2f0-b724c391427f::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 18:10:52::info::/v1/api/conversation/readConversations::7c54ea23-4981-4527-8d69-05ff6f6b6151::input-params ::GET::::{}
+2025-12-26 18:10:53::info::/v1/api/conversation/readConversations::a2876b6f-f7df-4c30-81dc-292a20210024::input-params ::GET::::{}

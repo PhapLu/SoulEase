@@ -2,16 +2,15 @@ import { Outlet, NavLink, Link, useNavigate, useLocation } from 'react-router-do
 import './WorkspaceLayout.css'
 import logo from '../../assets/logo.svg'
 import FinisherHeader from '../../components/BackgroundApp/FinisherHeader'
-// ví dụ: role lấy từ context/store
-// import { useAuth } from '../../context/AuthContext'
 import { useAuth } from '../../contexts/auth/AuthContext'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { apiUtils } from '../../utils/newRequest'
 
 export default function WorkspaceLayout() {
     const { userInfo } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
+    const [patientRecord, setPatientRecord] = useState(null)
 
     useEffect(() => {
         // only run on /workspace exactly
@@ -23,6 +22,45 @@ export default function WorkspaceLayout() {
             navigate('/workspace/patients', { replace: true })
         }
     }, [userInfo, location.pathname, navigate])
+
+    useEffect(() => {
+        if (!userInfo) return
+        if (userInfo.role !== 'member') return
+        if (location.pathname !== '/workspace') return
+
+        const fetchMyRecord = async () => {
+            try {
+                const patientId = userInfo._id
+
+                const res = await apiUtils.get(`/patientRecord/readPatientRecord/${patientId}`)
+
+                const record = res?.data?.metadata?.patientRecord || res?.data?.patientRecord
+
+                setPatientRecord(record)
+            } catch (err) {
+                console.error('Failed to fetch patient record', err)
+                navigate('/workspace/notifications', { replace: true })
+            }
+        }
+
+        fetchMyRecord()
+    }, [userInfo, location.pathname, navigate])
+
+    useEffect(() => {
+        if (!patientRecord) return
+
+        const folderId = patientRecord.folderId
+        const patientId = patientRecord.patientId || patientRecord._id
+
+        if (folderId && patientId) {
+            navigate(`/workspace/patients/folder/${folderId}/${patientId}`, { replace: true })
+            return
+        }
+
+        navigate(`/workspace/patients/${patientId}/profiles`, {
+            replace: true,
+        })
+    }, [patientRecord, navigate])
 
     useEffect(() => {
         if (!userInfo || userInfo.role !== 'family') return
@@ -84,6 +122,19 @@ export default function WorkspaceLayout() {
                                             </svg>
                                         </span>
                                         Staffs
+                                    </NavLink>
+                                </li>
+                            )}
+
+                            {(userInfo?.role === 'member' || userInfo?.role === 'family') && (
+                                <li>
+                                    <NavLink to={`/patientRecord/${userInfo?._id}`} end className={({ isActive }) => (isActive ? 'workspace-nav-link active' : 'workspace-nav-link')}>
+                                        <span>
+                                            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#737373'>
+                                                <path d='M200-200v-560 179-19 400Zm80-240h221q2-22 10-42t20-38H280v80Zm0 160h157q17-20 39-32.5t46-20.5q-4-6-7-13t-5-14H280v80Zm0-320h400v-80H280v80Zm-80 480q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v258q-14-26-34-46t-46-33v-179H200v560h202q-1 6-1.5 12t-.5 12v56H200Zm480-200q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM480-120v-56q0-24 12.5-44.5T528-250q36-15 74.5-22.5T680-280q39 0 77.5 7.5T832-250q23 9 35.5 29.5T880-176v56H480Z' />
+                                            </svg>
+                                        </span>
+                                        Your Record
                                     </NavLink>
                                 </li>
                             )}

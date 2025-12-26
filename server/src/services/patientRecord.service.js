@@ -119,6 +119,8 @@ class PatientRecordService {
         // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
+        console.log('User:', user)
+        console.log('Patient ID:', patientId)
 
         // 2. Check patient
         const patient = await User.findById(patientId).select('fullName email phone gender birthday dob address avatar').lean()
@@ -127,7 +129,16 @@ class PatientRecordService {
         // 3. Find patient record
         let recordQuery
 
-        if (user.role === 'family') {
+        if (user.role === 'member') {
+            // Patient can only view their OWN record
+            if (userId.toString() !== patientId.toString()) {
+                throw new ForbiddenError('You can only view your own record')
+            }
+
+            recordQuery = {
+                patientId: userId,
+            }
+        } else if (user.role === 'family') {
             recordQuery = {
                 patientId,
                 $or: [{ 'relatives.userId': userId }, { 'relatives.email': user.email }],

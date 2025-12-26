@@ -47,38 +47,50 @@ const router = createBrowserRouter([
         ],
     },
     {
-        path: '/workspace',
-        element: (
-            // <RequireAuth>
-            <WorkspaceLayout />
-            // </RequireAuth>
-        ),
+        element: <WorkspaceLayout />,
         children: [
-            { path: 'patients', element: <Patients /> },
-            { path: 'staffs', element: <Staffs /> },
-            { path: 'patients/folder/:folderId', element: <FolderClients /> },
+            // ===== PATIENT SELF VIEW =====
             {
-                path: 'patients/folder/:folderId/:patientRecordId',
+                path: '/patientRecord/:patientRecordId',
                 element: <PatientsDetail />,
             },
-            { path: 'staffs/:staffId', element: <StaffDetail /> },
+
+            // ===== WORKSPACE =====
             {
-                path: 'messages',
-                element: <ConversationsLayout />,
-                children: [{ path: ':conversationId', element: null }],
-            },
-            { path: 'notifications', element: <Notifications /> },
-            {
-                path: 'patients/folder/:folderId/:patientRecordId/treatment',
-                element: <TreatmentDetailPage />,
-            },
-            {
-                path: 'patients/folder/:folderId/:patientRecordId/treatment/create-session',
-                element: <CreateSessionPage />,
-            },
-            {
-                path: 'patients/:patientRecordId/profiles',
-                element: <PatientsDetail />,
+                path: '/workspace',
+                children: [
+                    { path: 'patients', element: <Patients /> },
+                    { path: 'staffs', element: <Staffs /> },
+
+                    { path: 'patients/folder/:folderId', element: <FolderClients /> },
+                    {
+                        path: 'patients/folder/:folderId/:patientRecordId',
+                        element: <PatientsDetail />,
+                    },
+
+                    { path: 'staffs/:staffId', element: <StaffDetail /> },
+
+                    {
+                        path: 'messages',
+                        element: <ConversationsLayout />,
+                        children: [{ path: ':conversationId', element: null }],
+                    },
+
+                    { path: 'notifications', element: <Notifications /> },
+
+                    {
+                        path: 'patients/folder/:folderId/:patientRecordId/treatment',
+                        element: <TreatmentDetailPage />,
+                    },
+                    {
+                        path: 'patients/folder/:folderId/:patientRecordId/treatment/create-session',
+                        element: <CreateSessionPage />,
+                    },
+                    {
+                        path: 'patients/:patientRecordId/profiles',
+                        element: <PatientsDetail />,
+                    },
+                ],
             },
         ],
     },
