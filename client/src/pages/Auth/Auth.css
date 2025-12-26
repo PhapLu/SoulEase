@@ -14,10 +14,10 @@
 .signin-card-inner {
     margin: 7% auto;
     max-width: 510px;
-    height: 600px;
+    height: 565px;
     background: #ffffff;
     border-radius: 12px;
-    padding: 24px 32px;
+    padding: 20px 32px;
     box-shadow: 0 10px 10px #69646433;
 }
 
@@ -108,7 +108,11 @@
     font-size: 14px;
     font-weight: 500;
     color: white;
-    background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
+    background: linear-gradient(
+        135deg,
+        var(--secondary-color),
+        var(--tertiary-color)
+    );
     cursor: pointer;
     transition: 0.25s;
 }
@@ -202,33 +206,35 @@
 
 /* ===== VERIFICATION ===== */
 .verify-page {
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 120px 16px 80px;
-    background: radial-gradient(circle at 20% 20%, #e7fff7, transparent 35%), radial-gradient(circle at 80% 50%, #dbfff3, transparent 32%), #f8fffc;
+    background: radial-gradient(circle at 20% 20%, #e7fff7, transparent 35%),
+        radial-gradient(circle at 80% 50%, #dbfff3, transparent 32%), #f8fffc;
+    overflow-y: hidden;
 }
 
 .verify-card {
     width: 60%;
     background: rgba(255, 255, 255, 0.6);
     border-radius: 16px;
-    padding: 50px;
-    box-shadow: 0 18px 28px rgba(12, 45, 36, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    padding: 40px;
+    box-shadow: 0 18px 28px rgba(12, 45, 36, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
     text-align: center;
     border: 1px solid #e3f2ec;
 }
 
 .verify-logo {
-    font-family: 'Lobster Two', serif;
-    font-size: 100px;
+    font-family: "Lobster Two", serif;
+    font-size: 80px;
     color: var(--tertiary-color);
-    margin-bottom: 30px;
 }
 
 .verify-title {
-    font-size: 35px;
+    font-size: 28px;
     margin: 20px 0;
     font-weight: 600;
 }
@@ -236,8 +242,8 @@
 .verify-subtitle {
     color: #6b7a74;
     margin: 10px auto 30px;
-    font-size: 16px;
-    width: 330px;
+    font-size: 14px;
+    /* width: 330px; */
 }
 
 .verify-form {
@@ -281,10 +287,14 @@
     cursor: pointer;
     font-weight: 600;
     color: var(--text-color-light);
-    background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
+    background: linear-gradient(
+        135deg,
+        var(--secondary-color),
+        var(--tertiary-color)
+    );
     transform: translateY(0);
     transition: transform 0.22s ease, filter 0.22s ease;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .verify-btn:hover {
@@ -293,9 +303,9 @@
 }
 
 .verify-resend {
-    margin: 10px 0;
+    margin: 10px 30px;
     color: var(--muted);
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .verify-resend__link {

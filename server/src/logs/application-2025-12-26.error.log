@@ -1,3 +1,17 @@
 2025-12-26 00:24:46::error::/v1/api/relative/createRelativeAccount::aeaceffa-814c-4fc6-a1e5-17744ebbd981::handler-error::{"status":404,"message":"Not Found Route"}
-2025-12-26 13:48:51::error::/v1/api/user/readUserProfile/694e1df732cecad82266816f::3c6fee80-879f-43ba-9b9c-2f60c5ab26c2::handler-error::{"status":404,"message":"Not Found Route"}
-2025-12-26 13:48:51::error::/v1/api/user/readUserProfile/694e1df732cecad82266816f::087b05fb-db46-460f-8be2-ee13156231b0::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-26 12:37:29::error::/v1/api/user/me::0b5d6a05-7bf3-445f-aece-1d57c755928e::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 12:37:29::error::/v1/api/user/me::f331cb3b-2142-4770-9fbb-26daa1a6ad24::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 12:52:18::error::/v1/api/user/me::2b1a7878-1ec3-4ae7-8e6b-d79a4e7022d9::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 12:52:18::error::/v1/api/user/me::b8c1f687-2486-41d7-957b-a47e3da237e8::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 12:53:20::error::/v1/api/user/me::1318fe3b-dbaf-4b84-a7f9-9e3b8e0192d2::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 12:53:20::error::/v1/api/user/me::495b9b30-c5ca-46e3-b63c-36c6068b2828::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:10:31::error::/v1/api/user/me::ebab0e28-6805-44aa-a8c4-7df5ba19558c::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:10:31::error::/v1/api/user/me::0ee2d85b-8918-419f-80aa-d233360f38ca::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:16:48::error::/v1/api/user/me::08f62675-ce56-4c2c-a239-31894fbf9d01::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:16:48::error::/v1/api/user/me::0e7606fc-550b-4dcf-bc15-05348ac8cd40::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:19:38::error::/v1/api/folder/readFolders::eeb266cf-3d8c-4739-af70-ebe3a19ed5ac::handler-error::{"status":401,"message":"Please login to continue"}
+2025-12-26 13:19:38::error::/v1/api/user/me::5e36a428-8788-4f6d-823d-fd1bca953153::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:19:38::error::/v1/api/folder/readFolders::2ea3248b-ed34-4a0b-a049-5e0dc64e8f49::handler-error::{"status":401,"message":"Please login to continue"}
+2025-12-26 13:19:38::error::/v1/api/user/me::8e0e71ee-5921-4db3-ba4d-643134458e96::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:19:42::error::/v1/api/user/me::b99e5227-1306-4d94-9e24-9abab9fac856::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 13:19:42::error::/v1/api/user/me::63c6f29f-4033-4086-979e-7f940f3c8bfb::handler-error::{"status":403,"message":"Access token missing"}
