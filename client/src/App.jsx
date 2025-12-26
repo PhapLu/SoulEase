@@ -24,6 +24,7 @@ import ConversationsLayout from './pages/workSpace/conversation/ConversationsLay
 import TreatmentDetailPage from './pages/workSpace/patients/patientsDetail/TreatmentSection/TreatmentDetailPage.jsx'
 import CreateSessionPage from './pages/workSpace/patients/patientsDetail/TreatmentSection/CreateSessionPage.jsx'
 import UserProfile from './pages/workSpace/userProfile/UserProfile.jsx'
+// import StorageSection from "./pages/workSpace/patients/patientsDetail/StorageSection/StorageSection.jsx";
 
 const router = createBrowserRouter([
     {
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
                     },
                 ],
             },
+            // {
+            //     path: "patients/:patientRecordId/storage",
+            //     element: <StorageSection />,
+            // },
         ],
     },
     { path: 'user/:userId', element: <UserProfile /> },

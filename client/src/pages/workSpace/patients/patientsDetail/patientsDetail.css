@@ -133,6 +133,10 @@
     color: var(--tertiary-color);
 }
 
+.pd-treatment h3 {
+    cursor: pointer;
+}
+
 .pd-chart-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -538,7 +542,6 @@
     font-size: 14px;
     color: #70827a;
 }
-
 
 /* responsive */
 @media (max-width: 1024px) {
