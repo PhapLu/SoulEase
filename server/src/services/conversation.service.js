@@ -18,13 +18,18 @@ class ConversationService {
 
         const mapped = conversations.map((c) => {
             const otherMembers = c.members.filter((m) => m.user._id.toString() !== userId.toString())
+
             const displayName = otherMembers.map((m) => m.user.fullName).join(', ')
+
+            // ⭐ avatar logic
+            const thumbnail = otherMembers.length === 1 ? otherMembers[0].user.avatar : otherMembers[0]?.user.avatar || '/uploads/default_avatar.jpg'
 
             const lastMsg = c.messages[c.messages.length - 1]
 
             return {
                 id: c._id,
                 displayName,
+                thumbnail, // ✅ ADD THIS
                 lastMessage: lastMsg?.content || '[media]',
                 lastTime: lastMsg?.createdAt,
                 unread: c.messages.filter((m) => !m.seenBy?.includes(userId)).length,
@@ -122,12 +127,17 @@ class ConversationService {
         const { conversationId } = req.params
         const userId = req.userId
 
-        const conversation = await Conversation.findById(conversationId)
-            .populate('members.user', 'fullName avatar email phone address dob gender role')
-            .populate('messages.senderId', 'fullName avatar')
+        const conversation = await Conversation.findById(conversationId).populate('members.user', 'fullName avatar email phone address dob gender role').populate('messages.senderId', 'fullName avatar')
+        if (!conversation) throw new NotFoundError('Conversation not found')
+
+        const otherMembers = conversation.members.filter((m) => m.user._id.toString() !== userId.toString())
+        const thumbnail = otherMembers.length === 1 ? otherMembers[0].user.avatar : otherMembers[0]?.user.avatar || '/uploads/default_avatar.jpg'
 
         return {
-            conversation,
+            conversation: {
+                ...conversation.toObject(),
+                thumbnail, // ⭐ ADD THIS
+            },
         }
     }
 

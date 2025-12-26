@@ -7,8 +7,7 @@ import { useAuth } from '../../../contexts/auth/AuthContext'
 export default function Conversations() {
     const [conversations, setConversations] = useState([])
     const { userInfo } = useAuth()
-    console.log(userInfo)
-
+    console.log(conversations)
     const role = userInfo?.role
     const isClinic = role === 'clinic'
     const emptyCTA = {
@@ -49,7 +48,7 @@ export default function Conversations() {
                     conversations.map((item) => (
                         <li key={item.id} className='ws-thread'>
                             <Link to={`/workspace/messages/${item.id}`} className='ws-thread-link'>
-                                <div className='ws-thread__avatar' />
+                                <img src={item?.thumbnail} className='ws-thread__avatar' />
                                 <div className='ws-thread__meta'>
                                     <span className='ws-thread__name'>{item.displayName}</span>
                                     <span className='ws-thread__snippet'>{item.lastMessage}</span>

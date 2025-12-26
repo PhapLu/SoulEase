@@ -26,6 +26,8 @@ export default function ConversationDetail() {
         fetchConversationDetail()
     }, [conversationId])
 
+    console.log(conversation)
+
     // -----------------------------
     // SOCKET: Receive incoming message
     // -----------------------------
@@ -90,7 +92,7 @@ export default function ConversationDetail() {
     return (
         <section className='ws-chat'>
             <header className='ws-chat__header'>
-                <div className='ws-chat__avatar' />
+                <img src={conversation?.thumbnail} className='ws-chat__avatar' />
                 <div>
                     <div className='ws-chat__name'>{displayName}</div>
                     <div className='ws-chat__status'>Active now</div>

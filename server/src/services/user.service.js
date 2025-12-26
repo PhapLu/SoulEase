@@ -43,39 +43,49 @@ class UserService {
         const clinicId = req.userId
         const { fullName, phoneNumber, email, specialty, role, assistDoctorId } = req.body
 
+        // 1. Validate clinic
         const clinic = await User.findById(clinicId)
         if (!clinic || clinic.role !== 'clinic') {
             throw new AuthFailureError('Only clinics can create staff')
         }
 
+        if (!clinic.defaultPassword || clinic.defaultPassword.trim() === '') {
+            throw new BadRequestError('Clinic default password is not set')
+        }
+
+        // 2. Validate role
         if (!['doctor', 'nurse'].includes(role)) {
             throw new BadRequestError('Invalid staff role')
         }
 
-        if (role === 'nurse') {
-            if (!assistDoctorId) {
-                throw new BadRequestError('Nurse must be assigned to a doctor')
-            }
+        // 3. Email uniqueness
+        const existingUser = await User.findOne({ email })
+        if (existingUser) throw new BadRequestError('Email already exists')
 
-            const doctor = await User.findOne({
+        // 4. Validate nurse → doctor
+        let assignedDoctor = null
+
+        if (role === 'nurse') {
+            if (!assistDoctorId) throw new BadRequestError('Nurse must be assigned to a doctor')
+
+            assignedDoctor = await User.findOne({
                 _id: assistDoctorId,
                 role: 'doctor',
-                clinicId,
+                clinicId, // 🔒 same clinic
             })
 
-            if (!doctor) {
-                throw new NotFoundError('Assigned doctor not found')
-            }
+            if (!assignedDoctor) throw new NotFoundError('Assigned doctor not found')
         }
 
+        // 5. Create staff user (FIXED)
         const staffData = {
             fullName,
-            phone: phoneNumber,
             email,
+            phone: phoneNumber,
             role,
-            clinicId,
+            clinicId, // ✅ THIS IS THE IMPORTANT PART
             status: 'active',
-            password: 'staffPassword@123', // ⚠️ still risky, see note below
+            password: clinic.defaultPassword,
         }
 
         if (role === 'doctor') {
@@ -92,10 +102,41 @@ class UserService {
 
         const staff = await User.create(staffData)
 
-        const createdStaff = await User.findById(staff._id).select('-password -accessToken -googleId -followers -following')
+        // 6. Create conversations
+
+        // Clinic ↔ Staff
+        await Conversation.create({
+            members: [{ user: clinicId }, { user: staff._id }],
+            messages: [
+                {
+                    senderId: clinicId,
+                    content: `Welcome ${staff.fullName}! This is your private chat with the clinic.`,
+                    createdAt: new Date(),
+                    seenBy: [clinicId],
+                },
+            ],
+        })
+
+        // Doctor ↔ Nurse
+        if (role === 'nurse' && assignedDoctor) {
+            await Conversation.create({
+                members: [{ user: assignedDoctor._id }, { user: staff._id }],
+                messages: [
+                    {
+                        senderId: assignedDoctor._id,
+                        content: `Welcome ${staff.fullName}! This is your private chat with Dr. ${assignedDoctor.fullName}.`,
+                        createdAt: new Date(),
+                        seenBy: [assignedDoctor._id],
+                    },
+                ],
+            })
+        }
+
+        // 7. Return safe payload
+        const createdStaff = await User.findById(staff._id).select('-password -accessToken -defaultPassword')
 
         return {
-            staff: normalizeStaff(createdStaff),
+            staff: createdStaff,
         }
     }
 

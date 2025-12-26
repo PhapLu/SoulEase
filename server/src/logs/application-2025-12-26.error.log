@@ -15,3 +15,4 @@
 2025-12-26 13:19:38::error::/v1/api/user/me::8e0e71ee-5921-4db3-ba4d-643134458e96::handler-error::{"status":403,"message":"Access token missing"}
 2025-12-26 13:19:42::error::/v1/api/user/me::b99e5227-1306-4d94-9e24-9abab9fac856::handler-error::{"status":403,"message":"Access token missing"}
 2025-12-26 13:19:42::error::/v1/api/user/me::63c6f29f-4033-4086-979e-7f940f3c8bfb::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 14:49:03::error::/v1/api/user/createStaff::a1e3c94b-484a-4ede-9e63-d5d6adfcc3e4::handler-error::{"status":403,"message":"Clinic default password is not set"}

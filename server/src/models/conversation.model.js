@@ -15,7 +15,6 @@ const ConversationSchema = new mongoose.Schema(
                 isMuted: { type: Boolean, default: false },
             },
         ],
-        thumbnail: { type: String, default: '/uploads/default-bg.png' },
         messages: [
             {
                 senderId: {

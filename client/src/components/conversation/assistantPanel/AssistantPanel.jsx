@@ -1,136 +1,129 @@
 // src/components/conversation/assistantPanel/AssistantPanel.jsx
-import { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import Soulra from '../../../assets/icons/Soulra.svg';
-import { pythonApiUtils } from '../../../utils/pythonRequest';
-import { apiUtils } from '../../../utils/newRequest';
-import { useAuth } from '../../../contexts/auth/AuthContext';
-import '../../../pages/workSpace/conversation/Conversations.css';
+import { useState, useEffect, useRef } from 'react'
+import { useParams } from 'react-router-dom'
+import Soulra from '../../../assets/icons/Soulra.svg'
+import { pythonApiUtils } from '../../../utils/pythonRequest'
+import { apiUtils } from '../../../utils/newRequest'
+import { useAuth } from '../../../contexts/auth/AuthContext'
+import '../../../pages/workSpace/conversation/Conversations.css'
 
 export default function AssistantPanel() {
-    const { conversationId } = useParams();  // This is the patient/conversation ID
-    const { userInfo } = useAuth();
+    const { conversationId } = useParams() // This is the patient/conversation ID
+    const { userInfo } = useAuth()
 
-    const [text, setText] = useState('');
-    const [messages, setMessages] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [viewMode, setViewMode] = useState('profile'); // profile | ai
-    const [contactInfo, setContactInfo] = useState(null);
-    const messagesEndRef = useRef(null);
-
+    const [text, setText] = useState('')
+    const [messages, setMessages] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+    const [viewMode, setViewMode] = useState('profile') // profile | ai
+    const [contactInfo, setContactInfo] = useState(null)
+    const messagesEndRef = useRef(null)
+    console.log('CONTACT INFO', contactInfo)
     // Auto-scroll to bottom
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages]);
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }, [messages])
 
     // Reset to profile when switching conversation
     useEffect(() => {
-        setViewMode('profile');
-    }, [conversationId]);
+        setViewMode('profile')
+    }, [conversationId])
 
     // Load AI history when patient changes
     useEffect(() => {
         if (!conversationId) {
-            setMessages([]);
-            return;
+            setMessages([])
+            return
         }
 
         const loadHistory = async () => {
-            setIsLoading(true);
+            setIsLoading(true)
             try {
-                const res = await pythonApiUtils.get(`/ai-history/${conversationId}`);
-                const loaded = res.data.messages || [];
-                const formatted = loaded.map(m => ({
+                const res = await pythonApiUtils.get(`/ai-history/${conversationId}`)
+                const loaded = res.data.messages || []
+                const formatted = loaded.map((m) => ({
                     sender: m.sender,
-                    text: m.text
-                }));
-                setMessages(formatted.length > 0 ? formatted : [{ sender: 'ai', text: 'Hello! How may I help?' }]);
+                    text: m.text,
+                }))
+                setMessages(formatted.length > 0 ? formatted : [{ sender: 'ai', text: 'Hello! How may I help?' }])
             } catch (err) {
-                console.error("Load AI history error:", err);
-                setMessages([{ sender: 'ai', text: 'Hello! How may I help?' }]);
+                console.error('Load AI history error:', err)
+                setMessages([{ sender: 'ai', text: 'Hello! How may I help?' }])
             } finally {
-                setIsLoading(false);
+                setIsLoading(false)
             }
-        };
+        }
 
-        loadHistory();
-    }, [conversationId]);
+        loadHistory()
+    }, [conversationId])
 
     // Load basic info for the other member
     useEffect(() => {
         if (!conversationId || !userInfo?._id) {
-            setContactInfo(null);
-            return;
+            setContactInfo(null)
+            return
         }
 
         const fetchConversation = async () => {
             try {
-                const res = await apiUtils.get(`/conversation/readConversationDetail/${conversationId}`);
-                const conv = res.data.metadata.conversation;
-                const other = conv?.members?.find((m) => m.user && (m.user._id !== userInfo._id))?.user;
-                setContactInfo(other || null);
+                const res = await apiUtils.get(`/conversation/readConversationDetail/${conversationId}`)
+                const conv = res.data.metadata.conversation
+                const other = conv?.members?.find((m) => m.user && m.user._id !== userInfo._id)?.user
+                setContactInfo(other || null)
             } catch (error) {
-                console.error('Fetch conversation for contact info error:', error);
-                setContactInfo(null);
+                console.error('Fetch conversation for contact info error:', error)
+                setContactInfo(null)
             }
-        };
+        }
 
-        fetchConversation();
-    }, [conversationId, userInfo?._id]);
+        fetchConversation()
+    }, [conversationId, userInfo?._id])
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!text.trim() || !conversationId || isLoading) return;
+        e.preventDefault()
+        if (!text.trim() || !conversationId || isLoading) return
 
-        const userMessage = text.trim();
-        setText('');
-        setMessages(prev => [...prev, { sender: 'user', text: userMessage }]);
-        setIsLoading(true);
+        const userMessage = text.trim()
+        setText('')
+        setMessages((prev) => [...prev, { sender: 'user', text: userMessage }])
+        setIsLoading(true)
 
         try {
             // Call AI
             const response = await pythonApiUtils.post('/chat', {
-                conversation_id: conversationId,  // Changed to match backend
-                message: userMessage
-            });
+                conversation_id: conversationId, // Changed to match backend
+                message: userMessage,
+            })
 
-            const aiReply = response.data.ai_reply || "No response from AI.";  // Changed to match backend
+            const aiReply = response.data.ai_reply || 'No response from AI.' // Changed to match backend
 
             // Append AI reply
-            const aiMsg = { sender: 'ai', text: aiReply };
-            setMessages(prev => [...prev, aiMsg]);
-
+            const aiMsg = { sender: 'ai', text: aiReply }
+            setMessages((prev) => [...prev, aiMsg])
         } catch (error) {
-            console.error("AI Error:", error);
-            const errText = error.response?.data?.detail || "Something went wrong.";
-            setMessages(prev => [...prev, { sender: 'ai', text: `Error: ${errText}` }]);
+            console.error('AI Error:', error)
+            const errText = error.response?.data?.detail || 'Something went wrong.'
+            setMessages((prev) => [...prev, { sender: 'ai', text: `Error: ${errText}` }])
         } finally {
-            setIsLoading(false);
+            setIsLoading(false)
         }
-    };
+    }
 
-    const noConversation = !conversationId;
-    const isProfile = viewMode === 'profile';
-    const toggleView = () => setViewMode((prev) => (prev === 'profile' ? 'ai' : 'profile'));
+    const noConversation = !conversationId
+    const isProfile = viewMode === 'profile'
+    const toggleView = () => setViewMode((prev) => (prev === 'profile' ? 'ai' : 'profile'))
 
     const calcAge = (dob) => {
-        if (!dob) return null;
-        const date = new Date(dob);
-        if (isNaN(date)) return null;
-        const diff = Date.now() - date.getTime();
-        const ageDt = new Date(diff);
-        return Math.abs(ageDt.getUTCFullYear() - 1970);
-    };
+        if (!dob) return null
+        const date = new Date(dob)
+        if (isNaN(date)) return null
+        const diff = Date.now() - date.getTime()
+        const ageDt = new Date(diff)
+        return Math.abs(ageDt.getUTCFullYear() - 1970)
+    }
 
     return (
         <aside className={`ws-assistant ${isProfile ? 'ws-assistant--profile' : ''}`}>
-            <button
-                type='button'
-                className='ws-assistant__toggle'
-                onClick={toggleView}
-                aria-label={isProfile ? 'Switch to AI chat' : 'Switch to client info'}
-                title={isProfile ? 'AI chat' : 'Client info'}
-            >
+            <button type='button' className='ws-assistant__toggle' onClick={toggleView} aria-label={isProfile ? 'Switch to AI chat' : 'Switch to client info'} title={isProfile ? 'AI chat' : 'Client info'}>
                 {isProfile ? '🤖' : 'i'}
             </button>
 
@@ -148,7 +141,7 @@ export default function AssistantPanel() {
             <div className='ws-assistant__body'>
                 {isProfile ? (
                     <div className='ws-assistant__profile-card'>
-                        <div className='ws-assistant__profile-avatar' />
+                        <img src={contactInfo?.avatar} className='ws-assistant__profile-avatar' />
                         <div className='ws-assistant__profile-name'>{contactInfo?.fullName || 'Unknown'}</div>
                         <div className='ws-assistant__profile-meta'>{contactInfo?.gender?.toUpperCase() || '—'}</div>
 
@@ -186,10 +179,7 @@ export default function AssistantPanel() {
                 ) : (
                     <>
                         {messages.map((msg, idx) => (
-                            <div
-                                key={idx}
-                                className={`ws-assistant__bubble ${msg.sender === 'user' ? 'user' : 'ai'}`}
-                            >
+                            <div key={idx} className={`ws-assistant__bubble ${msg.sender === 'user' ? 'user' : 'ai'}`}>
                                 <p>{msg.text}</p>
                             </div>
                         ))}
@@ -205,17 +195,12 @@ export default function AssistantPanel() {
 
             {!isProfile && (
                 <form className='ws-assistant__input' onSubmit={handleSubmit}>
-                    <input
-                        placeholder={noConversation ? 'Select a patient first' : 'Ask any request...'}
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                        disabled={isLoading || noConversation}
-                    />
-                    <button type="submit" disabled={isLoading || !text.trim() || noConversation}>
+                    <input placeholder={noConversation ? 'Select a patient first' : 'Ask any request...'} value={text} onChange={(e) => setText(e.target.value)} disabled={isLoading || noConversation} />
+                    <button type='submit' disabled={isLoading || !text.trim() || noConversation}>
                         Send
                     </button>
                 </form>
             )}
         </aside>
-    );
+    )
 }
