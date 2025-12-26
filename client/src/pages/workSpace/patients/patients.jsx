@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useMemo } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './patients.css'
 import folderIcon from '../../../assets/folder.svg'
 import WorkspaceTopBar from '../../../components/Workspace/WorkspaceTopBar'
 import FolderModalForm from './folderClients/folderModelForm/folderModelForm'
 import { apiUtils } from '../../../utils/newRequest'
+import { useAuth } from '../../../contexts/auth/AuthContext'
 
 export default function Patients() {
     const navigate = useNavigate()
+    const { userInfo } = useAuth()
     const [openFolderModal, setOpenFolderModal] = useState(false)
     const [folders, setFolders] = useState([])
     const [isLoading, setIsLoading] = useState(false)
@@ -25,8 +27,33 @@ export default function Patients() {
     }
 
     useEffect(() => {
+        if (userInfo?.role !== 'family') return
+        const redirectToRelativeRecord = async () => {
+            try {
+                const res = await apiUtils.get('/relative/readMyPatientRecord')
+                const patientRecord = res?.data?.metadata?.patientRecord || res?.data?.patientRecord || null
+                const folderId = patientRecord?.folderId
+                const patientId = patientRecord?.patientId
+                if (folderId && patientId) {
+                    navigate(`/workspace/patients/folder/${folderId}/${patientId}`, { replace: true })
+                    return
+                }
+                if (patientId) {
+                    navigate(`/workspace/patients/${patientId}/profiles`, { replace: true })
+                    return
+                }
+            } catch (err) {
+                console.error('Failed to load relative patient record', err)
+            }
+            navigate('/workspace/notifications', { replace: true })
+        }
+        redirectToRelativeRecord()
+    }, [userInfo, navigate])
+
+    useEffect(() => {
+        if (userInfo?.role === 'family') return
         fetchFolders()
-    }, [])
+    }, [userInfo])
 
     const handleCreateFolder = async (data) => {
         try {

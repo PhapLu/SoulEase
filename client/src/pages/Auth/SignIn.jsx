@@ -4,6 +4,7 @@ import Header from '../../components/header/Header'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import { useAuth } from '../../contexts/auth/AuthContext'
 import { useNavigate, Link } from 'react-router-dom'
+import { apiUtils } from '../../utils/newRequest'
 
 const SignIn = () => {
     const { login } = useAuth()
@@ -41,13 +42,42 @@ const SignIn = () => {
         }
 
         // Call login API from AuthContext
-        const success = await login(inputs.email, inputs.password)
+        const result = await login(inputs.email, inputs.password)
 
         setIsSubmitLoginLoading(false)
 
-        if (!success) {
+        if (!result?.success) {
             setErrors({ serverError: 'Invalid email or password' })
             return
+        }
+
+        if (result?.user?.role === 'family') {
+            try {
+                const res = await apiUtils.get('/relative/readMyPatientRecord')
+                const patientRecord =
+                    res?.data?.metadata?.patientRecord ||
+                    res?.data?.patientRecord ||
+                    null
+                const folderId = patientRecord?.folderId
+                const patientId = patientRecord?.patientId
+
+                if (patientId && folderId) {
+                    navigate(
+                        `/workspace/patients/folder/${folderId}/${patientId}`
+                    )
+                    return
+                }
+
+                if (patientId) {
+                    navigate(`/workspace/patients/${patientId}/profiles`)
+                    return
+                }
+            } catch (err) {
+                console.error(
+                    'Failed to load relative patient record',
+                    err
+                )
+            }
         }
 
         // Redirect after success

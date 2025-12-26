@@ -259,7 +259,6 @@ export default function FolderClients() {
                                     <th>Name</th>
                                     <th>Age</th>
                                     <th>Contact info</th>
-                                    <th>Relationship</th>
                                     <th className='folder-col-actions'></th>
                                 </tr>
                             </thead>

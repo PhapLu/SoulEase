@@ -5,6 +5,7 @@ export default function SymptomsSection({
     symptoms,
     editingSymptoms,
     setEditingSymptoms,
+    readOnly,
     onSaveSymptoms,
     onCancelSymptoms,
     onAddSymptom,
@@ -65,7 +66,7 @@ export default function SymptomsSection({
             <div className="pd-section-title">
                 <h3>Symptoms</h3>
 
-                {editingSymptoms ? (
+                {editingSymptoms && !readOnly ? (
                     <div className="pd-symptom-actions">
                         <button
                             className="folder-save-btn"
@@ -99,7 +100,7 @@ export default function SymptomsSection({
                         className="pd-symptom-row pd-symptom-row--grid"
                         key={s.id || idx}
                     >
-                        {editingSymptoms ? (
+                        {editingSymptoms && !readOnly ? (
                             <>
                                 {(() => {
                                     const match =
@@ -208,7 +209,12 @@ export default function SymptomsSection({
                                             : "pd-symptom-status--active"
                                     }`}
                                     type="button"
-                                    onClick={() => onToggleSymptomStatus(idx)}
+                                    onClick={
+                                        readOnly
+                                            ? undefined
+                                            : () => onToggleSymptomStatus(idx)
+                                    }
+                                    disabled={readOnly}
                                 >
                                     <span className="pd-status-dot" />
                                     {s.status === "Resolved"
@@ -222,15 +228,17 @@ export default function SymptomsSection({
                 ))}
 
                 {/* ADD BUTTON */}
-                <div className="symptom-add-container">
-                    <button
-                        className="symptom-add-btn"
-                        type="button"
-                        onClick={() => handleSelectPreset("__other")}
-                    >
-                        Add +
-                    </button>
-                </div>
+                {!readOnly && (
+                    <div className="symptom-add-container">
+                        <button
+                            className="symptom-add-btn"
+                            type="button"
+                            onClick={() => handleSelectPreset("__other")}
+                        >
+                            Add +
+                        </button>
+                    </div>
+                )}
             </div>
         </section>
     );

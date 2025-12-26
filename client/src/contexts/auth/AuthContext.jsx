@@ -60,8 +60,10 @@ export const AuthProvider = ({ children }) => {
             const user = res.data.metadata.user
             user.displayName = formatEmailToName(user.email)
             setUserInfo(user)
+            return user
         } catch {
             setUserInfo(null)
+            return null
         } finally {
             setLoading(false)
         }
@@ -83,12 +85,12 @@ export const AuthProvider = ({ children }) => {
     // --------------------------------------------------
     const login = async (email, password) => {
         try {
-            const res = await newRequest.post('/auth/login', { email, password })
-            await loadUserMe() // Refresh userInfo
-            return true
+            await newRequest.post('/auth/login', { email, password })
+            const user = await loadUserMe() // Refresh userInfo
+            return { success: true, user }
         } catch (err) {
             console.log('Login failed:', err)
-            return false
+            return { success: false, user: null }
         }
     }
 

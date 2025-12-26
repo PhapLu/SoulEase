@@ -1,14 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./RelativeModelForm.css";
-import { apiUtils } from "../../../../../../utils/newRequest";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export default function RelativeModalForm({
     onClose,
     onSubmit,
-    initialFolderId = "",
-    lockFolder = false,
 }) {
     const [formData, setFormData] = useState({
         email: "",
@@ -17,10 +14,7 @@ export default function RelativeModalForm({
         relationship: "Family",
         relationshipOther: "",
         role: "relative",
-        folderId: initialFolderId,
     });
-
-    const [doctorFolders, setDoctorFolders] = useState([]);
     const [errors, setErrors] = useState({});
 
     const relationshipOptions = useMemo(
@@ -37,27 +31,6 @@ export default function RelativeModalForm({
         []
     );
 
-    useEffect(() => {
-        const fetchFolders = async () => {
-            try {
-                const res = await apiUtils.get("/folder/readFolders");
-                const list = res.data?.metadata?.folders || [];
-                setDoctorFolders(list);
-
-                setFormData((prev) => {
-                    if (lockFolder || prev.folderId) return prev;
-                    return {
-                        ...prev,
-                        folderId: initialFolderId || list[0]?._id || "",
-                    };
-                });
-            } catch (err) {
-                console.log("Failed to load folders", err);
-            }
-        };
-
-        fetchFolders();
-    }, [initialFolderId, lockFolder]);
 
     const setField = (name, value) => {
         setFormData((prev) => ({ ...prev, [name]: value }));
@@ -125,7 +98,6 @@ export default function RelativeModalForm({
             phoneNumber: formData.phoneNumber,
             relationship: relationshipFinal,
             role: "relative",
-            folderId: formData.folderId,
         };
 
         onSubmit?.(payload);
@@ -248,32 +220,6 @@ export default function RelativeModalForm({
                                 )}
                             </>
                         )}
-                    </div>
-
-                    {/* Folder */}
-                    <div className="form-group">
-                        <label className="form-label">Folder</label>
-                        <div className="input-with-icon">
-                            <select
-                                name="folderId"
-                                className="form-input"
-                                value={formData.folderId}
-                                onChange={handleChange}
-                                disabled={lockFolder}
-                                required
-                            >
-                                {doctorFolders.length === 0 && (
-                                    <option value="" disabled>
-                                        No folder available
-                                    </option>
-                                )}
-                                {doctorFolders.map((f) => (
-                                    <option key={f._id} value={f._id}>
-                                        {f.title}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
                     </div>
 
                     <button type="submit" className="relative-submit-btn">
