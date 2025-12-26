@@ -14,11 +14,12 @@ function RiskBadge({ level = 'Low' }) {
 
 function SeverityPill({ value = 0 }) {
     const v = Math.max(0, Math.min(10, Number(value) || 0))
+    const fillStyle = { width: `${(v / 10) * 100}%` }
     return (
         <div className='tp-severity'>
             <div className='tp-severity__label'>Overall severity</div>
             <div className='tp-severity__bar' aria-label={`Severity ${v} out of 10`}>
-                <div className='tp-severity__fill'></div>
+                <div className='tp-severity__fill' style={fillStyle}></div>
             </div>
             <div className='tp-severity__value'>{v}/10</div>
         </div>
@@ -131,9 +132,7 @@ export default function TreatmentSession({ patientRecordId, loading, error, sess
                         </div>
 
                         {!currentLatest ? (
-                            <button type='button' className='tp-session tp-session--link' onClick={goToTreatment}>
-                                No latest session.
-                            </button>
+                            <div className='tp-session'>No latest session.</div>
                         ) : (
                             <>
                                 {/* Click latest => go to detail page */}
@@ -173,9 +172,7 @@ export default function TreatmentSession({ patientRecordId, loading, error, sess
             {/* Complete stage modal */}
             <StageModal open={confirmStage} title='Complete stage' onClose={() => setConfirmStage(false)}>
                 {!currentLatest ? (
-                    <button type='button' className='tp-session tp-session--link' onClick={goToTreatment}>
-                        No latest session.
-                    </button>
+                    <div className='tp-session'>No latest session.</div>
                 ) : (
                     <div className='tp-form'>
                         <div className='tp-session' style={{ marginBottom: 12 }}>

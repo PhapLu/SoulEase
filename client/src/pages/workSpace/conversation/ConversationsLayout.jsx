@@ -9,12 +9,13 @@ import { apiUtils } from '../../../utils/newRequest'
 
 export default function ConversationsLayout() {
     const { conversationId } = useParams()
+    const hasConversation = !!conversationId
 
     return (
         <div className='ws-messages'>
             <WorkspaceTopBar />
 
-            <div className='ws-panels'>
+            <div className={`ws-panels ${hasConversation ? '' : 'ws-panels--no-chat'}`}>
                 {/* LEFT PANEL */}
                 <aside className='ws-left-panel'>
                     <Conversations />
@@ -35,9 +36,11 @@ export default function ConversationsLayout() {
                 </section>
 
                 {/* RIGHT PANEL */}
-                <aside className='ws-right-panel'>
-                    <AssistantPanel />
-                </aside>
+                {hasConversation ? (
+                    <aside className='ws-right-panel'>
+                        <AssistantPanel />
+                    </aside>
+                ) : null}
             </div>
         </div>
     )

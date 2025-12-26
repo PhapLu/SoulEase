@@ -23,6 +23,10 @@
     min-height: 0;
 }
 
+.ws-panels--no-chat {
+    grid-template-columns: 320px 1fr;
+}
+
 .ws-left-panel,
 .ws-center-panel,
 .ws-right-panel {
