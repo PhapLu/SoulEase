@@ -107,3 +107,11 @@
 2025-12-26 15:56:48::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::c365b499-ee77-4d7b-9bb7-06d89dcfae61::handler-error::{"status":404,"message":"Patient record not found"}
 2025-12-26 15:57:30::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::59ddf6d2-0b78-40e5-b7b8-72b31a04ee1f::handler-error::{"status":404,"message":"Patient record not found"}
 2025-12-26 15:57:30::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::f7c7e780-a550-4640-88ec-0b00e6ba0b4c::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 16:09:54::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::405c1864-819e-4215-932c-017c67820eeb::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 16:09:55::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::ef87f83d-e281-4148-a742-c72cf301f395::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 16:09:55::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::b82da015-64a0-4ecc-9552-86ec9f7d4a8f::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 16:09:55::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::e7cbc562-9446-45f6-b5fc-321ffedc074d::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 16:19:19::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::cbf9f7ab-42a9-4bad-a729-efde5ac9ab3a::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 16:19:19::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::b994caba-2409-4081-ad3c-a957a00d14c9::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 16:19:19::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::8c8ff6f8-a731-458f-baab-9874f5d4a4c4::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 16:19:19::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::b07e6172-3268-473a-9c1f-893de79581cd::handler-error::{"status":404,"message":"Patient record not found"}
