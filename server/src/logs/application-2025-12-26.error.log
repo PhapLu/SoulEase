@@ -1,9 +1,1 @@
-2025-12-26 11:46:34::error::/v1/api/user/me::664924b9-f80a-48ad-bc3b-80563ccc1cee::handler-error::{"status":403,"message":"Access token missing"}
-2025-12-26 11:46:34::error::/v1/api/user/me::6205a45c-f3dd-4acb-aef7-f6ddc4a5b4c0::handler-error::{"status":403,"message":"Access token missing"}
-2025-12-26 11:48:31::error::/v1/api/auth/login::90705825-0e13-412d-b185-b33b1081720b::handler-error::{"status":401,"message":"Account or password is invalid"}
-2025-12-26 11:48:33::error::/v1/api/auth/login::81894d54-d230-43db-a377-a41f2b7bac7e::handler-error::{"status":401,"message":"Account or password is invalid"}
-2025-12-26 11:48:33::error::/v1/api/auth/login::0f5dd9f8-17f0-47c0-a1f3-b3547f650d49::handler-error::{"status":401,"message":"Account or password is invalid"}
-2025-12-26 11:48:34::error::/v1/api/auth/login::58202636-07e1-4456-84aa-e968654dec6a::handler-error::{"status":401,"message":"Account or password is invalid"}
-2025-12-26 11:48:43::error::/v1/api/auth/login::6cccce4a-afa5-40bb-a6f6-324807b4d79f::handler-error::{"status":401,"message":"Account or password is invalid"}
-2025-12-26 11:48:59::error::/v1/api/auth/login::caaa159e-fb41-46ce-ad68-1508872b5b73::handler-error::{"status":401,"message":"Account or password is invalid"}
-2025-12-26 11:49:06::error::/v1/api/auth/login::21474c7a-db2c-428e-9f5f-d79d4c9c990a::handler-error::{"status":401,"message":"Account or password is invalid"}
+2025-12-26 00:24:46::error::/v1/api/relative/createRelativeAccount::aeaceffa-814c-4fc6-a1e5-17744ebbd981::handler-error::{"status":404,"message":"Not Found Route"}

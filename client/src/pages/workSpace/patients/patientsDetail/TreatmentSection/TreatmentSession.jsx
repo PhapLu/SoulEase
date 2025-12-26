@@ -107,7 +107,6 @@ export default function TreatmentSession({ patientRecordId, loading, error, sess
             {/* Header */}
             <div className='tp-header'>
                 <div className='pd-treatment'>
-                    {/* CLICK TITLE => GO TO DETAIL PAGE */}
                     <h3 title='Open treatment details' onClick={goToTreatment}>
                         Treatment Progress
                     </h3>

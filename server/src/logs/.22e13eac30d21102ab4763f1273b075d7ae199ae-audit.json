@@ -43,12 +43,12 @@
         {
             "date": 1766550850086,
             "name": "src\\logs\\application-2025-12-24.error.log",
-            "hash": "ad109de8263f2cbf798df5652eb8a9f15c9e4d44a0a23b1347b0a6eebba82b35"
+            "hash": "4efa688afcf6f2bc45d52581ce4b86c3b74509ea85a85f5c49d692989acd8102"
         },
         {
-            "date": 1766661879767,
-            "name": "src\\logs\\application-2025-12-25.error.log",
-            "hash": "16c2f9ce989708243d27ae1975669ba20a34935b389057b72c0a4fec9ee99043"
+            "date": 1766682152792,
+            "name": "src\\logs\\application-2025-12-26.error.log",
+            "hash": "4ed727baf28d6d00066c22b8a263fbdf3c9b74c1ea8d2258c43196480469dbff"
         }
     ],
     "hashType": "sha256"
