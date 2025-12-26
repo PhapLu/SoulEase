@@ -72,14 +72,26 @@
   font-size: 16px;
   font-weight: 400;
   backdrop-filter: blur(12px);
-  transition:
-    transform 0.22s ease,
-    filter 0.22s ease;
+  display: inline-block;
+  box-shadow: 0 6px 14px rgba(10, 135, 105, 0.08);
+  will-change: transform, box-shadow;
+  transition: transform 0.22s ease, filter 0.22s ease, box-shadow 0.22s ease;
 }
 
 .about-btn-primary:hover {
-  transform: translateY(-10px) scale(1.02);
+  transform: translateY(-8px) scale(1.02);
   filter: brightness(1.12);
+  box-shadow: 0 20px 40px rgba(10, 135, 105, 0.18);
+  z-index: 10;
+}
+
+.about-btn-primary:active {
+  transform: translateY(-3px) scale(1.01);
+}
+
+.about-btn-primary:focus-visible {
+  outline: 3px solid rgba(10,135,105,0.16);
+  outline-offset: 4px;
 }
 
 /* ================= OMV SECTION ================= */

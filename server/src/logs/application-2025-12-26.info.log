@@ -537,3 +537,74 @@
 2025-12-26 17:28:56::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::b700d006-188e-47eb-918a-9247f154b20d::input-params ::GET::::{}
 2025-12-26 17:28:56::info::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::0e2a2cb2-16eb-496a-9985-38dd1b3dfa4e::input-params ::GET::::{}
 2025-12-26 17:28:56::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::0e2a2cb2-16eb-496a-9985-38dd1b3dfa4e::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 21:50:53::info::/v1/api/user/me::a145fe13-3e15-486c-9d2f-4525927bf962::input-params ::GET::::{}
+2025-12-26 21:50:53::error::/v1/api/user/me::a145fe13-3e15-486c-9d2f-4525927bf962::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 21:50:53::info::/v1/api/user/me::fcdc067a-6ba2-4ba8-a808-f645a75c801f::input-params ::GET::::{}
+2025-12-26 21:50:53::error::/v1/api/user/me::fcdc067a-6ba2-4ba8-a808-f645a75c801f::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 22:12:01::info::/v1/api/user/me::1b32d052-2e5e-448c-af9d-9605b755c12c::input-params ::GET::::{}
+2025-12-26 22:12:01::error::/v1/api/user/me::1b32d052-2e5e-448c-af9d-9605b755c12c::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 22:12:01::info::/v1/api/user/me::90ab4817-040d-45f8-851f-f5ca43200387::input-params ::GET::::{}
+2025-12-26 22:12:01::error::/v1/api/user/me::90ab4817-040d-45f8-851f-f5ca43200387::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 22:12:46::info::/v1/api/user/me::9ae69fb5-bf63-49df-989d-e5e25b8242d6::input-params ::GET::::{}
+2025-12-26 22:12:46::error::/v1/api/user/me::9ae69fb5-bf63-49df-989d-e5e25b8242d6::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 22:12:46::info::/v1/api/user/me::692b1299-db4d-4d0c-b50e-023c277375cf::input-params ::GET::::{}
+2025-12-26 22:12:46::error::/v1/api/user/me::692b1299-db4d-4d0c-b50e-023c277375cf::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 22:40:07::info::/v1/api/auth/login::e54e7a4e-80de-44fb-9df9-18c3989b86d1::input-params ::POST::::{"email":"doctor2@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-26 22:40:09::info::/v1/api/user/me::32cc81be-c9fd-4181-ad79-3870fe781178::input-params ::GET::::{}
+2025-12-26 22:40:09::info::/v1/api/folder/readFolders::fe1720fe-19f6-4855-b802-5f18ef1d2a99::input-params ::GET::::{}
+2025-12-26 22:40:09::info::/v1/api/folder/readFolders::a004fc31-e9bf-471e-aa0d-a616c9415f61::input-params ::GET::::{}
+2025-12-26 22:42:43::info::/v1/api/conversation/readConversations::877415c4-391f-4836-a231-61beedaa1065::input-params ::GET::::{}
+2025-12-26 22:42:43::info::/v1/api/conversation/readConversations::3b34f540-e042-4cfd-ab6c-26741c93dc13::input-params ::GET::::{}
+2025-12-26 22:42:47::info::/v1/api/conversation/readConversations::ca58bc78-1569-4ffa-ab9e-36d9a7855de3::input-params ::GET::::{}
+2025-12-26 22:42:47::info::/v1/api/conversation/readConversations::23f142d1-be7b-48ca-a5a8-d2a619fd2e18::input-params ::GET::::{}
+2025-12-26 22:42:50::info::/v1/api/conversation/readConversationDetail/694d6f72c7bbba2bbb15eccb::4245b1f7-60aa-4361-9320-86760d40bf07::input-params ::GET::::{}
+2025-12-26 22:42:50::info::/v1/api/conversation/readConversationDetail/694d6f72c7bbba2bbb15eccb::a701ed78-4b22-4391-904b-980316e75f08::input-params ::GET::::{}
+2025-12-26 22:42:50::info::/v1/api/conversation/readConversationDetail/694d6f72c7bbba2bbb15eccb::cf8c1ce4-4cf9-44d0-9d56-63bd8c1d61cb::input-params ::GET::::{}
+2025-12-26 22:42:50::info::/v1/api/conversation/readConversationDetail/694d6f72c7bbba2bbb15eccb::11fed7c0-45d4-4869-a6eb-7fa5ca39fad3::input-params ::GET::::{}
+2025-12-26 22:49:01::info::/v1/api/conversation/readConversationDetail/694d6f72c7bbba2bbb15eccb::c1898020-3925-48da-bf36-d6955193b8a3::input-params ::GET::::{}
+2025-12-26 22:54:15::info::/v1/api/conversation/readConversations::efd311b2-fc42-45db-9bcc-e179896a7f3f::input-params ::GET::::{}
+2025-12-26 22:54:15::info::/v1/api/conversation/readConversationDetail/694d6f72c7bbba2bbb15eccb::852d368d-1a40-4952-a923-020063464fb9::input-params ::GET::::{}
+2025-12-26 22:54:16::info::/v1/api/conversation/readConversations::aa8b982b-5a68-47da-8e20-d19b9e22190d::input-params ::GET::::{}
+2025-12-26 22:54:16::info::/v1/api/conversation/readConversationDetail/694d6f72c7bbba2bbb15eccb::cd798910-8c73-44f0-b990-711c608b86cd::input-params ::GET::::{}
+2025-12-26 22:54:16::info::/v1/api/conversation/readConversationDetail/694d6f72c7bbba2bbb15eccb::b71d84e7-b591-42b9-b000-3cd3449f8502::input-params ::GET::::{}
+2025-12-26 22:54:16::info::/v1/api/conversation/readConversationDetail/694d6f72c7bbba2bbb15eccb::54e581bd-04bb-4de0-9d1a-a223146f37be::input-params ::GET::::{}
+2025-12-26 22:54:16::info::/v1/api/conversation/readConversationDetail/694d6f72c7bbba2bbb15eccb::1792a2d1-4d9b-4057-bdcf-985ae754d1e6::input-params ::GET::::{}
+2025-12-26 22:54:58::info::/v1/api/conversation/readConversationDetail/694d6f72c7bbba2bbb15eccb::e9fe2c38-4a92-4723-ac5d-927f97b7099c::input-params ::GET::::{}
+2025-12-26 22:55:57::info::/v1/api/folder/readFolders::9184f012-8e9c-4c12-a9bc-9a8e2576179c::input-params ::GET::::{}
+2025-12-26 22:55:57::info::/v1/api/folder/readFolders::77c08e77-1c79-4258-81bd-4667cab1c86b::input-params ::GET::::{}
+2025-12-26 22:55:58::info::/v1/api/folder/readFolder/69496be99bc2fb43a6df32ae::8402c4dd-7a94-474b-b722-ddd9036f310d::input-params ::GET::::{}
+2025-12-26 22:55:59::info::/v1/api/folder/readFolder/69496be99bc2fb43a6df32ae::dd2d3294-e417-41b8-82e5-7f4056fed79d::input-params ::GET::::{}
+2025-12-26 22:56:06::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::d3ab09af-0b46-47f6-b81b-05b4757e69a3::input-params ::GET::::{}
+2025-12-26 22:56:06::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::5ff88b72-1f92-4fc9-a95f-00adc5e23380::input-params ::GET::::{}
+2025-12-26 22:56:06::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::d9bbc5c6-a086-4ed9-8d3c-948209e9b2c1::input-params ::GET::::{}
+2025-12-26 22:56:06::info::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::1d7064c5-bb35-4706-b261-12f6687dcdaf::input-params ::GET::::{}
+2025-12-26 22:56:06::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::1d7064c5-bb35-4706-b261-12f6687dcdaf::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 22:56:06::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::c4d61c50-9f31-4ce4-968d-6d5c202eb3ec::input-params ::GET::::{}
+2025-12-26 22:56:07::info::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::2a58e0da-eb07-480d-a22d-6cc084a0404e::input-params ::GET::::{}
+2025-12-26 22:56:07::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::2a58e0da-eb07-480d-a22d-6cc084a0404e::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 22:56:47::info::/v1/api/user/readUserProfile/69494ac882130873b5b05529::307d67a8-a9d1-4dd5-8d35-af4ac57b5e7e::input-params ::GET::::{}
+2025-12-26 22:56:47::info::/v1/api/user/readUserProfile/69494ac882130873b5b05529::d41ca20c-9eef-4596-9ee9-40f153c61bf4::input-params ::GET::::{}
+2025-12-26 22:56:48::info::/v1/api/folder/readFolders::0a0c63bc-fd6b-49c4-87ee-e7333c90613c::input-params ::GET::::{}
+2025-12-26 22:56:48::info::/v1/api/folder/readFolders::e5b5a237-0b9e-4a55-a117-35bc0e78e1fe::input-params ::GET::::{}
+2025-12-26 22:57:23::info::/v1/api/folder/readFolder/69496be99bc2fb43a6df32ae::8ffd83e0-63a7-42da-88a6-037189e79b79::input-params ::GET::::{}
+2025-12-26 22:57:23::info::/v1/api/folder/readFolder/69496be99bc2fb43a6df32ae::b2067c11-1412-4644-82f4-e7a16a14b474::input-params ::GET::::{}
+2025-12-26 22:58:35::info::/v1/api/folder/readFolders::3b47b8c8-8109-4159-810b-f30a56c755d2::input-params ::GET::::{}
+2025-12-26 22:58:35::info::/v1/api/folder/readFolders::79a8dc64-9fe3-4c70-bc04-6387226dc398::input-params ::GET::::{}
+2025-12-26 22:58:36::info::/v1/api/folder/readFolder/69496be99bc2fb43a6df32ae::73578f04-ee9a-4058-a7d7-eecb3c9a0016::input-params ::GET::::{}
+2025-12-26 22:58:36::info::/v1/api/folder/readFolder/69496be99bc2fb43a6df32ae::70657e22-41b5-48ac-a1ed-eb0f17e49ef8::input-params ::GET::::{}
+2025-12-26 22:58:38::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::3bc0b8a6-90ff-4d15-b7a3-1648386a59fb::input-params ::GET::::{}
+2025-12-26 22:58:38::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::e055151a-fb02-4af8-9c0e-99d667139da4::input-params ::GET::::{}
+2025-12-26 22:58:38::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::c64f991f-acb3-49ee-8ec6-5ab39ee066b0::input-params ::GET::::{}
+2025-12-26 22:58:38::info::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::60023d5e-ab66-4614-81c3-f0c0e10e89fb::input-params ::GET::::{}
+2025-12-26 22:58:38::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::60023d5e-ab66-4614-81c3-f0c0e10e89fb::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 22:58:38::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::66f86691-d88d-45b8-ab3d-889117364cf5::input-params ::GET::::{}
+2025-12-26 22:58:39::info::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::1d09d85d-8c77-4b48-9166-b673ce833010::input-params ::GET::::{}
+2025-12-26 22:58:39::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::1d09d85d-8c77-4b48-9166-b673ce833010::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 23:00:39::info::/v1/api/folder/readFolders::5f483217-8d76-425a-883e-09ec0babdfa8::input-params ::GET::::{}
+2025-12-26 23:00:39::info::/v1/api/folder/readFolders::76fe3a52-9368-41c0-95df-c13f463c2055::input-params ::GET::::{}
+2025-12-26 23:01:04::info::/v1/api/patientRecord/updatePatientRecord/69496bff9bc2fb43a6df32c6::f07df6aa-ecc6-43d6-91ff-b091242c286c::input-params ::PATCH::::{"recordId":"69496bff9bc2fb43a6df32c6","_id":"69496bff9bc2fb43a6df32c6","email":"bunboforever@gmail.com","fullName":"Pháp Lu","avatar":"/uploads/pastal_system_default_avatar.png","phone":"0399091516","address":"RMIT","dob":"2004-04-24T00:00:00.000Z","gender":"female","birthday":"2004-04-24","doctorId":"69494ac882130873b5b05529","patientId":"69496bfe9bc2fb43a6df32bd","folderId":"69496be99bc2fb43a6df32ae","title":"Initial Intake Record","recordType":"assessment","symptoms":[{"name":"Anxiety","sign":"Excessive worry or nervousness","date":"2025-12-26","status":"Active"},{"name":"Depressed Mood","sign":"Prolonged sadness","date":"2025-12-26","status":"Active"},{"name":"Low Motivation","sign":"Lack of interest in daily activities","date":"2025-12-26","status":"Resolved"},{"name":"Difficulty Concentrating","sign":"Trouble focusing","date":"2025-12-26","status":"Active"}],"diagnosis":"","moodLevel":null,"treatmentPlan":"","attachments":[],"caregiverNotes":"","doctorNotes":"","visibility":"doctor_only","treatmentSessions":[{"id":"sess-1766660766190","date":"2025-12-25","focus":"giống thằng tuấn","symptoms":[{"id":"sym-1766660723536","name":"khùng","sign":"khùng","date":"2025-12-25","status":"Active"}],"phq9":12,"gad7":12,"severity":5,"risk":"Low","status":"Stage 1: Stabilization &amp; coping skills","note":"giống pháp lưu","result":"giống thằng tuấn","treatment":"giống anh hy","_id":"694d1a9e89668401b01b2e98"}],"treatmentSections":[{"id":"sess-1766660766190","date":"2025-12-25","focus":"giống thằng tuấn","symptoms":[{"id":"sym-1766660723536","name":"khùng","sign":"khùng","date":"2025-12-25","status":"Active"}],"phq9":12,"gad7":12,"severity":5,"risk":"Low","status":"Stage 1: Stabilization &amp; coping skills","note":"giống pháp lưu","result":"giống thằng tuấn","treatment":"giống anh hy","_id":"694d1a9e89668401b01b2e99"}],"medications":[],"createdAt":"2025-12-22T16:04:15.048Z","updatedAt":"2025-12-26T10:05:01.609Z","__v":20,"relatives":[],"latestSession":null,"age":21}
+2025-12-26 23:01:04::info::/v1/api/patientRecord/updatePatientRecord/69496bff9bc2fb43a6df32c6::725ddd84-92bb-4fa1-ba58-6d08118da0c6::input-params ::PATCH::::{"recordId":"69496bff9bc2fb43a6df32c6","_id":"69496bff9bc2fb43a6df32c6","email":"bunboforever@gmail.com","fullName":"Pháp Lu","avatar":"/uploads/pastal_system_default_avatar.png","phone":"0399091516","address":"RMIT","dob":"2004-04-24T00:00:00.000Z","gender":"female","birthday":"2004-04-24","doctorId":"69494ac882130873b5b05529","patientId":"69496bfe9bc2fb43a6df32bd","folderId":"69496be99bc2fb43a6df32ae","title":"Initial Intake Record","recordType":"assessment","symptoms":[{"name":"Anxiety","sign":"Excessive worry or nervousness","date":"2025-12-26","status":"Active"},{"name":"Depressed Mood","sign":"Prolonged sadness","date":"2025-12-26","status":"Active"},{"name":"Low Motivation","sign":"Lack of interest in daily activities","date":"2025-12-26","status":"Active"},{"name":"Difficulty Concentrating","sign":"Trouble focusing","date":"2025-12-26","status":"Active"}],"diagnosis":"","moodLevel":null,"treatmentPlan":"","attachments":[],"caregiverNotes":"","doctorNotes":"","visibility":"doctor_only","treatmentSessions":[{"id":"sess-1766660766190","date":"2025-12-25","focus":"giống thằng tuấn","symptoms":[{"id":"sym-1766660723536","name":"khùng","sign":"khùng","date":"2025-12-25","status":"Active"}],"phq9":12,"gad7":12,"severity":5,"risk":"Low","status":"Stage 1: Stabilization &amp; coping skills","note":"giống pháp lưu","result":"giống thằng tuấn","treatment":"giống anh hy","_id":"694d1a9e89668401b01b2e98"}],"treatmentSections":[{"id":"sess-1766660766190","date":"2025-12-25","focus":"giống thằng tuấn","symptoms":[{"id":"sym-1766660723536","name":"khùng","sign":"khùng","date":"2025-12-25","status":"Active"}],"phq9":12,"gad7":12,"severity":5,"risk":"Low","status":"Stage 1: Stabilization &amp; coping skills","note":"giống pháp lưu","result":"giống thằng tuấn","treatment":"giống anh hy","_id":"694d1a9e89668401b01b2e99"}],"medications":[],"createdAt":"2025-12-22T16:04:15.048Z","updatedAt":"2025-12-26T10:05:01.609Z","__v":20,"relatives":[],"latestSession":null,"age":21}
+2025-12-26 23:01:35::info::/v1/api/relative/createRelativeAccount::2d1775d0-69de-47e8-b55b-965db54fea8e::input-params ::POST::::{"recordId":"69496bff9bc2fb43a6df32c6","patientRecordId":"69496bfe9bc2fb43a6df32bd","email":"hy20032019@gmail.com","fullName":"Pháp Lu","phoneNumber":"0909354355","relationship":"Friend","role":"relative"}
+2025-12-26 23:01:36::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::17bec740-dee2-4728-b71e-2c040c23b1f8::input-params ::GET::::{}
+2025-12-26 23:01:36::info::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::d4415d7c-1c8a-4be9-bedc-7bd71c52c5a9::input-params ::GET::::{}
+2025-12-26 23:01:36::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::d4415d7c-1c8a-4be9-bedc-7bd71c52c5a9::handler-error::{"status":404,"message":"Patient record not found"}

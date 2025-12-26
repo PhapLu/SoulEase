@@ -63,3 +63,14 @@
 2025-12-26 17:23:02::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::457a418f-8dfc-45d7-aa0f-4484e5ed0d67::handler-error::{"status":404,"message":"Patient record not found"}
 2025-12-26 17:28:56::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::dfa0fa3c-0b09-4bf1-bad6-63a53ada2a4b::handler-error::{"status":404,"message":"Patient record not found"}
 2025-12-26 17:28:56::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::0e2a2cb2-16eb-496a-9985-38dd1b3dfa4e::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 21:50:53::error::/v1/api/user/me::a145fe13-3e15-486c-9d2f-4525927bf962::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 21:50:53::error::/v1/api/user/me::fcdc067a-6ba2-4ba8-a808-f645a75c801f::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 22:12:01::error::/v1/api/user/me::1b32d052-2e5e-448c-af9d-9605b755c12c::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 22:12:01::error::/v1/api/user/me::90ab4817-040d-45f8-851f-f5ca43200387::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 22:12:46::error::/v1/api/user/me::9ae69fb5-bf63-49df-989d-e5e25b8242d6::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 22:12:46::error::/v1/api/user/me::692b1299-db4d-4d0c-b50e-023c277375cf::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 22:56:06::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::1d7064c5-bb35-4706-b261-12f6687dcdaf::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 22:56:07::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::2a58e0da-eb07-480d-a22d-6cc084a0404e::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 22:58:38::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::60023d5e-ab66-4614-81c3-f0c0e10e89fb::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 22:58:39::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::1d09d85d-8c77-4b48-9166-b673ce833010::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 23:01:36::error::/v1/api/relative/readRelatives/69496bff9bc2fb43a6df32c6::d4415d7c-1c8a-4be9-bedc-7bd71c52c5a9::handler-error::{"status":404,"message":"Patient record not found"}

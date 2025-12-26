@@ -124,7 +124,7 @@ export default function AssistantPanel() {
     return (
         <aside className={`ws-assistant ${isProfile ? 'ws-assistant--profile' : ''}`}>
             <button type='button' className='ws-assistant__toggle' onClick={toggleView} aria-label={isProfile ? 'Switch to AI chat' : 'Switch to client info'} title={isProfile ? 'AI chat' : 'Client info'}>
-                {isProfile ? '🤖' : 'i'}
+                {isProfile ? <img src={Soulra} alt="Soulra" width={20} height={20} style={{ display: 'block' }} /> : 'i'}
             </button>
 
             <div className='ws-assistant__header'>

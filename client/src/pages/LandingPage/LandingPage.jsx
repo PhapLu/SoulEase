@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import Soulra from "../../assets/icons/Soulra.svg";
 import landing from "../../assets/images/landing.jpg";
@@ -11,12 +12,12 @@ const featureCards = [
             </svg>
         ),
         title: "HIPAA-Ready",
-        text: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum",
+        text: "SoulEase is designed to support healthcare privacy standards by ensuring patient data is handled with strict access control, audit logs, and role-based permissions",
     },
     {
         icon: <img src={Soulra} alt="Soulra AI icon" width={32} height={32} style={{ display: "block" }} />,
         title: "Sora AI - Assistant",
-        text: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum",
+        text: "Sora AI assists healthcare professionals by summarizing patient records, highlighting key symptoms, and supporting clinical documentation",
     },
     {
         icon: (
@@ -25,7 +26,7 @@ const featureCards = [
             </svg>
         ),
         title: "Secure & Encrypted",
-        text: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum",
+        text: "SoulEase applies modern security practices including encrypted data storage and secure communication channels.",
     },
 ];
 
@@ -121,7 +122,9 @@ export default function LandingPage() {
                     <p className="landing-hero__subtitle">Track patients, manage therapy notes, Sora-AI assistant, strengthen communication - all in one gentle, user-friendly workspace</p>
 
                     <div className="landing-hero__actions">
-                        <button className="landing-btn">Get Started</button>
+                        <Link to="/auth/signup" className="landing-btn">
+                            Get Started
+                        </Link>
                     </div>
                 </div>
 
@@ -132,16 +135,20 @@ export default function LandingPage() {
 
                     {/* TOP LEFT CARD */}
                     <div className="landing-metric-card metric-top-left">
-                        <div className="metric-icon">📈</div>
+                        <div className="metric-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="48px" fill="#0a8769"><path d="m126-220-46-46 300-300 160 161 298-335 42 41-340 384-160-159-254 254Z"/></svg>
+                        </div>
                         <div className="metric-content">
-                            <span className="metric-label">Mood Improvement</span>
+                            <span className="metric-label">Performance Improvement</span>
                             <strong className="metric-value">+32%</strong>
                         </div>
                     </div>
 
                     {/* BOTTOM RIGHT CARD */}
                     <div className="landing-metric-card metric-bottom-right is-primary">
-                        <div className="metric-icon">✅</div>
+                        <div className="metric-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0a8769"><path d="M480-40 192-256q-15-11-23.5-28t-8.5-36v-480q0-33 23.5-56.5T240-880h480q33 0 56.5 23.5T800-800v480q0 19-8.5 36T768-256L480-40Zm0-100 240-180v-480H240v480l240 180Zm-42-220 226-226-56-58-170 170-84-84-58 56 142 142Zm42-440H240h480-240Z"/></svg>
+                        </div>
                         <div className="metric-content">
                             <span className="metric-label">Task Completion</span>
                             <strong className="metric-value">68%</strong>
@@ -200,7 +207,7 @@ export default function LandingPage() {
                             ))}
                         </ul>
 
-                        <button className="landing-btn landing-btn--primary">Explore all services</button>
+                        <Link to="/services"className="landing-btn landing-btn--primary">Explore all services</Link>
                     </div>
 
                     <div className="landing-feature-card landing-tools__card landing-tools__pane" key={`card-${active.label}`}>
