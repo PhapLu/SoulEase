@@ -170,6 +170,28 @@ class UserService {
         }
     }
 
+    static readUserProfile = async (req) => {
+        const userId = req.userId
+        // 1. Check user
+        const user = await User.findById(userId).select('-password -accessToken -googleId -followers -following')
+        if (!user) throw new NotFoundError('User not found')
+        // 2. Return user profile
+        return {
+            user,
+        }
+    }
+
+    static updateUserProfile = async (req) => {
+        const userId = req.userId
+        const updateData = req.body
+
+        // 1. Check user
+        const user = await User.findById(userId)
+        if (!user) throw new NotFoundError('User not found')
+
+        // 2. Update user profile
+    }
+
     static updateUserProfile = async (req) => {
         const userId = req.userId
         const updateData = req.body

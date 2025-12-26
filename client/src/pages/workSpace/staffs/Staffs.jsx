@@ -9,7 +9,7 @@ import WorkspaceTopBar from '../../../components/Workspace/WorkspaceTopBar'
 import CreateStaff from './createStaff/CreateStaff'
 import { apiUtils } from '../../../utils/newRequest'
 
-export default function Doctors() {
+export default function Staffs() {
     const navigate = useNavigate()
 
     const [openCreateStaffModal, setOpenCreateStaffModal] = useState(false)
@@ -65,7 +65,7 @@ export default function Doctors() {
             <section className='doctors-card'>
                 <div className='doctors-card-top'>
                     <div className='doctors-tabs'>
-                        <p className='doctors-tab'>Clinic Doctors</p>
+                        <p className='doctors-tab'>Clinic Staffs</p>
                     </div>
 
                     <button className='doctors-btn-ghost' onClick={() => setOpenCreateStaffModal(true)} type='button'>
@@ -77,7 +77,7 @@ export default function Doctors() {
                     <div className='doctors-empty'>
                         <img src={emptyDoctor} alt='Empty doctor profile' className='doctors-empty-avatar' />
                         <h3 className='doctors-empty-title'>No staff profile yet</h3>
-                        <p className='doctors-empty-text'>Staff profiles will appear here once they are created or invited.</p>
+                        <p className='doctors-empty-text'>Staff profiles will appear here once they are created.</p>
 
                         <button className='doctors-btn-primary' onClick={() => setOpenCreateStaffModal(true)}>
                             + Add your first staff

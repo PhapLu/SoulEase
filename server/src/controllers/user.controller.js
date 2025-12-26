@@ -55,6 +55,20 @@ class UserController {
         }).send(res)
     }
 
+    readUserProfile = async (req, res, next) => {
+        new SuccessResponse({
+            message: 'Read user profile success!',
+            metadata: await UserService.readUserProfile(req),
+        }).send(res)
+    }
+
+    updateUserProfile = async (req, res, next) => {
+        new SuccessResponse({
+            message: 'Update user profile success!',
+            metadata: await UserService.updateUserProfile(req),
+        }).send(res)
+    }
+
     updateStaffInfo = async (req, res, next) => {
         new SuccessResponse({
             message: 'Update staff info success!',

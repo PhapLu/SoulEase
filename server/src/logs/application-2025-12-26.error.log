@@ -1,1 +1,3 @@
 2025-12-26 00:24:46::error::/v1/api/relative/createRelativeAccount::aeaceffa-814c-4fc6-a1e5-17744ebbd981::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-26 13:48:51::error::/v1/api/user/readUserProfile/694e1df732cecad82266816f::3c6fee80-879f-43ba-9b9c-2f60c5ab26c2::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-26 13:48:51::error::/v1/api/user/readUserProfile/694e1df732cecad82266816f::087b05fb-db46-460f-8be2-ee13156231b0::handler-error::{"status":404,"message":"Not Found Route"}

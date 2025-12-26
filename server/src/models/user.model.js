@@ -37,6 +37,7 @@ const UserSchema = new Schema(
         // ORGANIZATION RELATION
         // =========================
         clinicId: { type: Schema.Types.ObjectId, ref: 'User', default: null },
+        defaultPassword: { type: String, default: '' },
 
         // =========================
         // ROLE-SPECIFIC PROFILES

@@ -2,10 +2,21 @@ import { Link } from 'react-router-dom'
 import '../../../pages/workSpace/conversation/Conversations.css'
 import { useEffect, useState } from 'react'
 import { apiUtils } from '../../../utils/newRequest'
+import { useAuth } from '../../../contexts/auth/AuthContext'
 
 export default function Conversations() {
     const [conversations, setConversations] = useState([])
-    console.log(conversations)
+    const { userInfo } = useAuth()
+    console.log(userInfo)
+
+    const role = userInfo?.role
+    const isClinic = role === 'clinic'
+    const emptyCTA = {
+        text: isClinic ? '+ Create Staff' : '+ Create Patient',
+        link: isClinic ? '/workspace/staffs' : '/workspace/patients',
+        subtext: isClinic ? 'Create your first staff member to start internal communication.' : 'Create a patient to start messaging them.',
+    }
+
     useEffect(() => {
         const fetchConversations = async () => {
             const response = await apiUtils.get('/conversation/readConversations')
@@ -28,10 +39,10 @@ export default function Conversations() {
                     <div className='ws-empty-state'>
                         <div className='ws-empty-icon'>💬</div>
                         <p className='ws-empty-text'>You don’t have any conversations yet.</p>
-                        <p className='ws-empty-subtext'>Create a client to start messaging them.</p>
+                        <p className='ws-empty-subtext'>{emptyCTA.subtext}</p>
 
-                        <Link to='/workspace/patients' className='ws-empty-btn'>
-                            + Create Patient
+                        <Link to={emptyCTA.link} className='ws-empty-btn'>
+                            {emptyCTA.text}
                         </Link>
                     </div>
                 ) : (

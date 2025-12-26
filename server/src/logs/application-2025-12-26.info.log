@@ -91,3 +91,7 @@
 2025-12-26 01:08:01::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::f7871d99-7ba3-4df5-a23c-001b755abe00::input-params ::GET::::{}
 2025-12-26 01:08:01::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::46103daa-41b9-4185-852f-f731a6e3308d::input-params ::GET::::{}
 2025-12-26 01:08:01::info::/v1/api/patientRecord/readPatientRecord/69496bfe9bc2fb43a6df32bd::9fc119d9-0454-4990-9a8f-76315ecdeca5::input-params ::GET::::{}
+2025-12-26 13:48:51::info::/v1/api/user/readUserProfile/694e1df732cecad82266816f::3c6fee80-879f-43ba-9b9c-2f60c5ab26c2::input-params ::GET::::{}
+2025-12-26 13:48:51::error::/v1/api/user/readUserProfile/694e1df732cecad82266816f::3c6fee80-879f-43ba-9b9c-2f60c5ab26c2::handler-error::{"status":404,"message":"Not Found Route"}
+2025-12-26 13:48:51::info::/v1/api/user/readUserProfile/694e1df732cecad82266816f::087b05fb-db46-460f-8be2-ee13156231b0::input-params ::GET::::{}
+2025-12-26 13:48:51::error::/v1/api/user/readUserProfile/694e1df732cecad82266816f::087b05fb-db46-460f-8be2-ee13156231b0::handler-error::{"status":404,"message":"Not Found Route"}
