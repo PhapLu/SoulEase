@@ -1,7 +1,7 @@
 // TreatmentDetailPage.jsx
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import './treatmentSession.css'
+import './TreatmentSession.css'
 import { RemoveIcon, AddIcon, EndIcon } from '../../../Icon.jsx'
 import StageModal from './StageModal.jsx'
 import { apiUtils } from '../../../../../utils/newRequest.js'

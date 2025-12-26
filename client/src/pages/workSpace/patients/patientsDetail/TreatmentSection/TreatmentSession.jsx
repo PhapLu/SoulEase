@@ -1,7 +1,7 @@
 // TreatmentSession.jsx
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./treatmentSession.css";
+import "./TreatmentSession.css";
 import StageModal from "./StageModal.jsx";
 import { apiUtils } from "../../../../../utils/newRequest.js";
 import { AddIcon, EndIcon } from "../../../Icon.jsx";
@@ -25,17 +25,18 @@ function SeverityPill({ value = 0 }) {
                 className="tp-severity__bar"
                 aria-label={`Severity ${v} out of 10`}
             >
-                <div
-                    className="tp-severity__fill"
-                    style={{ width: `${(v / 10) * 100}%` }}
-                ></div>
+                <div className="tp-severity__fill"></div>
             </div>
             <div className="tp-severity__value">{v}/10</div>
         </div>
     );
 }
 
-function ActionsDropdown({ onCompleteStage, onCreateSession }) {
+function ActionsDropdown({
+    onCompleteStage,
+    onCreateSession,
+    canComplete = true,
+}) {
     const [open, setOpen] = useState(false);
     const ref = useRef(null);
 
@@ -55,7 +56,16 @@ function ActionsDropdown({ onCompleteStage, onCreateSession }) {
                 onClick={() => setOpen((v) => !v)}
                 type="button"
             >
-                ⋮
+                <svg
+                    className="size-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#e3e3e3"
+                >
+                    <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" />
+                </svg>
             </button>
 
             {open && (
@@ -63,10 +73,17 @@ function ActionsDropdown({ onCompleteStage, onCreateSession }) {
                     <button
                         className="tp-dd__item"
                         type="button"
+                        disabled={!canComplete}
                         onClick={() => {
+                            if (!canComplete) return;
                             setOpen(false);
                             onCompleteStage?.();
                         }}
+                        style={
+                            !canComplete
+                                ? { opacity: 0.5, cursor: "not-allowed" }
+                                : undefined
+                        }
                     >
                         <EndIcon size={16} />
                         Complete Stage
@@ -117,31 +134,31 @@ export default function TreatmentSession({
     const [savingStage, setSavingStage] = useState(false);
 
     const currentLatest =
-        latest || (Array.isArray(sessions) && sessions.length ? sessions[0] : null);
+        latest ||
+        (Array.isArray(sessions) && sessions.length ? sessions[0] : null);
     const stageLabelRaw =
         currentLatest?.stage || currentLatest?.status || "Stage 1";
     const stageLabel = stageLabelRaw.replace(/&amp;/g, "&");
 
     return (
-        <div
-            className="tp">
+        <div className="tp">
             {/* Header */}
             <div className="tp-header">
                 <div className="pd-treatment">
                     {/* CLICK TITLE => GO TO DETAIL PAGE */}
-                    <h3
-                        title="Open treatment details"
-                        onClick={goToTreatment}
-                    >
+                    <h3 title="Open treatment details" onClick={goToTreatment}>
                         Treatment Progress
                     </h3>
                 </div>
 
                 <div className="tp-header__actions">
-                    <ActionsDropdown
-                        onCompleteStage={() => setConfirmStage(true)}
-                        onCreateSession={goToCreateSession}
-                    />
+                    {prId ? (
+                        <ActionsDropdown
+                            canComplete={!!currentLatest}
+                            onCompleteStage={() => setConfirmStage(true)}
+                            onCreateSession={goToCreateSession}
+                        />
+                    ) : null}
                 </div>
             </div>
 
@@ -155,7 +172,9 @@ export default function TreatmentSession({
                     <section className="tp-card">
                         <div className="tp-card__top">
                             <div>
-                                <div className="tp-card__kicker">{stageLabel}</div>
+                                <div className="tp-card__kicker">
+                                    {stageLabel}
+                                </div>
                                 <div className="tp-card__title">
                                     Latest session
                                 </div>
@@ -163,7 +182,11 @@ export default function TreatmentSession({
                         </div>
 
                         {!currentLatest ? (
-                            <div className="tp-session">
+                            <button
+                                type="button"
+                                className="tp-session tp-session--link"
+                                onClick={goToTreatment}
+                            >
                                 No latest session.
                             </div>
                         ) : (
@@ -234,12 +257,19 @@ export default function TreatmentSession({
                 onClose={() => setConfirmStage(false)}
             >
                 {!currentLatest ? (
-                    <div className="tp-session">
+                    <button
+                        type="button"
+                        className="tp-session tp-session--link"
+                        onClick={goToTreatment}
+                    >
                         No latest session.
                     </div>
                 ) : (
                     <div className="tp-form">
-                        <div className="tp-session" style={{ marginBottom: 12 }}>
+                        <div
+                            className="tp-session"
+                            style={{ marginBottom: 12 }}
+                        >
                             Mark <strong>{stageLabel}</strong> as completed?
                         </div>
                         <div className="tp-form__actions">
@@ -262,10 +292,13 @@ export default function TreatmentSession({
                                             `/patientRecord/readPatientRecord/${patientRecordId}`
                                         );
                                         const recordData =
-                                            recordRes?.data?.metadata?.patientRecord ||
+                                            recordRes?.data?.metadata
+                                                ?.patientRecord ||
                                             recordRes?.data?.patientRecord ||
                                             null;
-                                        const recordId = recordData?.recordId || recordData?._id;
+                                        const recordId =
+                                            recordData?.recordId ||
+                                            recordData?._id;
                                         const stageKey = String(stageLabelRaw)
                                             .toLowerCase()
                                             .includes("stage 2")
@@ -279,9 +312,12 @@ export default function TreatmentSession({
                                             `/patientRecord/updatePatientRecord/${recordId}`,
                                             {
                                                 treatmentPlan: {
-                                                    ...(recordData?.treatmentPlan || {}),
+                                                    ...(recordData?.treatmentPlan ||
+                                                        {}),
                                                     stageStatus: {
-                                                        ...(recordData?.treatmentPlan?.stageStatus ||
+                                                        ...(recordData
+                                                            ?.treatmentPlan
+                                                            ?.stageStatus ||
                                                             {}),
                                                         [stageKey]: true,
                                                     },
