@@ -54,9 +54,7 @@ export const AuthProvider = ({ children }) => {
     // --------------------------------------------------
     const loadUserMe = async () => {
         try {
-            console.log('CATCHED')
             const res = await newRequest.get('/user/me')
-            console.log(res.data.metadata)
             const user = res.data.metadata.user
             user.displayName = formatEmailToName(user.email)
             setUserInfo(user)

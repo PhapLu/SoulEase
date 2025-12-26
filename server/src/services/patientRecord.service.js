@@ -16,6 +16,7 @@ class PatientRecordService {
         if (!user) throw new AuthFailureError('Please login to continue')
 
         let doctorId
+
         if (user.role === 'doctor') {
             doctorId = userId
         } else if (user.role === 'nurse') {
@@ -27,13 +28,27 @@ class PatientRecordService {
             throw new ForbiddenError('You do not have permission to create patient records')
         }
 
+        // ⭐ LOAD DOCTOR (SOURCE OF DEFAULT PASSWORD)
+        const doctor = await User.findById(doctorId)
+        if (!doctor || doctor.role !== 'doctor') {
+            throw new BadRequestError('Assigned doctor not found')
+        }
+
+        // ⭐ CHECK DEFAULT PASSWORD
+        if (!doctor.defaultPassword || doctor.defaultPassword.trim() === '') {
+            throw new BadRequestError('Doctor default password is not set. Please set it before creating patients.')
+        }
+
+        // Prevent duplicate patient
         const existingUser = await User.findOne({ email })
         if (existingUser) throw new BadRequestError('Patient already exists')
 
+        // Folder ownership check (doctor-scoped)
         const folder = await Folder.findOne({ _id: folderId, doctorId })
         if (!folder) throw new NotFoundError('Folder not found or unauthorized')
 
-        const randomPassword = Math.random().toString(36).slice(-8)
+        // ⭐ USE DOCTOR DEFAULT PASSWORD
+        const patientPassword = doctor.defaultPassword
 
         const newUser = await User.create({
             email,
@@ -41,10 +56,11 @@ class PatientRecordService {
             dob,
             phone: phoneNumber,
             role: role === 'relative' ? 'family' : 'member',
-            password: randomPassword,
+            password: patientPassword,
             status: 'active',
         })
 
+        // Create conversation (doctor ↔ patient)
         await Conversation.create({
             members: [{ user: doctorId }, { user: newUser._id }],
             messages: [
@@ -57,9 +73,11 @@ class PatientRecordService {
             ],
         })
 
+        // Attach patient to folder
         folder.records.push(newUser._id)
         await folder.save()
 
+        // Create intake patient record
         const intakeRecord = await PatientRecord.create({
             doctorId,
             patientId: newUser._id,
@@ -103,8 +121,7 @@ class PatientRecordService {
         if (!user) throw new AuthFailureError('Please login to continue')
 
         // 2. Check patient
-        const patient = await User.findById(patientId).select('fullName email phone gender birthday dob address').lean()
-
+        const patient = await User.findById(patientId).select('fullName email phone gender birthday dob address avatar').lean()
         if (!patient) throw new NotFoundError('Patient not found')
 
         // 3. Find patient record

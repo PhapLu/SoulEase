@@ -26,8 +26,6 @@ export default function ConversationDetail() {
         fetchConversationDetail()
     }, [conversationId])
 
-    console.log(conversation)
-
     // -----------------------------
     // SOCKET: Receive incoming message
     // -----------------------------

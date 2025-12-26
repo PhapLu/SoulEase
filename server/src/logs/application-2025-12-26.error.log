@@ -65,3 +65,12 @@
 2025-12-26 17:02:08::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::6069f4fe-c4a2-41a1-b7a2-bfeec2b4a681::handler-error::{"status":404,"message":"Patient record not found"}
 2025-12-26 17:05:15::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::4dc54363-c9ab-476e-8663-7e2421b1407a::handler-error::{"status":404,"message":"Patient record not found"}
 2025-12-26 17:05:15::error::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::9870a778-91de-4ccd-bda2-71ed1f1f20c7::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 17:11:24::error::/v1/api/relative/readRelatives/694e5e803dba68d19818a23a::89cf8247-1769-4bc3-8e55-2afefea07c01::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 17:11:25::error::/v1/api/relative/readRelatives/694e5e803dba68d19818a23a::2f5c6c04-43dc-457c-89d0-ef111dbe8af7::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 17:12:08::error::/v1/api/relative/readRelatives/694e5e803dba68d19818a23a::2c625a4a-52eb-4af1-9744-7832a593a5f7::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 17:12:09::error::/v1/api/relative/readRelatives/694e5e803dba68d19818a23a::85953421-b4e3-4a2b-ac32-3d904bfe4497::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 17:14:50::error::/v1/api/relative/readRelatives/694e5e803dba68d19818a23a::33e53612-eefa-40e2-ae24-17343afb4da1::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 17:15:16::error::/v1/api/relative/readRelatives/694e5e803dba68d19818a23a::0b46bf2f-3083-4b00-86a0-23df1d2e185f::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 17:15:16::error::/v1/api/relative/readRelatives/694e5e803dba68d19818a23a::5f1a1660-c25e-417e-941c-98d10458bcf0::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 17:15:31::error::/v1/api/relative/readRelatives/694e5e803dba68d19818a23a::b99127bb-b298-4932-8f52-47180b3d9763::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-26 17:18:41::error::/v1/api/patientRecord/createPatientRecord::3db83fa0-de3d-4504-9bbe-bbe0f35e17f0::handler-error::{"status":403,"message":"Doctor default password is not set. Please set it before creating patients."}

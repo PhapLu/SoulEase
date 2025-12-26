@@ -82,17 +82,17 @@ export default function FolderClients() {
                 relationship: data.relationship,
                 folderId,
             }
+            console.log(payload)
+            // const res = await apiUtils.post('/patientRecord/createPatientRecord', payload)
 
-            const res = await apiUtils.post('/patientRecord/createPatientRecord', payload)
+            // const createdClient = res.data.metadata.user
 
-            const createdClient = res.data.metadata.user
+            // setFolderInfo((prev) => ({
+            //     ...prev,
+            //     records: [...(prev.records || []), createdClient],
+            // }))
 
-            setFolderInfo((prev) => ({
-                ...prev,
-                records: [...(prev.records || []), createdClient],
-            }))
-
-            setOpenCreateModal(false)
+            // setOpenCreateModal(false)
         } catch (err) {
             console.log(err)
             alert('Failed to create client. Please try again.')
@@ -115,7 +115,6 @@ export default function FolderClients() {
             setIsSaving(true)
             await apiUtils.delete(`/folder/deleteFolder/${folderId}`)
 
-            console.log('Folder deleted successfully')
             navigate('/workspace/patients')
         } catch (err) {
             console.log('Failed to delete folder:', err)
@@ -303,7 +302,7 @@ export default function FolderClients() {
                 </div>
 
                 {/* MODAL */}
-                {openCreateModal && <PatientModalForm onClose={() => setOpenCreateModal(false)} onSubmit={handleCreateClient} disabled={folderInfo.isArchived} />}
+                {openCreateModal && <PatientModalForm initialFolderId={folderId} lockFolder={true} onClose={() => setOpenCreateModal(false)} onSubmit={handleCreateClient} disabled={folderInfo.isArchived} />}
             </section>
         </>
     )

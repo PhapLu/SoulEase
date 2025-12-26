@@ -17,7 +17,6 @@ export default function WorkspaceLayout() {
         // only run on /workspace exactly
         if (location.pathname !== '/workspace') return
         if (!userInfo) return
-        console.log(userInfo)
         if (userInfo.role === 'clinic') {
             navigate('/workspace/staffs', { replace: true })
         } else if (userInfo.role === 'doctor' || userInfo.role === 'nurse') {

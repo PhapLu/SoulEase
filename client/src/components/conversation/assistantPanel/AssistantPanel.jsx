@@ -17,7 +17,7 @@ export default function AssistantPanel() {
     const [viewMode, setViewMode] = useState('profile') // profile | ai
     const [contactInfo, setContactInfo] = useState(null)
     const messagesEndRef = useRef(null)
-    console.log('CONTACT INFO', contactInfo)
+
     // Auto-scroll to bottom
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })

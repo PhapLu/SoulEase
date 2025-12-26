@@ -7,7 +7,6 @@ import { useAuth } from '../../../contexts/auth/AuthContext'
 export default function Conversations() {
     const [conversations, setConversations] = useState([])
     const { userInfo } = useAuth()
-    console.log(conversations)
     const role = userInfo?.role
     const isClinic = role === 'clinic'
     const emptyCTA = {
@@ -19,7 +18,6 @@ export default function Conversations() {
     useEffect(() => {
         const fetchConversations = async () => {
             const response = await apiUtils.get('/conversation/readConversations')
-            console.log('Fetched conversations:', response.data.metadata.conversations)
             setConversations(response.data.metadata.conversations)
         }
         fetchConversations()

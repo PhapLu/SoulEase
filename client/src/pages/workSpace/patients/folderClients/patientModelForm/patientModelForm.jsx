@@ -23,10 +23,16 @@ export default function PatientModalForm({ onClose, onSubmit, initialFolderId = 
                 setDoctorFolders(list)
 
                 // set default folderId if not locked
-                setFormData((prev) => ({
-                    ...prev,
-                    folderId: initialFolderId || list[0]?._id || '',
-                }))
+                setFormData((prev) => {
+                    // 🔒 Folder is locked → DO NOT TOUCH folderId
+                    if (lockFolder) return prev
+
+                    // 🔓 Folder is selectable → set default if empty
+                    return {
+                        ...prev,
+                        folderId: prev.folderId || list[0]?._id || '',
+                    }
+                })
             } catch (err) {
                 console.log('Failed to load folders', err)
             }
@@ -54,9 +60,11 @@ export default function PatientModalForm({ onClose, onSubmit, initialFolderId = 
         const payload = {
             ...formData,
         }
-
+        console.log('Submitting patient form:', payload.folderId)
         onSubmit?.(payload)
     }
+
+    console.log('FOLDER ID:', formData.folderId)
 
     return (
         <div className='patient-modal-overlay' onClick={onClose}>
