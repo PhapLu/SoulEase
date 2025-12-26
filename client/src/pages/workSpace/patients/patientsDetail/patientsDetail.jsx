@@ -10,7 +10,7 @@ import { useAuth } from "../../../../contexts/auth/AuthContext";
 import PatientsHeader from "./PatientsHeader";
 import SymptomsSection from "./SymptomsSection";
 import TreatmentSession from "./TreatmentSection/TreatmentSession.jsx";
-import StorageSection from "./StorageSection";
+import StorageSection from "./StorageSection/StorageSection.jsx";
 import PatientCharts from "./PatientCharts/PatientCharts.jsx";
 import Relative from "./Relative/Relative.jsx";
 
@@ -365,7 +365,8 @@ export default function PatientsDetail() {
         const list = [...(editForm?.symptoms || [])];
         const idx = list.findIndex(
             (s) =>
-                (s.name || "").trim().toLowerCase() === normName.toLowerCase() &&
+                (s.name || "").trim().toLowerCase() ===
+                    normName.toLowerCase() &&
                 (s.sign || "").trim().toLowerCase() === normSign.toLowerCase()
         );
 

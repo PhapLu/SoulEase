@@ -1,99 +1,104 @@
 // src/App.jsx
-import { useEffect } from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-import Layout from './Layout.jsx'
-import About from './pages/about/About.jsx'
-import LandingPage from './pages/landingPage/LandingPage.jsx'
-import SignIn from './pages/auth/SignIn.jsx'
-import SignUp from './pages/auth/SignUp.jsx'
-import AuthLayout from './pages/auth/AuthLayout.jsx'
-import Verification from './pages/auth/Verification.jsx'
-import ResourcesPage from './pages/Resources/Resources.jsx'
-import WorkspaceLayout from './pages/workSpace/WorkspaceLayout.jsx'
-import Patients from './pages/workSpace/patients/patients.jsx'
-import FolderClients from './pages/workSpace/patients/folderClients/folderClients.jsx'
-import PatientsDetail from './pages/workSpace/patients/patientsDetail/patientsDetail.jsx'
-import Services from './pages/Services/Services'
-import Pricing from './pages/Pricing/Pricing'
-import Staffs from './pages/workSpace/staffs/Staffs.jsx'
-import Notifications from './pages/workSpace/notifications/Notifications.jsx'
-import StaffDetail from './pages/workSpace/staffs/staffDetail/StaffDetail.jsx'
-import ConversationsLayout from './pages/workSpace/conversation/ConversationsLayout.jsx'
-import TreatmentDetailPage from './pages/workSpace/patients/patientsDetail/TreatmentSection/TreatmentDetailPage.jsx'
-import CreateSessionPage from './pages/workSpace/patients/patientsDetail/TreatmentSection/CreateSessionPage.jsx'
-import UserProfile from './pages/workSpace/userProfile/UserProfile.jsx'
+import { useEffect } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Layout from "./Layout.jsx";
+import About from "./pages/about/About.jsx";
+import LandingPage from "./pages/landingPage/LandingPage.jsx";
+import SignIn from "./pages/auth/SignIn.jsx";
+import SignUp from "./pages/auth/SignUp.jsx";
+import AuthLayout from "./pages/auth/AuthLayout.jsx";
+import Verification from "./pages/auth/Verification.jsx";
+import ResourcesPage from "./pages/Resources/Resources.jsx";
+import WorkspaceLayout from "./pages/workSpace/WorkspaceLayout.jsx";
+import Patients from "./pages/workSpace/patients/patients.jsx";
+import FolderClients from "./pages/workSpace/patients/folderClients/folderClients.jsx";
+import PatientsDetail from "./pages/workSpace/patients/patientsDetail/patientsDetail.jsx";
+import Services from "./pages/Services/Services";
+import Pricing from "./pages/Pricing/Pricing";
+import Staffs from "./pages/workSpace/staffs/Staffs.jsx";
+import Notifications from "./pages/workSpace/notifications/Notifications.jsx";
+import StaffDetail from "./pages/workSpace/staffs/staffDetail/StaffDetail.jsx";
+import ConversationsLayout from "./pages/workSpace/conversation/ConversationsLayout.jsx";
+import TreatmentDetailPage from "./pages/workSpace/patients/patientsDetail/TreatmentSection/TreatmentDetailPage.jsx";
+import CreateSessionPage from "./pages/workSpace/patients/patientsDetail/TreatmentSection/CreateSessionPage.jsx";
+import UserProfile from "./pages/workSpace/userProfile/UserProfile.jsx";
+// import StorageSection from "./pages/workSpace/patients/patientsDetail/StorageSection/StorageSection.jsx";
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: "/",
         element: <Layout />,
         children: [
             { index: true, element: <LandingPage /> },
-            { path: 'about', element: <About /> },
-            { path: 'resources', element: <ResourcesPage /> },
-            { path: 'services', element: <Services /> },
-            { path: 'pricing', element: <Pricing /> },
+            { path: "about", element: <About /> },
+            { path: "resources", element: <ResourcesPage /> },
+            { path: "services", element: <Services /> },
+            { path: "pricing", element: <Pricing /> },
         ],
     },
     {
-        path: '/auth',
+        path: "/auth",
         element: <AuthLayout />,
         children: [
-            { path: 'signin', element: <SignIn /> },
-            { path: 'signup', element: <SignUp /> },
-            { path: 'verification', element: <Verification /> },
+            { path: "signin", element: <SignIn /> },
+            { path: "signup", element: <SignUp /> },
+            { path: "verification", element: <Verification /> },
         ],
     },
     {
-        path: '/workspace',
+        path: "/workspace",
         element: (
             // <RequireAuth>
             <WorkspaceLayout />
             // </RequireAuth>
         ),
         children: [
-            { path: 'patients', element: <Patients /> },
-            { path: 'staffs', element: <Staffs /> },
-            { path: 'patients/folder/:folderId', element: <FolderClients /> },
+            { path: "patients", element: <Patients /> },
+            { path: "staffs", element: <Staffs /> },
+            { path: "patients/folder/:folderId", element: <FolderClients /> },
             {
-                path: 'patients/folder/:folderId/:patientRecordId',
+                path: "patients/folder/:folderId/:patientRecordId",
                 element: <PatientsDetail />,
             },
-            { path: 'staffs/:staffId', element: <StaffDetail /> },
+            { path: "staffs/:staffId", element: <StaffDetail /> },
             {
-                path: 'messages',
+                path: "messages",
                 element: <ConversationsLayout />,
-                children: [{ path: ':conversationId', element: null }],
+                children: [{ path: ":conversationId", element: null }],
             },
-            { path: 'notifications', element: <Notifications /> },
+            { path: "notifications", element: <Notifications /> },
             {
-                path: 'patients/folder/:folderId/:patientRecordId/treatment',
+                path: "patients/folder/:folderId/:patientRecordId/treatment",
                 element: <TreatmentDetailPage />,
             },
             {
-                path: 'patients/folder/:folderId/:patientRecordId/treatment/create-session',
+                path: "patients/folder/:folderId/:patientRecordId/treatment/create-session",
                 element: <CreateSessionPage />,
             },
             {
-                path: 'patients/:patientRecordId/profiles',
+                path: "patients/:patientRecordId/profiles",
                 element: <PatientsDetail />,
             },
+            // {
+            //     path: "patients/:patientRecordId/storage",
+            //     element: <StorageSection />,
+            // },
         ],
     },
-    { path: 'user/:userId', element: <UserProfile /> },
-])
+    { path: "user/:userId", element: <UserProfile /> },
+]);
 
 export default function App() {
     useEffect(() => {
         AOS.init({
             duration: 800,
             offset: 100,
-            easing: 'ease-out-cubic',
+            easing: "ease-out-cubic",
             once: false,
-        })
-    }, [])
+        });
+    }, []);
 
-    return <RouterProvider router={router} />
+    return <RouterProvider router={router} />;
 }

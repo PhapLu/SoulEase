@@ -128,6 +128,10 @@
     color: var(--tertiary-color);
 }
 
+.pd-treatment h3 {
+    cursor: pointer;
+}
+
 .pd-chart-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -225,34 +229,6 @@
     margin: 0;
     color: #6b7a74;
     font-size: 14px;
-}
-
-.pd-storage__tabs {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0;
-    margin-bottom: 12px;
-}
-
-.pd-storage__tabs button {
-    border: 1px solid #dfeee8;
-    background: #ffffff;
-    padding: 10px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.pd-storage__tabs .active {
-    background: #f2fffb;
-    color: #0a8769;
-}
-
-.pd-storage__box {
-    border: 1px solid #e5f1eb;
-    background: #ffffff;
-    border-radius: 10px;
-    height: 240px;
-    box-shadow: inset 0 0 0 1px #f5fbf8;
 }
 
 /* --- added styles for edit form & buttons --- */
