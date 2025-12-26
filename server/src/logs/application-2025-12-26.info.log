@@ -350,3 +350,43 @@
 2025-12-26 15:24:07::info::/v1/api/user/me::01314789-71bb-4b9f-9b0f-11fd010a85eb::input-params ::GET::::{}
 2025-12-26 15:24:08::info::/v1/api/user/readUserProfile/69496bfe9bc2fb43a6df32bd::a6801d9f-4064-4019-8c28-940ce18c394f::input-params ::GET::::{}
 2025-12-26 15:24:08::info::/v1/api/user/me::a51873af-1725-41ce-b731-8c8015f8b6b9::input-params ::GET::::{}
+2025-12-26 15:27:14::info::/v1/api/user/readUserProfile/69496bfe9bc2fb43a6df32bd::74f4ca44-5848-4c6c-8a38-af92770c5f54::input-params ::GET::::{}
+2025-12-26 15:32:02::info::/v1/api/user/readUserProfile/69496bfe9bc2fb43a6df32bd::e36ba702-257a-417a-b259-a722f9b3680a::input-params ::GET::::{}
+2025-12-26 15:38:33::info::/v1/api/user/readUserProfile/69496bfe9bc2fb43a6df32bd::1a6d0f0e-f07b-4dc7-9476-82c520bd3df6::input-params ::GET::::{}
+2025-12-26 15:38:33::info::/v1/api/user/readUserProfile/69496bfe9bc2fb43a6df32bd::c7bdfd7f-7dea-4572-9830-bf949dcc81f7::input-params ::GET::::{}
+2025-12-26 15:41:57::info::/v1/api/user/readUserProfile/69496bfe9bc2fb43a6df32bd::a03441e7-d438-43b4-8eaa-669e909b85c1::input-params ::GET::::{}
+2025-12-26 15:48:32::info::/v1/api/user/readUserProfile/69496bfe9bc2fb43a6df32bd::1664b44a-9819-4dd7-8c36-d7220b2b2c4d::input-params ::GET::::{}
+2025-12-26 15:48:54::info::/v1/api/user/readUserProfile/69496bfe9bc2fb43a6df32bd::a80b0227-8a42-4a91-99b9-dd2846c61756::input-params ::GET::::{}
+2025-12-26 15:51:49::info::/v1/api/user/readUserProfile/69496bfe9bc2fb43a6df32bd::3c32338e-174e-4525-882b-c497aae50faa::input-params ::GET::::{}
+2025-12-26 15:51:49::info::/v1/api/user/me::0a5b11fb-19b8-4551-ba4e-300cfb2057f5::input-params ::GET::::{}
+2025-12-26 15:51:49::info::/v1/api/user/readUserProfile/69496bfe9bc2fb43a6df32bd::28539af1-69e5-456b-8ccf-673d94e49d88::input-params ::GET::::{}
+2025-12-26 15:51:49::info::/v1/api/user/me::41218629-5405-4e47-bf01-9f4f7ebf3fed::input-params ::GET::::{}
+2025-12-26 16:05:07::info::/v1/api/user/readUserProfile/69496bfe9bc2fb43a6df32bd::4da9ae1a-3940-4213-a527-9d3157cac5e7::input-params ::GET::::{}
+2025-12-26 16:06:51::info::/v1/api/conversation/readConversations::ea9d9600-86d4-42cd-acbb-495d9caeb002::input-params ::GET::::{}
+2025-12-26 16:06:51::info::/v1/api/conversation/readConversations::b03c6a41-f1a1-456f-a873-b70ce76ebb75::input-params ::GET::::{}
+2025-12-26 16:06:54::info::/v1/api/auth/logout::be2d64e9-f513-4c2d-9b54-677849511874::input-params ::POST::::{}
+2025-12-26 16:06:54::info::/v1/api/user/me::ba9b1904-2b1c-49d9-b48e-bf5f69a55cc7::input-params ::GET::::{}
+2025-12-26 16:06:54::error::/v1/api/user/me::ba9b1904-2b1c-49d9-b48e-bf5f69a55cc7::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 16:06:54::info::/v1/api/user/me::082df983-c675-4ba3-b9cb-395b3569afd8::input-params ::GET::::{}
+2025-12-26 16:06:54::error::/v1/api/user/me::082df983-c675-4ba3-b9cb-395b3569afd8::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 16:07:00::info::/v1/api/auth/login::7a5748ae-640a-46c4-a709-fea66ea795b0::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-26 16:07:00::info::/v1/api/user/me::3527aba4-740e-4fa8-9005-7fc58637a17a::input-params ::GET::::{}
+2025-12-26 16:07:00::info::/v1/api/user/readStaffs::8a49de4a-8a6e-433c-baae-81cde98ff337::input-params ::GET::::{}
+2025-12-26 16:07:00::info::/v1/api/user/readStaffs::947b0c9e-8ac7-4a88-a51a-15a45561830e::input-params ::GET::::{}
+2025-12-26 16:07:58::info::/v1/api/auth/logout::d877f202-6f01-41b0-b32f-001130eaafed::input-params ::POST::::{}
+2025-12-26 16:07:58::info::/v1/api/user/me::841fb5ed-a8d2-4a83-a21d-9a4e87dbce68::input-params ::GET::::{}
+2025-12-26 16:07:58::error::/v1/api/user/me::841fb5ed-a8d2-4a83-a21d-9a4e87dbce68::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 16:07:58::info::/v1/api/user/me::09e61e33-4240-45bf-828a-94cdfc17ef35::input-params ::GET::::{}
+2025-12-26 16:07:58::error::/v1/api/user/me::09e61e33-4240-45bf-828a-94cdfc17ef35::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 16:08:02::info::/v1/api/auth/login::bab69b93-1fa2-457b-9043-b41e155e7591::input-params ::POST::::{"email":"doctor2@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-26 16:08:02::info::/v1/api/user/me::1ddc620f-e427-4c44-97e7-6c428d32e713::input-params ::GET::::{}
+2025-12-26 16:08:02::info::/v1/api/folder/readFolders::327c9080-acd9-4e50-8492-84e393b92470::input-params ::GET::::{}
+2025-12-26 16:08:02::info::/v1/api/folder/readFolders::43439d3c-7553-4fdd-a39c-e34044d638db::input-params ::GET::::{}
+2025-12-26 16:08:26::info::/v1/api/folder/readFolders::db776aa9-d157-43f3-9d65-e29fbcce7707::input-params ::GET::::{}
+2025-12-26 16:08:26::info::/v1/api/user/me::da87c51e-5da0-443a-b277-595e326fdca3::input-params ::GET::::{}
+2025-12-26 16:08:26::info::/v1/api/user/me::004b0e7e-3694-4e08-b492-9dfa6e09eb85::input-params ::GET::::{}
+2025-12-26 16:08:27::info::/v1/api/folder/readFolders::ac1b1e22-a48e-4a46-98ea-03bfcb2b8c29::input-params ::GET::::{}
+2025-12-26 16:09:32::info::/v1/api/folder/readFolders::09323718-daef-4795-a88c-c81641128176::input-params ::GET::::{}
+2025-12-26 16:09:32::info::/v1/api/user/me::59efd06e-f3b5-46c1-a0ba-1f225bf32098::input-params ::GET::::{}
+2025-12-26 16:09:33::info::/v1/api/user/me::2edc194a-9a7d-492a-9a88-05ea9ee2bf97::input-params ::GET::::{}
+2025-12-26 16:09:33::info::/v1/api/folder/readFolders::cc4f1d16-8ad2-4315-b0ad-bd17cfad9a75::input-params ::GET::::{}

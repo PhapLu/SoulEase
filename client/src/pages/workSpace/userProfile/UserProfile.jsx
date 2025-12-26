@@ -143,7 +143,7 @@ export default function UserProfile() {
                 <div className="pp-navbar-right" />
             </div>
 
-            <div div className="pp-layout">
+            <div className="pp-layout">
                 {/* COL-3 */}
                 <aside className="pp-col-3">
                     <section className="pp-card">
