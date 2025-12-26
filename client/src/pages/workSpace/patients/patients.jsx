@@ -5,6 +5,7 @@ import folderIcon from '../../../assets/folder.svg'
 import WorkspaceTopBar from '../../../components/Workspace/WorkspaceTopBar'
 import FolderModalForm from './folderClients/folderModelForm/folderModelForm'
 import { apiUtils } from '../../../utils/newRequest'
+import emptyDoctor from '../../../assets/empty_profile.png'
 
 export default function Patients() {
     const navigate = useNavigate()
@@ -60,7 +61,7 @@ export default function Patients() {
             <section className='patients-card'>
                 <div className='patients-card-top'>
                     <div className='patients-tabs'>
-                        <p className='patients-tab'>Documents Groups Clients</p>
+                        <p className='patients-tab'>Documents Groups Patients</p>
                     </div>
 
                     <button className='patients-btn-ghost' onClick={() => setOpenFolderModal(true)}>
@@ -68,6 +69,18 @@ export default function Patients() {
                         <span>Folder</span>
                     </button>
                 </div>
+
+                {!isLoading && folders.length === 0 && (
+                    <div className='doctors-empty'>
+                        <img src={emptyDoctor} alt='Empty patients' className='doctors-empty-avatar' />
+                        <h3 className='doctors-empty-title'>No folders yet</h3>
+                        <p className='doctors-empty-text'>Patient folders will appear here once you start organizing your records.</p>
+
+                        <button className='doctors-btn-primary' onClick={() => setOpenFolderModal(true)}>
+                            + Create your first folder
+                        </button>
+                    </div>
+                )}
 
                 <div className='patients-folders-grid'>
                     {sortedFolders.map((folder) => (

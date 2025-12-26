@@ -12,22 +12,32 @@ class FolderService {
 
         // 1. Check user
         const user = await User.findById(userId)
-        console.log(userId)
-        console.log(req.body)
-        console.log(user)
         if (!user) throw new AuthFailureError('Please login to continue')
 
         // 2. Validate inputs
         if (!title || title.trim() === '') {
             throw new BadRequestError('Folder title is required')
         }
+
         // 3. Create folder
-        const newFolder = new Folder({
-            title,
-            description: description ? description.trim() : '',
-            doctorId: userId,
-        })
-        await newFolder.save()
+        let newFolder
+        if (user.role == 'doctor') {
+            newFolder = new Folder({
+                title,
+                description: description ? description.trim() : '',
+                doctorId: userId,
+            })
+            await newFolder.save()
+        } else if (user.role == 'nurse') {
+            newFolder = new Folder({
+                title,
+                description: description ? description.trim() : '',
+                doctorId: user.nurseProfile.assistDoctorId,
+            })
+            await newFolder.save()
+        } else {
+            throw new AuthFailureError('You do not have permission to access folders')
+        }
 
         return { folder: newFolder }
     }
@@ -40,7 +50,16 @@ class FolderService {
         if (!user) throw new AuthFailureError('Please login to continue')
 
         // 2. Fetch folders
-        const folders = await Folder.find({ doctorId: userId }).sort({ createdAt: -1 })
+        let folders
+        if (user.role == 'nurse') {
+            const doctorId = user.nurseProfile.assistDoctorId
+            folders = await Folder.find({ doctorId: doctorId }).sort({ createdAt: -1 })
+        } else if (user.role == 'doctor') {
+            folders = await Folder.find({ doctorId: userId }).sort({ createdAt: -1 })
+        } else {
+            throw new AuthFailureError('You do not have permission to access folders')
+        }
+
         return { folders }
     }
 
@@ -48,13 +67,26 @@ class FolderService {
         const userId = req.userId
         const folderId = req.params.folderId
 
-        // 1. Check user, folder
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
-        const folder = await Folder.findOne({ _id: folderId, doctorId: userId }).populate({
+
+        let doctorId
+        if (user.role === 'doctor') {
+            doctorId = userId
+        } else if (user.role === 'nurse') {
+            doctorId = user.nurseProfile.assistDoctorId
+        } else {
+            throw new AuthFailureError('You do not have permission to access folders')
+        }
+
+        const folder = await Folder.findOne({
+            _id: folderId,
+            doctorId,
+        }).populate({
             path: 'records',
             select: 'fullName email phone dob role',
         })
+
         if (!folder) throw new NotFoundError('Folder not found')
 
         return { folder }
@@ -65,18 +97,28 @@ class FolderService {
         const folderId = req.params.folderId
         const { recordId } = req.body
 
-        // 1. Check user, folder
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
-        const folder = await Folder.findOne({ _id: folderId, doctorId: userId })
+
+        let doctorId
+        if (user.role === 'doctor') {
+            doctorId = userId
+        } else if (user.role === 'nurse') {
+            doctorId = user.nurseProfile.assistDoctorId
+        } else {
+            throw new AuthFailureError('You do not have permission to access folders')
+        }
+
+        const folder = await Folder.findOne({ _id: folderId, doctorId })
         if (!folder) throw new NotFoundError('Folder not found')
 
-        // 2. Add record to folder if not already present
         if (folder.records.includes(recordId)) {
             throw new BadRequestError('Record already exists in the folder')
         }
+
         folder.records.push(recordId)
         await folder.save()
+
         return { folder }
     }
 
@@ -84,29 +126,29 @@ class FolderService {
         const userId = req.userId
         const folderId = req.params.folderId
 
-        // 1. Validate user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
 
-        // 2. Validate folder ownership
-        const existingFolder = await Folder.findOne({ _id: folderId, doctorId: userId })
-        if (!existingFolder) throw new NotFoundError('Folder not found')
-
-        // 3. Allowed updatable fields
-        const allowedUpdates = ['title', 'description']
-        const updateData = {}
-
-        for (const key of allowedUpdates) {
-            if (req.body[key] !== undefined) {
-                updateData[key] = req.body[key].trim?.() || req.body[key]
-            }
+        let doctorId
+        if (user.role === 'doctor') {
+            doctorId = userId
+        } else if (user.role === 'nurse') {
+            doctorId = user.nurseProfile.assistDoctorId
+        } else {
+            throw new AuthFailureError('You do not have permission to access folders')
         }
 
-        // 4. Perform update & return full updated folder
+        const existingFolder = await Folder.findOne({ _id: folderId, doctorId })
+        if (!existingFolder) throw new NotFoundError('Folder not found')
+
+        const updateData = {}
+        if (req.body.title !== undefined) updateData.title = req.body.title.trim()
+        if (req.body.description !== undefined) updateData.description = req.body.description.trim()
+
         const updatedFolder = await Folder.findByIdAndUpdate(folderId, updateData, {
-            new: true, // return updated document
-            runValidators: true, // apply schema validation
-        }).populate('records') // ensure folders return full records list
+            new: true,
+            runValidators: true,
+        }).populate('records')
 
         return { folder: updatedFolder }
     }
@@ -115,29 +157,36 @@ class FolderService {
         const userId = req.userId
         const folderId = req.params.folderId
 
-        // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
 
-        // 2. Find folder (ensure ownership)
-        const folder = await Folder.findOne({ _id: folderId, doctorId: userId })
+        let doctorId
+        if (user.role === 'doctor') {
+            doctorId = userId
+        } else if (user.role === 'nurse') {
+            doctorId = user.nurseProfile.assistDoctorId
+        } else {
+            throw new AuthFailureError('You do not have permission to access folders')
+        }
+
+        const folder = await Folder.findOne({ _id: folderId, doctorId })
         if (!folder) throw new NotFoundError('Folder not found')
 
-        // Optional: prevent deleting archive folder itself
-        if (folder.isArchived) throw new BadRequestError('Archived folder cannot be deleted')
-        if (folder.doctorId.toString() !== userId) throw new BadRequestError('You do not have permission to delete this folder')
+        if (folder.isArchived) {
+            throw new BadRequestError('Archived folder cannot be deleted')
+        }
 
-        // 3. If folder has records, move them into the archived folder
-        const hasRecords = Array.isArray(folder.records) && folder.records.length > 0
+        const hasRecords = folder.records.length > 0
 
         if (hasRecords) {
-            console.log('HAS RECORDS')
-            // 3.1 Find or create archived folder for this doctor
-            let archivedFolder = await Folder.findOne({ doctorId: userId, isArchived: true })
+            let archivedFolder = await Folder.findOne({
+                doctorId,
+                isArchived: true,
+            })
 
             if (!archivedFolder) {
                 archivedFolder = await Folder.create({
-                    doctorId: userId,
+                    doctorId,
                     title: 'Archived Records',
                     description: 'Automatically created archive folder',
                     isArchived: true,
@@ -145,12 +194,10 @@ class FolderService {
                 })
             }
 
-            // 3.2 Move records from current folder to archive
             archivedFolder.records.push(...folder.records)
             await archivedFolder.save()
         }
 
-        // 4. Delete the original folder
         await folder.deleteOne()
 
         return { message: 'Folder deleted successfully' }

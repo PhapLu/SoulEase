@@ -219,7 +219,7 @@ export default function FolderClients() {
                                                 <path d='M444-144v-300H144v-72h300v-300h72v300h300v72H516v300h-72Z' />
                                             </svg>
                                         </span>
-                                        <span>Add Client</span>
+                                        <span>Add Patient</span>
                                     </button>
 
                                     <button className='folder-btn-delete' onClick={handleDeleteEdit}>

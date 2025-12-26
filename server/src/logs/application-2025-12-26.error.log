@@ -16,3 +16,7 @@
 2025-12-26 13:19:42::error::/v1/api/user/me::b99e5227-1306-4d94-9e24-9abab9fac856::handler-error::{"status":403,"message":"Access token missing"}
 2025-12-26 13:19:42::error::/v1/api/user/me::63c6f29f-4033-4086-979e-7f940f3c8bfb::handler-error::{"status":403,"message":"Access token missing"}
 2025-12-26 14:49:03::error::/v1/api/user/createStaff::a1e3c94b-484a-4ede-9e63-d5d6adfcc3e4::handler-error::{"status":403,"message":"Clinic default password is not set"}
+2025-12-26 15:28:21::error::/v1/api/user/me::8bb5b9d6-556b-432d-8c5c-559adb69aeb6::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 15:28:21::error::/v1/api/user/me::0c1e371d-4d73-4bd0-895f-1f9a65111571::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-26 16:19:49::error::/v1/api/user/me::346f7f93-21c2-4a40-841a-7f8d7fdbc39a::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-26 16:19:49::error::/v1/api/user/me::6ca27150-5ebc-49c7-ad59-68b8c0ac535c::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
