@@ -48,7 +48,6 @@ export default function PatientsDetail() {
 
     // SYMPTOMS EDIT MODE
     const [editingSymptoms, setEditingSymptoms] = useState(false);
-    const [originalSymptoms, setOriginalSymptoms] = useState([]);
 
     const [saving, setSaving] = useState(false);
 
@@ -231,18 +230,11 @@ export default function PatientsDetail() {
         }
     };
 
-    // -------- SYMPTOMS EDIT -------
-    const handleEditSymptoms = () => {
-        if (isReadOnly) return;
-        setOriginalSymptoms(editForm?.symptoms || []);
-        setEditingSymptoms(true);
-    };
-
     const handleCancelSymptoms = () => {
         if (isReadOnly) return;
         setEditForm((prev) => ({
             ...prev,
-            symptoms: [...originalSymptoms],
+            symptoms: [...(patient?.symptoms || [])],
         }));
         setEditingSymptoms(false);
     };
@@ -264,7 +256,6 @@ export default function PatientsDetail() {
 
             await persistRecord(updated);
             setEditingSymptoms(false);
-            setOriginalSymptoms(cleanedSymptoms);
         } catch (err) {
             console.error(err);
         }
