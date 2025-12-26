@@ -120,15 +120,78 @@
 .landing-hero__panel {
     position: relative;
     max-width: 1200px;
-    height: 600px;
+    height: fit-content;
+    padding: 20px;
     margin: 0 auto;
     border-radius: 22px;
     box-shadow: 0 20px 55px rgba(17, 70, 63, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.7);
-    overflow: hidden;
+    overflow: visible;
 }
 
-.landing-hero__panel-glow {
-    position: absolute;
+.landing-metric-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 16px;
+  min-width: 220px;
+
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+
+  font-size: 13px;
+  z-index: 3;
+}
+
+.metric-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e6f6f2;
+  font-size: 18px;
+}
+
+.metric-content {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.metric-label {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.metric-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0a8769;
+}
+
+.metric-top-left {
+  top: 48px;
+  left: -16%;
+}
+
+.metric-bottom-right {
+  bottom: 48px;
+  right: -16%;
+}
+
+.landing-hero__panel-glow img {
+    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  
 }
 
 .landing-section {
