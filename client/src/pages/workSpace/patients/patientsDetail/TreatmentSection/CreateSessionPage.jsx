@@ -1,5 +1,5 @@
 // CreateSessionPage.jsx
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiUtils } from "../../../../../utils/newRequest";
 import "./TreatmentSession.css";
@@ -9,8 +9,31 @@ export default function CreateSessionPage() {
     const navigate = useNavigate();
     const [saving, setSaving] = useState(false);
     const [err, setErr] = useState("");
-    const [symptomsOptions, setSymptomsOptions] = useState([]);
-    const [selectedOption, setSelectedOption] = useState("");
+    const builtInSymptoms = useMemo(
+        () => [
+            { id: "builtin-1", name: "Headache", sign: "Persistent head pain" },
+            { id: "builtin-2", name: "Fatigue", sign: "Constant tiredness" },
+            { id: "builtin-3", name: "Insomnia", sign: "Difficulty sleeping" },
+            { id: "builtin-4", name: "Anxiety", sign: "Excessive worry or nervousness" },
+            { id: "builtin-5", name: "Depressed Mood", sign: "Prolonged sadness" },
+            { id: "builtin-6", name: "Loss of Appetite", sign: "Reduced desire to eat" },
+            { id: "builtin-7", name: "Difficulty Concentrating", sign: "Trouble focusing" },
+            { id: "builtin-8", name: "Irritability", sign: "Easily frustrated or angered" },
+            { id: "builtin-9", name: "Restlessness", sign: "Inability to relax or stay still" },
+            { id: "builtin-10", name: "Low Motivation", sign: "Lack of interest in daily activities" },
+            { id: "custom-other", name: "Other", sign: "", isCustom: true },
+        ],
+        []
+    );
+    const [symptomsOptions, setSymptomsOptions] = useState(builtInSymptoms);
+    const [existingSymptoms, setExistingSymptoms] = useState([]);
+    const presetById = useMemo(() => {
+        const map = {};
+        symptomsOptions.forEach((p) => {
+            map[p.id] = p;
+        });
+        return map;
+    }, [symptomsOptions]);
     const [stageOptions, setStageOptions] = useState([
         "Stage 1: Stabilization & coping skills",
     ]);
@@ -51,7 +74,17 @@ export default function CreateSessionPage() {
                           }))
                           .filter((s) => s.name || s.sign)
                     : [];
-                setSymptomsOptions(symptomList);
+                setExistingSymptoms(symptomList);
+                const merged = [...builtInSymptoms];
+                symptomList.forEach((s) => {
+                    const exists = merged.some(
+                        (m) =>
+                            m.name?.toLowerCase() === (s.name || "").toLowerCase() &&
+                            m.sign?.toLowerCase() === (s.sign || "").toLowerCase()
+                    );
+                    if (!exists) merged.push(s);
+                });
+                setSymptomsOptions(merged);
 
                 // determine allowed stage
                 const stage1Done = !!stageStatus.stage1;
@@ -73,36 +106,31 @@ export default function CreateSessionPage() {
         };
 
         fetchSymptoms();
-    }, [patientRecordId]);
+    }, [patientRecordId, builtInSymptoms]);
 
-    const addSymptomFromOption = () => {
-        if (!selectedOption) return;
-        const opt = symptomsOptions.find((s) => s.id === selectedOption);
+    const handleToggleSymptom = (optId, checked) => {
+        const opt = symptomsOptions.find((s) => s.id === optId);
         if (!opt) return;
         setForm((p) => {
-            const exists = p.symptoms.some((s) => s.id === opt.id);
-            if (exists) return p;
-            return {
-                ...p,
-                symptoms: [...p.symptoms, { ...opt }],
-            };
+            const exists = p.symptoms.some((s) => s.id === optId);
+            if (checked && !exists) {
+                const today = new Date().toISOString().split("T")[0];
+                const toAdd = {
+                    ...opt,
+                    date: opt.date || today,
+                    status: opt.status || "Active",
+                    isCustom: opt.isCustom || opt.id === "custom-other",
+                };
+                return { ...p, symptoms: [...p.symptoms, toAdd] };
+            }
+            if (!checked) {
+                return {
+                    ...p,
+                    symptoms: p.symptoms.filter((s) => s.id !== optId),
+                };
+            }
+            return p;
         });
-    };
-
-    const addBlankSymptom = () => {
-        setForm((p) => ({
-            ...p,
-            symptoms: [
-                ...p.symptoms,
-                {
-                    id: `sym-${Date.now()}`,
-                    name: "",
-                    sign: "",
-                    date: new Date().toISOString().split("T")[0],
-                    status: "Active",
-                },
-            ],
-        }));
     };
 
     const goBackToTreatment = () => {
@@ -149,17 +177,38 @@ export default function CreateSessionPage() {
                 ? record.treatmentSections
                 : [];
 
-            const selectedSymptoms = (form.symptoms || []).map((s) => ({
-                id: s.id || `sym-${Date.now()}`,
+            const selectedSymptoms = (form.symptoms || []).map((s, idx) => ({
+                id: s.id || `sym-${Date.now()}-${idx}`,
                 name: (s.name || "").trim(),
                 sign: (s.sign || "").trim(),
                 date: s.date || "",
                 status: s.status || "",
+                isCustom: !!s.isCustom,
             }));
             const focusText = selectedSymptoms
                 .map((s) => s.name || s.sign)
                 .filter(Boolean)
                 .join(", ");
+
+            // merge symptoms into patient record
+            const today = new Date().toISOString().split("T")[0];
+            const mergedSymptoms = [...existingSymptoms];
+            selectedSymptoms.forEach((s, idx) => {
+                const existsIdx = mergedSymptoms.findIndex(
+                    (m) =>
+                        (m.name || "").toLowerCase() === (s.name || "").toLowerCase() &&
+                        (m.sign || "").toLowerCase() === (s.sign || "").toLowerCase()
+                );
+                if (existsIdx === -1) {
+                    mergedSymptoms.push({
+                        id: s.id || `sym-${Date.now()}-${idx}`,
+                        name: s.name || s.sign || "Symptom",
+                        sign: s.sign,
+                        date: s.date || today,
+                        status: s.status || "Active",
+                    });
+                }
+            });
 
             const sanitizedStage = stageOptions.includes(form.stage)
                 ? form.stage
@@ -192,6 +241,7 @@ export default function CreateSessionPage() {
                 {
                     treatmentSessions: nextSessions,
                     treatmentSections: nextSessions,
+                    symptoms: mergedSymptoms,
                 }
             );
 
@@ -256,128 +306,163 @@ export default function CreateSessionPage() {
                             <div className="tp-list__tools" style={{ padding: 0 }}>
                                 <div style={{ display: "grid", gap: 10 }}>
                                     {form.symptoms?.length ? (
-                                        form.symptoms.map((sym, idx) => (
-                                            <div
-                                                key={sym.id || idx}
-                                                className="tp-card"
-                                                style={{
-                                                    padding: 12,
-                                                    boxShadow: "none",
-                                                    borderColor: "var(--border)",
-                                                }}
-                                            >
+                                        form.symptoms.map((sym, idx) => {
+                                            const match = sym.name
+                                                ? symptomsOptions.find(
+                                                      (opt) =>
+                                                          opt.name?.toLowerCase() === sym.name.toLowerCase()
+                                                  )
+                                                : null;
+                                            const selectValue = match ? match.id : "custom-other";
+                                            const isCustom = sym.isCustom || selectValue === "custom-other";
+                                            return (
                                                 <div
+                                                    key={sym.id || idx}
+                                                    className="tp-card"
                                                     style={{
-                                                        display: "grid",
-                                                        gap: 10,
-                                                        gridTemplateColumns:
-                                                            "repeat(auto-fit, minmax(200px, 1fr))",
-                                                        alignItems: "center",
+                                                        padding: 12,
+                                                        boxShadow: "none",
+                                                        borderColor: "var(--border)",
                                                     }}
                                                 >
-                                                    <label className="tp-form__field">
-                                                        <div className="tp-form__label">
-                                                            Name
-                                                        </div>
-                                                        <input
-                                                            className="tp-input"
-                                                            value={sym.name}
-                                                            onChange={(e) =>
-                                                                setForm((p) => {
-                                                                    const next = [...p.symptoms];
-                                                                    next[idx] = {
-                                                                        ...next[idx],
-                                                                        name: e.target.value,
-                                                                    };
-                                                                    return { ...p, symptoms: next };
-                                                                })
-                                                            }
-                                                        />
-                                                    </label>
-                                                    <label className="tp-form__field">
-                                                        <div className="tp-form__label">
-                                                            Sign
-                                                        </div>
-                                                        <input
-                                                            className="tp-input"
-                                                            value={sym.sign}
-                                                            onChange={(e) =>
-                                                                setForm((p) => {
-                                                                    const next = [...p.symptoms];
-                                                                    next[idx] = {
-                                                                        ...next[idx],
-                                                                        sign: e.target.value,
-                                                                    };
-                                                                    return { ...p, symptoms: next };
-                                                                })
-                                                            }
-                                                        />
-                                                    </label>
-                                                    <label className="tp-form__field">
-                                                        <div className="tp-form__label">
-                                                            Date
-                                                        </div>
-                                                        <input
-                                                            className="tp-input"
-                                                            type="date"
-                                                            value={sym.date}
-                                                            onChange={(e) =>
-                                                                setForm((p) => {
-                                                                    const next = [...p.symptoms];
-                                                                    next[idx] = {
-                                                                        ...next[idx],
-                                                                        date: e.target.value,
-                                                                    };
-                                                                    return { ...p, symptoms: next };
-                                                                })
-                                                            }
-                                                        />
-                                                    </label>
-                                                    <label className="tp-form__field">
-                                                        <div className="tp-form__label">
-                                                            Status
-                                                        </div>
-                                                        <select
-                                                            className="tp-input"
-                                                            value={sym.status}
-                                                            onChange={(e) =>
-                                                                setForm((p) => {
-                                                                    const next = [...p.symptoms];
-                                                                    next[idx] = {
-                                                                        ...next[idx],
-                                                                        status: e.target.value,
-                                                                    };
-                                                                    return { ...p, symptoms: next };
-                                                                })
-                                                            }
-                                                        >
-                                                            <option>Active</option>
-                                                            <option>Resolved</option>
-                                                            <option>Pending</option>
-                                                        </select>
-                                                    </label>
                                                     <div
-                                                        className="tp-actions"
-                                                        style={{ justifyContent: "flex-start" }}
+                                                        style={{
+                                                            display: "grid",
+                                                            gap: 10,
+                                                            gridTemplateColumns:
+                                                                "repeat(auto-fit, minmax(200px, 1fr))",
+                                                            alignItems: "center",
+                                                        }}
                                                     >
-                                                        <button
-                                                            type="button"
-                                                            className="tp-btn-icon tp-btn-icon--danger"
-                                                            onClick={() =>
-                                                                setForm((p) => ({
-                                                                    ...p,
-                                                                    symptoms: p.symptoms.filter(
-                                                                        (_s, i) => i !== idx
-                                                                    ),
-                                                                }))
-                                                            }
+                                                        <label className="tp-form__field">
+                                                            <div className="tp-form__label">
+                                                                Name
+                                                            </div>
+                                                            <select
+                                                                className="tp-input"
+                                                                value={selectValue}
+                                                                onChange={(e) => {
+                                                                    const val = e.target.value;
+                                                                    if (val === "custom-other") {
+                                                                        setForm((p) => {
+                                                                            const next = [...p.symptoms];
+                                                                            next[idx] = {
+                                                                                ...next[idx],
+                                                                                name: "",
+                                                                                sign: "",
+                                                                                isCustom: true,
+                                                                            };
+                                                                            return { ...p, symptoms: next };
+                                                                        });
+                                                                        return;
+                                                                    }
+                                                                    const preset = presetById[val];
+                                                                    if (preset) {
+                                                                        setForm((p) => {
+                                                                            const next = [...p.symptoms];
+                                                                            next[idx] = {
+                                                                                ...next[idx],
+                                                                                name: preset.name,
+                                                                                sign: preset.sign,
+                                                                                isCustom: false,
+                                                                            };
+                                                                            return { ...p, symptoms: next };
+                                                                        });
+                                                                    }
+                                                                }}
+                                                            >
+                                                                {symptomsOptions.map((opt) => (
+                                                                    <option key={opt.id} value={opt.id}>
+                                                                        {opt.name}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
+                                                        </label>
+                                                        <label className="tp-form__field">
+                                                            <div className="tp-form__label">
+                                                                Sign
+                                                            </div>
+                                                            <input
+                                                                className="tp-input"
+                                                                value={isCustom ? sym.sign : match?.sign || sym.sign}
+                                                                onChange={(e) =>
+                                                                    setForm((p) => {
+                                                                        const next = [...p.symptoms];
+                                                                        next[idx] = {
+                                                                            ...next[idx],
+                                                                            sign: e.target.value,
+                                                                        };
+                                                                        return { ...p, symptoms: next };
+                                                                    })
+                                                                }
+                                                                readOnly={!isCustom}
+                                                                placeholder="Sign"
+                                                            />
+                                                        </label>
+                                                        <label className="tp-form__field">
+                                                            <div className="tp-form__label">
+                                                                Date
+                                                            </div>
+                                                            <input
+                                                                className="tp-input"
+                                                                type="date"
+                                                                value={sym.date}
+                                                                onChange={(e) =>
+                                                                    setForm((p) => {
+                                                                        const next = [...p.symptoms];
+                                                                        next[idx] = {
+                                                                            ...next[idx],
+                                                                            date: e.target.value,
+                                                                        };
+                                                                        return { ...p, symptoms: next };
+                                                                    })
+                                                                }
+                                                            />
+                                                        </label>
+                                                        <label className="tp-form__field">
+                                                            <div className="tp-form__label">
+                                                                Status
+                                                            </div>
+                                                            <select
+                                                                className="tp-input"
+                                                                value={sym.status}
+                                                                onChange={(e) =>
+                                                                    setForm((p) => {
+                                                                        const next = [...p.symptoms];
+                                                                        next[idx] = {
+                                                                            ...next[idx],
+                                                                            status: e.target.value,
+                                                                        };
+                                                                        return { ...p, symptoms: next };
+                                                                    })
+                                                                }
+                                                            >
+                                                                <option>Active</option>
+                                                                <option>Resolved</option>
+                                                                <option>Pending</option>
+                                                            </select>
+                                                        </label>
+                                                        <div
+                                                            className="tp-actions"
+                                                            style={{ justifyContent: "flex-start" }}
                                                         >
-                                                            Remove
-                                                        </button>
+                                                            <button
+                                                                type="button"
+                                                                className="tp-btn-icon tp-btn-icon--danger"
+                                                                onClick={() =>
+                                                                    setForm((p) => ({
+                                                                        ...p,
+                                                                        symptoms: p.symptoms.filter((_s, i) => i !== idx),
+                                                                    }))
+                                                                }
+                                                            >
+                                                                Remove
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        ))
+                                            );
+                                        })
                                     ) : (
                                         <span className="tp-muted">
                                             No symptoms selected.
@@ -385,42 +470,29 @@ export default function CreateSessionPage() {
                                     )}
                                 </div>
 
-                                <div
-                                    style={{
-                                        display: "grid",
-                                        gap: 8,
-                                        marginTop: 14,
-                                    }}
-                                >
-                                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                                        <select
-                                            className="tp-input"
-                                            value={selectedOption}
-                                            onChange={(e) => setSelectedOption(e.target.value)}
-                                            style={{ maxWidth: 320 }}
-                                        >
-                                            <option value="">Add from existing symptoms</option>
-                                            {symptomsOptions.map((sym) => (
-                                                <option key={sym.id} value={sym.id}>
-                                                    {sym.name || sym.sign || sym.id}
-                                                </option>
-                                            ))}
-                                        </select>
-                                        <button
-                                            type="button"
-                                            className="tp-btn tp-btn--ghost"
-                                            onClick={addSymptomFromOption}
-                                        >
-                                            Add selected
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="tp-btn"
-                                            onClick={addBlankSymptom}
-                                        >
-                                            Add new symptom
-                                        </button>
-                                    </div>
+                                <div className="symptom-add-container" style={{ marginTop: 8 }}>
+                                    <button
+                                        type="button"
+                                        className="tp-btn tp-btn--ghost"
+                                        onClick={() =>
+                                            setForm((p) => ({
+                                                ...p,
+                                                symptoms: [
+                                                    ...p.symptoms,
+                                                    {
+                                                        id: `sym-${Date.now()}`,
+                                                        name: "Headache",
+                                                        sign: "Persistent head pain",
+                                                        date: new Date().toISOString().split("T")[0],
+                                                        status: "Active",
+                                                        isCustom: false,
+                                                    },
+                                                ],
+                                            }))
+                                        }
+                                    >
+                                        Add symptom
+                                    </button>
                                 </div>
                             </div>
                         </label>

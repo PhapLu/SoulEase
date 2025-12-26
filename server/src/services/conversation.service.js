@@ -122,7 +122,9 @@ class ConversationService {
         const { conversationId } = req.params
         const userId = req.userId
 
-        const conversation = await Conversation.findById(conversationId).populate('members.user', 'fullName avatar').populate('messages.senderId', 'fullName avatar')
+        const conversation = await Conversation.findById(conversationId)
+            .populate('members.user', 'fullName avatar email phone address dob gender role')
+            .populate('messages.senderId', 'fullName avatar')
 
         return {
             conversation,

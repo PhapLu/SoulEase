@@ -91,6 +91,7 @@ export default function TreatmentDetailPage() {
     // UI state
     const [query, setQuery] = useState('')
     const [expandedStage3, setExpandedStage3] = useState(true)
+    const [sessionDetail, setSessionDetail] = useState(null)
 
     // Modals
     const [openPlanModal, setOpenPlanModal] = useState(false)
@@ -323,7 +324,13 @@ export default function TreatmentDetailPage() {
                                             {filtered
                                                 .filter((s) => getStageNumber(s.stage || s.status) === stageNum)
                                                 .map((s) => (
-                                                    <div className='tp-row' key={s.id || `${s.date}-${s.focus}`}>
+                                                    <div
+                                                        className='tp-row'
+                                                        key={s.id || `${s.date}-${s.focus}`}
+                                                        onClick={() => setSessionDetail(s)}
+                                                        style={{ cursor: 'pointer' }}
+                                                        title='View session details'
+                                                    >
                                                         <div className='tp-td tp-td--mono'>{s.date || '—'}</div>
 
                                                         <div className='tp-td'>
@@ -354,6 +361,75 @@ export default function TreatmentDetailPage() {
             )}
 
             {/* MODALS */}
+            <StageModal open={!!sessionDetail} title='Session details' onClose={() => setSessionDetail(null)}>
+                {sessionDetail ? (
+                    <div className='tp-form'>
+                        <div className='tp-form__grid'>
+                            <label className='tp-form__field'>
+                                <div className='tp-form__label'>Date</div>
+                                <div className='tp-field__value'>{sessionDetail.date || '—'}</div>
+                            </label>
+                            <label className='tp-form__field'>
+                                <div className='tp-form__label'>Stage</div>
+                                <div className='tp-field__value'>{sessionDetail.stage || sessionDetail.status || '—'}</div>
+                            </label>
+                            <label className='tp-form__field'>
+                                <div className='tp-form__label'>Risk</div>
+                                <RiskBadge level={sessionDetail.risk || 'Low'} />
+                            </label>
+                            <label className='tp-form__field'>
+                                <div className='tp-form__label'>Severity</div>
+                                <div className='tp-field__value'>{sessionDetail.severity ?? '—'}/10</div>
+                            </label>
+                            <label className='tp-form__field'>
+                                <div className='tp-form__label'>PHQ-9</div>
+                                <div className='tp-field__value'>{sessionDetail.phq9 ?? '—'}</div>
+                            </label>
+                            <label className='tp-form__field'>
+                                <div className='tp-form__label'>GAD-7</div>
+                                <div className='tp-field__value'>{sessionDetail.gad7 ?? '—'}</div>
+                            </label>
+                            <label className='tp-form__field tp-form__field--span2'>
+                                <div className='tp-form__label'>Result</div>
+                                <div className='tp-field__value'>{decodeText(sessionDetail.result || sessionDetail.focus || '—')}</div>
+                            </label>
+                            <label className='tp-form__field tp-form__field--span2'>
+                                <div className='tp-form__label'>Notes</div>
+                                <div className='tp-field__value tp-muted' style={{ whiteSpace: 'pre-wrap' }}>
+                                    {sessionDetail.note || '—'}
+                                </div>
+                            </label>
+                            <label className='tp-form__field tp-form__field--span2'>
+                                <div className='tp-form__label'>Symptoms</div>
+                                <div className='tp-field__value' style={{ display: 'grid', gap: 8 }}>
+                                    {Array.isArray(sessionDetail.symptoms) && sessionDetail.symptoms.length ? (
+                                        sessionDetail.symptoms.map((sym, idx) => (
+                                            <div
+                                                key={sym.id || sym.name || sym.sign || idx}
+                                                style={{
+                                                    border: '1px solid var(--border)',
+                                                    borderRadius: 10,
+                                                    padding: '8px 10px',
+                                                    background: 'rgba(245,250,248,0.7)',
+                                                }}
+                                            >
+                                                <div style={{ fontWeight: 800 }}>{sym.name || sym.sign || '—'}</div>
+                                                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 4, fontSize: 13 }}>
+                                                    <span>Status: {sym.status || '—'}</span>
+                                                    <span>Date: {sym.date || '—'}</span>
+                                                    {sym.sign ? <span>Sign: {sym.sign}</span> : null}
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <span className='tp-muted'>No symptoms</span>
+                                    )}
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                ) : null}
+            </StageModal>
             <StageModal open={confirmStage} title={`Complete Stage ${latestStage}`} onClose={() => setConfirmStage(false)}>
                 <div className='tp-session' style={{ marginBottom: 12 }}>
                     Are you sure you want to complete this stage?

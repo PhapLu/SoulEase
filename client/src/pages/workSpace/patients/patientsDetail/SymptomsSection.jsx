@@ -1,4 +1,6 @@
 // SymptomsSection.jsx
+import { useMemo } from "react";
+
 export default function SymptomsSection({
     symptoms,
     editingSymptoms,
@@ -10,7 +12,54 @@ export default function SymptomsSection({
     onSymptomKeyDown,
     onRemoveSymptom,
     onToggleSymptomStatus,
+    onTogglePresetSymptom,
 }) {
+    const presetSymptoms = useMemo(
+        () => [
+            { id: "builtin-1", name: "Headache", sign: "Persistent head pain" },
+            { id: "builtin-2", name: "Fatigue", sign: "Constant tiredness" },
+            { id: "builtin-3", name: "Insomnia", sign: "Difficulty sleeping" },
+            { id: "builtin-4", name: "Anxiety", sign: "Excessive worry or nervousness" },
+            { id: "builtin-5", name: "Depressed Mood", sign: "Prolonged sadness" },
+            { id: "builtin-6", name: "Loss of Appetite", sign: "Reduced desire to eat" },
+            { id: "builtin-7", name: "Difficulty Concentrating", sign: "Trouble focusing" },
+            { id: "builtin-8", name: "Irritability", sign: "Easily frustrated or angered" },
+            { id: "builtin-9", name: "Restlessness", sign: "Inability to relax or stay still" },
+            { id: "builtin-10", name: "Low Motivation", sign: "Lack of interest in daily activities" },
+        ],
+        []
+    );
+    const presetByName = useMemo(() => {
+        const map = {};
+        presetSymptoms.forEach((p) => {
+            map[p.name.toLowerCase()] = p;
+        });
+        return map;
+    }, [presetSymptoms]);
+
+    const isChecked = (preset) =>
+        symptoms.some(
+            (s) =>
+                (s.name || "").trim().toLowerCase() ===
+                    (preset.name || "").toLowerCase() &&
+                (s.sign || "").trim().toLowerCase() ===
+                    (preset.sign || "").toLowerCase()
+        );
+
+    const handleSelectPreset = (value) => {
+        if (!value) return
+        if (value === "__other") {
+            onAddSymptom()
+            setEditingSymptoms(true)
+            return
+        }
+        const preset = presetSymptoms.find((p) => p.id === value)
+        if (!preset) return
+        if (!isChecked(preset)) {
+            onTogglePresetSymptom?.(preset, true)
+        }
+    };
+
     return (
         <section className="pd-symptoms">
             <div className="pd-section-title">
@@ -34,7 +83,8 @@ export default function SymptomsSection({
                 ) : null}
             </div>
 
-            <div className="pd-note-card">
+                <div className="pd-note-card">
+
                 {/* TABLE HEADER */}
                 <div className="pd-symptom-row pd-symptom-header pd-symptom-row--grid">
                     <div className="pd-symptom-col-title">Name</div>
@@ -51,33 +101,72 @@ export default function SymptomsSection({
                     >
                         {editingSymptoms ? (
                             <>
-                                <input
-                                    className="pd-input pd-input--symptom"
-                                    value={s.name}
-                                    placeholder="Name"
-                                    onChange={(e) =>
-                                        onSymptomFieldChange(
-                                            idx,
-                                            "name",
-                                            e.target.value
-                                        )
-                                    }
-                                    onKeyDown={(e) => onSymptomKeyDown(e, idx)}
-                                />
+                                {(() => {
+                                    const match =
+                                        presetByName[(s.name || "").toLowerCase()] ||
+                                        null;
+                                    const selectValue = match
+                                        ? match.id
+                                        : (s.name || s.sign) ? "__other" : "";
+                                    const isOther = selectValue === "__other";
+                                    return (
+                                        <>
+                                            <select
+                                                className="pd-input pd-input--symptom"
+                                                value={selectValue}
+                                                onChange={(e) => {
+                                                    const val = e.target.value;
+                                                    if (val === "__other") {
+                                                        onSymptomFieldChange(idx, "name", "");
+                                                        onSymptomFieldChange(idx, "sign", "");
+                                                        return;
+                                                    }
+                                                    if (!val) {
+                                                        onSymptomFieldChange(idx, "name", "");
+                                                        onSymptomFieldChange(idx, "sign", "");
+                                                        return;
+                                                    }
+                                                    const preset = presetSymptoms.find((p) => p.id === val);
+                                                    if (preset) {
+                                                        onSymptomFieldChange(idx, "name", preset.name);
+                                                        onSymptomFieldChange(idx, "sign", preset.sign);
+                                                    }
+                                                }}
+                                            >
+                                                <option value="">Select symptom</option>
+                                                {presetSymptoms.map((p) => (
+                                                    <option key={p.id} value={p.id}>
+                                                        {p.name}
+                                                    </option>
+                                                ))}
+                                                <option value="__other">Other</option>
+                                            </select>
 
-                                <input
-                                    className="pd-input pd-input--symptom"
-                                    value={s.sign}
-                                    placeholder="Sign"
-                                    onChange={(e) =>
-                                        onSymptomFieldChange(
-                                            idx,
-                                            "sign",
-                                            e.target.value
-                                        )
-                                    }
-                                    onKeyDown={(e) => onSymptomKeyDown(e, idx)}
-                                />
+                                            {isOther ? (
+                                                <input
+                                                    className="pd-input pd-input--symptom"
+                                                    value={s.name}
+                                                    placeholder="Name"
+                                                    onChange={(e) =>
+                                                        onSymptomFieldChange(idx, "name", e.target.value)
+                                                    }
+                                                    onKeyDown={(e) => onSymptomKeyDown(e, idx)}
+                                                />
+                                            ) : null}
+
+                                            <input
+                                                className="pd-input pd-input--symptom"
+                                                value={isOther ? s.sign : match?.sign || s.sign}
+                                                placeholder="Sign"
+                                                onChange={(e) =>
+                                                    onSymptomFieldChange(idx, "sign", e.target.value)
+                                                }
+                                                onKeyDown={(e) => onSymptomKeyDown(e, idx)}
+                                                readOnly={!isOther}
+                                            />
+                                        </>
+                                    );
+                                })()}
 
                                 <div className="pd-symptom-date">
                                     {s.date || "—"}
@@ -132,29 +221,16 @@ export default function SymptomsSection({
                     </div>
                 ))}
 
-                {/* ADD BUTTON — Y HỆT CODE GỐC */}
-                {!editingSymptoms ? (
-                    <div className="symptom-add-container">
-                        <button
-                            className="symptom-add-btn"
-                            onClick={() => {
-                                onAddSymptom();
-                                setEditingSymptoms(true); // switch to EDIT MODE
-                            }}
-                        >
-                            Add +
-                        </button>
-                    </div>
-                ) : (
-                    <div className="symptom-add-container">
-                        <button
-                            className="symptom-add-btn"
-                            onClick={onAddSymptom}
-                        >
-                            Add +
-                        </button>
-                    </div>
-                )}
+                {/* ADD BUTTON */}
+                <div className="symptom-add-container">
+                    <button
+                        className="symptom-add-btn"
+                        type="button"
+                        onClick={() => handleSelectPreset("__other")}
+                    >
+                        Add +
+                    </button>
+                </div>
             </div>
         </section>
     );
