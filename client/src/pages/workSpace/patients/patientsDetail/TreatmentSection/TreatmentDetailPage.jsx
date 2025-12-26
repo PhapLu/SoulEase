@@ -5,6 +5,7 @@ import './TreatmentSession.css'
 import { RemoveIcon, AddIcon, EndIcon } from '../../../Icon.jsx'
 import StageModal from './StageModal.jsx'
 import { apiUtils } from '../../../../../utils/newRequest.js'
+import { useAuth } from '../../../../../contexts/auth/AuthContext'
 
 function RiskBadge({ level = 'Low' }) {
     const norm = (level || 'Low').toLowerCase()
@@ -80,6 +81,8 @@ function ActionsDropdown({ onCompleteStage, onCreateSession }) {
 export default function TreatmentDetailPage() {
     const { folderId, patientRecordId } = useParams()
     const navigate = useNavigate()
+    const { userInfo } = useAuth()
+    const isReadOnly = userInfo?.role === 'family'
     const goToCreateSession = () => {
         navigate(`/workspace/patients/folder/${folderId}/${patientRecordId}/treatment/create-session`)
     }
@@ -184,6 +187,7 @@ export default function TreatmentDetailPage() {
 
     const handleSavePlan = async (e) => {
         e.preventDefault()
+        if (isReadOnly) return
         if (!record) return
 
         const recordId = record.recordId || record._id
@@ -208,6 +212,7 @@ export default function TreatmentDetailPage() {
     }
 
     const handleCompleteStage = async () => {
+        if (isReadOnly) return
         if (!record || !latest) return
         const recordId = record.recordId || record._id
         if (!recordId) return
@@ -232,6 +237,7 @@ export default function TreatmentDetailPage() {
 
     const handleQuickUpdate = async (e) => {
         e.preventDefault()
+        if (isReadOnly) return
         if (!record || !latest?.id) return
 
         const append = (quickDraft.noteAppend || '').trim()
@@ -276,7 +282,7 @@ export default function TreatmentDetailPage() {
                         ← Back
                     </button>
 
-                    {latest ? <ActionsDropdown onCompleteStage={() => setConfirmStage(true)} onCreateSession={goToCreateSession} /> : null}
+                    {latest && !isReadOnly ? <ActionsDropdown onCompleteStage={() => setConfirmStage(true)} onCreateSession={goToCreateSession} /> : null}
                 </div>
             </div>
 

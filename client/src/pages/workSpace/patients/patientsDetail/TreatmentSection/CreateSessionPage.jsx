@@ -3,10 +3,13 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiUtils } from "../../../../../utils/newRequest";
 import "./TreatmentSession.css";
+import { useAuth } from "../../../../../contexts/auth/AuthContext";
 
 export default function CreateSessionPage() {
     const { folderId, patientRecordId } = useParams();
     const navigate = useNavigate();
+    const { userInfo } = useAuth();
+    const isReadOnly = userInfo?.role === "family";
     const [saving, setSaving] = useState(false);
     const [err, setErr] = useState("");
     const builtInSymptoms = useMemo(
@@ -50,6 +53,18 @@ export default function CreateSessionPage() {
         result: "",
         treatment: "",
     });
+
+    useEffect(() => {
+        if (!isReadOnly) return;
+        if (folderId && patientRecordId) {
+            navigate(
+                `/workspace/patients/folder/${folderId}/${patientRecordId}/treatment`,
+                { replace: true }
+            );
+        } else {
+            navigate("/workspace", { replace: true });
+        }
+    }, [isReadOnly, folderId, patientRecordId, navigate]);
 
     useEffect(() => {
         const fetchSymptoms = async () => {
@@ -145,6 +160,7 @@ export default function CreateSessionPage() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        if (isReadOnly) return;
         setErr("");
         if (!patientRecordId) {
             setErr("Missing patient record id");

@@ -33,6 +33,16 @@ const PatientRecordSchema = new Schema(
         diagnosis: { type: String, default: '', trim: true },
         moodLevel: { type: Number, min: 0, max: 10, default: null },
 
+        relatives: [
+            {
+                userId: { type: Schema.Types.ObjectId, ref: 'User' },
+                fullName: { type: String, trim: true },
+                email: { type: String, trim: true },
+                phoneNumber: { type: String, trim: true },
+                relationship: { type: String, trim: true },
+            },
+        ],
+
         // Flexible treatment plan object
         treatmentPlan: { type: Schema.Types.Mixed, default: {} },
         // Treatment sessions

@@ -1,0 +1,28 @@
+2025-12-26 15:30:16::error::undefined::undefined::uncaughtException: relativeRoute is not defined
+ReferenceError: relativeRoute is not defined
+    at file:///Users/leminhtuan/Documents/GitHub/SoulEase/server/src/routes/index.js:18:32
+    at ModuleJob.run (node:internal/modules/esm/module_job:345:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:651:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)::undefined
+2025-12-26 15:32:15::error::undefined::undefined::uncaughtException: server is not defined
+ReferenceError: server is not defined
+    at file:///Users/leminhtuan/Documents/GitHub/SoulEase/server/src/routes/index.js:8:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:345:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:651:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)::undefined
+2025-12-26 15:32:27::error::undefined::undefined::uncaughtException: im is not defined
+ReferenceError: im is not defined
+    at file:///Users/leminhtuan/Documents/GitHub/SoulEase/server/src/routes/index.js:8:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:345:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:651:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)::undefined
+2025-12-26 15:32:38::error::undefined::undefined::uncaughtException: r is not defined
+ReferenceError: r is not defined
+    at file:///Users/leminhtuan/Documents/GitHub/SoulEase/server/src/routes/index.js:19:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:345:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:651:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)::undefined

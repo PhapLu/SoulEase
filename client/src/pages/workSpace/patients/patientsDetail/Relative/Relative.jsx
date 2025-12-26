@@ -4,8 +4,7 @@ import "./Relative.css";
 
 export default function Relative({
     relatives = [],
-    folderId = "",
-    lockFolder = true,
+    readOnly,
     onCreateRelative,
 }) {
     const [openCreate, setOpenCreate] = useState(false);
@@ -22,13 +21,15 @@ export default function Relative({
                     <h3 title="Open treatment details">Relatives</h3>
                 </div>
 
-                <button
-                    type="button"
-                    className="rel-create-btn"
-                    onClick={() => setOpenCreate(true)}
-                >
-                    + Create
-                </button>
+                {!readOnly && (
+                    <button
+                        type="button"
+                        className="rel-create-btn"
+                        onClick={() => setOpenCreate(true)}
+                    >
+                        + Create
+                    </button>
+                )}
             </div>
 
             <div className="rel-card">
@@ -68,11 +69,9 @@ export default function Relative({
                 )}
             </div>
 
-            {openCreate && (
+            {openCreate && !readOnly && (
                 <RelativeModalForm
                     onClose={() => setOpenCreate(false)}
-                    initialFolderId={folderId}
-                    lockFolder={lockFolder}
                     onSubmit={async (payload) => {
                         await onCreateRelative?.(payload);
                         setOpenCreate(false);

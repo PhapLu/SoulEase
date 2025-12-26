@@ -109,10 +109,18 @@ class PatientRecordService {
         if (!patient) throw new NotFoundError('Patient not found')
 
         // 3. Find patient record
-        const record = await PatientRecord.findOne({
-            patientId,
-            doctorId: userId,
-        })
+        const recordQuery =
+            user.role === 'family'
+                ? {
+                      patientId,
+                      $or: [{ 'relatives.userId': userId }, { 'relatives.email': user.email }],
+                  }
+                : {
+                      patientId,
+                      doctorId: userId,
+                  }
+
+        const record = await PatientRecord.findOne(recordQuery)
             .lean()
             .exec()
 
@@ -173,6 +181,7 @@ class PatientRecordService {
         // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
+        if (user.role === 'family') throw new ForbiddenError('You do not have permission to update this record')
 
         // 2. Check record
         const record = await PatientRecord.findOne({ _id: recordId, doctorId: userId })

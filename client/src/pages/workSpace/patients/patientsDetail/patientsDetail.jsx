@@ -5,6 +5,7 @@ import "../folderClients/folderModelForm/folderModelForm.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { apiUtils } from "../../../../utils/newRequest";
+import { useAuth } from "../../../../contexts/auth/AuthContext";
 
 import PatientsHeader from "./PatientsHeader";
 import SymptomsSection from "./SymptomsSection";
@@ -15,6 +16,8 @@ import Relative from "./Relative/Relative.jsx";
 
 export default function PatientsDetail() {
     const { patientRecordId } = useParams();
+    const { userInfo } = useAuth();
+    const isReadOnly = userInfo?.role === "family";
 
     const normalizeBirthday = (value) => {
         if (!value) return "";
@@ -91,6 +94,7 @@ export default function PatientsDetail() {
 
     // UNIFIED SAVE FUNCTION
     const persistRecord = async (newForm) => {
+        if (isReadOnly) throw new Error("Read-only access");
         const recordId = newForm?.recordId || patient?.recordId;
         if (!recordId) throw new Error("Missing recordId");
 
@@ -103,16 +107,19 @@ export default function PatientsDetail() {
 
     // ------- GLOBAL EDIT --------
     const handleStartEdit = () => {
+        if (isReadOnly) return;
         setEditForm(patient ? { ...patient } : {});
         setIsEditing(true);
     };
 
     const handleCancelEdit = () => {
+        if (isReadOnly) return;
         setEditForm(patient ? { ...patient } : {});
         setIsEditing(false);
     };
 
     const handleSaveEdit = async () => {
+        if (isReadOnly) return;
         setSaving(true);
         try {
             await persistRecord(editForm);
@@ -124,6 +131,7 @@ export default function PatientsDetail() {
     };
 
     const handleFieldChange = (field, value) => {
+        if (isReadOnly) return;
         if (field === "phone") {
             const digits = String(value || "")
                 .replace(/\D+/g, "")
@@ -168,11 +176,28 @@ export default function PatientsDetail() {
                     fetched.birthday || fetched.dob
                 );
                 const age = calcAge(birthday);
+                const recordId = fetched.recordId || fetched._id;
+                let relatives = fetched.relatives || fetched.caregivers || [];
+
+                if (recordId) {
+                    try {
+                        const relRes = await apiUtils.get(
+                            `/relative/readRelatives/${recordId}`
+                        );
+                        relatives =
+                            relRes?.data?.metadata?.relatives ||
+                            relRes?.data?.relatives ||
+                            relatives;
+                    } catch (e) {
+                        // keep existing relatives if API not available
+                    }
+                }
                 const normalized = {
                     ...fetched,
                     birthday,
                     age,
                     symptoms: fetched.symptoms ? [...fetched.symptoms] : [],
+                    relatives,
                 };
                 setPatient(normalized);
                 setEditForm(normalized);
@@ -191,8 +216,11 @@ export default function PatientsDetail() {
     }, [patientRecordId]);
 
     const handleCreateRelative = async (payload) => {
+        if (isReadOnly) return;
         try {
+            const recordId = editForm?.recordId || patient?.recordId;
             await apiUtils.post("/relative/createRelativeAccount", {
+                recordId,
                 patientRecordId,
                 ...payload,
             });
@@ -205,11 +233,13 @@ export default function PatientsDetail() {
 
     // -------- SYMPTOMS EDIT -------
     const handleEditSymptoms = () => {
+        if (isReadOnly) return;
         setOriginalSymptoms(editForm?.symptoms || []);
         setEditingSymptoms(true);
     };
 
     const handleCancelSymptoms = () => {
+        if (isReadOnly) return;
         setEditForm((prev) => ({
             ...prev,
             symptoms: [...originalSymptoms],
@@ -218,6 +248,7 @@ export default function PatientsDetail() {
     };
 
     const handleSaveSymptoms = async () => {
+        if (isReadOnly) return;
         setSaving(true);
         try {
             const cleanedSymptoms = (editForm?.symptoms || [])
@@ -241,6 +272,7 @@ export default function PatientsDetail() {
     };
 
     const handleAddSymptom = () => {
+        if (isReadOnly) return;
         setEditForm((prev) => ({
             ...prev,
             symptoms: [
@@ -262,6 +294,7 @@ export default function PatientsDetail() {
     };
 
     const handleSymptomFieldChange = (index, field, value) => {
+        if (isReadOnly) return;
         setEditForm((prev) => {
             const list = [...prev.symptoms];
             list[index][field] = value;
@@ -270,6 +303,7 @@ export default function PatientsDetail() {
     };
 
     const handleToggleSymptomStatus = async (index) => {
+        if (isReadOnly) return;
         const list =
             editForm?.symptoms?.map((sym, i) =>
                 i === index
@@ -296,6 +330,7 @@ export default function PatientsDetail() {
     };
 
     const handleSymptomKeyDown = async (e, index) => {
+        if (isReadOnly) return;
         if (e.key !== "Enter") return;
         e.preventDefault();
 
@@ -311,6 +346,7 @@ export default function PatientsDetail() {
     };
 
     const handleRemoveSymptom = async (index) => {
+        if (isReadOnly) return;
         const updated = {
             ...editForm,
             symptoms: editForm.symptoms.filter((_, i) => i !== index),
@@ -321,6 +357,7 @@ export default function PatientsDetail() {
     };
 
     const handleTogglePresetSymptom = async (preset, checked) => {
+        if (isReadOnly) return;
         const normName = (preset.name || "").trim();
         const normSign = (preset.sign || "").trim();
         const today = new Date().toISOString().split("T")[0];
@@ -380,6 +417,7 @@ export default function PatientsDetail() {
                     patient={patient}
                     editForm={editForm}
                     isEditing={isEditing}
+                    readOnly={isReadOnly}
                     saving={saving}
                     onFieldChange={handleFieldChange}
                     onStartEdit={handleStartEdit}
@@ -391,8 +429,7 @@ export default function PatientsDetail() {
                     relatives={
                         editForm?.relatives || editForm?.caregivers || []
                     }
-                    folderId={editForm?.folderId || editForm?.folder?._id || ""}
-                    lockFolder={true}
+                    readOnly={isReadOnly}
                     onCreateRelative={handleCreateRelative}
                 />
 
@@ -403,6 +440,7 @@ export default function PatientsDetail() {
                     symptoms={editForm.symptoms || []}
                     editingSymptoms={editingSymptoms}
                     setEditingSymptoms={setEditingSymptoms}
+                    readOnly={isReadOnly}
                     onSaveSymptoms={handleSaveSymptoms}
                     onCancelSymptoms={handleCancelSymptoms}
                     onAddSymptom={handleAddSymptom}
@@ -417,6 +455,7 @@ export default function PatientsDetail() {
                     patientRecordId={patientRecordId}
                     sessions={sessions}
                     latest={latestSession}
+                    readOnly={isReadOnly}
                     onStartEdit={handleStartEdit}
                 />
 

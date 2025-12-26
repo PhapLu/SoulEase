@@ -5,6 +5,7 @@ import folderRoute from './folder/index.js'
 import patientRecordRoute from './patientRecord/index.js'
 import conversationRoute from './conversation/index.js'
 import sessionRoute from './session/index.js'
+import relativeRoute from './relative/index.js'
 
 const router = express.Router()
 
@@ -15,5 +16,5 @@ router.use('/v1/api/folder', folderRoute)
 router.use('/v1/api/patientRecord', patientRecordRoute)
 router.use('/v1/api/conversation', conversationRoute)
 router.use('/v1/api/session', sessionRoute)
-
+router.use('/v1/api/relative', relativeRoute)
 export default router

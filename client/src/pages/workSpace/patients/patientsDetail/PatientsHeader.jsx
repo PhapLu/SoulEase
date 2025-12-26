@@ -6,6 +6,7 @@ export default function PatientsHeader({
     patient,
     editForm,
     isEditing,
+    readOnly,
     saving,
     onFieldChange,
     onStartEdit,
@@ -50,13 +51,15 @@ export default function PatientsHeader({
                                 </button>
                             </>
                         ) : (
-                            <button
-                                className="folder-edit-btn"
-                                onClick={onStartEdit}
-                            >
-                                <EditIcon />
-                                <span>Edit</span>
-                            </button>
+                            !readOnly && (
+                                <button
+                                    className="folder-edit-btn"
+                                    onClick={onStartEdit}
+                                >
+                                    <EditIcon />
+                                    <span>Edit</span>
+                                </button>
+                            )
                         )}
                     </div>
                 </div>
@@ -134,7 +137,7 @@ export default function PatientsHeader({
                 </div>
             </div>
 
-            <button className="pd-import-btn">Import +</button>
+            {!readOnly && <button className="pd-import-btn">Import +</button>}
         </section>
     );
 }

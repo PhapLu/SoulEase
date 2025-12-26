@@ -81,7 +81,7 @@ function ActionsDropdown({ onCompleteStage, onCreateSession, canComplete = true 
     )
 }
 
-export default function TreatmentSession({ patientRecordId, loading, error, sessions, latest, onUpdateLatest, onRefetch }) {
+export default function TreatmentSession({ patientRecordId, loading, error, sessions, latest, onUpdateLatest, onRefetch, readOnly }) {
     const { folderId, patientRecordId: prIdFromUrl } = useParams()
     const prId = patientRecordId || prIdFromUrl
     const navigate = useNavigate()
@@ -112,7 +112,9 @@ export default function TreatmentSession({ patientRecordId, loading, error, sess
                     </h3>
                 </div>
 
-                <div className='tp-header__actions'>{prId ? <ActionsDropdown canComplete={!!currentLatest} onCompleteStage={() => setConfirmStage(true)} onCreateSession={goToCreateSession} /> : null}</div>
+                <div className='tp-header__actions'>
+                    {prId && !readOnly ? <ActionsDropdown canComplete={!!currentLatest} onCompleteStage={() => setConfirmStage(true)} onCreateSession={goToCreateSession} /> : null}
+                </div>
             </div>
 
             {error ? <div className='tp-error'>{error}</div> : null}
@@ -186,6 +188,7 @@ export default function TreatmentSession({ patientRecordId, loading, error, sess
                                 className='tp-btn'
                                 disabled={savingStage}
                                 onClick={async () => {
+                                    if (readOnly) return
                                     if (!patientRecordId) return
                                     setSavingStage(true)
                                     try {

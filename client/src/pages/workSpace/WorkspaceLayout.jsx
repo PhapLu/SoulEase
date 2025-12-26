@@ -6,6 +6,7 @@ import FinisherHeader from '../../components/BackgroundApp/FinisherHeader'
 // import { useAuth } from '../../context/AuthContext'
 import { useAuth } from '../../contexts/auth/AuthContext'
 import { useEffect } from 'react'
+import { apiUtils } from '../../utils/newRequest'
 
 export default function WorkspaceLayout() {
     const { userInfo } = useAuth()
@@ -22,6 +23,32 @@ export default function WorkspaceLayout() {
         } else if (userInfo.role === 'doctor' || userInfo.role === 'nurse') {
             navigate('/workspace/patients', { replace: true })
         }
+    }, [userInfo, location.pathname, navigate])
+
+    useEffect(() => {
+        if (!userInfo || userInfo.role !== 'family') return
+        const blockedPaths = new Set(['/workspace', '/workspace/patients'])
+        if (!blockedPaths.has(location.pathname)) return
+        const redirectToRelativeRecord = async () => {
+            try {
+                const res = await apiUtils.get('/relative/readMyPatientRecord')
+                const patientRecord = res?.data?.metadata?.patientRecord || res?.data?.patientRecord || null
+                const folderId = patientRecord?.folderId
+                const patientId = patientRecord?.patientId
+                if (folderId && patientId) {
+                    navigate(`/workspace/patients/folder/${folderId}/${patientId}`, { replace: true })
+                    return
+                }
+                if (patientId) {
+                    navigate(`/workspace/patients/${patientId}/profiles`, { replace: true })
+                    return
+                }
+            } catch (err) {
+                console.error('Failed to load relative patient record', err)
+            }
+            navigate('/workspace/notifications', { replace: true })
+        }
+        redirectToRelativeRecord()
     }, [userInfo, location.pathname, navigate])
 
     return (
