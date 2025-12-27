@@ -14,13 +14,12 @@ import {
 const EYE_SHOW = require('../../assets/icons/ic_eyeShow.png');
 const EYE_HIDE = require('../../assets/icons/ic_eyeHide.png');
 
-// Định nghĩa màu đỏ báo lỗi
 const ERROR_COLOR = palette.error; 
 
 interface InputFieldProps extends TextInputProps {
     label: string;
     containerStyle?: ViewStyle;
-    error?: string; // <--- Thêm prop lỗi
+    error?: string;
 }
 
 export const InputField = ({ label, containerStyle, error, ...props }: InputFieldProps) => {
@@ -35,7 +34,6 @@ export const InputField = ({ label, containerStyle, error, ...props }: InputFiel
                 placeholderTextColor="#8A8A8A"
                 {...props}
             />
-            {/* Hiển thị text lỗi */}
             {error ? <Text style={styles.errorText}>{error}</Text> : null}
         </View>
     );
@@ -44,7 +42,7 @@ export const InputField = ({ label, containerStyle, error, ...props }: InputFiel
 interface PasswordFieldProps extends TextInputProps {
     label: string;
     containerStyle?: ViewStyle;
-    error?: string; // <--- Thêm prop lỗi
+    error?: string; 
 }
 
 export const PasswordField = ({ label, containerStyle, error, ...props }: PasswordFieldProps) => {
@@ -55,7 +53,7 @@ export const PasswordField = ({ label, containerStyle, error, ...props }: Passwo
             <Text style={styles.label}>{label}</Text>
             <View style={[
                 styles.passwordContainer,
-                error ? { borderColor: ERROR_COLOR } : null // Đổi màu viền nếu có lỗi
+                error ? { borderColor: ERROR_COLOR } : null 
             ]}>
                 <TextInput
                     style={styles.passwordInput}
@@ -71,7 +69,6 @@ export const PasswordField = ({ label, containerStyle, error, ...props }: Passwo
                     />
                 </TouchableOpacity>
             </View>
-            {/* Hiển thị text lỗi */}
             {error ? <Text style={styles.errorText}>{error}</Text> : null}
         </View>
     );

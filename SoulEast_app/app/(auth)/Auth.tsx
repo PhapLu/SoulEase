@@ -4,7 +4,6 @@ import { Dimensions, Image, StatusBar, StyleSheet, Text, TouchableOpacity, View 
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 
-// Components đã tách
 import LoginSheet from "@/components/authentication/LoginSheet";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -38,7 +37,7 @@ export default function Login() {
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
-            <StatusBar barStyle="light-content" backgroundColor="#34A853" />
+            <StatusBar barStyle="light-content" backgroundColor={palette.bgMint} />
 
             {/* === PHẦN NỀN XANH === */}
             <SafeAreaView style={styles.backgroundContainer}>
@@ -54,12 +53,12 @@ export default function Login() {
                     <View style={styles.auth1Buttons}>
                         <TouchableOpacity style={styles.primaryButton} onPress={handleOpenLogin}>
                             <Image source={EMAIL_ICON_URI} style={[styles.btnIcon, { tintColor: "#fff" }]} />
-                            <Text style={styles.primaryButtonText}>Đăng nhập bằng Email/SĐT</Text>
+                            <Text style={styles.primaryButtonText}>Log in by Email/Phone Number</Text>
                         </TouchableOpacity>
                     </View>
 
                     <Text style={styles.legalText}>
-                        Bằng cách đăng nhập, bạn sẽ đồng ý với <Text style={{ fontWeight: "600" }}>Điều khoản sử dụng</Text> và <Text style={{ fontWeight: "600" }}>Chính sách bảo mật</Text> của chúng tôi
+                        By logging in, you agree to our <Text style={{ fontWeight: "600" }}>Terms of Use</Text> and <Text style={{ fontWeight: "600" }}>Privacy Policy</Text>.
                     </Text>
                 </View>
             </View>
@@ -73,14 +72,14 @@ export default function Login() {
     );
 }
 
-// Style của file chính (chỉ giữ lại phần nền và footer Auth 1)
+// Style của file chính 
 const styles = StyleSheet.create({
     backgroundContainer: {
-        backgroundColor: palette.primary,
+        backgroundColor: palette.bgMint,
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        paddingBottom: height * 0.28, // Chừa chỗ cho Auth 1 Footer
+        paddingBottom: height * 0.28,
     },
     logoContainer: {
         alignItems: "center",
@@ -92,7 +91,7 @@ const styles = StyleSheet.create({
     splashText: {
         textAlign: "center",
         fontWeight: Typography.weight.medium,
-        color: palette.white,
+        color: palette.primaryAlt2,
         fontSize: 40,
     },
     // --- Auth 1 Footer ---
@@ -100,7 +99,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 0,
         width: "100%",
-        height: "32%",
+        height: "20%",
         backgroundColor: palette.white,
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,

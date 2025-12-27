@@ -21,7 +21,7 @@ interface LoginSheetProps {
 }
 
 export default function LoginSheet({ sheetRef, animatedIndex }: LoginSheetProps) {
-    const { signIn, isLoading } = useAuth(); // Lấy hàm từ context
+    const { signIn, isLoading } = useAuth();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -44,15 +44,15 @@ export default function LoginSheet({ sheetRef, animatedIndex }: LoginSheetProps)
 
         // 1. Validate Form cơ bản
         if (!email.trim()) {
-            newErrors.email = "Vui lòng nhập email";
+            newErrors.email = "Please enter your email";
             isValid = false;
         } else if (!validateEmail(email)) {
-            newErrors.email = "Định dạng email không hợp lệ";
+            newErrors.email = "Your email is invalid";
             isValid = false;
         }
 
         if (!password.trim()) {
-            newErrors.password = "Vui lòng nhập mật khẩu";
+            newErrors.password = "Please enter your password";
             isValid = false;
         }
 
@@ -72,7 +72,7 @@ export default function LoginSheet({ sheetRef, animatedIndex }: LoginSheetProps)
             if (result.error?.includes("Email")) {
                 setErrors((prev) => ({ ...prev, email: result.error || "" }));
             } else {
-                setErrors((prev) => ({ ...prev, password: result.error || "Đăng nhập thất bại" }));
+                setErrors((prev) => ({ ...prev, password: result.error || "Fail to log in" }));
             }
         }
     };
@@ -81,15 +81,15 @@ export default function LoginSheet({ sheetRef, animatedIndex }: LoginSheetProps)
         <BottomSheet ref={sheetRef} index={-1} snapPoints={snapPoints} enablePanDownToClose={true} backgroundStyle={styles.bottomSheetBackground} animatedIndex={animatedIndex}>
             <BottomSheetScrollView contentContainerStyle={styles.popupContentContainer} keyboardShouldPersistTaps="handled">
                 <View style={styles.titleSection}>
-                    <Text style={styles.screenTitle}>Đăng nhập</Text>
-                    <Text style={styles.screenSubtitle}>Đăng nhập vào tài khoản của bạn</Text>
+                    <Text style={styles.screenTitle}>Log in</Text>
+                    <Text style={styles.screenSubtitle}>Log in your account</Text>
                 </View>
 
                 <View style={styles.innerContainer}>
                     <View style={styles.buttonWrapper}>
                         {/* Email Input với Error */}
                         <InputField
-                            label="Email hoặc số điện thoại"
+                            label="Email or Phone Number"
                             placeholder="john.carter@gmail.com"
                             value={email}
                             onChangeText={(text) => {
@@ -103,7 +103,7 @@ export default function LoginSheet({ sheetRef, animatedIndex }: LoginSheetProps)
                         <View>
                             {/* Password Input với Error */}
                             <PasswordField
-                                label="Mật khẩu"
+                                label="Password"
                                 placeholder="••••••••••••"
                                 value={password}
                                 onChangeText={(text) => {
@@ -114,18 +114,18 @@ export default function LoginSheet({ sheetRef, animatedIndex }: LoginSheetProps)
                                 error={errors.password} // Truyền lỗi vào
                             />
                             <TouchableOpacity style={styles.forgotPasswordContainer}>
-                                <Text style={styles.forgotPasswordText}>Quên mật khẩu?</Text>
+                                <Text style={styles.forgotPasswordText}>Forgot password?</Text>
                             </TouchableOpacity>
                         </View>
 
                         {/* Nút Đăng nhập gọi hàm handleLogin */}
                         <TouchableOpacity style={[styles.loginButtonPopup, isLoading && { opacity: 0.7 }]} onPress={handleLogin} disabled={isLoading}>
-                            <Text style={styles.loginButtonText}>{isLoading ? "Đang xử lý..." : "Đăng nhập"}</Text>
+                            <Text style={styles.loginButtonText}>{isLoading ? "Loading..." : "Log in"}</Text>
                         </TouchableOpacity>
 
                         <View style={styles.dividerContainer}>
                             <View style={styles.dividerLine} />
-                            <Text style={styles.dividerText}>Hoặc tiếp tục với</Text>
+                            <Text style={styles.dividerText}>Or continue with</Text>
                             <View style={styles.dividerLine} />
                         </View>
                     </View>
@@ -164,7 +164,11 @@ const styles = StyleSheet.create({
     screenSubtitle: { fontSize: Typography.size.s, color: palette.gray500 },
 
     forgotPasswordContainer: { alignSelf: "flex-end", marginTop: 8 },
-    forgotPasswordText: { color: palette.gray800, fontSize: Typography.size.s, textDecorationLine: "underline" },
+    forgotPasswordText: { 
+        color: palette.gray300, 
+        fontSize: Typography.size.s, 
+        textDecorationLine: "underline" 
+    },
     loginButtonPopup: {
         backgroundColor: palette.primary,
         borderRadius: 80,

@@ -10,7 +10,7 @@ import { Colors } from "@/constants/theme";
 
 
 export default function HomeScreen() {
-  const colorScheme = useColorScheme() ?? "light";
+  const colorScheme = "light";
   const themeColors = Colors[colorScheme];
 
   const styles = useMemo(
@@ -23,8 +23,9 @@ export default function HomeScreen() {
       <StatusBar
         translucent
         backgroundColor="transparent"
-        barStyle="light-content"
+        // barStyle={colorScheme === "dark" ? "light-content" : "dark-content"}
       />
+
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}

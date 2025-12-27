@@ -12,7 +12,7 @@ type IconSet = {
 };
 
 export function CustomBottomTab({ state, descriptors, navigation }: BottomTabBarProps) {
-      const colorScheme = useColorScheme() ?? "light";
+      const colorScheme = "light";
       const themeColors = Colors[colorScheme];
       const styles = useMemo(
           () => createStyles(themeColors),
@@ -39,8 +39,8 @@ export function CustomBottomTab({ state, descriptors, navigation }: BottomTabBar
 
     // Lấy màu từ theme
 
-    const activeColor = Colors.light.tabbarActive
-    const inactiveColor = Colors.light.tabbarInactive
+    const activeColor = themeColors.tabbarActive;
+    const inactiveColor = themeColors.tabbarInactive;
 
     return (
         <View style={styles.container}>
@@ -122,6 +122,7 @@ const createStyles = (colors: typeof Colors.light) =>
         right: 0,
         backgroundColor: "transparent",
         elevation: 0,
+        
     },
     tabBarContent: {
         flexDirection: "row",

@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     contentContainer: {
-        backgroundColor: palette.primary,
+        backgroundColor: palette.bgMint,
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     splashText: {
         textAlign: "center",
         fontWeight: Typography.weight.medium,
-        color: palette.white,
+        color: palette.primaryAlt2,
         fontSize: 40,
     }
 });
