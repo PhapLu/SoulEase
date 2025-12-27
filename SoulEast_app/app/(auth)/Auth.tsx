@@ -28,7 +28,7 @@ export default function Login() {
 
     // --- Animation Logic ---
     const logoAnimatedStyle = useAnimatedStyle(() => {
-        const translateY = interpolate(sheetIndex.value, [-1, 0], [0, -height * 0.22], Extrapolation.CLAMP);
+        const translateY = interpolate(sheetIndex.value, [-1, 0], [0, -height * 0.16], Extrapolation.CLAMP);
         const scale = interpolate(sheetIndex.value, [-1, 0], [1, 1], Extrapolation.CLAMP);
         return {
             transform: [{ translateY: translateY }, { scale: scale }],
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 0,
         width: "100%",
-        height: "20%",
+        height: "24%",
         backgroundColor: palette.white,
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         height: 56,
         width: "100%",
         flexDirection: "row",
-        paddingLeft: 82,
+        justifyContent: "center",
         alignItems: "center",
     },
     btnIcon: { width: 20, height: 20 },

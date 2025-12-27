@@ -122,12 +122,6 @@ export default function LoginSheet({ sheetRef, animatedIndex }: LoginSheetProps)
                         <TouchableOpacity style={[styles.loginButtonPopup, isLoading && { opacity: 0.7 }]} onPress={handleLogin} disabled={isLoading}>
                             <Text style={styles.loginButtonText}>{isLoading ? "Loading..." : "Log in"}</Text>
                         </TouchableOpacity>
-
-                        <View style={styles.dividerContainer}>
-                            <View style={styles.dividerLine} />
-                            <Text style={styles.dividerText}>Or continue with</Text>
-                            <View style={styles.dividerLine} />
-                        </View>
                     </View>
                 </View>
             </BottomSheetScrollView>
@@ -178,23 +172,6 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     loginButtonText: { color: palette.white, fontSize: Typography.size.m, fontWeight: Typography.weight.medium },
-    dividerContainer: { flexDirection: "row", alignItems: "center", gap: 18, paddingTop: 16 },
-    dividerLine: { flex: 1, height: 1, backgroundColor: palette.gray500 },
-    dividerText: { color: palette.gray500, fontSize: Typography.size.m },
-    socialButton: {},
-    googleButtonPopup: {
-        backgroundColor: palette.primary,
-        borderRadius: 80,
-        height: 63,
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        gap: 8,
-    },
-    googleIcon: { width: 20, height: 20, tintColor: palette.white },
-    googleButtonText: { color: palette.white, fontSize: Typography.size.m, fontWeight: Typography.weight.medium },
-    footerContainer: { flexDirection: "row", justifyContent: "center", gap: 8 },
-    footerText: { color: palette.gray800, fontSize: Typography.size.s },
-    registerText: { color: palette.gray800, fontSize: Typography.size.s, textDecorationLine: "underline" },
+    
+    
 });

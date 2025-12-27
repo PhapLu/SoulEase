@@ -3,6 +3,7 @@ import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View,
 import { Colors, palette, Radius, Spacing, Typography } from "@/constants/theme";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Header } from "@/components/header/Header";
 
 
 type Role = "doctor" | "nurse" | "patient" | "relative";
@@ -53,12 +54,7 @@ export default function PersonalScreen() {
   return (
     <View style={styles.container}>
       {/* Header*/}
-      <View style={[styles.header, { paddingTop: insets.top }]}>
-
-        <Text style={styles.headerTitle}>Profile</Text>
-
-        <View style={{ width: 36 }} />
-      </View>
+      <Header title="Profile" />
 
 
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>

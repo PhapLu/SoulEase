@@ -31,10 +31,6 @@ export default function TabLayout() {
         name="personal"
         options={{ title: 'Profile' }}
       />
-      <Tabs.Screen
-        name="notifications"
-        options={{ title: 'Notifications' }}
-      />
     </Tabs>
   );
 }
