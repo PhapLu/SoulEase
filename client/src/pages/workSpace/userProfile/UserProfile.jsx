@@ -80,14 +80,37 @@ export default function UserProfile() {
 
     const role = user?.role;
 
-    const onBack = () => {
+    const onBack = async () => {
         if (role === "doctor" || role === "nurse") {
             navigate("/workspace/patients");
-        } else if (role === "clinic") {
-            navigate("/workspace/staffs");
-        } else if (role === "patient" || role === "relative") {
-            navigate("/workspace/records");
+            return;
         }
+        if (role === "clinic") {
+            navigate("/workspace/staffs");
+            return;
+        }
+        if (role === "patient" || role === "relative" || role === "member" || role === "family") {
+            try {
+                let patientId = null;
+                if (role === "family") {
+                    const relRes = await apiUtils.get("/relative/readMyPatientRecord");
+                    patientId = relRes?.data?.metadata?.patientRecord?.patientId;
+                } else {
+                    const res = await apiUtils.get(`/patientRecord/readPatientRecord/${userId}`);
+                    const record = res?.data?.metadata?.patientRecord;
+                    patientId = record?.patientId || record?._id;
+                }
+                if (patientId || userId) {
+                    navigate(`/patientRecord/${patientId || userId}`);
+                    return;
+                }
+            } catch (e) {
+                // fallback below
+            }
+            navigate("/workspace/records");
+            return;
+        }
+        navigate(-1);
     };
 
     const onPwChange = (key, value) => {
@@ -150,7 +173,11 @@ export default function UserProfile() {
                         <div className="pp-side-title">Change Avatar</div>
 
                         <div className="pp-avatarBox">
-                            <div className="pp-avatarImg"></div>
+                            <img
+                                className="pp-avatarImg avatar"
+                                src={user?.avatar || "/uploads/default_avatar.jpg"}
+                                alt={user?.fullName || "Avatar"}
+                            />
 
                             <label className="pp-uploadBtn">
                                 Upload Photo
@@ -293,6 +320,12 @@ export default function UserProfile() {
                                         <input
                                             className="pp-input"
                                             value={user.defaultPassword || ""}
+                                            onChange={(e) =>
+                                                onChange(
+                                                    "defaultPassword",
+                                                    e.target.value
+                                                )
+                                            }
                                         />
                                     </label>
                                 )}

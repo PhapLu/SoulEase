@@ -19,7 +19,7 @@ export default function PatientsDetail() {
     const { patientRecordId } = useParams()
 
     const { userInfo } = useAuth()
-    const isReadOnly = userInfo?.role === 'family'
+    const isSectionReadOnly = userInfo?.role === 'family' || userInfo?.role === 'member'
 
     const normalizeBirthday = (value) => {
         if (!value) return ''
@@ -101,7 +101,7 @@ export default function PatientsDetail() {
 
     // UNIFIED SAVE FUNCTION
     const persistRecord = async (newForm) => {
-        if (isReadOnly) throw new Error('Read-only access')
+        if (isSectionReadOnly) throw new Error('Read-only access')
         const recordId = newForm?.recordId || patient?.recordId
         if (!recordId) throw new Error('Missing recordId')
 
@@ -111,22 +111,37 @@ export default function PatientsDetail() {
 
     // ------- GLOBAL EDIT --------
     const handleStartEdit = () => {
-        if (isReadOnly) return
         setEditForm(patient ? { ...patient } : {})
         setIsEditing(true)
     }
 
     const handleCancelEdit = () => {
-        if (isReadOnly) return
         setEditForm(patient ? { ...patient } : {})
         setIsEditing(false)
     }
 
     const handleSaveEdit = async () => {
-        if (isReadOnly) return
         setSaving(true)
         try {
-            await persistRecord(editForm)
+            if (isSectionReadOnly) {
+                const recordId = editForm?.recordId || patient?.recordId
+                if (!recordId) throw new Error('Missing recordId')
+
+                const payload = {
+                    fullName: editForm?.fullName,
+                    email: editForm?.email,
+                    phone: editForm?.phone,
+                    address: editForm?.address,
+                    gender: editForm?.gender,
+                    birthday: editForm?.birthday || editForm?.dob,
+                }
+
+                await apiUtils.patch(`/patientRecord/updatePatientRecord/${recordId}`, payload)
+                const nextAge = calcAge(payload.birthday || patient?.birthday)
+                setPatient((prev) => ({ ...prev, ...payload, age: nextAge }))
+            } else {
+                await persistRecord(editForm)
+            }
             setIsEditing(false)
         } catch (err) {
             console.error(err)
@@ -135,7 +150,6 @@ export default function PatientsDetail() {
     }
 
     const handleFieldChange = (field, value) => {
-        if (isReadOnly) return
         if (field === 'phone') {
             const digits = String(value || '')
                 .replace(/\D+/g, '')
@@ -208,7 +222,7 @@ export default function PatientsDetail() {
     }, [patientRecordId])
 
     const handleCreateRelative = async (payload) => {
-        if (isReadOnly) return
+        if (isSectionReadOnly) return
         try {
             const recordId = editForm?.recordId || patient?.recordId
             await apiUtils.post('/relative/createRelativeAccount', {
@@ -224,7 +238,7 @@ export default function PatientsDetail() {
     }
 
     const handleCancelSymptoms = () => {
-        if (isReadOnly) return
+        if (isSectionReadOnly) return
         setEditForm((prev) => ({
             ...prev,
             symptoms: [...(patient?.symptoms || [])],
@@ -233,7 +247,7 @@ export default function PatientsDetail() {
     }
 
     const handleSaveSymptoms = async () => {
-        if (isReadOnly) return
+        if (isSectionReadOnly) return
         setSaving(true)
         try {
             const cleanedSymptoms = (editForm?.symptoms || [])
@@ -256,7 +270,7 @@ export default function PatientsDetail() {
     }
 
     const handleAddSymptom = () => {
-        if (isReadOnly) return
+        if (isSectionReadOnly) return
         setEditForm((prev) => ({
             ...prev,
             symptoms: [
@@ -278,7 +292,7 @@ export default function PatientsDetail() {
     }
 
     const handleSymptomFieldChange = (index, field, value) => {
-        if (isReadOnly) return
+        if (isSectionReadOnly) return
         setEditForm((prev) => {
             const list = [...prev.symptoms]
             list[index][field] = value
@@ -287,7 +301,7 @@ export default function PatientsDetail() {
     }
 
     const handleToggleSymptomStatus = async (index) => {
-        if (isReadOnly) return
+        if (isSectionReadOnly) return
         const list =
             editForm?.symptoms?.map((sym, i) =>
                 i === index
@@ -313,7 +327,7 @@ export default function PatientsDetail() {
     }
 
     const handleSymptomKeyDown = async (e, index) => {
-        if (isReadOnly) return
+        if (isSectionReadOnly) return
         if (e.key !== 'Enter') return
         e.preventDefault()
 
@@ -329,7 +343,7 @@ export default function PatientsDetail() {
     }
 
     const handleRemoveSymptom = async (index) => {
-        if (isReadOnly) return
+        if (isSectionReadOnly) return
         const updated = {
             ...editForm,
             symptoms: editForm.symptoms.filter((_, i) => i !== index),
@@ -340,7 +354,7 @@ export default function PatientsDetail() {
     }
 
     const handleTogglePresetSymptom = async (preset, checked) => {
-        if (isReadOnly) return
+        if (isSectionReadOnly) return
         const normName = (preset.name || '').trim()
         const normSign = (preset.sign || '').trim()
         const today = new Date().toISOString().split('T')[0]
@@ -388,18 +402,18 @@ export default function PatientsDetail() {
                 <div className='breadcrumb'>
                     <Breadcrumb items={breadcrumbItems} />
                 </div>
-                <PatientsHeader patient={patient} editForm={editForm} isEditing={isEditing} readOnly={isReadOnly} saving={saving} onFieldChange={handleFieldChange} onStartEdit={handleStartEdit} onSaveEdit={handleSaveEdit} onCancelEdit={handleCancelEdit} />
+                <PatientsHeader patient={patient} editForm={editForm} isEditing={isEditing} readOnly={false} canEdit={true} showImport={!isSectionReadOnly} saving={saving} onFieldChange={handleFieldChange} onStartEdit={handleStartEdit} onSaveEdit={handleSaveEdit} onCancelEdit={handleCancelEdit} />
 
-                <Relative relatives={editForm?.relatives || editForm?.caregivers || []} readOnly={isReadOnly} onCreateRelative={handleCreateRelative} />
+                <Relative relatives={editForm?.relatives || editForm?.caregivers || []} readOnly={isSectionReadOnly} onCreateRelative={handleCreateRelative} />
 
                 {/* ChartSection */}
                 <PatientCharts patientData={patient} />
 
-                <SymptomsSection symptoms={editForm.symptoms || []} editingSymptoms={editingSymptoms} setEditingSymptoms={setEditingSymptoms} readOnly={isReadOnly} onSaveSymptoms={handleSaveSymptoms} onCancelSymptoms={handleCancelSymptoms} onAddSymptom={handleAddSymptom} onSymptomFieldChange={handleSymptomFieldChange} onToggleSymptomStatus={handleToggleSymptomStatus} onSymptomKeyDown={handleSymptomKeyDown} onRemoveSymptom={handleRemoveSymptom} onTogglePresetSymptom={handleTogglePresetSymptom} />
+                <SymptomsSection symptoms={editForm.symptoms || []} editingSymptoms={editingSymptoms} setEditingSymptoms={setEditingSymptoms} readOnly={isSectionReadOnly} onSaveSymptoms={handleSaveSymptoms} onCancelSymptoms={handleCancelSymptoms} onAddSymptom={handleAddSymptom} onSymptomFieldChange={handleSymptomFieldChange} onToggleSymptomStatus={handleToggleSymptomStatus} onSymptomKeyDown={handleSymptomKeyDown} onRemoveSymptom={handleRemoveSymptom} onTogglePresetSymptom={handleTogglePresetSymptom} />
 
-                <TreatmentSession patientRecordId={patientRecordId} sessions={sessions} latest={latestSession} readOnly={isReadOnly} onStartEdit={handleStartEdit} />
+                <TreatmentSession patientRecordId={patientRecordId} sessions={sessions} latest={latestSession} readOnly={isSectionReadOnly} onStartEdit={handleStartEdit} />
 
-                <StorageSection />
+                <StorageSection readOnly={isSectionReadOnly} />
             </div>
         </div>
     )

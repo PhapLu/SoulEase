@@ -18,7 +18,26 @@ class RelativeService {
 
         let relativeUser = await User.findOne({ email })
         if (!relativeUser) {
-            const defaultPassword = '123'
+            const creator = await User.findById(userId)
+            if (!creator) throw new AuthFailureError('Please login to continue')
+
+            let doctorId = null
+            if (creator.role === 'doctor') {
+                doctorId = creator._id
+            } else if (creator.role === 'nurse') {
+                doctorId = creator.nurseProfile?.assistDoctorId
+                if (!doctorId) throw new BadRequestError('Nurse is not assigned to a doctor')
+            } else {
+                throw new AuthFailureError('You do not have permission to create relatives')
+            }
+
+            const doctor = await User.findById(doctorId)
+            if (!doctor || doctor.role !== 'doctor') throw new BadRequestError('Assigned doctor not found')
+            if (!doctor.defaultPassword || doctor.defaultPassword.trim() === '') {
+                throw new BadRequestError('Doctor default password is not set. Please set it before creating relatives.')
+            }
+
+            const defaultPassword = doctor.defaultPassword
             relativeUser = await User.create({
                 email,
                 fullName,
@@ -52,10 +71,14 @@ class RelativeService {
 
     static readRelatives = async (req) => {
         const userId = req.userId
-        const { patientRecordId } = req.params
+        const { recordId } = req.params
         if (!userId) throw new AuthFailureError('Please login to continue')
 
-        const record = await PatientRecord.findOne({ patientId: patientRecordId, doctorId: userId })
+        let record = await PatientRecord.findOne({ _id: recordId, doctorId: userId })
+        if (!record) {
+            // Fallback: sometimes client sends patientId instead of recordId
+            record = await PatientRecord.findOne({ patientId: recordId, doctorId: userId })
+        }
         if (!record) throw new NotFoundError('Patient record not found')
 
         return { relatives: record.relatives || [] }

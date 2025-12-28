@@ -69,6 +69,13 @@ class UserController {
         }).send(res)
     }
 
+    changePassword = async (req, res, next) => {
+        new SuccessResponse({
+            message: 'Change password success!',
+            metadata: await UserService.changePassword(req),
+        }).send(res)
+    }
+
     updateStaffInfo = async (req, res, next) => {
         new SuccessResponse({
             message: 'Update staff info success!',

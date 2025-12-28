@@ -14,6 +14,7 @@ router.get('/readDoctors', asyncHandler(userController.readDoctors))
 router.post('/createStaff', asyncHandler(userController.createStaff))
 router.patch('/updateStaffInfo/:staffId', asyncHandler(userController.updateStaffInfo))
 router.patch('/updateUserProfile/:userId', asyncHandler(userController.updateUserProfile))
+router.patch('/changePassword/:userId', asyncHandler(userController.changePassword))
 router.get('/readStaffDetail/:staffId', asyncHandler(userController.readStaffDetail))
 
 export default router

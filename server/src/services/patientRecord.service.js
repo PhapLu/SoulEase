@@ -220,7 +220,44 @@ class PatientRecordService {
         // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
-        if (user.role === 'family') throw new ForbiddenError('You do not have permission to update this record')
+        if (user.role === 'family' || user.role === 'member') {
+            const recordQuery =
+                user.role === 'member'
+                    ? { _id: recordId, patientId: userId }
+                    : { _id: recordId, $or: [{ 'relatives.userId': userId }, { 'relatives.email': user.email }] }
+
+            const record = await PatientRecord.findOne(recordQuery)
+            if (!record) throw new NotFoundError('Record not found')
+
+            const patient = await User.findById(record.patientId)
+            if (!patient) throw new NotFoundError('Patient not found')
+
+            const updates = {}
+            if (fullName !== undefined) updates.fullName = String(fullName).trim()
+            if (email !== undefined) updates.email = String(email).trim()
+            if (phone !== undefined) updates.phone = String(phone).trim()
+            if (address !== undefined) updates.address = String(address).trim()
+            if (gender !== undefined) {
+                const g = String(gender).toLowerCase()
+                if (['male', 'female', 'other'].includes(g)) {
+                    updates.gender = g
+                }
+            }
+            const birthValue = birthday || dob
+            if (birthValue !== undefined && birthValue !== null && birthValue !== '') {
+                const date = new Date(birthValue)
+                if (!isNaN(date.getTime())) {
+                    updates.dob = date
+                }
+            }
+
+            if (Object.keys(updates).length) {
+                Object.assign(patient, updates)
+                await patient.save()
+            }
+
+            return { record }
+        }
 
         // 2. Check record
         let doctorId

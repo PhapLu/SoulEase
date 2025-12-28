@@ -72,6 +72,8 @@
     background: #f3f4f6;
     place-items: center;
     border: 1px solid var(--border);
+    object-fit: cover;
+    display: block;
 }
 
 .pp-uploadBtn {

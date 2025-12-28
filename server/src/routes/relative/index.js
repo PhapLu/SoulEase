@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.use(verifyToken)
 router.post('/createRelativeAccount', asyncHandler(relativeController.createRelativeAccount))
-router.get('/readRelatives/:patientRecordId', asyncHandler(relativeController.readRelatives))
+router.get('/readRelatives/:recordId', asyncHandler(relativeController.readRelatives))
 router.get('/readMyPatientRecord', asyncHandler(relativeController.readMyPatientRecord))
 
 export default router

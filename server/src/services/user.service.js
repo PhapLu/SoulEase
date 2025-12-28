@@ -213,8 +213,13 @@ class UserService {
 
     static readUserProfile = async (req) => {
         const userId = req.userId
+        const targetId = req.params?.userId || userId
+
+        if (targetId.toString() !== userId.toString()) {
+            throw new AuthFailureError('You are not authorized to view this profile')
+        }
         // 1. Check user
-        const user = await User.findById(userId).select('-password -accessToken -googleId -followers -following')
+        const user = await User.findById(targetId).select('-password -accessToken -googleId -followers -following')
         if (!user) throw new NotFoundError('User not found')
         // 2. Return user profile
         return {
@@ -224,21 +229,14 @@ class UserService {
 
     static updateUserProfile = async (req) => {
         const userId = req.userId
+        const targetId = req.params?.userId || userId
         const updateData = req.body
 
         // 1. Check user
-        const user = await User.findById(userId)
-        if (!user) throw new NotFoundError('User not found')
-
-        // 2. Update user profile
-    }
-
-    static updateUserProfile = async (req) => {
-        const userId = req.userId
-        const updateData = req.body
-
-        // 1. Check user
-        const user = await User.findById(userId)
+        if (targetId.toString() !== userId.toString()) {
+            throw new AuthFailureError('You are not authorized to update this profile')
+        }
+        const user = await User.findById(targetId)
         if (!user) throw new NotFoundError('User not found')
 
         // 2. Update user profile
@@ -250,6 +248,34 @@ class UserService {
             }
         })
 
+        if ((user.role === 'clinic' || user.role === 'doctor') && updateData.defaultPassword !== undefined) {
+            const nextDefault = String(updateData.defaultPassword).trim()
+            if (nextDefault) {
+                user.defaultPassword = nextDefault
+            }
+        }
+
+        if (user.role === 'doctor' && updateData.doctorProfile) {
+            user.doctorProfile = {
+                ...(user.doctorProfile || {}),
+                ...updateData.doctorProfile,
+            }
+        }
+
+        if (user.role === 'clinic' && updateData.clinicProfile) {
+            user.clinicProfile = {
+                ...(user.clinicProfile || {}),
+                ...updateData.clinicProfile,
+            }
+        }
+
+        if (user.role === 'nurse' && updateData.nurseProfile) {
+            user.nurseProfile = {
+                ...(user.nurseProfile || {}),
+                ...updateData.nurseProfile,
+            }
+        }
+
         await user.save()
 
         // 3. Return updated user without sensitive info
@@ -257,6 +283,29 @@ class UserService {
         return {
             user: updatedUser,
         }
+    }
+
+    static changePassword = async (req) => {
+        const userId = req.userId
+        const targetId = req.params?.userId || userId
+        const { oldPassword, newPassword } = req.body || {}
+
+        if (targetId.toString() !== userId.toString()) {
+            throw new AuthFailureError('You are not authorized to change this password')
+        }
+        if (!oldPassword || !newPassword) throw new BadRequestError('Old and new password are required')
+
+        const user = await User.findById(targetId).select('password')
+        if (!user) throw new NotFoundError('User not found')
+
+        if (String(user.password) !== String(oldPassword)) {
+            throw new AuthFailureError('Old password is incorrect')
+        }
+
+        user.password = String(newPassword).trim()
+        await user.save()
+
+        return { success: true }
     }
 
     static updateStaffInfo = async (req) => {
