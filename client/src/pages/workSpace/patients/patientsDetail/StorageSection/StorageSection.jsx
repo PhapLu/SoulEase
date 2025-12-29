@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./StorageSection.css";
 import "../TreatmentSection/TreatmentSession.css";
 
-export default function StorageSection({ onSave, onCancel }) {
+export default function StorageSection({ onSave, onCancel, readOnly = false }) {
     const [tab, setTab] = useState("image");
     const [open, setOpen] = useState(false);
 
@@ -43,16 +43,19 @@ export default function StorageSection({ onSave, onCancel }) {
     }, []);
 
     const handlePickImage = () => {
+        if (readOnly) return;
         setOpen(false);
         imageInputRef.current?.click();
     };
 
     const handlePickFile = () => {
+        if (readOnly) return;
         setOpen(false);
         fileInputRef.current?.click();
     };
 
     const onUploadImages = (e) => {
+        if (readOnly) return;
         const selected = Array.from(e.target.files || []);
         if (!selected.length) return;
 
@@ -70,6 +73,7 @@ export default function StorageSection({ onSave, onCancel }) {
     };
 
     const onUploadFiles = (e) => {
+        if (readOnly) return;
         const selected = Array.from(e.target.files || []);
         if (!selected.length) return;
 
@@ -86,6 +90,7 @@ export default function StorageSection({ onSave, onCancel }) {
     };
 
     const removeImage = (idx) => {
+        if (readOnly) return;
         setImages((prev) => {
             const copy = [...prev];
             const item = copy[idx];
@@ -97,6 +102,7 @@ export default function StorageSection({ onSave, onCancel }) {
     };
 
     const removeFile = (idx) => {
+        if (readOnly) return;
         setFiles((prev) => prev.filter((_, i) => i !== idx));
         setDirty(true);
     };
@@ -127,64 +133,66 @@ export default function StorageSection({ onSave, onCancel }) {
             <div className="pd-storage__header">
                 <h3 title="Open treatment details">{headerTitle}</h3>
 
-                <div className="tp-dd" ref={ddRef}>
-                    <button
-                        className="tp-btn-icon tp-btn-icon--primary"
-                        onClick={() => setOpen((v) => !v)}
-                        type="button"
-                        aria-haspopup="menu"
-                        aria-expanded={open}
-                    >
-                        <svg
-                            className="size-6"
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="24px"
-                            viewBox="0 -960 960 960"
-                            width="24px"
-                            fill="#e3e3e3"
+                {!readOnly && (
+                    <div className="tp-dd" ref={ddRef}>
+                        <button
+                            className="tp-btn-icon tp-btn-icon--primary"
+                            onClick={() => setOpen((v) => !v)}
+                            type="button"
+                            aria-haspopup="menu"
+                            aria-expanded={open}
                         >
-                            <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" />
-                        </svg>
-                    </button>
-
-                    {open && (
-                        <div className="tp-dd__menu" role="menu">
-                            <button
-                                className="tp-dd__item"
-                                type="button"
-                                onClick={handlePickImage}
-                                role="menuitem"
+                            <svg
+                                className="size-6"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="24px"
+                                viewBox="0 -960 960 960"
+                                width="24px"
+                                fill="#e3e3e3"
                             >
-                                Upload Images
-                            </button>
+                                <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" />
+                            </svg>
+                        </button>
 
-                            <button
-                                className="tp-dd__item"
-                                type="button"
-                                onClick={handlePickFile}
-                                role="menuitem"
-                            >
-                                Upload Files
-                            </button>
-                        </div>
-                    )}
+                        {open && (
+                            <div className="tp-dd__menu" role="menu">
+                                <button
+                                    className="tp-dd__item"
+                                    type="button"
+                                    onClick={handlePickImage}
+                                    role="menuitem"
+                                >
+                                    Upload Images
+                                </button>
 
-                    <input
-                        ref={imageInputRef}
-                        type="file"
-                        accept="image/*"
-                        multiple
-                        hidden
-                        onChange={onUploadImages}
-                    />
-                    <input
-                        ref={fileInputRef}
-                        type="file"
-                        multiple
-                        hidden
-                        onChange={onUploadFiles}
-                    />
-                </div>
+                                <button
+                                    className="tp-dd__item"
+                                    type="button"
+                                    onClick={handlePickFile}
+                                    role="menuitem"
+                                >
+                                    Upload Files
+                                </button>
+                            </div>
+                        )}
+
+                        <input
+                            ref={imageInputRef}
+                            type="file"
+                            accept="image/*"
+                            multiple
+                            hidden
+                            onChange={onUploadImages}
+                        />
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            multiple
+                            hidden
+                            onChange={onUploadFiles}
+                        />
+                    </div>
+                )}
             </div>
 
             <div className="pd-storage__tabs">
@@ -229,14 +237,16 @@ export default function StorageSection({ onSave, onCancel }) {
                                         <img src={img.url} alt={img.name} />
                                     </button>
 
-                                    <button
-                                        className="pd-storage__remove"
-                                        type="button"
-                                        onClick={() => removeImage(i)}
-                                        title="Remove"
-                                    >
-                                        ×
-                                    </button>
+                                    {!readOnly && (
+                                        <button
+                                            className="pd-storage__remove"
+                                            type="button"
+                                            onClick={() => removeImage(i)}
+                                            title="Remove"
+                                        >
+                                            ×
+                                        </button>
+                                    )}
                                 </div>
                             ))
                         )}
@@ -260,24 +270,26 @@ export default function StorageSection({ onSave, onCancel }) {
                                     <div className="pd-storage__meta">
                                         <span>{formatBytes(f.size)}</span>
 
-                                        <button
-                                            className="folder-btn-delete"
-                                            type="button"
-                                            onClick={() => removeFile(i)}
-                                            title="Remove"
-                                        >
-                                            <span>
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    height="20px"
-                                                    viewBox="0 -960 960 960"
-                                                    width="20px"
-                                                    fill="#ef4444"
-                                                >
-                                                    <path d="M312-144q-29.7 0-50.85-21.15Q240-186.3 240-216v-480h-48v-72h192v-48h192v48h192v72h-48v479.57Q720-186 698.85-165T648-144H312Zm336-552H312v480h336v-480ZM384-288h72v-336h-72v336Zm120 0h72v-336h-72v336ZM312-696v480-480Z" />
-                                                </svg>
-                                            </span>
-                                        </button>
+                                        {!readOnly && (
+                                            <button
+                                                className="folder-btn-delete"
+                                                type="button"
+                                                onClick={() => removeFile(i)}
+                                                title="Remove"
+                                            >
+                                                <span>
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        height="20px"
+                                                        viewBox="0 -960 960 960"
+                                                        width="20px"
+                                                        fill="#ef4444"
+                                                    >
+                                                        <path d="M312-144q-29.7 0-50.85-21.15Q240-186.3 240-216v-480h-48v-72h192v-48h192v48h192v72h-48v479.57Q720-186 698.85-165T648-144H312Zm336-552H312v480h336v-480ZM384-288h72v-336h-72v336Zm120 0h72v-336h-72v336ZM312-696v480-480Z" />
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             ))
@@ -286,7 +298,7 @@ export default function StorageSection({ onSave, onCancel }) {
                 )}
             </div>
 
-            {dirty && (
+            {dirty && !readOnly && (
                 <div className="pd-storage__actions">
                     <button
                         className="folder-cancel-btn"

@@ -82,7 +82,7 @@ export default function TreatmentDetailPage() {
     const { folderId, patientRecordId } = useParams()
     const navigate = useNavigate()
     const { userInfo } = useAuth()
-    const isReadOnly = userInfo?.role === 'family'
+    const isReadOnly = userInfo?.role === 'family' || userInfo?.role === 'member'
     const goToCreateSession = () => {
         navigate(`/workspace/patients/folder/${folderId}/${patientRecordId}/treatment/create-session`)
     }

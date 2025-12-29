@@ -2,7 +2,7 @@
 import { EditIcon, RemoveIcon, AddIcon } from '../../Icon'
 import InfoField from './PatientInfoField'
 
-export default function PatientsHeader({ patient, editForm, isEditing, readOnly, saving, onFieldChange, onStartEdit, onSaveEdit, onCancelEdit }) {
+export default function PatientsHeader({ patient, editForm, isEditing, readOnly, saving, onFieldChange, onStartEdit, onSaveEdit, onCancelEdit, canEdit = !readOnly, showImport = !readOnly }) {
     return (
         <section className='pd-header'>
             <img src={patient?.avatar} className='pd-avatar' />
@@ -21,7 +21,7 @@ export default function PatientsHeader({ patient, editForm, isEditing, readOnly,
                                 </button>
                             </>
                         ) : (
-                            !readOnly && (
+                            canEdit && (
                                 <button className='folder-edit-btn' onClick={onStartEdit}>
                                     <EditIcon />
                                     <span>Edit</span>
@@ -57,7 +57,7 @@ export default function PatientsHeader({ patient, editForm, isEditing, readOnly,
                 </div>
             </div>
 
-            {!readOnly && <button className='pd-import-btn'>Import +</button>}
+            {showImport && <button className='pd-import-btn'>Import +</button>}
         </section>
     )
 }

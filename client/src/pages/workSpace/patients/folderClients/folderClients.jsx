@@ -94,16 +94,15 @@ export default function FolderClients() {
                 folderId,
             }
             console.log(payload)
-            // const res = await apiUtils.post('/patientRecord/createPatientRecord', payload)
+            const res = await apiUtils.post('/patientRecord/createPatientRecord', payload)
+            const createdClient = res.data.metadata.user
 
-            // const createdClient = res.data.metadata.user
+            setFolderInfo((prev) => ({
+                ...prev,
+                records: [...(prev.records || []), createdClient],
+            }))
 
-            // setFolderInfo((prev) => ({
-            //     ...prev,
-            //     records: [...(prev.records || []), createdClient],
-            // }))
-
-            // setOpenCreateModal(false)
+            setOpenCreateModal(false)
         } catch (err) {
             console.log(err)
             alert('Failed to create client. Please try again.')

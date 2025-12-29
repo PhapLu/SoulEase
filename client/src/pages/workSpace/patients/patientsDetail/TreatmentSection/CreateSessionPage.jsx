@@ -9,7 +9,7 @@ export default function CreateSessionPage() {
     const { folderId, patientRecordId } = useParams();
     const navigate = useNavigate();
     const { userInfo } = useAuth();
-    const isReadOnly = userInfo?.role === "family";
+    const isReadOnly = userInfo?.role === "family" || userInfo?.role === "member";
     const [saving, setSaving] = useState(false);
     const [err, setErr] = useState("");
     const builtInSymptoms = useMemo(
