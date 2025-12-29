@@ -81,9 +81,10 @@ function ActionsDropdown({ onCompleteStage, onCreateSession, canComplete = true 
     )
 }
 
-export default function TreatmentSession({ patientRecordId, loading, error, sessions, latest, onUpdateLatest, onRefetch, readOnly }) {
-    const { folderId, patientRecordId: prIdFromUrl } = useParams()
+export default function TreatmentSession({ patientRecordId, folderId: folderIdProp, loading, error, sessions, latest, onUpdateLatest, onRefetch, readOnly }) {
+    const { folderId: folderIdParam, patientRecordId: prIdFromUrl } = useParams()
     const prId = patientRecordId || prIdFromUrl
+    const folderId = folderIdProp || folderIdParam
     const navigate = useNavigate()
     const goToTreatment = () => {
         if (!folderId || !prId) return

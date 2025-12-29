@@ -1,0 +1,159 @@
+2025-12-30 00:00:08::info::/v1/api/patientRecord/createPatientRecord::185f216a-29c4-4563-b038-e6cb630f6135::input-params ::POST::::{"recordId":"694ff6e850d27e20d94fe70f","patientRecordId":"694ff6e750d27e20d94fe707","email":"luutuan@gmail.com","fullName":"Luu Quoc Tuan","phoneNumber":"0399091511","relationship":"Caregiver","role":"relative"}
+2025-12-30 00:00:09::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::ccd4e017-6d2a-4415-93f4-c5fad55d5a9a::input-params ::GET::::{}
+2025-12-30 00:00:09::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::efad8226-9e4a-4e61-b469-78998a805362::input-params ::GET::::{}
+2025-12-30 00:00:16::info::/v1/api/auth/logout::fa711bd2-d506-4866-86cb-9688cb0e2a7c::input-params ::POST::::{}
+2025-12-30 00:00:16::info::/v1/api/user/me::f6b43152-0c1e-4d08-8256-1ef4058b7728::input-params ::GET::::{}
+2025-12-30 00:00:16::error::/v1/api/user/me::f6b43152-0c1e-4d08-8256-1ef4058b7728::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-30 00:00:16::info::/v1/api/user/me::968a3892-9567-4007-9653-f502ba09e1e0::input-params ::GET::::{}
+2025-12-30 00:00:16::error::/v1/api/user/me::968a3892-9567-4007-9653-f502ba09e1e0::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-30 00:00:20::info::/v1/api/auth/login::960a7bd2-394d-4434-bba6-654886cdc305::input-params ::POST::::{"email":"luutuan@gmail.com","password":"12345"}
+2025-12-30 00:00:20::info::/v1/api/user/me::4b4ef1e7-6d66-4f4f-ab53-1ee697f956fc::input-params ::GET::::{}
+2025-12-30 00:00:20::info::/v1/api/relative/readMyPatientRecord::e35336ae-e9b3-4325-92eb-81d96dac942b::input-params ::GET::::{}
+2025-12-30 00:00:20::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::8837609e-0990-4f81-9644-48718ec357a5::input-params ::GET::::{}
+2025-12-30 00:00:20::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::88efe313-dec7-4af8-8f91-9db82a3ceeda::input-params ::GET::::{}
+2025-12-30 00:00:20::info::/v1/api/relative/readMyPatientRecord::143995c3-fc4e-4e8c-ac50-7e9b7389a2ef::input-params ::GET::::{}
+2025-12-30 00:00:20::info::/v1/api/relative/readMyPatientRecord::26f795e6-5d40-4c02-a9c5-c53181c7e8c3::input-params ::GET::::{}
+2025-12-30 00:00:20::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::55cf68c0-945b-4432-ae78-a70c13e9631f::input-params ::GET::::{}
+2025-12-30 00:00:20::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::b192db2c-1cb6-4cd4-80d0-88af142a54b1::input-params ::GET::::{}
+2025-12-30 00:00:20::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::d7845609-ee8b-424f-a903-634b53dfca09::input-params ::GET::::{}
+2025-12-30 00:00:20::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::4f9e134f-70f6-4e98-9508-1a3a776167a1::input-params ::GET::::{}
+2025-12-30 00:00:20::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::d7845609-ee8b-424f-a903-634b53dfca09::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-30 00:00:20::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::4f9e134f-70f6-4e98-9508-1a3a776167a1::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-30 00:00:22::info::/v1/api/conversation/readConversations::1b93448e-a50d-4aef-9d9c-c403ae22d855::input-params ::GET::::{}
+2025-12-30 00:00:22::info::/v1/api/conversation/readConversations::755f1443-8617-47b6-a08e-fadb75402481::input-params ::GET::::{}
+2025-12-30 00:00:25::info::/v1/api/folder/readFolders::5da49ea4-e587-43cd-a172-e67bc0be6b7b::input-params ::GET::::{}
+2025-12-30 00:00:25::info::/v1/api/folder/readFolders::fb6aa52a-45aa-4592-9cfb-a0c3a6f381cf::input-params ::GET::::{}
+2025-12-30 00:00:26::info::/v1/api/conversation/readConversations::d119a26b-d6c9-4208-9973-3e2f63fd86db::input-params ::GET::::{}
+2025-12-30 00:00:26::info::/v1/api/conversation/readConversations::7318b0c2-1cbf-41ec-81df-f18cf2a48664::input-params ::GET::::{}
+2025-12-30 00:00:28::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::84009388-3fcd-445d-8111-dc7a5c7f493a::input-params ::GET::::{}
+2025-12-30 00:00:28::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::5e435018-357d-4d1a-9114-380c215429fe::input-params ::GET::::{}
+2025-12-30 00:00:28::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::f0a61cbe-3796-4304-83ca-945efe76f577::input-params ::GET::::{}
+2025-12-30 00:00:28::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::7a56408c-ce3b-4a50-9ed3-15adbe259879::input-params ::GET::::{}
+2025-12-30 00:00:31::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::a21b1019-a568-4d98-a4d2-485bffa3b6eb::input-params ::GET::::{}
+2025-12-30 00:00:35::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::62de3feb-2746-4932-ac22-7c931ca48af1::input-params ::GET::::{}
+2025-12-30 00:00:35::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::305976f9-e702-414e-a238-b147d2aac2dc::input-params ::GET::::{}
+2025-12-30 00:00:35::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::dc40d824-bc8b-4a22-bd1f-9bf531580b70::input-params ::GET::::{}
+2025-12-30 00:00:36::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::305976f9-e702-414e-a238-b147d2aac2dc::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-30 00:00:38::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::2889f424-9ad8-476c-87f9-4cf955b18b86::input-params ::GET::::{}
+2025-12-30 00:00:38::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::2144b982-e267-4346-af2f-9c80794b902a::input-params ::GET::::{}
+2025-12-30 00:00:40::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::1674c857-1591-4cbb-a9cb-4afccd39626e::input-params ::GET::::{}
+2025-12-30 00:00:40::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::bac2342a-7926-4952-99fd-0cd6e74e1f5b::input-params ::GET::::{}
+2025-12-30 00:00:41::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::30654a6a-267d-4931-aaec-c32ea7152eaa::input-params ::GET::::{}
+2025-12-30 00:00:41::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::35672055-1cfb-4122-ba71-e3e4e9e97279::input-params ::GET::::{}
+2025-12-30 00:00:41::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::5c88be57-b709-4832-ab9f-25a9aef1fcb3::input-params ::GET::::{}
+2025-12-30 00:00:41::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::431c5b72-fce4-4ddc-ad44-6b9902440943::input-params ::GET::::{}
+2025-12-30 00:00:41::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::35672055-1cfb-4122-ba71-e3e4e9e97279::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-30 00:00:41::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::30654a6a-267d-4931-aaec-c32ea7152eaa::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-30 00:01:49::info::/v1/api/folder/readFolders::aaa60ca9-d03f-4c72-90b1-ed2d67472b80::input-params ::GET::::{}
+2025-12-30 00:01:50::info::/v1/api/folder/readFolders::50299da7-0e0a-4fde-bcf2-7be56bf027f0::input-params ::GET::::{}
+2025-12-30 00:01:51::info::/v1/api/conversation/readConversations::9ac4636f-eda9-432d-8a7f-830fe5061219::input-params ::GET::::{}
+2025-12-30 00:01:52::info::/v1/api/conversation/readConversations::b6d6c523-dd70-4afd-8bbb-6fe4b877e05b::input-params ::GET::::{}
+2025-12-30 00:01:52::info::/v1/api/folder/readFolders::f85eacb5-64c8-4237-b5b7-4c7957425223::input-params ::GET::::{}
+2025-12-30 00:01:52::info::/v1/api/folder/readFolders::4adad3f8-2b69-498c-9bda-2790f5ed323d::input-params ::GET::::{}
+2025-12-30 00:02:06::info::/v1/api/folder/readFolder/694e14309a7d6d9fde80cd73::95accf99-f3e4-4ae3-afc7-6b2dfe0f7b79::input-params ::GET::::{}
+2025-12-30 00:02:07::info::/v1/api/folder/readFolder/694e14309a7d6d9fde80cd73::415a14b1-8af1-4ae1-a32a-188dbfbda312::input-params ::GET::::{}
+2025-12-30 00:02:07::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::ab51c54a-c6bd-4580-a558-83a2b7a112f6::input-params ::GET::::{}
+2025-12-30 00:02:08::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::9ac2738e-b94a-4a7b-8d3b-f2b4acd6ee08::input-params ::GET::::{}
+2025-12-30 00:02:08::info::/v1/api/patientRecord/readPatientCharts/694e14669a7d6d9fde80cd86::02f2f663-e8bb-4fb0-b827-6fa4b1df82fb::input-params ::GET::::{}
+2025-12-30 00:02:08::info::/v1/api/patientRecord/readPatientCharts/694e14669a7d6d9fde80cd86::2c256ed1-179c-47f6-b4fd-d4079fc7eb87::input-params ::GET::::{}
+2025-12-30 00:02:08::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::933df22e-2c9d-42c3-b37f-be22d3fed0a5::input-params ::GET::::{}
+2025-12-30 00:02:08::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::45678170-0a47-44d1-b714-d4fbccd84e45::input-params ::GET::::{}
+2025-12-30 00:02:08::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::9d5bda22-4f9a-49c8-9dd5-031dee1623e4::input-params ::GET::::{}
+2025-12-30 00:02:08::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::e4f8bfc5-7cba-4e4b-9a71-3bdcd4f6cb6e::input-params ::GET::::{}
+2025-12-30 00:02:22::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::06785c99-98bc-4191-a191-65efaf83339a::input-params ::GET::::{}
+2025-12-30 00:02:22::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::d39ecf83-d52b-4069-acbb-9dfdc3e9c8b4::input-params ::GET::::{}
+2025-12-30 00:02:25::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::f9290481-eeec-4bdc-8458-d07237e857a5::input-params ::GET::::{}
+2025-12-30 00:02:25::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::6526933e-896d-423a-82c3-e8ba241f98bb::input-params ::GET::::{}
+2025-12-30 00:02:25::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::630166b4-130f-41d9-9fbe-3fac26a11097::input-params ::GET::::{}
+2025-12-30 00:02:25::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::c5211b86-5e6c-4534-accf-337ff7e8b494::input-params ::GET::::{}
+2025-12-30 00:02:25::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::48f3f3e9-8f8d-4350-992c-ab3b46723b67::input-params ::GET::::{}
+2025-12-30 00:02:25::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::cd3ad150-fe12-4e67-8700-e9ffe8073b86::input-params ::GET::::{}
+2025-12-30 00:02:25::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::630166b4-130f-41d9-9fbe-3fac26a11097::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-30 00:02:25::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::c5211b86-5e6c-4534-accf-337ff7e8b494::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-30 00:02:36::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::ac643987-1dbf-48f4-8fc9-75fc7a1e451a::input-params ::GET::::{}
+2025-12-30 00:02:37::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::ad2bd51c-6256-40b9-a5e0-68b14b906d87::input-params ::GET::::{}
+2025-12-30 00:02:37::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::c3dfbe19-5e20-48bc-89c2-861fc54009b4::input-params ::GET::::{}
+2025-12-30 00:02:38::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::57ca8591-b452-43d6-860d-04cf5d681709::input-params ::GET::::{}
+2025-12-30 00:02:38::info::/v1/api/patientRecord/readPatientCharts/694e14669a7d6d9fde80cd86::2e99d0fc-b0ac-4db0-9c68-45db20726efa::input-params ::GET::::{}
+2025-12-30 00:02:38::info::/v1/api/patientRecord/readPatientCharts/694e14669a7d6d9fde80cd86::44809d37-a229-4ed9-af0d-62468a1cef65::input-params ::GET::::{}
+2025-12-30 00:02:38::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::009ed7c2-8bda-4d94-9577-18e72f264976::input-params ::GET::::{}
+2025-12-30 00:02:38::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::22b91860-29bf-4739-a8bb-fea496c3abb1::input-params ::GET::::{}
+2025-12-30 00:02:38::info::/v1/api/folder/readFolder/694e14309a7d6d9fde80cd73::26d101a3-175b-46b1-8d1a-1e6d6218c41c::input-params ::GET::::{}
+2025-12-30 00:02:38::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::5233089e-7723-4c3b-9a71-58f372122d1d::input-params ::GET::::{}
+2025-12-30 00:02:38::info::/v1/api/folder/readFolder/694e14309a7d6d9fde80cd73::ddb1377a-534b-411b-aafb-e2aaa3962d74::input-params ::GET::::{}
+2025-12-30 00:02:38::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::7591e2f0-9a3b-4073-acb0-09f1c4a77079::input-params ::GET::::{}
+2025-12-30 00:02:39::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::af9f2bbd-3cae-4be7-ad49-84c657409ba5::input-params ::GET::::{}
+2025-12-30 00:02:39::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::159d5ae5-62dd-4c58-9df9-7bb538a297a8::input-params ::GET::::{}
+2025-12-30 00:02:39::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::de970600-2664-4fef-9a0b-4bca9f88017c::input-params ::GET::::{}
+2025-12-30 00:02:39::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::e120cf61-bc79-4049-9bd5-3e3f647d7ff6::input-params ::GET::::{}
+2025-12-30 00:02:39::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::87d76c72-dcda-41e3-b131-1230ec9a4d5f::input-params ::GET::::{}
+2025-12-30 00:02:39::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::e97276bb-b950-4ff4-ace3-a437a34d8642::input-params ::GET::::{}
+2025-12-30 00:02:40::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::7016cafa-f073-43b4-b3b0-021cc43eab82::input-params ::GET::::{}
+2025-12-30 00:02:40::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::1dade26d-40af-4bbe-bab0-cd18aeae1fea::input-params ::GET::::{}
+2025-12-30 00:02:45::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::745cd1be-6b71-49d3-a732-2d92d6fba305::input-params ::GET::::{}
+2025-12-30 00:02:45::info::/v1/api/patientRecord/updatePatientRecord/694ff6e850d27e20d94fe70f::8c7ee653-78ee-465f-8e08-407ee6be3b71::input-params ::PATCH::::{"treatmentPlan":{"stageStatus":{"stage1":true,"stage2":true}}}
+2025-12-30 00:02:48::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::9d3a52fc-cbd5-47ca-9e51-439f1e6d14b0::input-params ::GET::::{}
+2025-12-30 00:02:48::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::935cc1f1-2482-4356-b8e6-15188788cc63::input-params ::GET::::{}
+2025-12-30 00:03:36::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::eed339fb-5f04-4f4e-9a90-8bda1f0f312f::input-params ::GET::::{}
+2025-12-30 00:03:36::info::/v1/api/patientRecord/updatePatientRecord/694ff6e850d27e20d94fe70f::753f830b-452c-4522-9566-9b1c08be7dfa::input-params ::PATCH::::{"treatmentSessions":[{"id":"sess-1767027816584","date":"2025-12-29","focus":"Hy hy hy","symptoms":[{"id":"sym-1767027770744","name":"Low Motivation","sign":"Lack of interest in daily activities","date":"2025-12-29","status":"Active","isCustom":false}],"phq9":12,"gad7":15,"severity":9,"risk":"High","stage":"Stage 3: Maintenance &amp; relapse prevention","status":"Stage 3: Maintenance &amp; relapse prevention","note":"Ho ho ho","result":"Hy hy hy","treatment":"He he he"},{"id":"sess-1766946439208","date":"2025-12-28","focus":"Hehehehehe","symptoms":[{"id":"sym-1766946412333","name":"Headache","sign":"Persistent head pain","date":"2025-12-28","status":"Active","isCustom":false}],"phq9":12,"gad7":15,"severity":6,"risk":"High","status":"Stage 2: Trauma narrative &amp; processing","note":"KKKKKK","result":"Hehehehehe","treatment":"Hohohoho","_id":"69517687f577c0034f1a85bd"},{"id":"sess-1766946376193","date":"2025-12-28","focus":"Re re re result","symptoms":[{"id":"sym-1766946312682","name":"Loss of Appetite","sign":"Reduced desire to eat","date":"2025-12-28","status":"Active","isCustom":false}],"phq9":8,"gad7":10,"severity":3,"risk":"Low","status":"Stage 1: Stabilization &amp; coping skills","note":"No no no notes","result":"Re re re result","treatment":"Tre tre tre treatment","_id":"69517648f577c0034f1a8552"},{"id":"sess-1766946286018","date":"2025-12-28","focus":"Crazy","symptoms":[{"id":"sym-1766946245366","name":"Anxiety","sign":"Excessive worry or nervousness","date":"2025-12-28","status":"Active","isCustom":false},{"id":"sym-1766946250399","name":"Difficulty Concentrating","sign":"Trouble focusing","date":"2025-12-28","status":"Active","isCustom":false}],"phq9":10,"gad7":12,"severity":8,"risk":"Medium","status":"Stage 1: Stabilization &amp; coping skills","note":"Hi HI note","result":"Crazy","treatment":"Die","_id":"695175eef577c0034f1a8505"}],"treatmentSections":[{"id":"sess-1767027816584","date":"2025-12-29","focus":"Hy hy hy","symptoms":[{"id":"sym-1767027770744","name":"Low Motivation","sign":"Lack of interest in daily activities","date":"2025-12-29","status":"Active","isCustom":false}],"phq9":12,"gad7":15,"severity":9,"risk":"High","stage":"Stage 3: Maintenance &amp; relapse prevention","status":"Stage 3: Maintenance &amp; relapse prevention","note":"Ho ho ho","result":"Hy hy hy","treatment":"He he he"},{"id":"sess-1766946439208","date":"2025-12-28","focus":"Hehehehehe","symptoms":[{"id":"sym-1766946412333","name":"Headache","sign":"Persistent head pain","date":"2025-12-28","status":"Active","isCustom":false}],"phq9":12,"gad7":15,"severity":6,"risk":"High","status":"Stage 2: Trauma narrative &amp; processing","note":"KKKKKK","result":"Hehehehehe","treatment":"Hohohoho","_id":"69517687f577c0034f1a85bd"},{"id":"sess-1766946376193","date":"2025-12-28","focus":"Re re re result","symptoms":[{"id":"sym-1766946312682","name":"Loss of Appetite","sign":"Reduced desire to eat","date":"2025-12-28","status":"Active","isCustom":false}],"phq9":8,"gad7":10,"severity":3,"risk":"Low","status":"Stage 1: Stabilization &amp; coping skills","note":"No no no notes","result":"Re re re result","treatment":"Tre tre tre treatment","_id":"69517648f577c0034f1a8552"},{"id":"sess-1766946286018","date":"2025-12-28","focus":"Crazy","symptoms":[{"id":"sym-1766946245366","name":"Anxiety","sign":"Excessive worry or nervousness","date":"2025-12-28","status":"Active","isCustom":false},{"id":"sym-1766946250399","name":"Difficulty Concentrating","sign":"Trouble focusing","date":"2025-12-28","status":"Active","isCustom":false}],"phq9":10,"gad7":12,"severity":8,"risk":"Medium","status":"Stage 1: Stabilization &amp; coping skills","note":"Hi HI note","result":"Crazy","treatment":"Die","_id":"695175eef577c0034f1a8505"}],"symptoms":[{"id":"sym-0","name":"Depressed Mood","sign":"Prolonged sadness","date":"2025-12-27","status":"Active"},{"id":"sym-1","name":"Anxiety","sign":"Excessive worry or nervousness","date":"2025-12-28","status":"Active"},{"id":"sym-2","name":"Difficulty Concentrating","sign":"Trouble focusing","date":"2025-12-28","status":"Active"},{"id":"sym-3","name":"Loss of Appetite","sign":"Reduced desire to eat","date":"2025-12-28","status":"Active"},{"id":"sym-4","name":"Headache","sign":"Persistent head pain","date":"2025-12-28","status":"Active"},{"id":"sym-1767027770744","name":"Low Motivation","sign":"Lack of interest in daily activities","date":"2025-12-29","status":"Active"}]}
+2025-12-30 00:03:36::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::5e6d9997-4f16-4755-a0df-5dd94b586e64::input-params ::GET::::{}
+2025-12-30 00:03:37::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::ce0171f9-4f85-472e-a620-0f262159e4e0::input-params ::GET::::{}
+2025-12-30 00:03:40::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::ef26095d-12aa-4df8-9c02-7e6bd13c0f50::input-params ::GET::::{}
+2025-12-30 00:03:41::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::aa4cf885-fea4-41f8-826b-de2311d102d1::input-params ::GET::::{}
+2025-12-30 00:03:41::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::04ebde3f-7d59-46f7-815f-7133ca10a3ea::input-params ::GET::::{}
+2025-12-30 00:03:41::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::0eaf61f9-ecf2-4940-a828-db8a0a00b681::input-params ::GET::::{}
+2025-12-30 00:03:41::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::901d03ff-b272-4c31-a6b0-ab55831d0514::input-params ::GET::::{}
+2025-12-30 00:03:41::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::840cff7b-c792-4bf1-98de-887e1efc22da::input-params ::GET::::{}
+2025-12-30 00:03:41::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::1043a908-f25f-4b29-8056-a69745cdbf10::input-params ::GET::::{}
+2025-12-30 00:03:42::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::d6110ace-d74b-4c73-a2d8-cbfb96789318::input-params ::GET::::{}
+2025-12-30 00:03:48::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::5272e86f-ad6f-4751-8718-3fa8663399d3::input-params ::GET::::{}
+2025-12-30 00:03:48::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::2320b012-8029-41be-8aa1-876bc6abeedd::input-params ::GET::::{}
+2025-12-30 00:03:56::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::7b6472a6-fe5d-44ec-b344-ef793c66b5dc::input-params ::GET::::{}
+2025-12-30 00:03:56::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::21dc2a62-c37e-4c80-9d26-681e22da54e5::input-params ::GET::::{}
+2025-12-30 00:04:14::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::3ce40aa0-31c3-41d2-bd66-8abe556cf4e6::input-params ::GET::::{}
+2025-12-30 00:04:14::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::47b29bca-c677-474d-84ac-5cfe7479e57b::input-params ::GET::::{}
+2025-12-30 00:04:14::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::b9db1c9b-29da-486b-a770-605945e3c8aa::input-params ::GET::::{}
+2025-12-30 00:04:14::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::203338c9-4ec9-4041-927e-39e90b10ea61::input-params ::GET::::{}
+2025-12-30 00:04:14::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::6d165ddf-3a2c-4ee8-84a2-b8172668fe2b::input-params ::GET::::{}
+2025-12-30 00:04:14::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::83e19fac-2530-43f5-9eb9-3d1c83330c3f::input-params ::GET::::{}
+2025-12-30 00:04:14::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::da08fea0-1731-413c-b2ae-5076ae3c99db::input-params ::GET::::{}
+2025-12-30 00:04:15::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::c8a4a7e1-e792-4f8a-9a08-e39fdbab071c::input-params ::GET::::{}
+2025-12-30 00:04:18::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::965ac97f-e368-4948-9dd9-ec19f9dedef4::input-params ::GET::::{}
+2025-12-30 00:04:18::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::b8b473c6-0341-4d58-a9af-b43347870c97::input-params ::GET::::{}
+2025-12-30 00:04:18::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::03a96edb-7151-4aae-a74c-d950b6468aef::input-params ::GET::::{}
+2025-12-30 00:04:18::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::e31173c7-af10-4c6f-8551-4343834dbc2c::input-params ::GET::::{}
+2025-12-30 00:04:18::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::726256df-524d-43a2-ac42-d160bef7268b::input-params ::GET::::{}
+2025-12-30 00:04:18::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::833c6b2b-958f-445d-844a-673ed0eb1945::input-params ::GET::::{}
+2025-12-30 00:04:18::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::726256df-524d-43a2-ac42-d160bef7268b::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-30 00:04:18::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::03a96edb-7151-4aae-a74c-d950b6468aef::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-30 00:04:29::info::/v1/api/conversation/readConversations::4ff70c85-6b5d-4733-ae9e-14d4e94c9487::input-params ::GET::::{}
+2025-12-30 00:04:30::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::53844d47-b8ee-4301-8f9d-c5ff09db0a85::input-params ::GET::::{}
+2025-12-30 00:04:30::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::73cef9eb-fc4b-4fdf-8c19-09b849ca19d8::input-params ::GET::::{}
+2025-12-30 00:05:00::info::/v1/api/conversation/readConversations::e5b37362-0cec-4722-b79c-b9c5909285f7::input-params ::GET::::{}
+2025-12-30 00:05:00::info::/v1/api/conversation/readConversations::f3093cfd-f2f2-45a0-a684-2a25c75a791d::input-params ::GET::::{}
+2025-12-30 00:05:02::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::ecd98ce5-31c6-4bf6-888d-e39e14f0ae6a::input-params ::GET::::{}
+2025-12-30 00:05:02::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::7217b733-c7fb-4347-92cb-1390fa91e4a3::input-params ::GET::::{}
+2025-12-30 00:05:02::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::8218981b-a47c-40eb-93a0-08c27207399c::input-params ::GET::::{}
+2025-12-30 00:05:02::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::a12eafbb-6258-401e-a96d-c637c53834f9::input-params ::GET::::{}
+2025-12-30 00:05:11::info::/v1/api/conversation/sendMessage::e2a64e72-8796-4c5d-a529-fb4e7bdd8013::input-params ::POST::::undefined
+2025-12-30 00:05:16::info::/v1/api/folder/readFolders::b784acf7-4ac9-4b1a-831a-95dc1dc58d84::input-params ::GET::::{}
+2025-12-30 00:05:16::info::/v1/api/folder/readFolders::96ae4b72-ae23-4ddc-a448-46f3888d7be9::input-params ::GET::::{}
+2025-12-30 00:05:16::info::/v1/api/conversation/readConversations::cb86767c-6ae6-4a29-909f-d7b755d6963a::input-params ::GET::::{}
+2025-12-30 00:05:17::info::/v1/api/conversation/readConversations::aa0331bb-362f-4f5e-bb4d-012338414a5f::input-params ::GET::::{}
+2025-12-30 00:05:19::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::4bbe36b7-bdd3-4dc1-b23c-b06e4df7529c::input-params ::GET::::{}
+2025-12-30 00:05:19::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::d90fb2f5-df67-4570-a7d4-2020b34a0853::input-params ::GET::::{}
+2025-12-30 00:05:19::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::c72514be-12b7-4e24-bc4e-a49236a537c0::input-params ::GET::::{}
+2025-12-30 00:05:20::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::a095a234-4c3b-4843-b91f-59460476e608::input-params ::GET::::{}
+2025-12-30 00:05:27::info::/v1/api/conversation/sendMessage::126a4920-6904-4737-881c-75f34a177901::input-params ::POST::::undefined
+2025-12-30 00:05:32::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::e9c9c5fa-3d08-467e-aacb-22abbbc15f46::input-params ::GET::::{}
+2025-12-30 00:05:32::info::/v1/api/patientRecord/readPatientRecord/694ff6e750d27e20d94fe707::da392aea-1b03-4ce5-beec-492d34cf5b62::input-params ::GET::::{}
+2025-12-30 00:05:32::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::10fdbef7-3fdc-4eac-8748-47ba69607799::input-params ::GET::::{}
+2025-12-30 00:05:32::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::665ae9a7-116a-4b9f-9f7e-15d9c748f868::input-params ::GET::::{}
+2025-12-30 00:05:32::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::2a112787-b02c-4151-92f7-6406e6ab42a7::input-params ::GET::::{}
+2025-12-30 00:05:32::info::/v1/api/patientRecord/readPatientCharts/694ff6e750d27e20d94fe707::677d984c-f6a8-4197-bd66-fe9f0dea7d40::input-params ::GET::::{}
+2025-12-30 00:05:32::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::665ae9a7-116a-4b9f-9f7e-15d9c748f868::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-30 00:05:32::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::10fdbef7-3fdc-4eac-8748-47ba69607799::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-30 00:05:33::info::/v1/api/conversation/readConversations::cfe8be2c-9ff6-429b-b76c-eaba2a54a04d::input-params ::GET::::{}
+2025-12-30 00:05:33::info::/v1/api/conversation/readConversations::5122526a-7fd5-455d-be7f-c5a5f07b1a55::input-params ::GET::::{}
+2025-12-30 00:05:34::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::fae16b5c-23bf-41b5-a390-1084ee38eaa8::input-params ::GET::::{}
+2025-12-30 00:05:34::info::/v1/api/conversation/readConversationDetail/6952b3987c78f0ed1b6d1901::21c1a922-4e3d-4155-bbb3-4a54d5ffd08f::input-params ::GET::::{}

@@ -225,7 +225,7 @@ export default function PatientsDetail() {
         if (isSectionReadOnly) return
         try {
             const recordId = editForm?.recordId || patient?.recordId
-            await apiUtils.post('/relative/createRelativeAccount', {
+            await apiUtils.post('/patientRecord/createPatientRecord', {
                 recordId,
                 patientRecordId,
                 ...payload,
@@ -411,7 +411,7 @@ export default function PatientsDetail() {
 
                 <SymptomsSection symptoms={editForm.symptoms || []} editingSymptoms={editingSymptoms} setEditingSymptoms={setEditingSymptoms} readOnly={isSectionReadOnly} onSaveSymptoms={handleSaveSymptoms} onCancelSymptoms={handleCancelSymptoms} onAddSymptom={handleAddSymptom} onSymptomFieldChange={handleSymptomFieldChange} onToggleSymptomStatus={handleToggleSymptomStatus} onSymptomKeyDown={handleSymptomKeyDown} onRemoveSymptom={handleRemoveSymptom} onTogglePresetSymptom={handleTogglePresetSymptom} />
 
-                <TreatmentSession patientRecordId={patientRecordId} sessions={sessions} latest={latestSession} readOnly={isSectionReadOnly} onStartEdit={handleStartEdit} />
+                <TreatmentSession patientRecordId={patientRecordId} folderId={editForm?.folderId || patient?.folderId} sessions={sessions} latest={latestSession} readOnly={isSectionReadOnly} onStartEdit={handleStartEdit} />
 
                 <StorageSection readOnly={isSectionReadOnly} />
             </div>

@@ -1,3 +1,4 @@
+import mongoose from 'mongoose'
 import PatientRecord from '../models/patientRecord.model.js'
 import Folder from '../models/folder.model.js'
 import { User } from '../models/user.model.js'
@@ -10,7 +11,7 @@ dotenv.config()
 class PatientRecordService {
     static createPatientRecord = async (req) => {
         const userId = req.userId
-        const { fullName, email, dob, phoneNumber, role, relationship, folderId } = req.body
+        const { fullName, email, dob, phoneNumber, role, relationship, folderId, patientRecordId, recordId } = req.body
 
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
@@ -37,6 +38,68 @@ class PatientRecordService {
         // ⭐ CHECK DEFAULT PASSWORD
         if (!doctor.defaultPassword || doctor.defaultPassword.trim() === '') {
             throw new BadRequestError('Doctor default password is not set. Please set it before creating patients.')
+        }
+
+        if (role === 'relative') {
+            if (!fullName || !email) throw new BadRequestError('Full name and email are required')
+            if (!recordId && !patientRecordId) throw new BadRequestError('Patient record id is required')
+
+            const record = recordId
+                ? await PatientRecord.findOne({ _id: recordId, doctorId })
+                : await PatientRecord.findOne({ patientId: patientRecordId, doctorId })
+
+            if (!record) throw new NotFoundError('Patient record not found')
+
+            let relativeUser = await User.findOne({ email })
+            if (!relativeUser) {
+                const patientPassword = doctor.defaultPassword
+                relativeUser = await User.create({
+                    email,
+                    fullName,
+                    phone: phoneNumber,
+                    role: 'family',
+                    password: patientPassword,
+                    status: 'active',
+                })
+            }
+
+            const exists = (record.relatives || []).some((r) => {
+                const sameUser = r.userId && relativeUser && r.userId.toString() === relativeUser._id.toString()
+                const sameEmail = r.email && email && r.email.toLowerCase() === String(email).toLowerCase()
+                return sameUser || sameEmail
+            })
+            if (exists) throw new BadRequestError('Relative already exists')
+
+            record.relatives = record.relatives || []
+            record.relatives.push({
+                userId: relativeUser._id,
+                fullName,
+                email,
+                phoneNumber: phoneNumber || '',
+                relationship: relationship || '',
+            })
+
+            await record.save()
+
+            let existingConversation = await Conversation.findOne({
+                'members.user': { $all: [doctorId, relativeUser._id] },
+            })
+
+            if (!existingConversation) {
+                await Conversation.create({
+                    members: [{ user: doctorId }, { user: relativeUser._id }],
+                    messages: [
+                        {
+                            senderId: doctorId,
+                            content: `Welcome ${relativeUser.fullName}! This is your private chat with your care team.`,
+                            createdAt: new Date(),
+                            seenBy: [doctorId],
+                        },
+                    ],
+                })
+            }
+
+            return { relatives: record.relatives }
         }
 
         // Prevent duplicate patient
@@ -114,13 +177,43 @@ class PatientRecordService {
 
     static readPatientRecord = async (req) => {
         const userId = req.userId
-        const patientId = req.params.patientId
+        const rawId = req.params.patientId
 
         // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
         console.log('User:', user)
-        console.log('Patient ID:', patientId)
+        console.log('Patient ID:', rawId)
+
+        const { Types } = mongoose
+        let record = null
+        let patientId = rawId
+
+        // Try read by recordId if the param looks like an ObjectId
+        if (Types.ObjectId.isValid(rawId)) {
+            let recordQueryById
+            if (user.role === 'member') {
+                recordQueryById = { _id: rawId, patientId: userId }
+            } else if (user.role === 'family') {
+                recordQueryById = {
+                    _id: rawId,
+                    $or: [{ 'relatives.userId': userId }, { 'relatives.email': user.email }],
+                }
+            } else if (user.role === 'doctor') {
+                recordQueryById = { _id: rawId, doctorId: userId }
+            } else if (user.role === 'nurse') {
+                const doctorId = user.nurseProfile?.assistDoctorId
+                if (!doctorId) throw new BadRequestError('Nurse is not assigned to a doctor')
+                recordQueryById = { _id: rawId, doctorId }
+            }
+
+            if (recordQueryById) {
+                record = await PatientRecord.findOne(recordQueryById).lean().exec()
+                if (record?.patientId) {
+                    patientId = record.patientId.toString()
+                }
+            }
+        }
 
         // 2. Check patient
         const patient = await User.findById(patientId).select('fullName email phone gender birthday dob address avatar').lean()
@@ -162,7 +255,9 @@ class PatientRecordService {
             throw new ForbiddenError('You do not have permission to view this record')
         }
 
-        const record = await PatientRecord.findOne(recordQuery).lean().exec()
+        if (!record) {
+            record = await PatientRecord.findOne(recordQuery).lean().exec()
+        }
         if (!record) throw new NotFoundError('Record not found')
 
         // 4. Fetch latest completed session
