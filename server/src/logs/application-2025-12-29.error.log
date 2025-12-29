@@ -84,3 +84,7 @@
 2025-12-29 01:37:55::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::5e4a1901-5ac5-4ef0-97cd-77153dad28b8::handler-error::{"status":404,"message":"Patient record not found"}
 2025-12-29 01:37:59::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::78f653ce-c38c-4937-8ff0-2ebaad3ee645::handler-error::{"status":404,"message":"Patient record not found"}
 2025-12-29 01:37:59::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::4e5b5761-8ce8-4c36-9b51-454da64a9e5e::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-29 20:39:20::error::/v1/api/user/me::750b47f7-98c3-4966-bcf2-670f24730f80::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-29 20:39:20::error::/v1/api/user/me::ac6ad0cc-55f2-49de-9ba1-10242a42bca6::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-29 20:41:47::error::/v1/api/user/me::29d45960-ad5c-4ff6-94f2-7ae6366a0d40::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-29 20:41:47::error::/v1/api/user/me::86dcc18a-4334-451c-b497-b1d759cfa076::handler-error::{"status":403,"message":"Access token missing"}

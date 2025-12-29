@@ -383,3 +383,76 @@
 2025-12-29 01:37:59::info::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::4e5b5761-8ce8-4c36-9b51-454da64a9e5e::input-params ::GET::::{}
 2025-12-29 01:37:59::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::78f653ce-c38c-4937-8ff0-2ebaad3ee645::handler-error::{"status":404,"message":"Patient record not found"}
 2025-12-29 01:37:59::error::/v1/api/relative/readRelatives/694ff6e850d27e20d94fe70f::4e5b5761-8ce8-4c36-9b51-454da64a9e5e::handler-error::{"status":404,"message":"Patient record not found"}
+2025-12-29 20:39:20::info::/v1/api/user/me::750b47f7-98c3-4966-bcf2-670f24730f80::input-params ::GET::::{}
+2025-12-29 20:39:20::error::/v1/api/user/me::750b47f7-98c3-4966-bcf2-670f24730f80::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-29 20:39:20::info::/v1/api/user/me::ac6ad0cc-55f2-49de-9ba1-10242a42bca6::input-params ::GET::::{}
+2025-12-29 20:39:20::error::/v1/api/user/me::ac6ad0cc-55f2-49de-9ba1-10242a42bca6::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-29 20:41:39::info::/v1/api/auth/login::97a36220-9144-4d7b-8a2d-d2f9a8a875fc::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-29 20:41:39::info::/v1/api/user/me::e1b0df1e-da44-4c36-967e-3a671810d73a::input-params ::GET::::{}
+2025-12-29 20:41:39::info::/v1/api/user/readStaffs::0d6ade93-b705-44d7-b3bd-e82eb06ade7f::input-params ::GET::::{}
+2025-12-29 20:41:39::info::/v1/api/user/readStaffs::db7cba11-fd42-4610-9010-751f25208a0f::input-params ::GET::::{}
+2025-12-29 20:41:46::info::/v1/api/auth/logout::5ff87c41-de73-4a07-8af6-a143c8079d58::input-params ::POST::::{}
+2025-12-29 20:41:47::info::/v1/api/user/me::29d45960-ad5c-4ff6-94f2-7ae6366a0d40::input-params ::GET::::{}
+2025-12-29 20:41:47::error::/v1/api/user/me::29d45960-ad5c-4ff6-94f2-7ae6366a0d40::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-29 20:41:47::info::/v1/api/user/me::86dcc18a-4334-451c-b497-b1d759cfa076::input-params ::GET::::{}
+2025-12-29 20:41:47::error::/v1/api/user/me::86dcc18a-4334-451c-b497-b1d759cfa076::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-29 20:42:42::info::/v1/api/auth/login::3638c45e-f0bb-419f-8bf1-d442c8ec97d9::input-params ::POST::::{"email":"phapluudev2k5@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-29 20:42:42::info::/v1/api/user/me::a528a296-3bd1-40ea-be47-f7c2012dec4d::input-params ::GET::::{}
+2025-12-29 20:42:42::info::/v1/api/folder/readFolders::985333ef-0565-4a2b-a6ef-adf991c16c85::input-params ::GET::::{}
+2025-12-29 20:42:42::info::/v1/api/folder/readFolders::e738c3b5-b1c4-4ea5-9d48-578227bfcb56::input-params ::GET::::{}
+2025-12-29 20:42:47::info::/v1/api/folder/readFolder/694e14309a7d6d9fde80cd73::173475b1-5f08-4258-a9f7-fea2e3d1db31::input-params ::GET::::{}
+2025-12-29 20:42:47::info::/v1/api/folder/readFolder/694e14309a7d6d9fde80cd73::0699c7cd-4bad-465c-9489-4520f3955a0c::input-params ::GET::::{}
+2025-12-29 20:42:49::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::2ff9f4ab-22b7-43ed-9316-9adaf39b89e0::input-params ::GET::::{}
+2025-12-29 20:42:49::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::21a981d7-abb4-43dc-bf1a-e6ec56fc2089::input-params ::GET::::{}
+2025-12-29 20:42:49::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::2df6d7bc-3edf-43f8-834a-23d643c72fe0::input-params ::GET::::{}
+2025-12-29 20:42:49::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::07784e6f-da60-4e1e-8a60-51c6b59ca01f::input-params ::GET::::{}
+2025-12-29 20:42:49::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::79a566a3-9ea6-469e-839e-2dfcbd65114c::input-params ::GET::::{}
+2025-12-29 20:42:50::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::3751adfd-f00f-4863-ade5-2bc8bb5394d2::input-params ::GET::::{}
+2025-12-29 20:47:17::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::23e17f3d-dc92-408d-b090-e092bfaf5ed1::input-params ::GET::::{}
+2025-12-29 20:47:17::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::302d8163-3ebd-4ab1-8574-b2951095eab3::input-params ::GET::::{}
+2025-12-29 20:47:17::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::f6ffb398-f01c-4909-9db6-6eee8d4e84cf::input-params ::GET::::{}
+2025-12-29 20:47:17::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::072b92b5-68bb-4b43-a747-38bfcdc48065::input-params ::GET::::{}
+2025-12-29 20:47:17::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::d0db6506-2a11-41a8-bd47-f352b3ca1276::input-params ::GET::::{}
+2025-12-29 20:47:18::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::b592dd52-eeb2-48bd-a8dd-f2746ac7a550::input-params ::GET::::{}
+2025-12-29 20:47:21::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::95e58406-c767-420d-965e-9cb79e65a817::input-params ::GET::::{}
+2025-12-29 20:47:21::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::237d4313-5959-427b-9704-17d103d27625::input-params ::GET::::{}
+2025-12-29 20:47:21::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::83aeb457-e243-488d-8ea6-065738376ce5::input-params ::GET::::{}
+2025-12-29 20:47:21::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::bbe09ea6-de7a-407b-9fd0-694000e9064b::input-params ::GET::::{}
+2025-12-29 20:47:22::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::86eb68c3-3145-420e-97a5-9290960d6043::input-params ::GET::::{}
+2025-12-29 20:47:22::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::9d106b21-5e8a-4501-a10a-becc84df213f::input-params ::GET::::{}
+2025-12-29 20:47:28::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::0552fc96-ba18-46d5-9821-897081d7b46c::input-params ::GET::::{}
+2025-12-29 20:47:28::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::5b9bac4f-c0b8-4c2f-b665-77681cfcaa31::input-params ::GET::::{}
+2025-12-29 20:47:28::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::75294d64-3b3c-4f58-ac4d-460a7cb33541::input-params ::GET::::{}
+2025-12-29 20:47:28::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::1a541192-9192-4bfe-84c8-2d4d117b6a8e::input-params ::GET::::{}
+2025-12-29 20:47:28::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::dae9c05c-f313-48b6-a8c4-6fe2e32b5754::input-params ::GET::::{}
+2025-12-29 20:47:29::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::82d11e8e-8c90-4613-a608-c515f54e6e6b::input-params ::GET::::{}
+2025-12-29 20:47:32::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::a91e69b8-9fad-4d64-9315-bb225c9cafc3::input-params ::GET::::{}
+2025-12-29 20:47:32::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::82fdb52d-a8da-4905-a11a-573bf899db08::input-params ::GET::::{}
+2025-12-29 20:47:32::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::d557a797-1465-4ec5-8494-d16446fec8ed::input-params ::GET::::{}
+2025-12-29 20:47:32::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::70421168-3530-4c85-8262-b6e567da5974::input-params ::GET::::{}
+2025-12-29 20:47:32::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::0b2ed64d-3e8a-4a5d-a483-ccbf1022b482::input-params ::GET::::{}
+2025-12-29 20:47:33::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::b8dc8ade-ba56-4771-9071-3ad8349ab9a2::input-params ::GET::::{}
+2025-12-29 20:47:42::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::97ce2105-d54b-4503-833f-0b6a6c272842::input-params ::GET::::{}
+2025-12-29 20:47:42::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::a8d401d5-1843-4ab6-9afd-48589486b330::input-params ::GET::::{}
+2025-12-29 20:47:42::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::24792c3b-7dad-486b-9a25-a9432a44eef4::input-params ::GET::::{}
+2025-12-29 20:47:42::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::036e4995-28a6-4b1f-a80c-c40ff9a8f2d0::input-params ::GET::::{}
+2025-12-29 20:47:42::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::b9e830c3-1acb-43fc-911e-6368cbd64374::input-params ::GET::::{}
+2025-12-29 20:47:43::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::a83c0fae-dd17-48d1-a6b7-d7624c7fbce6::input-params ::GET::::{}
+2025-12-29 20:47:51::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::e7fdd833-6e8c-4381-9823-3374bc2ecef0::input-params ::GET::::{}
+2025-12-29 20:47:51::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::833aeee8-f297-45b5-9590-f805722b69bc::input-params ::GET::::{}
+2025-12-29 20:47:51::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::34503988-4316-48bb-9f21-ec85269973d8::input-params ::GET::::{}
+2025-12-29 20:47:51::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::2df7df1a-1df9-4bee-8710-b3bd43c9ad68::input-params ::GET::::{}
+2025-12-29 20:47:51::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::06140606-2e1b-428e-be82-9935cf982fb1::input-params ::GET::::{}
+2025-12-29 20:47:52::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::266caef6-786f-41eb-b0ec-23aa22541262::input-params ::GET::::{}
+2025-12-29 20:48:16::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::987c3a34-3ded-4316-b2ce-e463c93dafe4::input-params ::GET::::{}
+2025-12-29 20:48:16::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::fe170aaf-22eb-47f2-9fdc-3855b22b1cc8::input-params ::GET::::{}
+2025-12-29 20:48:16::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::86da741c-c0cc-4bd0-8161-3873abd719e8::input-params ::GET::::{}
+2025-12-29 20:48:16::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::916b41ea-bb5b-459a-bc88-201ef2eedb55::input-params ::GET::::{}
+2025-12-29 20:48:16::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::4d15eb86-2485-4588-a390-94c429d14c9b::input-params ::GET::::{}
+2025-12-29 20:48:17::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::deec938f-2965-4c88-be9c-479070f004dc::input-params ::GET::::{}
+2025-12-29 20:48:48::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::d2ae2ae8-5650-4c9d-a687-03aa1a450d65::input-params ::GET::::{}
+2025-12-29 20:48:48::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::02c94037-58c1-4a7a-a7b8-9565e0534398::input-params ::GET::::{}
+2025-12-29 20:48:48::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::de29873f-2a3b-44a0-b4c5-b7fb70723c0d::input-params ::GET::::{}
+2025-12-29 20:48:48::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::e396d102-a5b1-4b9b-b1be-868618de78e9::input-params ::GET::::{}
+2025-12-29 20:48:48::info::/v1/api/patientRecord/readPatientRecord/694e14669a7d6d9fde80cd86::cacc2a9b-8cb8-41f6-86d3-55738b69a2ff::input-params ::GET::::{}
+2025-12-29 20:48:49::info::/v1/api/relative/readRelatives/694e14679a7d6d9fde80cd8f::ccb77a58-163a-42a9-80ce-74eaa3e53db9::input-params ::GET::::{}

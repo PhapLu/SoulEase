@@ -221,10 +221,7 @@ class PatientRecordService {
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
         if (user.role === 'family' || user.role === 'member') {
-            const recordQuery =
-                user.role === 'member'
-                    ? { _id: recordId, patientId: userId }
-                    : { _id: recordId, $or: [{ 'relatives.userId': userId }, { 'relatives.email': user.email }] }
+            const recordQuery = user.role === 'member' ? { _id: recordId, patientId: userId } : { _id: recordId, $or: [{ 'relatives.userId': userId }, { 'relatives.email': user.email }] }
 
             const record = await PatientRecord.findOne(recordQuery)
             if (!record) throw new NotFoundError('Record not found')
@@ -370,6 +367,41 @@ class PatientRecordService {
         await record.deleteOne()
 
         return { message: 'Record deleted successfully' }
+    }
+
+    static readPatientCharts = async (req) => {
+        const userId = req.userId
+        const patientId = req.params.patientId
+
+        // 1. Check user, patient
+        const user = await User.findById(userId)
+        if (!user) throw new AuthFailureError('Please login to continue')
+        const patient = await User.findById(patientId)
+        if (!patient) throw new NotFoundError('Patient not found')
+
+        // 2. Get charts data in Sessions, Treatment Process
+
+        // 3. Return
+        return {
+            message: 'Chart data fetched successfully',
+            weekData: [],
+            taskData: { completed: 0, remaining: 0 },
+            // MOCK DATA TO KNOW THE FORMAT OF THE RESULT SHOULD BE
+            // const weekData = [
+            //     { day: 'Sun', sleep: 75, mood: 75, stress: 75 },
+            //     { day: 'Mon', sleep: 30, mood: 30, stress: 30 },
+            //     { day: 'Tue', sleep: 68, mood: 68, stress: 68 },
+            //     { day: 'Wed', sleep: 40, mood: 40, stress: 40 },
+            //     { day: 'Thu', sleep: 50, mood: 50, stress: 50 },
+            //     { day: 'Fri', sleep: 85, mood: 85, stress: 85 },
+            //     { day: 'Sat', sleep: 105, mood: 105, stress: 105 },
+            // ]
+
+            // const taskData = [
+            //     { name: 'Completed', value: 68 },
+            //     { name: 'Remaining', value: 32 },
+            // ]
+        }
     }
 }
 

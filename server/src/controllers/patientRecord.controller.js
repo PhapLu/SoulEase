@@ -33,6 +33,13 @@ class PatientRecordController {
             metadata: await PatientRecordService.deletePatientRecord(req),
         }).send(res)
     }
+
+    readPatientCharts = async (req, res, next) => {
+        new SuccessResponse({
+            message: 'Read patient charts!',
+            metadata: await PatientRecordService.readPatientCharts(req),
+        }).send(res)
+    }
 }
 
 export default new PatientRecordController()
