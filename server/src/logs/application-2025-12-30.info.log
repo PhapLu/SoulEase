@@ -403,3 +403,33 @@
 2025-12-30 00:27:03::info::/v1/api/relative/readRelatives/694d6f73c7bbba2bbb15ecd1::2b752433-5023-4249-83a1-800db896a1af::input-params ::GET::::{}
 2025-12-30 00:32:13::info::/v1/api/patientRecord/readPatientRecord/694d6f72c7bbba2bbb15ecc8::bddbcc62-9215-4b68-92fe-f92fd53c11a9::input-params ::GET::::{}
 2025-12-30 00:32:14::info::/v1/api/patientRecord/readPatientRecord/694d6f72c7bbba2bbb15ecc8::25ec979b-8be8-4bd0-88a6-7fd4bc706df9::input-params ::GET::::{}
+2025-12-30 08:07:12::info::/v1/api/user/me::9753a083-0347-4335-a11a-9c6b731a7f09::input-params ::GET::::{}
+2025-12-30 08:07:12::error::/v1/api/user/me::9753a083-0347-4335-a11a-9c6b731a7f09::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-30 08:07:12::info::/v1/api/user/me::5c8c457e-73b6-4f97-ac70-ad25b2c94de8::input-params ::GET::::{}
+2025-12-30 08:07:12::error::/v1/api/user/me::5c8c457e-73b6-4f97-ac70-ad25b2c94de8::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-30 08:11:58::info::/v1/api/auth/login::e8058d1d-3942-49ac-b70b-9df749af52ab::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-30 08:11:59::info::/v1/api/user/me::8daa7a92-0533-4e85-b97c-2ef4477abc25::input-params ::GET::::{}
+2025-12-30 08:11:59::info::/v1/api/user/readStaffs::93512a26-094f-4043-a626-298bd87c793d::input-params ::GET::::{}
+2025-12-30 08:11:59::info::/v1/api/user/readStaffs::3bf0fdda-7532-49eb-b454-e5093b44a9f4::input-params ::GET::::{}
+2025-12-30 08:12:00::info::/v1/api/user/readStaffDetail/694a9b74a4c5eb54b1ea6dbb::d7ac9327-7fe7-46a6-988f-024a3d676a92::input-params ::GET::::{}
+2025-12-30 08:12:00::info::/v1/api/user/readStaffDetail/694a9b74a4c5eb54b1ea6dbb::65e31ed5-ec42-4f64-b044-1dd5316bfd12::input-params ::GET::::{}
+2025-12-30 08:12:05::info::/v1/api/user/readStaffs::6600c2cc-706c-49ed-8547-5a01b211d9c8::input-params ::GET::::{}
+2025-12-30 08:12:05::info::/v1/api/user/readStaffs::4ed2eee8-b78b-45f3-85b6-62b755b714c1::input-params ::GET::::{}
+2025-12-30 08:12:07::info::/v1/api/auth/logout::381ae9cb-85b5-4709-99b5-e9655f95f323::input-params ::POST::::{}
+2025-12-30 08:12:07::info::/v1/api/user/me::74db722b-6abc-42a4-b88e-8e32e56a0258::input-params ::GET::::{}
+2025-12-30 08:12:07::error::/v1/api/user/me::74db722b-6abc-42a4-b88e-8e32e56a0258::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-30 08:12:07::info::/v1/api/user/me::5e33bf15-400b-4ee9-a2a7-578b415525cd::input-params ::GET::::{}
+2025-12-30 08:12:07::error::/v1/api/user/me::5e33bf15-400b-4ee9-a2a7-578b415525cd::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-30 08:12:12::info::/v1/api/auth/login::cce6f34e-d44f-44a7-bdc2-ae8fe4951f53::input-params ::POST::::{"email":"phapluu2k5tqt@gmail.com","password":"PhapNhat987AZ@"}
+2025-12-30 08:12:13::info::/v1/api/user/me::5db6f317-72ac-4a9c-a640-d4c523d5a1a5::input-params ::GET::::{}
+2025-12-30 08:12:13::info::/v1/api/user/readStaffs::ad48c43e-2917-4afa-8855-c29a82b3a024::input-params ::GET::::{}
+2025-12-30 08:12:13::info::/v1/api/user/readStaffs::64899321-0ba4-4b38-9abb-e9a7d3a83cf7::input-params ::GET::::{}
+2025-12-30 08:12:14::info::/v1/api/user/readStaffDetail/694a9b9ba4c5eb54b1ea6dc4::aeec168b-ac10-41ec-9f00-51d2e2bf8bf8::input-params ::GET::::{}
+2025-12-30 08:12:14::info::/v1/api/user/readStaffDetail/694a9b9ba4c5eb54b1ea6dc4::0f125562-d980-4bf6-a386-5ad1f96d5178::input-params ::GET::::{}
+2025-12-30 08:12:21::info::/v1/api/user/readUserProfile/694a9653a4c5eb54b1ea6d77::b667217d-5576-400d-89d7-ca95496bfc5a::input-params ::GET::::{}
+2025-12-30 08:12:21::info::/v1/api/user/readUserProfile/694a9653a4c5eb54b1ea6d77::342e5ad7-4e70-41f6-baab-10ff53cb178c::input-params ::GET::::{}
+2025-12-30 08:15:33::info::/v1/api/user/readUserProfile/694a9653a4c5eb54b1ea6d77::9e3def71-311d-4d2c-be11-03c8c78eff7e::input-params ::GET::::{}
+2025-12-30 08:15:33::info::/v1/api/user/readUserProfile/694a9653a4c5eb54b1ea6d77::e80d748b-0c3b-41a0-b8ab-102e7b196773::input-params ::GET::::{}
+2025-12-30 08:15:46::info::/v1/api/user/readUserProfile/694a9653a4c5eb54b1ea6d77::3a57e6e4-ef66-443b-b23e-373fd1e19861::input-params ::GET::::{}
+2025-12-30 08:16:14::info::/v1/api/user/readUserProfile/694a9653a4c5eb54b1ea6d77::4128360e-592e-49e0-b689-a30c0d031951::input-params ::GET::::{}
+2025-12-30 08:16:21::info::/v1/api/user/readUserProfile/694a9653a4c5eb54b1ea6d77::41bf77c9-78dd-4335-915e-aac2487380d5::input-params ::GET::::{}

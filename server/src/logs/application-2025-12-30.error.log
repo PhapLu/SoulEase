@@ -22,3 +22,7 @@
 2025-12-30 00:04:45::error::/v1/api/patientRecord/readPatientCharts/69494ac882130873b5b05529::8636cdd3-1a43-4304-8055-61480dc55e49::handler-error::{"status":500,"message":"PatientRecordService.readPatientCharts is not a function"}
 2025-12-30 00:05:03::error::/v1/api/patientRecord/readPatientCharts/69494ac882130873b5b05529::c9957075-0c9c-47e1-909c-03f129a88d94::handler-error::{"status":404,"message":"Patient not found"}
 2025-12-30 00:05:03::error::/v1/api/patientRecord/readPatientCharts/69494ac882130873b5b05529::4c5276ca-e353-42db-a505-d6326e104ce6::handler-error::{"status":404,"message":"Patient not found"}
+2025-12-30 08:07:12::error::/v1/api/user/me::9753a083-0347-4335-a11a-9c6b731a7f09::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-30 08:07:12::error::/v1/api/user/me::5c8c457e-73b6-4f97-ac70-ad25b2c94de8::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2025-12-30 08:12:07::error::/v1/api/user/me::74db722b-6abc-42a4-b88e-8e32e56a0258::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-30 08:12:07::error::/v1/api/user/me::5e33bf15-400b-4ee9-a2a7-578b415525cd::handler-error::{"status":403,"message":"Access token missing"}
