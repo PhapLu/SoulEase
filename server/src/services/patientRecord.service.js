@@ -1,4 +1,3 @@
-import mongoose from 'mongoose'
 import PatientRecord from '../models/patientRecord.model.js'
 import Folder from '../models/folder.model.js'
 import { User } from '../models/user.model.js'
@@ -11,7 +10,7 @@ dotenv.config()
 class PatientRecordService {
     static createPatientRecord = async (req) => {
         const userId = req.userId
-        const { fullName, email, dob, phoneNumber, role, relationship, folderId, patientRecordId, recordId } = req.body
+        const { fullName, email, dob, phoneNumber, role, relationship, folderId } = req.body
 
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
@@ -44,9 +43,7 @@ class PatientRecordService {
             if (!fullName || !email) throw new BadRequestError('Full name and email are required')
             if (!recordId && !patientRecordId) throw new BadRequestError('Patient record id is required')
 
-            const record = recordId
-                ? await PatientRecord.findOne({ _id: recordId, doctorId })
-                : await PatientRecord.findOne({ patientId: patientRecordId, doctorId })
+            const record = recordId ? await PatientRecord.findOne({ _id: recordId, doctorId }) : await PatientRecord.findOne({ patientId: patientRecordId, doctorId })
 
             if (!record) throw new NotFoundError('Patient record not found')
 
@@ -177,43 +174,13 @@ class PatientRecordService {
 
     static readPatientRecord = async (req) => {
         const userId = req.userId
-        const rawId = req.params.patientId
+        const patientId = req.params.patientId
 
         // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
         console.log('User:', user)
-        console.log('Patient ID:', rawId)
-
-        const { Types } = mongoose
-        let record = null
-        let patientId = rawId
-
-        // Try read by recordId if the param looks like an ObjectId
-        if (Types.ObjectId.isValid(rawId)) {
-            let recordQueryById
-            if (user.role === 'member') {
-                recordQueryById = { _id: rawId, patientId: userId }
-            } else if (user.role === 'family') {
-                recordQueryById = {
-                    _id: rawId,
-                    $or: [{ 'relatives.userId': userId }, { 'relatives.email': user.email }],
-                }
-            } else if (user.role === 'doctor') {
-                recordQueryById = { _id: rawId, doctorId: userId }
-            } else if (user.role === 'nurse') {
-                const doctorId = user.nurseProfile?.assistDoctorId
-                if (!doctorId) throw new BadRequestError('Nurse is not assigned to a doctor')
-                recordQueryById = { _id: rawId, doctorId }
-            }
-
-            if (recordQueryById) {
-                record = await PatientRecord.findOne(recordQueryById).lean().exec()
-                if (record?.patientId) {
-                    patientId = record.patientId.toString()
-                }
-            }
-        }
+        console.log('Patient ID:', patientId)
 
         // 2. Check patient
         const patient = await User.findById(patientId).select('fullName email phone gender birthday dob address avatar').lean()
@@ -255,9 +222,7 @@ class PatientRecordService {
             throw new ForbiddenError('You do not have permission to view this record')
         }
 
-        if (!record) {
-            record = await PatientRecord.findOne(recordQuery).lean().exec()
-        }
+        const record = await PatientRecord.findOne(recordQuery).lean().exec()
         if (!record) throw new NotFoundError('Record not found')
 
         // 4. Fetch latest completed session
@@ -468,35 +433,98 @@ class PatientRecordService {
         const userId = req.userId
         const patientId = req.params.patientId
 
-        // 1. Check user, patient
+        // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
-        const patient = await User.findById(patientId)
+        console.log('User:', user)
+        console.log('Patient ID:', patientId)
+
+        // 2. Check patient
+        const patient = await User.findById(patientId).select('fullName email phone gender birthday dob address avatar').lean()
         if (!patient) throw new NotFoundError('Patient not found')
 
-        // 2. Get charts data in Sessions, Treatment Process
+        // 3. Find patient record
+        let recordQuery
 
-        // 3. Return
-        return {
-            message: 'Chart data fetched successfully',
-            weekData: [],
-            taskData: { completed: 0, remaining: 0 },
-            // MOCK DATA TO KNOW THE FORMAT OF THE RESULT SHOULD BE
-            // const weekData = [
-            //     { day: 'Sun', sleep: 75, mood: 75, stress: 75 },
-            //     { day: 'Mon', sleep: 30, mood: 30, stress: 30 },
-            //     { day: 'Tue', sleep: 68, mood: 68, stress: 68 },
-            //     { day: 'Wed', sleep: 40, mood: 40, stress: 40 },
-            //     { day: 'Thu', sleep: 50, mood: 50, stress: 50 },
-            //     { day: 'Fri', sleep: 85, mood: 85, stress: 85 },
-            //     { day: 'Sat', sleep: 105, mood: 105, stress: 105 },
-            // ]
+        if (user.role === 'member') {
+            // Patient can only view their OWN record
+            if (userId.toString() !== patientId.toString()) {
+                throw new ForbiddenError('You can only view your own record')
+            }
 
-            // const taskData = [
-            //     { name: 'Completed', value: 68 },
-            //     { name: 'Remaining', value: 32 },
-            // ]
+            recordQuery = {
+                patientId: userId,
+            }
+        } else if (user.role === 'family') {
+            recordQuery = {
+                patientId,
+                $or: [{ 'relatives.userId': userId }, { 'relatives.email': user.email }],
+            }
+        } else if (user.role === 'doctor') {
+            recordQuery = {
+                patientId,
+                doctorId: userId,
+            }
+        } else if (user.role === 'nurse') {
+            const doctorId = user.nurseProfile?.assistDoctorId
+            if (!doctorId) {
+                throw new BadRequestError('Nurse is not assigned to a doctor')
+            }
+
+            recordQuery = {
+                patientId,
+                doctorId,
+            }
+        } else {
+            throw new ForbiddenError('You do not have permission to view this record')
         }
+
+        const record = await PatientRecord.findOne(recordQuery).lean().exec()
+        if (!record) throw new NotFoundError('Record not found')
+
+        // 4. Fetch latest completed session
+        const latestSession = await Session.findOne({
+            patientId: patientId,
+        })
+            .sort({ sessionDate: -1 })
+            .select('sessionDate sessionType durationMinutes riskLevel summary nextSteps')
+            .lean()
+
+        // 5. Normalize birthday
+        const birthdayRaw = patient?.birthday || patient?.dob
+        const birthdayDateOnly = birthdayRaw && !Number.isNaN(new Date(birthdayRaw).getTime()) ? new Date(birthdayRaw).toISOString().split('T')[0] : undefined
+
+        // 6. Normalize latest session date
+        const normalizedLatestSession = latestSession
+            ? {
+                  ...latestSession,
+                  sessionDate: latestSession.sessionDate && !Number.isNaN(new Date(latestSession.sessionDate).getTime()) ? new Date(latestSession.sessionDate).toISOString().split('T')[0] : null,
+              }
+            : null
+
+        // 7. Merge everything into ONE flat object
+        const mergedRecord = {
+            recordId: record._id,
+            _id: record._id,
+
+            // patient info
+            ...patient,
+            birthday: birthdayDateOnly || record?.birthday,
+
+            // record info
+            ...record,
+            symptoms: (record?.symptoms || []).map((s) => ({
+                name: s?.name || '',
+                sign: s?.sign || '',
+                date: s?.date && !Number.isNaN(new Date(s.date).getTime()) ? new Date(s.date).toISOString().split('T')[0] : '',
+                status: s?.status || 'Active',
+            })),
+
+            // ⭐ NEW
+            latestSession: normalizedLatestSession,
+        }
+
+        return { patientRecord: mergedRecord }
     }
 }
 
