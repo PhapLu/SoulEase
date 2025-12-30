@@ -276,9 +276,8 @@ export default function CreateSessionPage() {
     return (
         <div
             className="tp-page"
-            style={{ marginTop: 18, padding: 0, maxWidth: "unset" }}
         >
-            <div className="tp-header" style={{ marginBottom: 14 }}>
+            <div className="tp-header">
                 <div className="pd-treatment">
                     <h3>Create Session</h3>
                 </div>
