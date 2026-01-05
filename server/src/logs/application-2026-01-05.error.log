@@ -1,0 +1,2 @@
+2026-01-05 14:38:10::error::/v1/api/user/me::d104b5f1-15bb-4bea-a147-828e1d8363fc::handler-error::{"status":500,"message":"jwt malformed"}
+2026-01-05 14:38:10::error::/v1/api/user/me::283f2e1b-d90e-460a-ad71-48c50e013155::handler-error::{"status":500,"message":"jwt malformed"}
