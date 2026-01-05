@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import Layout from './Layout.jsx'
+
 import About from './pages/about/About.jsx'
 import LandingPage from './pages/landingPage/LandingPage.jsx'
 import SignIn from './pages/auth/SignIn.jsx'
