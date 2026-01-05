@@ -431,7 +431,6 @@
 
 .ws-assistant--profile {
     grid-template-rows: auto 1fr;
-    padding-right: 12px;
 }
 
 .ws-assistant__profile-card {

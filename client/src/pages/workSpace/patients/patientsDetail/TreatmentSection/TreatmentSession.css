@@ -1,11 +1,12 @@
 .tp-page {
-    padding: 1.75rem;
+    padding: 20px;
+    padding-bottom: 0;
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 /* ===== Header ===== */
 .tp-header {
+    margin-bottom: 20px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;

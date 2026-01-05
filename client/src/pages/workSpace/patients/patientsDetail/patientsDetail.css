@@ -118,6 +118,7 @@
 }
 
 .pd-section-title {
+    margin-bottom: 20px;
     display: flex;
     align-items: start;
     justify-content: space-between;
@@ -127,7 +128,6 @@
 .pd-storage h3,
 .pd-symptoms h3,
 .pd-treatment h3 {
-    margin: 0 0 20px;
     font-size: 23px;
     font-weight: 400;
     color: var(--tertiary-color);

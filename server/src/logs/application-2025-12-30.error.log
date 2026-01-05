@@ -26,3 +26,27 @@
 2025-12-30 08:07:12::error::/v1/api/user/me::5c8c457e-73b6-4f97-ac70-ad25b2c94de8::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
 2025-12-30 08:12:07::error::/v1/api/user/me::74db722b-6abc-42a4-b88e-8e32e56a0258::handler-error::{"status":403,"message":"Access token missing"}
 2025-12-30 08:12:07::error::/v1/api/user/me::5e33bf15-400b-4ee9-a2a7-578b415525cd::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-30 08:46:31::error::/v1/api/patientRecord/readPatientRecord/69496cae9bc2fb43a6df3365::042f027d-faf4-42ca-b4a8-c9dc526af081::handler-error::{"status":401,"message":"Please login to continue"}
+2025-12-30 08:46:31::error::/v1/api/user/me::77e03e60-27bd-40e4-b8db-bb342063183e::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-30 08:46:31::error::/v1/api/user/me::0cb0789c-1f3d-40cd-95f9-edf525edf90a::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-30 08:48:48::error::/v1/api/folder/createFolder::8334cced-3601-4dfd-9133-a54f5465c54b::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:48:50::error::/v1/api/folder/createFolder::dd3de60e-c558-4945-b81a-700a91c833c6::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:48:52::error::/v1/api/folder/createFolder::759094ff-6bbe-48a4-b3c9-6cdadaf5aaff::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:48:53::error::/v1/api/folder/createFolder::bb4f223d-fbde-4580-b59e-a3217297538a::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:04::error::/v1/api/folder/createFolder::37ce3c7d-d2d6-4ae1-9763-705ad2c038c4::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:04::error::/v1/api/folder/createFolder::9e4d4806-5b91-4438-879f-64ff3ee9015b::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:04::error::/v1/api/folder/createFolder::d8d6d49b-c9e5-43fc-a99f-81c92b8b3b6a::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:21::error::/v1/api/folder/createFolder::385312be-675a-4157-b08d-3b167c06abc4::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:22::error::/v1/api/folder/createFolder::53282af6-71d0-4010-9b7d-f59fb8093496::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:22::error::/v1/api/folder/createFolder::3b763350-e02b-44ee-8590-9cfdb4e618e8::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:22::error::/v1/api/folder/createFolder::7647b7b5-112a-4e4d-92b2-0caec17b394f::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:22::error::/v1/api/folder/createFolder::448bd9c8-74de-4e32-8688-a11a9260fe2a::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:22::error::/v1/api/folder/createFolder::ce8b11bb-8d1a-4de8-8bfc-217debf6941e::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:23::error::/v1/api/folder/createFolder::be9b23a8-8aa5-4107-8ca7-5c258f626b26::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:23::error::/v1/api/folder/createFolder::bec19309-5c60-4f22-9717-e92379f155c5::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:23::error::/v1/api/folder/createFolder::fc44a100-6b7e-4849-b704-90d915f4e92b::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:23::error::/v1/api/folder/createFolder::2b62ebdb-b421-4c6b-9815-df44c9897cc4::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:49:23::error::/v1/api/folder/createFolder::8a84cc85-74a9-4e4c-9f74-94e2f25adaec::handler-error::{"status":500,"message":"Folder validation failed: doctorId: Path `doctorId` is required."}
+2025-12-30 08:51:20::error::/v1/api/folder/readFolders::a4836c4e-ff0e-439c-aafe-eecfc1df1b3a::handler-error::{"status":401,"message":"Please login to continue"}
+2025-12-30 08:51:20::error::/v1/api/user/me::0331d293-8710-4d67-ba95-a58562ee8deb::handler-error::{"status":403,"message":"Access token missing"}
+2025-12-30 08:51:20::error::/v1/api/user/me::b5b43875-8eeb-4bae-83da-9a7aa667e231::handler-error::{"status":403,"message":"Access token missing"}

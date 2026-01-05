@@ -217,7 +217,7 @@
     border: none;
     cursor: pointer;
     user-select: none;
-    border-radius: 999px;
+    border-radius: 8px;
     padding: 12px 18px;
     font-weight: 900;
     font-size: 14px;
