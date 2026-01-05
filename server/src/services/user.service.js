@@ -4,9 +4,11 @@ import { decrypt } from '../configs/encryption.config.js'
 import mongoose from 'mongoose'
 import { User } from '../models/user.model.js'
 import Order from '../models/order.model.js'
+import { Upload } from '@aws-sdk/lib-storage'
 import Conversation from '../models/conversation.model.js'
 import Notification from '../models/notification.model.js'
 import dotenv from 'dotenv'
+import { s3 } from '../configs/s3.config.js'
 dotenv.config()
 
 const normalizeStaff = (u) => ({
@@ -366,6 +368,42 @@ class UserService {
         // 6. Return safe response
         return {
             staff: normalizeStaff(updatedStaff),
+        }
+    }
+
+    static updateAvatar = async (req) => {
+        const userId = req.userId
+        const file = req.file
+
+        if (!file) throw new BadRequestError('Avatar file is required')
+        if (!file.mimetype.startsWith('image/')) throw new BadRequestError('Only image files are allowed')
+
+        // 1️. Generate S3 key
+        const ext = file.originalname.split('.').pop()
+        const key = `${userId}-${Date.now()}.${ext}`
+
+        // 2️. Upload directly to S3 (no helper)
+        const upload = new Upload({
+            client: s3,
+            params: {
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Key: key,
+                Body: file.buffer,
+                ContentType: file.mimetype,
+            },
+        })
+
+        await upload.done()
+
+        // 3️. Build CloudFront URL
+        const avatarUrl = `${process.env.AWS_CLOUDFRONT_DOMAIN}/${key}`
+
+        // 4️. Save to DB
+        const user = await User.findByIdAndUpdate(userId, { avatar: avatarUrl }, { new: true })
+
+        return {
+            message: 'Avatar updated successfully',
+            avatar: user.avatar,
         }
     }
 }

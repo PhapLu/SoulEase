@@ -38,23 +38,24 @@ export default function Staffs() {
     }, [])
 
     const handleCreateDoctor = async (data) => {
-        // Normalize input from modal to match backend fields
         const payload = {
-            fullName: data?.fullName || '',
-            phone: data?.phone || data?.phoneNumber || '',
-            email: data?.email || '',
-            speciality: data?.speciality || data?.specialty || '',
-            description: data?.description || '',
-            role: data?.role,
-            assistDoctorId: data?.assistDoctorId || null,
+            fullName: data.fullName,
+            phone: data.phoneNumber,
+            email: data.email,
+            speciality: data.specialty,
+            description: '',
+            role: data.role,
+            assistDoctorId: data.assistDoctorId,
         }
 
         try {
             const response = await apiUtils.post('/user/createStaff', payload)
+
             setStaffs((prev) => [...prev, response.data.metadata.staff])
             setOpenCreateStaffModal(false)
         } catch (error) {
             console.error('Error creating doctor:', error)
+            throw error // 🔥 REQUIRED — DO NOT REMOVE
         }
     }
 

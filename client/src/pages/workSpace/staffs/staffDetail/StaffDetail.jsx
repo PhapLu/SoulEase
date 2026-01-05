@@ -206,7 +206,7 @@ export default function DoctorDetail() {
             setIsEditing(false)
         } catch (err) {
             console.error('Update staff failed', err)
-            alert('Failed to update staff information.')
+            throw err
         } finally {
             setSaving(false)
         }

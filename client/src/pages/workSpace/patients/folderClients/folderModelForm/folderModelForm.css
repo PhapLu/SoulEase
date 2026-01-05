@@ -47,9 +47,10 @@
 
 .form-error {
     color: #ff3e3e;
-    font-size: 14px;
+    font-size: 15px;
     padding-top: 8px;
     display: block;
+    margin-bottom: 12px;
 }
 
 .text-input {

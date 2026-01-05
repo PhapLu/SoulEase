@@ -57,7 +57,7 @@ export default function Verification() {
             navigate('/workspace')
         } catch (err) {
             console.log(err)
-            alert(err?.response?.data?.message || 'Invalid OTP')
+            throw err
         }
     }
 

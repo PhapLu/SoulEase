@@ -82,6 +82,13 @@ class UserController {
             metadata: await UserService.updateStaffInfo(req),
         }).send(res)
     }
+
+    updateAvatar = async (req, res, next) => {
+        new SuccessResponse({
+            message: 'Update avatar success!',
+            metadata: await UserService.updateAvatar(req),
+        }).send(res)
+    }
 }
 
 export default new UserController()

@@ -1,0 +1,13 @@
+2026-01-06 00:00:46::error::/v1/api/user/me::31687f6c-4d2b-48da-83a6-33cbdecc92cf::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-06 00:00:46::error::/v1/api/user/me::13ceb119-7b1a-483f-82e4-cbd0a29cf253::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-06 00:04:15::error::/v1/api/folder/readFolders::d5e3c532-db3c-4fe7-b9b4-2b4e136e009c::handler-error::{"status":401,"message":"Please login to continue"}
+2026-01-06 00:04:15::error::/v1/api/user/me::7d71396d-4ab5-41e0-86c9-77cb0405ce26::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-06 00:04:15::error::/v1/api/user/me::2b6e1280-c4f3-459c-8bd4-163dea37be94::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-06 00:04:55::error::/v1/api/patientRecord/createPatientRecord::a7290a80-1e63-4ea8-85ea-0d357b6535c5::handler-error::{"status":403,"message":"Doctor default password is not set. Please set it before creating patients."}
+2026-01-06 00:08:42::error::/v1/api/patientRecord/createPatientRecord::01e72243-bbf3-453f-8514-994fc6ce75b6::handler-error::{"status":403,"message":"Doctor default password is not set. Please set it before creating patients."}
+2026-01-06 00:09:44::error::/v1/api/patientRecord/createPatientRecord::5891a05c-ba9e-45a4-9c81-d9926f15ea72::handler-error::{"status":403,"message":"Doctor default password is not set. Please set it before creating patients."}
+2026-01-06 00:10:20::error::/v1/api/patientRecord/createPatientRecord::e49d78ca-9917-433d-a03e-675f89a6d1e1::handler-error::{"status":403,"message":"Doctor default password is not set. Please set it before creating patients."}
+2026-01-06 00:15:23::error::/v1/api/folder/readFolders::30c40638-d759-496f-8e07-420930b8395b::handler-error::{"status":401,"message":"Please login to continue"}
+2026-01-06 00:15:23::error::/v1/api/user/me::aa19bc72-7814-40fe-8f0e-2f1c0f4084ed::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-06 00:15:23::error::/v1/api/user/me::c7e1f0ce-52cb-4702-b1f6-e75e5197bc05::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-06 00:18:23::error::/v1/api/patientRecord/createPatientRecord::1bcec47d-4f1e-41ee-94ba-d463c788ff93::handler-error::{"status":500,"message":"recordId is not defined"}

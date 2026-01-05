@@ -12,6 +12,10 @@ export default function PatientModalForm({ onClose, onSubmit, initialFolderId = 
         relationship: 'Family',
         folderId: initialFolderId,
     })
+
+    const [error, setError] = useState('')
+    const [submitting, setSubmitting] = useState(false)
+
     const [doctorFolders, setDoctorFolders] = useState([])
 
     useEffect(() => {
@@ -46,25 +50,19 @@ export default function PatientModalForm({ onClose, onSubmit, initialFolderId = 
         setFormData((prev) => ({ ...prev, [name]: value }))
     }
 
-    const handleRoleChange = (e) => {
-        const value = e.target.value
-        setFormData((prev) => ({
-            ...prev,
-            role: value,
-        }))
-    }
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        setError('')
+        setSubmitting(true)
 
-        const payload = {
-            ...formData,
+        try {
+            await onSubmit?.(formData)
+        } catch (err) {
+            setError(err?.response?.data?.message || err?.message || 'Failed to create patient')
+        } finally {
+            setSubmitting(false)
         }
-        console.log('Submitting patient form:', payload.folderId)
-        onSubmit?.(payload)
     }
-
-    console.log('FOLDER ID:', formData.folderId)
 
     return (
         <div className='patient-modal-overlay' onClick={onClose}>
@@ -108,18 +106,6 @@ export default function PatientModalForm({ onClose, onSubmit, initialFolderId = 
                         </div>
                     </div>
 
-                    {/* Role */}
-                    {/* <div className='form-group'>
-                        <label className='form-label'>Role</label>
-
-                        <div className='role-group'>
-                            <label className={`role-option ${formData.role === 'patient' ? 'role-option--active' : ''}`}>
-                                <input type='radio' name='role' value='patient' checked={formData.role === 'patient'} onChange={handleRoleChange} />
-                                <span>Patient</span>
-                            </label>
-                        </div>
-                    </div> */}
-
                     {/* Folder */}
                     <div className='form-group'>
                         <label className='form-label'>Folder</label>
@@ -135,6 +121,8 @@ export default function PatientModalForm({ onClose, onSubmit, initialFolderId = 
                             </select>
                         </div>
                     </div>
+
+                    {error && <div className='form-error'>{error}</div>}
 
                     <button type='submit' className='patient-submit-btn'>
                         Create

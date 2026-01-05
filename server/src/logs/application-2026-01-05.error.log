@@ -1,2 +1,4 @@
 2026-01-05 14:38:10::error::/v1/api/user/me::d104b5f1-15bb-4bea-a147-828e1d8363fc::handler-error::{"status":500,"message":"jwt malformed"}
 2026-01-05 14:38:10::error::/v1/api/user/me::283f2e1b-d90e-460a-ad71-48c50e013155::handler-error::{"status":500,"message":"jwt malformed"}
+2026-01-05 23:57:24::error::/v1/api/user/updateAvatar/695be518953a84b4229a7bfe::99985351-e437-4757-a884-ab507da3b4b2::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-05 23:58:00::error::/v1/api/user/updateAvatar::191047e4-1906-4c37-86fb-a6f61d12c639::handler-error::{"status":500,"message":"s3 is not defined"}

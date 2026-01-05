@@ -2,3 +2,21 @@
 2026-01-05 14:38:10::error::/v1/api/user/me::d104b5f1-15bb-4bea-a147-828e1d8363fc::handler-error::{"status":500,"message":"jwt malformed"}
 2026-01-05 14:38:10::info::/v1/api/user/me::283f2e1b-d90e-460a-ad71-48c50e013155::input-params ::GET::::{}
 2026-01-05 14:38:10::error::/v1/api/user/me::283f2e1b-d90e-460a-ad71-48c50e013155::handler-error::{"status":500,"message":"jwt malformed"}
+2026-01-05 23:57:24::info::/v1/api/user/updateAvatar/695be518953a84b4229a7bfe::99985351-e437-4757-a884-ab507da3b4b2::input-params ::PATCH::::undefined
+2026-01-05 23:57:24::error::/v1/api/user/updateAvatar/695be518953a84b4229a7bfe::99985351-e437-4757-a884-ab507da3b4b2::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-05 23:57:46::info::/v1/api/user/readUserProfile/695be518953a84b4229a7bfe::73bfa193-00de-418c-9683-2c634fc67c1c::input-params ::GET::::{}
+2026-01-05 23:58:00::info::/v1/api/user/updateAvatar::191047e4-1906-4c37-86fb-a6f61d12c639::input-params ::PATCH::::undefined
+2026-01-05 23:58:00::error::/v1/api/user/updateAvatar::191047e4-1906-4c37-86fb-a6f61d12c639::handler-error::{"status":500,"message":"s3 is not defined"}
+2026-01-05 23:59:40::info::/v1/api/user/readStaffs::826def5e-1c9a-4b27-83c4-b21f66f3c4db::input-params ::GET::::{}
+2026-01-05 23:59:40::info::/v1/api/user/readStaffs::e15060ed-1d18-452a-ab50-a5876b03433f::input-params ::GET::::{}
+2026-01-05 23:59:41::info::/v1/api/user/readStaffs::2734116d-7050-4191-a6a5-f4c67bf5839e::input-params ::GET::::{}
+2026-01-05 23:59:41::info::/v1/api/user/me::a7ac844f-6e12-4586-9d0e-a331190f3209::input-params ::GET::::{}
+2026-01-05 23:59:41::info::/v1/api/user/me::4639a44f-ce5d-40d2-b113-8fffba019041::input-params ::GET::::{}
+2026-01-05 23:59:41::info::/v1/api/user/readStaffs::3703b65c-52f0-4804-abb8-ba962a47b7a9::input-params ::GET::::{}
+2026-01-05 23:59:42::info::/v1/api/user/readUserProfile/695be518953a84b4229a7bfe::1ad16fe0-bffa-4b93-9510-f6594bdd52f2::input-params ::GET::::{}
+2026-01-05 23:59:42::info::/v1/api/user/readUserProfile/695be518953a84b4229a7bfe::563326cc-5eb8-493d-8cb8-6c904d51a149::input-params ::GET::::{}
+2026-01-05 23:59:47::info::/v1/api/user/updateAvatar::f8b8c848-9bde-459a-b6e0-b14d2c6dee91::input-params ::PATCH::::undefined
+2026-01-05 23:59:50::info::/v1/api/user/readUserProfile/695be518953a84b4229a7bfe::c53bc5d3-26bd-4be8-81cd-108e21f778c1::input-params ::GET::::{}
+2026-01-05 23:59:50::info::/v1/api/user/me::575cfcee-a945-45b8-9f35-429f560646d1::input-params ::GET::::{}
+2026-01-05 23:59:50::info::/v1/api/user/readUserProfile/695be518953a84b4229a7bfe::ca901b1f-50c7-476b-88f8-277ca0ac5f13::input-params ::GET::::{}
+2026-01-05 23:59:50::info::/v1/api/user/me::c1a53d08-a841-414f-a2d7-904a2f03f45e::input-params ::GET::::{}

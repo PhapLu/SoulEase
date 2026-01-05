@@ -102,7 +102,7 @@ export default function ConversationDetail() {
                     const isMe = msg.senderId === userInfo._id || msg.senderId?._id === userInfo._id
                     return (
                         <div key={msg._id || crypto.randomUUID()} className={`ws-bubble ${isMe ? 'ws-bubble--me' : ''}`}>
-                            {!isMe && <div className='ws-avatar-circle' />}
+                            {!isMe && <img src={conversation.thumbnail} className='ws-avatar-circle' />}
                             {msg.content && <p>{msg.content}</p>}
                             {msg.media?.length > 0 && <img src={msg.media[0]} className='ws-chat-img' alt='attachment' />}
                         </div>
@@ -115,7 +115,11 @@ export default function ConversationDetail() {
 
                 {/* <input type='file' accept='image/*,video/*' onChange={(e) => setMediaFile(e.target.files[0])} /> */}
 
-                <button><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z"/></svg></button>
+                <button>
+                    <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#FFFFFF'>
+                        <path d='M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z' />
+                    </svg>
+                </button>
             </form>
         </section>
     )

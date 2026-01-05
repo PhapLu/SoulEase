@@ -48,7 +48,7 @@ export default function UserProfile() {
         try {
             setUploadingAvatar(true)
 
-            const res = await apiUtils.patch(`/user/updateAvatar/${userId}`, formData, {
+            const res = await apiUtils.patch(`/user/updateAvatar`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -271,7 +271,7 @@ export default function UserProfile() {
                                 {(role === 'clinic' || role === 'doctor') && (
                                     <label className='pp-field pp-field--span2'>
                                         <div className='pp-label'>Default password</div>
-                                        <input className='pp-input' value={user.defaultPassword || ''} onChange={(e) => onChange('defaultPassword', e.target.value)} />
+                                        <input className='pp-input' type='password' value={user.defaultPassword || ''} onChange={(e) => onChange('defaultPassword', e.target.value)} />
                                     </label>
                                 )}
 
@@ -294,7 +294,7 @@ export default function UserProfile() {
                                 {role === 'nurse' && (
                                     <label className='pp-field pp-field--span2'>
                                         <div className='pp-label'>Assist doctor ID</div>
-                                        <input className='pp-input' value={user.nurseProfile?.assistDoctorId || ''} onChange={(e) => onNestedChange('nurseProfile', 'assistDoctorId', e.target.value)} />
+                                        <input className='pp-input' disabled value={user.nurseProfile?.assistDoctorId || ''} onChange={(e) => onNestedChange('nurseProfile', 'assistDoctorId', e.target.value)} />
                                     </label>
                                 )}
 

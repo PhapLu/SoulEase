@@ -29,14 +29,14 @@ export default function FolderClients() {
     })
 
     const breadcrumbItems = [
-    { label: "Workspace", href: "/workspace" },
-    folderId
-        ? {
-              label: "Folder",
-              href: `/workspace/patients/folder/${folderId}`,
-          }
-        : { label: "Folder" },
-];
+        { label: 'Workspace', href: '/workspace' },
+        folderId
+            ? {
+                  label: 'Folder',
+                  href: `/workspace/patients/folder/${folderId}`,
+              }
+            : { label: 'Folder' },
+    ]
 
     const fetchFolder = async () => {
         try {
@@ -105,7 +105,7 @@ export default function FolderClients() {
             setOpenCreateModal(false)
         } catch (err) {
             console.log(err)
-            alert('Failed to create client. Please try again.')
+            throw err
         }
     }
 
@@ -128,7 +128,7 @@ export default function FolderClients() {
             navigate('/workspace/patients')
         } catch (err) {
             console.log('Failed to delete folder:', err)
-            alert('Failed to delete folder. Please try again.')
+            throw err
         } finally {
             setIsSaving(false)
         }
@@ -171,16 +171,14 @@ export default function FolderClients() {
         )
     }
 
-    
-
     return (
         <>
             <section className='folder-page'>
                 <WorkspaceTopBar />
                 <div className='folder-card'>
-                <div className="breadcrumb_folder">
-                    <Breadcrumb items={breadcrumbItems} />
-                </div>
+                    <div className='breadcrumb_folder'>
+                        <Breadcrumb items={breadcrumbItems} />
+                    </div>
                     {/* HEADER */}
                     <div className='folder-card-header'>
                         <div className='folder-info-main'>

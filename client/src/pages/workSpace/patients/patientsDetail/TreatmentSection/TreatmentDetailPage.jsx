@@ -267,7 +267,7 @@ export default function TreatmentDetailPage() {
     }
 
     const handleDeleteLatest = async () => {
-        alert('No DELETE session endpoint yet.')
+        throw err
     }
 
     return (
@@ -330,13 +330,7 @@ export default function TreatmentDetailPage() {
                                             {filtered
                                                 .filter((s) => getStageNumber(s.stage || s.status) === stageNum)
                                                 .map((s) => (
-                                                    <div
-                                                        className='tp-row'
-                                                        key={s.id || `${s.date}-${s.focus}`}
-                                                        onClick={() => setSessionDetail(s)}
-                                                        style={{ cursor: 'pointer' }}
-                                                        title='View session details'
-                                                    >
+                                                    <div className='tp-row' key={s.id || `${s.date}-${s.focus}`} onClick={() => setSessionDetail(s)} style={{ cursor: 'pointer' }} title='View session details'>
                                                         <div className='tp-td tp-td--mono'>{s.date || '—'}</div>
 
                                                         <div className='tp-td'>

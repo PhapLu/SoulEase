@@ -59,19 +59,29 @@ export default function CreateStaff({ onClose, onSubmit, doctors }) {
         return Object.keys(newErrors).length === 0
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         if (!validate()) return
 
-        onSubmit?.({
-            fullName: formData.fullName.trim(),
-            email: formData.email.trim(),
-            specialty: formData.specialty.trim(),
-            phoneNumber: formData.phoneNumber.trim(),
-            role: formData.role,
-            assistDoctorId: formData.role === 'nurse' ? formData.assistDoctorId : null,
-        })
+        try {
+            await onSubmit({
+                fullName: formData.fullName.trim(),
+                email: formData.email.trim(),
+                specialty: formData.specialty.trim(),
+                phoneNumber: formData.phoneNumber.trim(),
+                role: formData.role,
+                assistDoctorId: formData.role === 'nurse' ? formData.assistDoctorId : null,
+            })
+        } catch (err) {
+            console.log('🔥 BE ERROR:', err)
+
+            setErrors(
+                err?.response?.data?.errors || {
+                    _global: err?.response?.data?.message || 'Forbidden',
+                }
+            )
+        }
     }
 
     return (
@@ -145,6 +155,7 @@ export default function CreateStaff({ onClose, onSubmit, doctors }) {
                             </motion.div>
                         )}
                     </AnimatePresence>
+                    {errors._global && <p className='form-error'>{errors._global}</p>}
 
                     <button type='submit' className='doctor-submit-btn'>
                         Create

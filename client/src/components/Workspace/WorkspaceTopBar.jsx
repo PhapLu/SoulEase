@@ -33,7 +33,7 @@ export default function WorkspaceTopBar() {
             setOpenCreatePatientModal(false)
         } catch (err) {
             console.log(err)
-            alert('Failed to create client.')
+            throw err
         }
     }
 
@@ -50,7 +50,7 @@ export default function WorkspaceTopBar() {
             setOpenCreateStaffModal(false)
         } catch (err) {
             console.log(err)
-            alert('Failed to create staff.')
+            throw err
         }
     }
 

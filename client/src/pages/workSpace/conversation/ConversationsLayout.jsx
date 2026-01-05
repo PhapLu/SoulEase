@@ -6,10 +6,12 @@ import './Conversations.css'
 import Conversations from '../../../components/conversation/conversations/Conversations'
 import { useEffect, useState } from 'react'
 import { apiUtils } from '../../../utils/newRequest'
+import { useAuth } from '../../../contexts/auth/AuthContext'
 
 export default function ConversationsLayout() {
     const { conversationId } = useParams()
     const hasConversation = !!conversationId
+    const { userInfo } = useAuth()
 
     return (
         <div className='ws-messages'>
@@ -28,7 +30,7 @@ export default function ConversationsLayout() {
                     ) : (
                         <div className='ws-empty'>
                             <div className='ws-empty__card'>
-                                <h3>Hello Doctor</h3>
+                                <h3>Hello {userInfo?.role === 'clinic' ? 'Clinic' : 'Doctor'}</h3>
                                 <p>Choose a conversation on the left to view messages and start chatting.</p>
                             </div>
                         </div>
