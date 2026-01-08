@@ -1,14 +1,32 @@
 import dotenv from 'dotenv'
 dotenv.config()
-import nodemailer from 'nodemailer'
+
+import SibApiV3Sdk from 'sib-api-v3-sdk'
 
 import { otpTemplate, announcementTemplate, announcementTemplateType2, commissionTemplate, reportTemplate } from '../utils/templateEmail.util.js'
 
-const { BREVO_SMTP_USERNAME, BREVO_SMTP_PASSWORD, FROM_NAME, FROM_EMAIL } = process.env
+/* =========================
+   ENV VALIDATION
+========================= */
 
-if (!BREVO_SMTP_USERNAME || !BREVO_SMTP_PASSWORD) {
-    throw new Error('Brevo SMTP credentials missing. Set BREVO_SMTP_USERNAME/BREVO_SMTP_PASSWORD.')
+const { BREVO_API_KEY, FROM_NAME = 'SoulEase', FROM_EMAIL = 'phapluu2k5tqt@gmail.com' } = process.env
+
+if (!BREVO_API_KEY) {
+    throw new Error('Missing BREVO_API_KEY in environment variables')
 }
+
+/* =========================
+   BREVO CLIENT (TRANSACTIONAL)
+========================= */
+
+const client = SibApiV3Sdk.ApiClient.instance
+client.authentications['api-key'].apiKey = BREVO_API_KEY
+
+const emailApi = new SibApiV3Sdk.TransactionalEmailsApi()
+
+/* =========================
+   HELPERS
+========================= */
 
 const formatDate = (d = new Date()) =>
     new Intl.DateTimeFormat('en-GB', {
@@ -21,73 +39,98 @@ const formatDate = (d = new Date()) =>
 
 const withTimestamp = (subject) => `${subject} - (${formatDate()})`
 const localPart = (email) => email.split('@')[0]
+
 const logOk = (msg, meta = {}) => console.log('✅', msg, meta)
 const logErr = (msg, meta = {}) => console.error('❌', msg, meta)
 
-const transporter = nodemailer.createTransport({
-    host: 'smtp-relay.brevo.com',
-    port: 587,
-    auth: {
-        user: BREVO_SMTP_USERNAME,
-        pass: BREVO_SMTP_PASSWORD,
-    },
-    pool: true,
-    maxConnections: 5,
-    maxMessages: 100,
-})
+/* =========================
+   CORE SEND (API)
+========================= */
 
-export async function verifyEmailTransport() {
+async function sendEmail({ to, subject, html }) {
     try {
-        await transporter.verify()
-        logOk('Brevo SMTP verified')
-    } catch (error) {
-        logErr('Brevo SMTP verify failed', { error })
-        // don't throw to avoid crashing your app on transient issues
-    }
-}
+        const res = await emailApi.sendTransacEmail({
+            sender: {
+                name: FROM_NAME,
+                email: FROM_EMAIL,
+            },
+            to: [{ email: to }],
+            subject,
+            htmlContent: html,
+        })
 
-async function sendEmail({ to, subject, html, replyTo = 'info@pastal.app' }) {
-    try {
-        const info = await transporter.sendMail({
-            from: `SoulEase <phapluu2k5tqt@gmail.com>`,
+        logOk('Email sent via Brevo API', {
             to,
             subject,
-            html,
-            replyTo,
+            messageId: res?.messageId,
         })
-        logOk('Email sent via Brevo', { to, subject, id: info.messageId })
-        return info
+
+        return res
     } catch (error) {
-        logErr('Error sending email', { to, subject, error })
+        logErr('Brevo API email error', {
+            to,
+            subject,
+            message: error?.message,
+            body: error?.response?.body,
+        })
         throw error
     }
 }
 
+/* =========================
+   PUBLIC API (UNCHANGED)
+========================= */
+
 export async function sendOtpEmail(to, subject, message, verificationCode) {
     const html = otpTemplate(localPart(to), message, verificationCode)
-    return sendEmail({ to, subject: withTimestamp(subject), html })
+    return sendEmail({
+        to,
+        subject: withTimestamp(subject),
+        html,
+    })
 }
 
 export async function sendAnnouncementEmail(to, subject, subSubject, message, orderId) {
     const html = announcementTemplate(subSubject, message, orderId)
-    return sendEmail({ to, subject: withTimestamp(subject), html })
+    return sendEmail({
+        to,
+        subject: withTimestamp(subject),
+        html,
+    })
 }
 
 export async function sendAnnouncementEmailType2(to, subject, subSubject, message, url) {
     const html = announcementTemplateType2(subSubject, message, url)
-    return sendEmail({ to, subject: withTimestamp(subject), html })
+    return sendEmail({
+        to,
+        subject: withTimestamp(subject),
+        html,
+    })
 }
 
 export async function sendReportEmail(to, subject, fullName, subSubject, reason) {
     const html = reportTemplate(fullName, subSubject, reason)
-    return sendEmail({ to, subject: withTimestamp(subject), html })
+    return sendEmail({
+        to,
+        subject: withTimestamp(subject),
+        html,
+    })
 }
 
 export async function sendCommissionEmail(to, user, subject, subSubject, message, orderCode, price) {
     const html = commissionTemplate(user, message, subSubject, orderCode, price)
-    return sendEmail({ to, subject: withTimestamp(subject), html })
+
+    return sendEmail({
+        to,
+        subject: withTimestamp(subject),
+        html,
+    })
 }
 
 export async function sendHtml(to, subject, html) {
-    return sendEmail({ to, subject: withTimestamp(subject), html })
+    return sendEmail({
+        to,
+        subject: withTimestamp(subject),
+        html,
+    })
 }

@@ -54,17 +54,12 @@ const SignIn = () => {
         if (result?.user?.role === 'family') {
             try {
                 const res = await apiUtils.get('/relative/readMyPatientRecord')
-                const patientRecord =
-                    res?.data?.metadata?.patientRecord ||
-                    res?.data?.patientRecord ||
-                    null
+                const patientRecord = res?.data?.metadata?.patientRecord || res?.data?.patientRecord || null
                 const folderId = patientRecord?.folderId
                 const patientId = patientRecord?.patientId
 
                 if (patientId && folderId) {
-                    navigate(
-                        `/workspace/patients/folder/${folderId}/${patientId}`
-                    )
+                    navigate(`/workspace/patients/folder/${folderId}/${patientId}`)
                     return
                 }
 
@@ -73,10 +68,7 @@ const SignIn = () => {
                     return
                 }
             } catch (err) {
-                console.error(
-                    'Failed to load relative patient record',
-                    err
-                )
+                console.error('Failed to load relative patient record', err)
             }
         }
 
@@ -128,10 +120,6 @@ const SignIn = () => {
 
                             <button type='submit' className='signin-submit-btn' disabled={isSubmitLoginLoading}>
                                 {isSubmitLoginLoading ? 'Signing in...' : 'Sign in'}
-                            </button>
-
-                            <button type='button' className='signin-link-btn'>
-                                Forget your password?
                             </button>
 
                             <div className='signin-footer-text'>

@@ -44,3 +44,15 @@ ReferenceError: uploadMemory is not defined
     at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
     at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined
+2026-01-08 13:05:14::error::undefined::undefined::uncaughtException: Missing BREVO_API_KEY in environment variables
+Error: Missing BREVO_API_KEY in environment variables
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/configs/brevo.config.js:15:11
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined
+2026-01-08 13:06:16::error::undefined::undefined::uncaughtException: Missing BREVO_API_KEY in environment variables
+Error: Missing BREVO_API_KEY in environment variables
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/configs/brevo.config.js:15:11
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined
