@@ -74,19 +74,19 @@ export default function PatientModalForm({ onClose, onSubmit, initialFolderId = 
                 <h2 className='patient-modal-title'>Create Patient</h2>
 
                 <form className='patient-form' onSubmit={handleSubmit}>
-                    {/* Email */}
-                    <div className='form-group'>
-                        <label className='form-label'>Email</label>
-                        <div className='input-with-icon'>
-                            <input type='email' name='email' className='form-input' placeholder='Enter email' value={formData.email} onChange={handleChange} required />
-                        </div>
-                    </div>
-
                     {/* Full name */}
                     <div className='form-group'>
                         <label className='form-label'>Full name</label>
                         <div className='input-with-icon'>
                             <input type='text' name='fullName' className='form-input' placeholder='Enter full name' value={formData.fullName} onChange={handleChange} required />
+                        </div>
+                    </div>
+
+                    {/* Email */}
+                    <div className='form-group'>
+                        <label className='form-label'>Email</label>
+                        <div className='input-with-icon'>
+                            <input type='email' name='email' className='form-input' placeholder='Enter email' value={formData.email} onChange={handleChange} required />
                         </div>
                     </div>
 

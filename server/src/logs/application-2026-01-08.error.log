@@ -6,3 +6,23 @@
 2026-01-08 13:09:04::error::/v1/api/user/me::a28447ad-d8d7-4cc3-910d-65fd9b721e5b::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
 2026-01-08 13:10:11::error::/v1/api/user/me::5203a916-2d39-45da-8587-a29700c16480::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
 2026-01-08 13:10:11::error::/v1/api/user/me::81afeed7-f7c0-4384-89b0-10db6b23ac46::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2026-01-08 21:58:47::error::/v1/api/folder/readFolders::720f9ac4-5352-4f9a-8507-01a5ab12e9d5::handler-error::{"status":401,"message":"Please login to continue"}
+2026-01-08 21:58:48::error::/v1/api/user/me::6957ffd1-91fc-4be0-825b-0c1a2bf3af16::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-08 21:58:48::error::/v1/api/user/me::fe1d0088-49ca-42a6-a88c-ad7dcb41c03c::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-08 22:40:37::error::/v1/api/user/me::02f030f3-3e7c-4c27-a43a-302c9d59fa33::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-08 22:40:37::error::/v1/api/user/me::bea439f4-9607-4e1d-8a5b-b963b2302815::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-08 22:40:50::error::/v1/api/relative/readRelatives/695bf1fa987e265495d5a831::3353ed6a-b03b-4599-968c-f2ce0e7080c4::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 22:40:50::error::/v1/api/relative/readRelatives/695bf1fa987e265495d5a831::4b072d09-17fa-49c8-a5d5-3429b5d9eab2::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 22:46:37::error::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::f4a28c1b-9626-44f2-b763-62d5f3fce967::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 22:46:38::error::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::7023fa7e-fb45-4445-814d-a2dd1a14c4b2::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 22:47:13::error::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::dfa2e831-4aa9-4d6a-9762-63d90cbb2e9d::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 22:49:02::error::/v1/api/relative/createRelativeAccount::bafddd39-78d4-4140-a505-327d4d0a557a::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 23:10:50::error::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::fdfd7c43-f822-47d9-a008-292e2a94f207::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 23:10:51::error::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::7bdc5a6a-56e8-486e-ad22-7d5516636dfc::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 23:11:11::error::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::96d97bd3-0206-4604-b803-0de6464b1716::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 23:11:28::error::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::65707886-b311-4089-9d1d-7dff1bc90ff7::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 23:11:28::error::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::20fd068d-7408-40ac-81e2-5961c43c5257::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 23:12:11::error::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::5f9b1609-3fde-4550-9dc2-477a00634751::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 23:12:11::error::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::8298c900-b42a-4445-9c2e-efa7770c0b9b::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 23:12:37::error::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::b024c407-41ae-4f9a-b5b7-1da7baa2a905::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-08 23:12:38::error::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::3940fee1-4ceb-4ecf-be5d-ccc852738710::handler-error::{"status":404,"message":"Patient record not found"}

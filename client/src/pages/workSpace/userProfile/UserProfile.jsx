@@ -11,10 +11,11 @@ export default function UserProfile() {
     const [loading, setLoading] = useState(true)
     const [saving, setSaving] = useState(false)
     const [error, setError] = useState('')
-
     const [pw, setPw] = useState({ oldPassword: '', newPassword: '' })
     const [changingPw, setChangingPw] = useState(false)
     const [pwMsg, setPwMsg] = useState('')
+    const [isEditing, setIsEditing] = useState(false)
+    const [originalUser, setOriginalUser] = useState(null)
 
     // =========================
     // FETCH USER PROFILE
@@ -28,6 +29,7 @@ export default function UserProfile() {
             try {
                 const res = await apiUtils.get(`/user/readUserProfile/${userId}`)
                 setUser(res.data.metadata.user)
+                setOriginalUser(res.data.metadata.user)
             } catch (e) {
                 setError(e?.response?.data?.message || 'Failed to load profile')
             } finally {
@@ -37,6 +39,17 @@ export default function UserProfile() {
 
         fetchUser()
     }, [userId])
+
+    const onEdit = () => {
+        setOriginalUser(user) // snapshot again in case user re-enters edit
+        setIsEditing(true)
+    }
+
+    const onCancelEdit = () => {
+        setUser(originalUser)
+        setIsEditing(false)
+        setError('')
+    }
 
     const onAvatarChange = async (e) => {
         const file = e.target.files?.[0]
@@ -96,6 +109,8 @@ export default function UserProfile() {
 
         try {
             await apiUtils.patch(`/user/updateUserProfile/${userId}`, user)
+            setIsEditing(false) // 👈 exit edit mode
+            setOriginalUser(user) // 👈 update snapshot
         } catch (e) {
             setError(e?.response?.data?.message || 'Save failed')
         } finally {
@@ -210,12 +225,12 @@ export default function UserProfile() {
                             <div className='pp-side-title'>Change Password</div>
                             <label className='pp-field'>
                                 <div className='pp-label'>Old password</div>
-                                <input className='pp-input' type='password' value={pw.oldPassword} onChange={(e) => onPwChange('oldPassword', e.target.value)} />
+                                <input disabled={!isEditing} className='pp-input' type='password' value={pw.oldPassword} onChange={(e) => onPwChange('oldPassword', e.target.value)} />
                             </label>
 
                             <label className='pp-field'>
                                 <div className='pp-label'>New password</div>
-                                <input className='pp-input' type='password' value={pw.newPassword} onChange={(e) => onPwChange('newPassword', e.target.value)} />
+                                <input disabled={!isEditing} className='pp-input' type='password' value={pw.newPassword} onChange={(e) => onPwChange('newPassword', e.target.value)} />
                             </label>
 
                             {pwMsg && <div className='pp-pwMsg'>{pwMsg}</div>}
@@ -234,7 +249,7 @@ export default function UserProfile() {
                                 {/* BASIC INFO */}
                                 <label className='pp-field'>
                                     <div className='pp-label'>Full name</div>
-                                    <input className='pp-input' value={user.fullName || ''} onChange={(e) => onChange('fullName', e.target.value)} />
+                                    <input disabled={!isEditing} className='pp-input' value={user.fullName || ''} onChange={(e) => onChange('fullName', e.target.value)} />
                                 </label>
 
                                 <label className='pp-field'>
@@ -244,12 +259,12 @@ export default function UserProfile() {
 
                                 <label className='pp-field'>
                                     <div className='pp-label'>Date of birth</div>
-                                    <input className='pp-input' type='date' value={user.dob ? user.dob.slice(0, 10) : ''} onChange={(e) => onChange('dob', e.target.value)} />
+                                    <input disabled={!isEditing} className='pp-input' type='date' value={user.dob ? user.dob.slice(0, 10) : ''} onChange={(e) => onChange('dob', e.target.value)} />
                                 </label>
 
                                 <label className='pp-field'>
                                     <div className='pp-label'>Gender</div>
-                                    <select className='pp-input' value={user.gender || ''} onChange={(e) => onChange('gender', e.target.value)}>
+                                    <select disabled={!isEditing} className='pp-input' value={user.gender || ''} onChange={(e) => onChange('gender', e.target.value)}>
                                         <option value=''>—</option>
                                         <option value='male'>Male</option>
                                         <option value='female'>Female</option>
@@ -259,19 +274,19 @@ export default function UserProfile() {
 
                                 <label className='pp-field'>
                                     <div className='pp-label'>Phone</div>
-                                    <input className='pp-input' value={user.phone || ''} onChange={(e) => onChange('phone', e.target.value)} />
+                                    <input disabled={!isEditing} className='pp-input' value={user.phone || ''} onChange={(e) => onChange('phone', e.target.value)} />
                                 </label>
 
                                 <label className='pp-field'>
                                     <div className='pp-label'>Address</div>
-                                    <input className='pp-input' value={user.address || ''} onChange={(e) => onChange('address', e.target.value)} />
+                                    <input disabled={!isEditing} className='pp-input' value={user.address || ''} onChange={(e) => onChange('address', e.target.value)} />
                                 </label>
 
                                 {/* DEFAULT PASSWORD */}
                                 {(role === 'clinic' || role === 'doctor') && (
                                     <label className='pp-field pp-field--span2'>
                                         <div className='pp-label'>Default password</div>
-                                        <input className='pp-input' type='password' value={user.defaultPassword || ''} onChange={(e) => onChange('defaultPassword', e.target.value)} />
+                                        <input disabled={!isEditing} className='pp-input' type='password' value={user.defaultPassword || ''} onChange={(e) => onChange('defaultPassword', e.target.value)} />
                                     </label>
                                 )}
 
@@ -280,12 +295,12 @@ export default function UserProfile() {
                                     <>
                                         <label className='pp-field'>
                                             <div className='pp-label'>Speciality</div>
-                                            <input className='pp-input' value={user.doctorProfile?.speciality || ''} onChange={(e) => onNestedChange('doctorProfile', 'speciality', e.target.value)} />
+                                            <input disabled={!isEditing} className='pp-input' value={user.doctorProfile?.speciality || ''} onChange={(e) => onNestedChange('doctorProfile', 'speciality', e.target.value)} />
                                         </label>
 
                                         <label className='pp-field pp-field--span2'>
                                             <div className='pp-label'>Description</div>
-                                            <textarea className='pp-input pp-textarea' value={user.doctorProfile?.description || ''} onChange={(e) => onNestedChange('doctorProfile', 'description', e.target.value)} />
+                                            <textarea disabled={!isEditing} className='pp-input pp-textarea' value={user.doctorProfile?.description || ''} onChange={(e) => onNestedChange('doctorProfile', 'description', e.target.value)} />
                                         </label>
                                     </>
                                 )}
@@ -302,15 +317,27 @@ export default function UserProfile() {
                                 {role === 'clinic' && (
                                     <label className='pp-field pp-field--span2'>
                                         <div className='pp-label'>Clinicians</div>
-                                        <input className='pp-input' value={user.clinicProfile?.clinicians || ''} onChange={(e) => onNestedChange('clinicProfile', 'clinicians', e.target.value)} />
+                                        <input disabled={!isEditing} className='pp-input' value={user.clinicProfile?.clinicians || ''} onChange={(e) => onNestedChange('clinicProfile', 'clinicians', e.target.value)} />
                                     </label>
                                 )}
                             </div>
 
                             <div className='pp-actions'>
-                                <button type='submit' className='pp-btn' disabled={saving}>
-                                    {saving ? 'Saving...' : 'Save changes'}
-                                </button>
+                                {!isEditing ? (
+                                    <button type='button' className='pp-btn' onClick={onEdit}>
+                                        Edit profile
+                                    </button>
+                                ) : (
+                                    <>
+                                        <button type='submit' className='pp-btn' disabled={saving}>
+                                            {saving ? 'Saving...' : 'Save changes'}
+                                        </button>
+
+                                        <button type='button' className='pp-btn pp-btn--ghost' onClick={onCancelEdit}>
+                                            Cancel
+                                        </button>
+                                    </>
+                                )}
                             </div>
                         </form>
                     </section>

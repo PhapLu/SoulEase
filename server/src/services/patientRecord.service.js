@@ -39,66 +39,6 @@ class PatientRecordService {
             throw new BadRequestError('Doctor default password is not set. Please set it before creating patients.')
         }
 
-        if (role === 'relative') {
-            if (!fullName || !email) throw new BadRequestError('Full name and email are required')
-            if (!recordId && !patientRecordId) throw new BadRequestError('Patient record id is required')
-
-            const record = recordId ? await PatientRecord.findOne({ _id: recordId, doctorId }) : await PatientRecord.findOne({ patientId: patientRecordId, doctorId })
-
-            if (!record) throw new NotFoundError('Patient record not found')
-
-            let relativeUser = await User.findOne({ email })
-            if (!relativeUser) {
-                const patientPassword = doctor.defaultPassword
-                relativeUser = await User.create({
-                    email,
-                    fullName,
-                    phone: phoneNumber,
-                    role: 'family',
-                    password: patientPassword,
-                    status: 'active',
-                })
-            }
-
-            const exists = (record.relatives || []).some((r) => {
-                const sameUser = r.userId && relativeUser && r.userId.toString() === relativeUser._id.toString()
-                const sameEmail = r.email && email && r.email.toLowerCase() === String(email).toLowerCase()
-                return sameUser || sameEmail
-            })
-            if (exists) throw new BadRequestError('Relative already exists')
-
-            record.relatives = record.relatives || []
-            record.relatives.push({
-                userId: relativeUser._id,
-                fullName,
-                email,
-                phoneNumber: phoneNumber || '',
-                relationship: relationship || '',
-            })
-
-            await record.save()
-
-            let existingConversation = await Conversation.findOne({
-                'members.user': { $all: [doctorId, relativeUser._id] },
-            })
-
-            if (!existingConversation) {
-                await Conversation.create({
-                    members: [{ user: doctorId }, { user: relativeUser._id }],
-                    messages: [
-                        {
-                            senderId: doctorId,
-                            content: `Welcome ${relativeUser.fullName}! This is your private chat with your care team.`,
-                            createdAt: new Date(),
-                            seenBy: [doctorId],
-                        },
-                    ],
-                })
-            }
-
-            return { relatives: record.relatives }
-        }
-
         // Prevent duplicate patient
         const existingUser = await User.findOne({ email })
         if (existingUser) throw new BadRequestError('Patient already exists')
@@ -179,8 +119,6 @@ class PatientRecordService {
         // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
-        console.log('User:', user)
-        console.log('Patient ID:', patientId)
 
         // 2. Check patient
         const patient = await User.findById(patientId).select('fullName email phone gender birthday dob address avatar').lean()
@@ -436,8 +374,6 @@ class PatientRecordService {
         // 1. Check user
         const user = await User.findById(userId)
         if (!user) throw new AuthFailureError('Please login to continue')
-        console.log('User:', user)
-        console.log('Patient ID:', patientId)
 
         // 2. Check patient
         const patient = await User.findById(patientId).select('fullName email phone gender birthday dob address avatar').lean()

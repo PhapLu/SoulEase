@@ -35,11 +35,15 @@ const PatientRecordSchema = new Schema(
 
         relatives: [
             {
-                userId: { type: Schema.Types.ObjectId, ref: 'User' },
-                fullName: { type: String, trim: true },
-                email: { type: String, trim: true },
-                phoneNumber: { type: String, trim: true },
-                relationship: { type: String, trim: true },
+                userId: {
+                    type: Schema.Types.ObjectId,
+                    ref: 'User',
+                    required: true,
+                },
+                relationship: {
+                    type: String,
+                    trim: true,
+                },
             },
         ],
 

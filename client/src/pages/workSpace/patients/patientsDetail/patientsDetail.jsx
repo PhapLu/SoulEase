@@ -225,7 +225,7 @@ export default function PatientsDetail() {
         if (isSectionReadOnly) return
         try {
             const recordId = editForm?.recordId || patient?.recordId
-            await apiUtils.post('/patientRecord/createPatientRecord', {
+            await apiUtils.post('/relative/createRelativeAccount', {
                 recordId,
                 patientRecordId,
                 ...payload,
