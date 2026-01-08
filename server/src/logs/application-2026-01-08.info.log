@@ -12,3 +12,7 @@
 2026-01-08 13:09:04::info::/v1/api/user/me::a28447ad-d8d7-4cc3-910d-65fd9b721e5b::input-params ::GET::::{}
 2026-01-08 13:09:04::error::/v1/api/user/me::a28447ad-d8d7-4cc3-910d-65fd9b721e5b::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
 2026-01-08 13:09:20::info::/v1/api/auth/signUp::7be0173c-9503-4299-8029-4a015e702a30::input-params ::POST::::{"email":"escamerafrank@gmail.com","fullName":"Lưu Quốc Pháp","password":"PhapNhat987AZ@","clinicians":"1-5"}
+2026-01-08 13:10:11::info::/v1/api/user/me::5203a916-2d39-45da-8587-a29700c16480::input-params ::GET::::{}
+2026-01-08 13:10:11::error::/v1/api/user/me::5203a916-2d39-45da-8587-a29700c16480::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2026-01-08 13:10:11::info::/v1/api/user/me::81afeed7-f7c0-4384-89b0-10db6b23ac46::input-params ::GET::::{}
+2026-01-08 13:10:11::error::/v1/api/user/me::81afeed7-f7c0-4384-89b0-10db6b23ac46::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
