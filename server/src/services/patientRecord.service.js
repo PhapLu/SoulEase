@@ -5,6 +5,8 @@ import { AuthFailureError, BadRequestError, ForbiddenError, NotFoundError } from
 import dotenv from 'dotenv'
 import Conversation from '../models/conversation.model.js'
 import Session from '../models/session.model.js'
+import { Upload } from '@aws-sdk/lib-storage'
+import { DeleteObjectCommand, s3 } from '../configs/s3.config.js'
 dotenv.config()
 
 class PatientRecordService {
@@ -461,6 +463,82 @@ class PatientRecordService {
         }
 
         return { patientRecord: mergedRecord }
+    }
+
+    static uploadFile = async (req) => {
+        const { recordId } = req.params
+        const file = req.file
+        console.log('REVORD ID', recordId)
+
+        if (!file) throw new BadRequestError('File is required')
+
+        // 1️⃣ Validate record
+        const record = await PatientRecord.findOne({ patientId: recordId })
+        if (!record) throw new NotFoundError('Patient record not found')
+
+        // 2️⃣ Generate S3 key
+        const ext = file.originalname.split('.').pop()
+        const key = `patient-records/${recordId}/${Date.now()}-${file.originalname}`
+
+        // 3️⃣ Upload to S3
+        const upload = new Upload({
+            client: s3,
+            params: {
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Key: key,
+                Body: file.buffer,
+                ContentType: file.mimetype,
+            },
+        })
+
+        await upload.done()
+
+        // 4️⃣ Build public URL
+        const fileUrl = `${process.env.AWS_CLOUDFRONT_DOMAIN}/${key}`
+
+        // 5️⃣ Save metadata to PatientRecord
+        const storageItem = {
+            url: fileUrl,
+            name: file.originalname,
+            size: file.size,
+            isImage: file.mimetype.startsWith('image/'),
+        }
+
+        record.storages.push(storageItem)
+        await record.save()
+
+        return {
+            message: 'File uploaded successfully',
+            storage: storageItem,
+        }
+    }
+
+    static deleteFile = async (req) => {
+        const { recordId, storageId } = req.params
+
+        const record = await PatientRecord.findOne({ patientId: recordId })
+        if (!record) throw new NotFoundError('Patient record not found')
+
+        const file = record.storages.id(storageId)
+        if (!file) throw new NotFoundError('File not found')
+
+        // 1️⃣ Extract S3 key from CloudFront URL
+        const cloudfront = process.env.AWS_CLOUDFRONT_DOMAIN
+        const key = file.url.replace(`${cloudfront}/`, '')
+
+        // 2️⃣ Delete from S3
+        await s3.send(
+            new DeleteObjectCommand({
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Key: key,
+            })
+        )
+
+        // 3️⃣ Remove from MongoDB
+        record.storages.pull(storageId)
+        await record.save()
+
+        return { storageId }
     }
 }
 

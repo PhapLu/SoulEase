@@ -66,6 +66,24 @@ export default function PatientsDetail() {
 
     const [saving, setSaving] = useState(false)
 
+    const storageImages = (editForm?.storages || [])
+        .filter((s) => s.isImage)
+        .map((s) => ({
+            _id: s._id, // ✅ add
+            url: s.url,
+            name: s.name,
+            size: s.size,
+        }))
+
+    const storageFiles = (editForm?.storages || [])
+        .filter((s) => !s.isImage)
+        .map((s) => ({
+            _id: s._id, // ✅ add
+            url: s.url,
+            name: s.name,
+            size: s.size,
+        }))
+
     // FETCH PATIENT
     useEffect(() => {
         if (!patientRecordId) return
@@ -387,6 +405,35 @@ export default function PatientsDetail() {
         setSaving(false)
     }
 
+    // PatientsDetail.jsx
+    const handleSaveStorage = async ({ images, files }) => {
+        if (isSectionReadOnly) return
+        const recordId = patientRecordId
+        if (!recordId) return
+
+        // upload images
+        for (const img of images) {
+            if (!img.file) continue
+            const formData = new FormData()
+            formData.append('file', img.file)
+            await apiUtils.patch(`/patientRecord/uploadFile/${recordId}`, formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            })
+        }
+
+        // upload files
+        for (const f of files) {
+            if (!f.file) continue
+            const formData = new FormData()
+            formData.append('file', f.file)
+            await apiUtils.patch(`/patientRecord/uploadFile/${recordId}`, formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            })
+        }
+
+        // ❌ REMOVE: await fetchPatient()
+    }
+
     if (!editForm) return <div>Loading...</div>
 
     // treatment sessions sorted by date desc (latest first)
@@ -413,7 +460,14 @@ export default function PatientsDetail() {
 
                 <TreatmentSession patientRecordId={patientRecordId} folderId={editForm?.folderId || patient?.folderId} sessions={sessions} latest={latestSession} readOnly={isSectionReadOnly} onStartEdit={handleStartEdit} />
 
-                <StorageSection readOnly={isSectionReadOnly} />
+                <StorageSection
+                    patientRecordId={patientRecordId} // ✅ add this
+                    readOnly={isSectionReadOnly}
+                    initialImages={storageImages}
+                    initialFiles={storageFiles}
+                    onSave={handleSaveStorage}
+                    onRefresh={fetchPatient}
+                />
             </div>
         </div>
     )

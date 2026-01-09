@@ -56,3 +56,21 @@ Error: Missing BREVO_API_KEY in environment variables
     at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
     at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined
+2026-01-09 12:55:05::error::undefined::undefined::uncaughtException: uploadMemory is not defined
+ReferenceError: uploadMemory is not defined
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/routes/patientRecord/index.js:14:39
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined
+2026-01-09 12:55:07::error::undefined::undefined::uncaughtException: uploadMemory is not defined
+ReferenceError: uploadMemory is not defined
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/routes/patientRecord/index.js:14:39
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined
+2026-01-09 12:55:30::error::undefined::undefined::uncaughtException: uploadMemory is not defined
+ReferenceError: uploadMemory is not defined
+    at file:///C:/Users/Admin/OneDrive/M%C3%A1y%20t%C3%ADnh/SEPM%20Project/server/src/routes/patientRecord/index.js:14:39
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)::undefined

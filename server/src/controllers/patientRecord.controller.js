@@ -40,6 +40,20 @@ class PatientRecordController {
             metadata: await PatientRecordService.readPatientCharts(req),
         }).send(res)
     }
+
+    uploadFile = async (req, res, next) => {
+        new SuccessResponse({
+            message: 'Upload file success!',
+            metadata: await PatientRecordService.uploadFile(req),
+        }).send(res)
+    }
+
+    deleteFile = async (req, res, next) => {
+        new SuccessResponse({
+            message: 'Delete file success!',
+            metadata: await PatientRecordService.deleteFile(req),
+        }).send(res)
+    }
 }
 
 export default new PatientRecordController()

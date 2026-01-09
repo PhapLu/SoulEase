@@ -94,7 +94,14 @@ const PatientRecordSchema = new Schema(
         ],
 
         // file URLs saved from Cloudinary / S3
-        attachments: [{ type: String }],
+        storages: [
+            {
+                url: String, // image src / file link
+                name: String, // filename
+                size: Number, // bytes
+                isImage: Boolean, // true = image, false = file
+            },
+        ],
 
         // caregiver contribution
         caregiverNotes: { type: String, default: '', trim: true },

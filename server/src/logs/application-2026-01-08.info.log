@@ -215,3 +215,6 @@
 2026-01-08 23:15:49::info::/v1/api/patientRecord/readPatientRecord/695fd15a449a88e89f7936d0::c2353bed-b287-4eb8-919c-1c7be011928b::input-params ::GET::::{}
 2026-01-08 23:15:49::info::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::a9063d11-b9ff-46e3-b336-e96e83075885::input-params ::GET::::{}
 2026-01-08 23:15:49::info::/v1/api/patientRecord/readPatientRecord/695fd15a449a88e89f7936d0::6770a8d1-b443-4dc1-97a7-242203989578::input-params ::GET::::{}
+2026-01-08 23:20:17::info::/v1/api/relative/createRelativeAccount::cc517105-fd59-4593-942b-65534061531a::input-params ::POST::::{"recordId":"695fd15a449a88e89f7936d8","patientRecordId":"695fd15a449a88e89f7936d0","email":"relative2@gmail.com","fullName":"Realtive 2","phoneNumber":"0374499252","relationship":"Parent","role":"relative"}
+2026-01-08 23:20:17::info::/v1/api/patientRecord/readPatientRecord/695fd15a449a88e89f7936d0::b660f3c5-51f1-4a75-a116-d444b21aa23e::input-params ::GET::::{}
+2026-01-08 23:20:18::info::/v1/api/relative/readRelatives/695fd15a449a88e89f7936d8::dca99593-4e6d-44c0-b170-785d9e163262::input-params ::GET::::{}
