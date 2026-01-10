@@ -68,6 +68,7 @@ export default function AssistantPanel() {
                 const res = await apiUtils.get(`/conversation/readConversationDetail/${conversationId}`)
                 const conv = res.data.metadata.conversation
                 const other = conv?.members?.find((m) => m.user && m.user._id !== userInfo._id)?.user
+                console.log(other)
                 setContactInfo(other || null)
             } catch (error) {
                 console.error('Fetch conversation for contact info error:', error)

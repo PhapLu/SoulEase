@@ -1,6 +1,8 @@
 import Conversation from '../models/conversation.model.js'
 import { User } from '../models/user.model.js'
 import { AuthFailureError, BadRequestError, NotFoundError } from '../core/error.response.js'
+import PatientRecord from '../models/patientRecord.model.js'
+import Session from '../models/session.model.js'
 // import { uploadImageToS3 } from '../utils/s3.util.js'
 
 const DEFAULT_THUMB = '/uploads/default-bg.png'
@@ -123,20 +125,123 @@ class ConversationService {
     }
 
     // GET /conversation/readConversation/:id
+    // static readConversationDetail = async (req) => {
+    //     const { conversationId } = req.params
+    //     const userId = req.userId
+
+    //     const conversation = await Conversation.findById(conversationId).populate('members.user', 'fullName avatar email phone address dob gender role').populate('messages.senderId', 'fullName avatar')
+    //     if (!conversation) throw new NotFoundError('Conversation not found')
+
+    //     const otherMembers = conversation.members.filter((m) => m.user._id.toString() !== userId.toString())
+    //     const thumbnail = otherMembers.length === 1 ? otherMembers[0].user.avatar : otherMembers[0]?.user.avatar || '/uploads/default_avatar.jpg'
+
+    //     return {
+    //         conversation: {
+    //             ...conversation.toObject(),
+    //             thumbnail, // ⭐ ADD THIS
+    //         },
+    //     }
+    // }
+
     static readConversationDetail = async (req) => {
         const { conversationId } = req.params
         const userId = req.userId
 
+        // ------------------------------------
+        // FETCH CONVERSATION
+        // ------------------------------------
         const conversation = await Conversation.findById(conversationId).populate('members.user', 'fullName avatar email phone address dob gender role').populate('messages.senderId', 'fullName avatar')
-        if (!conversation) throw new NotFoundError('Conversation not found')
 
-        const otherMembers = conversation.members.filter((m) => m.user._id.toString() !== userId.toString())
+        if (!conversation) {
+            throw new NotFoundError('Conversation not found')
+        }
+
+        // ------------------------------------
+        // COLLECT MEMBER USER IDS
+        // ------------------------------------
+        const memberUserIds = conversation.members
+            .map((m) => m.user)
+            .filter((u) => u?.role === 'member')
+            .map((u) => u._id)
+
+        // ------------------------------------
+        // FETCH LATEST USER INFO (AUTHORITATIVE)
+        // ------------------------------------
+        const latestUsers = await User.find({
+            _id: { $in: memberUserIds },
+        }).lean()
+
+        const userMap = latestUsers.reduce((acc, u) => {
+            acc[u._id.toString()] = u
+            return acc
+        }, {})
+
+        // ------------------------------------
+        // FETCH FULL PATIENT RECORDS
+        // ------------------------------------
+        const patientRecords = await PatientRecord.find({
+            patientId: { $in: memberUserIds },
+        }).lean()
+
+        const patientRecordMap = patientRecords.reduce((acc, pr) => {
+            acc[pr.patientId.toString()] = pr
+            return acc
+        }, {})
+
+        // ------------------------------------
+        // BUILD LATEST SESSION MAP (SIMPLE)
+        // ------------------------------------
+        const latestSessionMap = {}
+
+        for (const pr of patientRecords) {
+            const sessions = Array.isArray(pr.treatmentSessions) ? pr.treatmentSessions : []
+
+            if (!sessions.length) {
+                latestSessionMap[pr.patientId.toString()] = null
+                continue
+            }
+
+            const latest = sessions.reduce((latest, curr) => {
+                const d1 = new Date(latest.date || latest.createdAt || 0)
+                const d2 = new Date(curr.date || curr.createdAt || 0)
+                return d2 > d1 ? curr : latest
+            })
+
+            latestSessionMap[pr.patientId.toString()] = latest
+        }
+
+        // ------------------------------------
+        // MERGE EVERYTHING INTO USER OBJECT
+        // ------------------------------------
+        const mergedMembers = conversation.members.map((m) => {
+            const memberObj = m.toObject()
+            const user = memberObj.user
+
+            if (user?.role === 'member') {
+                const uid = user._id.toString()
+
+                return {
+                    ...memberObj,
+                    user: {
+                        ...userMap[uid], // latest user info
+                        patientRecord: patientRecordMap[uid] || null,
+                        latestSessionInfo: latestSessionMap[uid] || null,
+                    },
+                }
+            }
+
+            return memberObj
+        })
+
+        // THUMBNAIL
+        const otherMembers = mergedMembers.filter((m) => m.user._id.toString() !== userId.toString())
         const thumbnail = otherMembers.length === 1 ? otherMembers[0].user.avatar : otherMembers[0]?.user.avatar || '/uploads/default_avatar.jpg'
 
         return {
             conversation: {
                 ...conversation.toObject(),
-                thumbnail, // ⭐ ADD THIS
+                members: mergedMembers,
+                thumbnail,
             },
         }
     }

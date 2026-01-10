@@ -51,10 +51,7 @@ export default function Conversations() {
                                     <span className='ws-thread__name'>{item.displayName}</span>
                                     <span className='ws-thread__snippet'>{item.lastMessage}</span>
                                 </div>
-                                <div className='ws-thread__time'>
-                                    {item.time && <span>{item.time}</span>}
-                                    {item.unread && <span className='ws-dot' />}
-                                </div>
+                                <div className='ws-thread__time'>{item && <span className='ws-dot' />}</div>
                             </Link>
                         </li>
                     ))

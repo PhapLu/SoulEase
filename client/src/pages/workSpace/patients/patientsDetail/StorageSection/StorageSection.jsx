@@ -6,7 +6,7 @@ import { apiUtils } from '../../../../../utils/newRequest'
 export default function StorageSection({ onRefresh, patientRecordId, onSave, onCancel, readOnly = false, initialImages = [], initialFiles = [] }) {
     const [tab, setTab] = useState('image')
     const [open, setOpen] = useState(false)
-
+    const [saving, setSaving] = useState(false)
     const [images, setImages] = useState(initialImages)
     const [files, setFiles] = useState(initialFiles)
 
@@ -46,13 +46,13 @@ export default function StorageSection({ onRefresh, patientRecordId, onSave, onC
     }, [])
 
     const handlePickImage = () => {
-        if (readOnly) return
+        if (readOnly || saving) return
         setOpen(false)
         imageInputRef.current?.click()
     }
 
     const handlePickFile = () => {
-        if (readOnly) return
+        if (readOnly || saving) return
         setOpen(false)
         fileInputRef.current?.click()
     }
@@ -93,7 +93,7 @@ export default function StorageSection({ onRefresh, patientRecordId, onSave, onC
     }
 
     const removeImage = (idx) => {
-        if (readOnly) return
+        if (readOnly || saving) return
 
         const img = images[idx]
 
@@ -111,7 +111,7 @@ export default function StorageSection({ onRefresh, patientRecordId, onSave, onC
     }
 
     const removeFile = (idx) => {
-        if (readOnly) return
+        if (readOnly || saving) return
 
         const f = files[idx]
 
@@ -134,22 +134,27 @@ export default function StorageSection({ onRefresh, patientRecordId, onSave, onC
     const headerTitle = useMemo(() => 'Storage', [])
 
     const handleSave = async () => {
+        if (saving) return
+
+        setSaving(true)
         try {
             // 1) upload new files
             await onSave?.({ images, files })
 
-            // 2) delete confirmed files
+            // 2) delete files
             for (const storageId of pendingDeletes) {
                 await apiUtils.delete(`/patientRecord/deleteFile/${patientRecordId}/${storageId}`)
             }
 
-            // 3) refetch ONCE after everything
+            // 3) refetch ONCE
             await onRefresh?.()
 
             setPendingDeletes([])
             setDirty(false)
         } catch (err) {
             console.error('Save storage failed', err)
+        } finally {
+            setSaving(false)
         }
     }
 
@@ -285,11 +290,12 @@ export default function StorageSection({ onRefresh, patientRecordId, onSave, onC
 
             {dirty && !readOnly && (
                 <div className='pd-storage__actions'>
-                    <button className='folder-cancel-btn' type='button' onClick={handleCancel}>
+                    <button className='folder-cancel-btn' type='button' onClick={handleCancel} disabled={saving}>
                         Cancel
                     </button>
-                    <button className='folder-save-btn' type='button' onClick={handleSave}>
-                        Save
+
+                    <button className='folder-save-btn' type='button' onClick={handleSave} disabled={saving}>
+                        {saving ? 'Saving...' : 'Save'}
                     </button>
                 </div>
             )}

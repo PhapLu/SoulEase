@@ -278,12 +278,12 @@ export default function UserProfile() {
 
                                 <label className='pp-field'>
                                     <div className='pp-label'>Date of birth</div>
-                                    <input readOnly={!isEditing} className='pp-input' type='date' value={user.dob ? user.dob.slice(0, 10) : ''} onChange={(e) => onChange('dob', e.target.value)} />
+                                    <input disabled={!isEditing} className='pp-input' type='date' value={user.dob ? user.dob.slice(0, 10) : ''} onChange={(e) => onChange('dob', e.target.value)} />
                                 </label>
 
                                 <label className='pp-field'>
                                     <div className='pp-label'>Gender</div>
-                                    <select readOnly={!isEditing} className='pp-input' value={user.gender || ''} onChange={(e) => onChange('gender', e.target.value)}>
+                                    <select disabled={!isEditing} className='pp-input' value={user.gender || ''} onChange={(e) => onChange('gender', e.target.value)}>
                                         <option value=''>—</option>
                                         <option value='male'>Male</option>
                                         <option value='female'>Female</option>

@@ -93,7 +93,6 @@ export default function ConversationDetail() {
                 <img src={conversation?.thumbnail} className='ws-chat__avatar' />
                 <div>
                     <div className='ws-chat__name'>{displayName}</div>
-                    <div className='ws-chat__status'>Active now</div>
                 </div>
             </header>
 

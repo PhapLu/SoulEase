@@ -7,3 +7,9 @@
 2026-01-10 19:41:19::error::/v1/api/user/me::932132b4-6c1f-4ff7-b81c-3eb01eb06a68::handler-error::{"status":403,"message":"Access token missing"}
 2026-01-10 21:16:58::error::/v1/api/user/me::041dd58b-9721-43f5-9b2b-d4c7bdd4a2a2::handler-error::{"status":403,"message":"Access token missing"}
 2026-01-10 21:16:58::error::/v1/api/user/me::0cb24b38-ba09-4e3b-a229-14855508d524::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-10 22:05:52::error::/v1/api/conversation/readConversationDetail/695f55311ce44862d35124f7::e69bca59-9c2e-45f1-b450-0311008e1ddd::handler-error::{"status":500,"message":"PatientRecord is not defined"}
+2026-01-10 22:05:52::error::/v1/api/conversation/readConversationDetail/695f55311ce44862d35124f7::749a3e91-fca5-48e5-8d5b-b7fa2dff0b5e::handler-error::{"status":500,"message":"PatientRecord is not defined"}
+2026-01-10 22:05:52::error::/v1/api/conversation/readConversationDetail/695f55311ce44862d35124f7::526e5eea-aa7e-476c-9b3c-5a818db05fd5::handler-error::{"status":500,"message":"PatientRecord is not defined"}
+2026-01-10 22:11:12::error::/v1/api/conversation/readConversationDetail/695f55311ce44862d35124f7::bf75090b-26ad-482a-bd78-e8ae347095bf::handler-error::{"status":500,"message":"Session is not defined"}
+2026-01-10 22:11:12::error::/v1/api/conversation/readConversationDetail/695f55311ce44862d35124f7::9b4baf6d-cecf-4f62-988b-68e170e499b3::handler-error::{"status":500,"message":"Session is not defined"}
+2026-01-10 22:11:13::error::/v1/api/conversation/readConversationDetail/695f55311ce44862d35124f7::3fd4076f-f9a0-4e83-94e9-a4aa0db6697c::handler-error::{"status":500,"message":"Session is not defined"}
