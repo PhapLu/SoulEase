@@ -1,133 +1,128 @@
 # app.py
+import sys
+import logging
+import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from langchain_core.messages import HumanMessage
-from graph.medical_graph import app as langgraph_app
-from utils.db import (
-    load_conversation_for_ai,
-    load_conversation_for_ui,
-    load_ai_chat_history,
-    save_ai_chat_messages,
-)
 
-import logging
+# -------------------------
+# 🔥 FORCE EARLY LOGS
+# -------------------------
+print("🔥 app.py loaded")
+print("🔥 Python version:", sys.version)
 
+# -------------------------
+# 🔥 RENDER-SAFE LOGGING
+# -------------------------
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    force=True,  # IMPORTANT for Render
+    handlers=[logging.StreamHandler(sys.stdout)],
+    force=True,
 )
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("soulra")
+logger.info("🔥 Logger initialized")
 
+# -------------------------
+# FASTAPI INIT
+# -------------------------
 api_app = FastAPI(title="Soulra AI API")
 
 api_app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "https://soulease-1.onrender.com"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://soulease-1.onrender.com",
+    ],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
+# -------------------------
+# SCHEMAS
+# -------------------------
 class ChatRequest(BaseModel):
     conversation_id: str
     message: str
 
+# -------------------------
+# 🔍 HEALTH CHECK (VERY IMPORTANT)
+# -------------------------
+@api_app.get("/health")
+async def health():
+    logger.info("✅ Health endpoint called")
+    return {"status": "ok"}
 
-# =========================
-# AI Chat (Doctor assistant)
-# =========================
+# -------------------------
+# 🔍 SIMPLE TEST ENDPOINT
+# -------------------------
+@api_app.post("/chat-test")
+async def chat_test():
+    logger.info("🧪 chat-test called")
+    return {"ai_reply": "Server is alive"}
+
+# -------------------------
+# 🔥 REAL CHAT ENDPOINT
+# -------------------------
 @api_app.post("/chat")
 async def chat_endpoint(request: ChatRequest):
+    logger.info("📩 /chat called")
+    logger.info(f"Conversation ID: {request.conversation_id}")
+    logger.info(f"User message: {request.message}")
+
     try:
-        # 1️⃣ Load patient + doctor conversation
+        # Lazy import to avoid silent boot crash
+        from graph.medical_graph import app as langgraph_app
+        from utils.db import (
+            load_conversation_for_ai,
+            save_ai_chat_messages,
+        )
+
+        logger.info("📦 Imports OK")
+
         conversation_context = load_conversation_for_ai(
             request.conversation_id
         )
+        logger.info(f"🧠 Loaded {len(conversation_context)} messages")
 
-        logger.info("🧠 AI CONTEXT:")
-        for m in conversation_context:
-            logger.info(f"- {m.content}")
-
-        # 2️⃣ Add doctor's current prompt
         conversation_context.append(
             HumanMessage(content=request.message)
         )
 
-        # 3️⃣ Run LangGraph
         inputs = {
             "messages": conversation_context,
-            "recent_conversations": conversation_context,  # 🔑 REQUIRED
+            "recent_conversations": conversation_context,
             "next_agent": None,
             "summary": "",
             "prescription": "",
         }
 
+        logger.info("🚀 Running LangGraph")
+
         response_parts = []
-
-        try:
-            for output in langgraph_app.stream(inputs):
-                for value in output.values():
-                    if "messages" in value and value["messages"]:
-                        response_parts.append(value["messages"][-1].content)
-        except Exception as e:
-            logger.exception("❌ LangGraph streaming failed")
-            raise
-
+        for output in langgraph_app.stream(inputs):
+            for value in output.values():
+                if "messages" in value and value["messages"]:
+                    response_parts.append(
+                        value["messages"][-1].content
+                    )
 
         ai_response = "\n".join(response_parts)
+        logger.info("✅ LangGraph finished")
 
-        # 4️⃣ Save to AI history
-        new_msgs = [
-            {"sender": "user", "text": request.message},
-            {"sender": "ai", "text": ai_response},
-        ]
-        saved = save_ai_chat_messages(
+        save_ai_chat_messages(
             request.conversation_id,
-            new_msgs
+            [
+                {"sender": "user", "text": request.message},
+                {"sender": "ai", "text": ai_response},
+            ],
         )
-        if not saved:
-            logger.info("⚠️ Failed to save AI chat")
 
-        return {
-            "ai_reply": ai_response
-        }
+        return {"ai_reply": ai_response}
 
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=str(e)
-        )
-
-
-# =========================
-# Conversation history (UI)
-# =========================
-@api_app.get("/chat/history/{conversation_id}")
-async def get_chat_history(conversation_id: str):
-    history = load_conversation_for_ui(conversation_id)
-
-    return {
-        "conversation_id": conversation_id,
-        "messages": history,
-    }
-
-
-# =========================
-# AI Chat History (Right panel)
-# =========================
-@api_app.get("/ai-history/{conversation_id}")
-async def get_ai_history(conversation_id: str):
-    history = load_ai_chat_history(conversation_id)
-
-    return {
-        "conversation_id": conversation_id,
-        "messages": history,
-    }
-
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(api_app, host="0.0.0.0", port=8000)
+        logger.exception("❌ /chat failed")
+        raise HTTPException(status_code=500, detail=str(e))
