@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { apiUtils } from '../../../utils/newRequest'
 import './UserProfile.css'
@@ -16,6 +16,7 @@ export default function UserProfile() {
     const [pwMsg, setPwMsg] = useState('')
     const [isEditing, setIsEditing] = useState(false)
     const [originalUser, setOriginalUser] = useState(null)
+    const editLockRef = useRef(false)
 
     // =========================
     // FETCH USER PROFILE
@@ -31,7 +32,6 @@ export default function UserProfile() {
                 const fetchedUser = res.data.metadata.user
                 setUser(fetchedUser)
                 setOriginalUser(structuredClone(fetchedUser))
-                setOriginalUser(res.data.metadata.user)
             } catch (e) {
                 setError(e?.response?.data?.message || 'Failed to load profile')
             } finally {
@@ -42,6 +42,11 @@ export default function UserProfile() {
         fetchUser()
     }, [userId])
 
+    useEffect(() => {
+        if (editLockRef.current) {
+            setIsEditing(true)
+        }
+    }, [])
     const onEdit = () => {
         setOriginalUser(structuredClone(user))
         setIsEditing(true)
@@ -52,6 +57,11 @@ export default function UserProfile() {
         setIsEditing(false)
         setError('')
     }
+    console.log(isEditing)
+    useEffect(() => {
+        console.log('UserProfile MOUNT')
+        return () => console.log('UserProfile UNMOUNT')
+    }, [])
 
     const onAvatarChange = async (e) => {
         const file = e.target.files?.[0]
@@ -105,7 +115,7 @@ export default function UserProfile() {
     const onSave = async (e) => {
         e.preventDefault()
         if (!user) return
-
+        console.log('Hello')
         setSaving(true)
         setError('')
 
@@ -223,7 +233,7 @@ export default function UserProfile() {
                             </label>
                         </div>
 
-                        <form onSubmit={onChangePassword} className='pp-pwForm'>
+                        <div className='pp-pwForm'>
                             <div className='pp-side-title'>Change Password</div>
                             <label className='pp-field'>
                                 <div className='pp-label'>Old password</div>
@@ -237,16 +247,22 @@ export default function UserProfile() {
 
                             {pwMsg && <div className='pp-pwMsg'>{pwMsg}</div>}
 
-                            <button className='pp-btn pp-btn--ghost' type='submit' disabled={changingPw}>
+                            <button className='pp-btn pp-btn--ghost' disabled={changingPw} onClick={onChangePassword}>
                                 {changingPw ? 'Changing...' : 'Change Password'}
                             </button>
-                        </form>
+                        </div>
                     </section>
                 </aside>
 
                 <main className='pp-col-9'>
                     <section className='pp-card'>
-                        <form className='pp-form' onSubmit={onSave}>
+                        <form
+                            className='pp-form'
+                            onSubmit={(e) => {
+                                console.log('🚨 SUBMIT TRIGGERED', e)
+                                onSave(e)
+                            }}
+                        >
                             <div className='pp-grid'>
                                 {/* BASIC INFO */}
                                 <label className='pp-field'>
@@ -331,7 +347,7 @@ export default function UserProfile() {
                                     </button>
                                 ) : (
                                     <>
-                                        <button type='submit' className='pp-btn' disabled={saving}>
+                                        <button type='button' className='pp-btn' onClick={onSave} disabled={saving}>
                                             {saving ? 'Saving...' : 'Save changes'}
                                         </button>
 
