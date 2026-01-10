@@ -371,7 +371,24 @@
     place-items: center;
     font-weight: 700;
 }
+/* Thêm vào Conversations.css */
+.ws-assistant__view-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px 16px;
+    background-color: #0a8769;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.25s;
+}
 
+.ws-assistant__view-btn:hover {
+    opacity: 0.9;
+}
 .ws-assistant__input {
     display: grid;
     grid-template-columns: 1fr auto;

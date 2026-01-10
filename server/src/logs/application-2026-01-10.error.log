@@ -2,3 +2,7 @@
 2026-01-10 15:35:47::error::/v1/api/user/me::25e1f6a8-e44b-4072-a364-c7e49f566187::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
 2026-01-10 18:25:49::error::/v1/api/user/me::a86ccf6f-9cb9-4aa9-923c-b1b9dee38b5f::handler-error::{"status":403,"message":"Access token missing"}
 2026-01-10 18:25:49::error::/v1/api/user/me::e7a58a7b-6fe6-45de-9427-7e3e55658faa::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-10 19:11:54::error::/v1/api/patientRecord/readPatientRecord/[object%20Object]::bf469b2b-1c35-4f73-bce0-7a2675e77047::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"User\""}
+2026-01-10 19:11:54::error::/v1/api/patientRecord/readPatientRecord/[object%20Object]::752bb150-d670-4a6f-99e2-928eb64dcdcc::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"User\""}
+2026-01-10 19:11:54::error::/v1/api/patientRecord/readPatientRecord/[object%20Object]::ee502e14-19b7-4b84-8429-5450e0262b80::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"User\""}
+2026-01-10 19:11:54::error::/v1/api/patientRecord/readPatientRecord/[object%20Object]::f0313432-3566-4f65-964c-bb0f551799b9::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"User\""}
