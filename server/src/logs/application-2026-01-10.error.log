@@ -1,2 +1,4 @@
 2026-01-10 15:35:47::error::/v1/api/user/me::b5b90c82-5efc-4a7a-8140-fa97a88a9f1a::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
 2026-01-10 15:35:47::error::/v1/api/user/me::25e1f6a8-e44b-4072-a364-c7e49f566187::handler-error::{"status":500,"message":"error:1C800064:Provider routines::bad decrypt"}
+2026-01-10 18:25:49::error::/v1/api/user/me::a86ccf6f-9cb9-4aa9-923c-b1b9dee38b5f::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-10 18:25:49::error::/v1/api/user/me::e7a58a7b-6fe6-45de-9427-7e3e55658faa::handler-error::{"status":403,"message":"Access token missing"}
