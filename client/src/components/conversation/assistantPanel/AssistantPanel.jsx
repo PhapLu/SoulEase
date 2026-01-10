@@ -55,7 +55,6 @@ export default function AssistantPanel() {
                     risk: latest.risk ?? 'Low'
                 })
             } else {
-                // Reset về mặc định nếu không tìm thấy hồ sơ hoặc session
                 setClinicalMetrics({ phq9: '—', gad7: '—', severity: '—', risk: 'Low' })
             }
 
@@ -63,7 +62,7 @@ export default function AssistantPanel() {
             console.error('Error fetching clinical metrics:', error)
         }
     }
-
+    console.log("AAAAAAAAAAAAAAAAAAA",contactInfo.latestSessionInfo)
     fetchMedicalRecord()
 }, [contactInfo, patientRecordId])
 
@@ -220,15 +219,19 @@ export default function AssistantPanel() {
                             </div>
                             <div className='ws-assistant__profile-row'>
                                 <span className='ws-assistant__profile-label'>PHQ9:</span>
-                                <span className='ws-assistant__profile-value'>{clinicalMetrics.phq9 || '—'}</span>
+                                <span className='ws-assistant__profile-value'>{contactInfo.latestSessionInfo.phq9 || '—'}</span>
                             </div>
                             <div className='ws-assistant__profile-row'>
                                 <span className='ws-assistant__profile-label'>GAD7:</span>
-                                <span className='ws-assistant__profile-value'>{clinicalMetrics.gad7 || '—'}</span>
+                                <span className='ws-assistant__profile-value'>{contactInfo.latestSessionInfo.gad7 || '—'}</span>
                             </div>
                             <div className='ws-assistant__profile-row'>
                                 <span className='ws-assistant__profile-label'>SEVERITY:</span>
-                                <span className='ws-assistant__profile-value'>{clinicalMetrics.severity || '—'}</span>
+                                <span className='ws-assistant__profile-value'>{contactInfo.latestSessionInfo.severity || '—'}</span>
+                            </div>
+                            <div className='ws-assistant__profile-row'>
+                                <span className='ws-assistant__profile-label'>RISK:</span>
+                                <span className='ws-assistant__profile-value'>{contactInfo.latestSessionInfo.risk || '—'}</span>
                             </div>
                         </div>
 

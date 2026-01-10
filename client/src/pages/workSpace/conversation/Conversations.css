@@ -9,7 +9,7 @@
 
 .ws-panels {
     display: grid;
-    grid-template-columns: 320px auto 360px;
+    grid-template-columns: 300px auto 400px;
     grid-template-rows: 1fr;
     border: 1px solid var(--border);
     gap: 12px;
