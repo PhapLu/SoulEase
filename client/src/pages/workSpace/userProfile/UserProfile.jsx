@@ -237,12 +237,12 @@ export default function UserProfile() {
                             <div className='pp-side-title'>Change Password</div>
                             <label className='pp-field'>
                                 <div className='pp-label'>Old password</div>
-                                <input disabled={!isEditing} className='pp-input' type='password' value={pw.oldPassword} onChange={(e) => onPwChange('oldPassword', e.target.value)} />
+                                <input readOnly={!isEditing} className='pp-input' type='password' value={pw.oldPassword} onChange={(e) => onPwChange('oldPassword', e.target.value)} />
                             </label>
 
                             <label className='pp-field'>
                                 <div className='pp-label'>New password</div>
-                                <input disabled={!isEditing} className='pp-input' type='password' value={pw.newPassword} onChange={(e) => onPwChange('newPassword', e.target.value)} />
+                                <input readOnly={!isEditing} className='pp-input' type='password' value={pw.newPassword} onChange={(e) => onPwChange('newPassword', e.target.value)} />
                             </label>
 
                             {pwMsg && <div className='pp-pwMsg'>{pwMsg}</div>}
@@ -257,6 +257,7 @@ export default function UserProfile() {
                 <main className='pp-col-9'>
                     <section className='pp-card'>
                         <form
+                            autoComplete='off'
                             className='pp-form'
                             onSubmit={(e) => {
                                 console.log('🚨 SUBMIT TRIGGERED', e)
@@ -267,7 +268,7 @@ export default function UserProfile() {
                                 {/* BASIC INFO */}
                                 <label className='pp-field'>
                                     <div className='pp-label'>Full name</div>
-                                    <input disabled={!isEditing} className='pp-input' value={user.fullName || ''} onChange={(e) => onChange('fullName', e.target.value)} />
+                                    <input readOnly={!isEditing} className='pp-input' value={user.fullName || ''} onChange={(e) => onChange('fullName', e.target.value)} />
                                 </label>
 
                                 <label className='pp-field'>
@@ -277,12 +278,12 @@ export default function UserProfile() {
 
                                 <label className='pp-field'>
                                     <div className='pp-label'>Date of birth</div>
-                                    <input disabled={!isEditing} className='pp-input' type='date' value={user.dob ? user.dob.slice(0, 10) : ''} onChange={(e) => onChange('dob', e.target.value)} />
+                                    <input readOnly={!isEditing} className='pp-input' type='date' value={user.dob ? user.dob.slice(0, 10) : ''} onChange={(e) => onChange('dob', e.target.value)} />
                                 </label>
 
                                 <label className='pp-field'>
                                     <div className='pp-label'>Gender</div>
-                                    <select disabled={!isEditing} className='pp-input' value={user.gender || ''} onChange={(e) => onChange('gender', e.target.value)}>
+                                    <select readOnly={!isEditing} className='pp-input' value={user.gender || ''} onChange={(e) => onChange('gender', e.target.value)}>
                                         <option value=''>—</option>
                                         <option value='male'>Male</option>
                                         <option value='female'>Female</option>
@@ -292,19 +293,19 @@ export default function UserProfile() {
 
                                 <label className='pp-field'>
                                     <div className='pp-label'>Phone</div>
-                                    <input disabled={!isEditing} className='pp-input' value={user.phone || ''} onChange={(e) => onChange('phone', e.target.value)} />
+                                    <input readOnly={!isEditing} className='pp-input' value={user.phone || ''} onChange={(e) => onChange('phone', e.target.value)} />
                                 </label>
 
                                 <label className='pp-field'>
                                     <div className='pp-label'>Address</div>
-                                    <input disabled={!isEditing} className='pp-input' value={user.address || ''} onChange={(e) => onChange('address', e.target.value)} />
+                                    <input autoComplete='off' readOnly={!isEditing} className='pp-input' name='address' value={user.address || ''} onChange={(e) => onChange('address', e.target.value)} />
                                 </label>
 
                                 {/* DEFAULT PASSWORD */}
                                 {(role === 'clinic' || role === 'doctor') && (
                                     <label className='pp-field pp-field--span2'>
                                         <div className='pp-label'>Default password</div>
-                                        <input disabled={!isEditing} className='pp-input' type='password' value={user.defaultPassword || ''} onChange={(e) => onChange('defaultPassword', e.target.value)} />
+                                        <input readOnly={!isEditing} className='pp-input' type='password' name='default-password' value={user.defaultPassword || ''} onChange={(e) => onChange('defaultPassword', e.target.value)} />
                                     </label>
                                 )}
 
@@ -313,12 +314,12 @@ export default function UserProfile() {
                                     <>
                                         <label className='pp-field'>
                                             <div className='pp-label'>Speciality</div>
-                                            <input disabled={!isEditing} className='pp-input' value={user.doctorProfile?.speciality || ''} onChange={(e) => onNestedChange('doctorProfile', 'speciality', e.target.value)} />
+                                            <input readOnly={!isEditing} className='pp-input' value={user.doctorProfile?.speciality || ''} onChange={(e) => onNestedChange('doctorProfile', 'speciality', e.target.value)} />
                                         </label>
 
                                         <label className='pp-field pp-field--span2'>
                                             <div className='pp-label'>Description</div>
-                                            <textarea disabled={!isEditing} className='pp-input pp-textarea' value={user.doctorProfile?.description || ''} onChange={(e) => onNestedChange('doctorProfile', 'description', e.target.value)} />
+                                            <textarea readOnly={!isEditing} className='pp-input pp-textarea' value={user.doctorProfile?.description || ''} onChange={(e) => onNestedChange('doctorProfile', 'description', e.target.value)} />
                                         </label>
                                     </>
                                 )}
@@ -335,7 +336,7 @@ export default function UserProfile() {
                                 {role === 'clinic' && (
                                     <label className='pp-field pp-field--span2'>
                                         <div className='pp-label'>Clinicians</div>
-                                        <input disabled={!isEditing} className='pp-input' value={user.clinicProfile?.clinicians || ''} onChange={(e) => onNestedChange('clinicProfile', 'clinicians', e.target.value)} />
+                                        <input readOnly={!isEditing} className='pp-input' value={user.clinicProfile?.clinicians || ''} onChange={(e) => onNestedChange('clinicProfile', 'clinicians', e.target.value)} />
                                     </label>
                                 )}
                             </div>

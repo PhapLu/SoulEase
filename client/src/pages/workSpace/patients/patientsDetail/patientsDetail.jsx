@@ -147,7 +147,6 @@ export default function PatientsDetail() {
 
                 const payload = {
                     fullName: editForm?.fullName,
-                    email: editForm?.email,
                     phone: editForm?.phone,
                     address: editForm?.address,
                     gender: editForm?.gender,

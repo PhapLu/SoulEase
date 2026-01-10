@@ -33,7 +33,7 @@ export default function PatientsHeader({ patient, editForm, isEditing, readOnly,
 
                 {/* GRID FIELDS */}
                 <div className='pd-info__grid'>
-                    <InfoField label='Email' isEditing={isEditing} type='text' value={editForm?.email} display={patient?.email} onChange={(v) => onFieldChange('email', v)} />
+                    <InfoField label='Email' isEditing={isEditing} type='text' value={editForm?.email} display={patient?.email} onChange={(v) => onFieldChange('email', v)} locked />
                     <InfoField label='Phone' isEditing={isEditing} type='text' value={editForm?.phone} display={patient?.phone} onChange={(v) => onFieldChange('phone', v)} />
                     <InfoField label='Birthday' isEditing={isEditing} type='date' value={editForm?.birthday || ''} display={editForm?.birthday || patient?.birthday} onChange={(v) => onFieldChange('birthday', v)} />
                     <InfoField label='Age' isEditing={isEditing} type='number' value={editForm?.age} display={editForm?.age || patient?.age} onChange={() => {}} locked />

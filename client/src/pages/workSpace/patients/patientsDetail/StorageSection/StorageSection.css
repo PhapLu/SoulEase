@@ -123,6 +123,7 @@
 /* empty */
 .pd-storage__empty {
     padding: 18px;
+    width: 200px;
     color: rgba(0, 0, 0, 0.45);
 }
 
