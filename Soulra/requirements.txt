@@ -6,3 +6,4 @@ python-dotenv
 pymongo
 fastapi
 uvicorn
+langchain_groq
