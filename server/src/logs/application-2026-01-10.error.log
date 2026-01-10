@@ -13,3 +13,29 @@
 2026-01-10 22:11:12::error::/v1/api/conversation/readConversationDetail/695f55311ce44862d35124f7::bf75090b-26ad-482a-bd78-e8ae347095bf::handler-error::{"status":500,"message":"Session is not defined"}
 2026-01-10 22:11:12::error::/v1/api/conversation/readConversationDetail/695f55311ce44862d35124f7::9b4baf6d-cecf-4f62-988b-68e170e499b3::handler-error::{"status":500,"message":"Session is not defined"}
 2026-01-10 22:11:13::error::/v1/api/conversation/readConversationDetail/695f55311ce44862d35124f7::3fd4076f-f9a0-4e83-94e9-a4aa0db6697c::handler-error::{"status":500,"message":"Session is not defined"}
+2026-01-10 19:11:54::error::/v1/api/patientRecord/readPatientRecord/[object%20Object]::bf469b2b-1c35-4f73-bce0-7a2675e77047::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"User\""}
+2026-01-10 19:11:54::error::/v1/api/patientRecord/readPatientRecord/[object%20Object]::752bb150-d670-4a6f-99e2-928eb64dcdcc::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"User\""}
+2026-01-10 19:11:54::error::/v1/api/patientRecord/readPatientRecord/[object%20Object]::ee502e14-19b7-4b84-8429-5450e0262b80::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"User\""}
+2026-01-10 19:11:54::error::/v1/api/patientRecord/readPatientRecord/[object%20Object]::f0313432-3566-4f65-964c-bb0f551799b9::handler-error::{"status":500,"message":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"User\""}
+2026-01-10 21:38:38::error::/v1/api/patientRecord/getRecordsByPatient/695fd15a449a88e89f7936d0::9910d35e-f0b2-4ada-934c-5e38765ff0ff::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:38:38::error::/v1/api/patientRecord/getRecordsByPatient/695fd15a449a88e89f7936d0::59e2688a-1d30-488a-8b03-285903bd939b::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:38:45::error::/v1/api/patientRecord/getRecordsByPatient/695fd15a449a88e89f7936d0::c101bb40-9904-4cf7-99ea-63d8eaf33609::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:38:57::error::/v1/api/patientRecord/getRecordsByPatient/695fd15a449a88e89f7936d0::e917122e-2c19-4ae7-908c-c88e34e084da::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:38:58::error::/v1/api/patientRecord/getRecordsByPatient/695fd15a449a88e89f7936d0::c23d1a61-1fed-4db1-921e-a410bdd0b2f0::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:39:03::error::/v1/api/patientRecord/getRecordsByPatient/695fd15a449a88e89f7936d0::737bd029-0b56-4dd2-9329-b55a9aca65bb::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:39:04::error::/v1/api/patientRecord/getRecordsByPatient/695fd15a449a88e89f7936d0::03ed34aa-a434-4bed-be51-0bf9a56b6184::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:39:07::error::/v1/api/patientRecord/getRecordsByPatient/695bea58953a84b4229a7c5f::32fb1b3e-82bd-4586-9f47-6eec08bb964c::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:39:17::error::/v1/api/patientRecord/getRecordsByPatient/695bea58953a84b4229a7c5f::20139ea5-7a19-4931-a1e9-8a73f2f8882e::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:39:17::error::/v1/api/patientRecord/getRecordsByPatient/695bea58953a84b4229a7c5f::dcb7e809-f7ee-44f7-9c2b-b78ac016fcd9::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:39:21::error::/v1/api/patientRecord/getRecordsByPatient/695bea58953a84b4229a7c5f::785071b9-83fe-47c6-834b-5d4d61692dd8::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:39:21::error::/v1/api/patientRecord/getRecordsByPatient/695bea58953a84b4229a7c5f::72fecff4-87ee-4ac0-a05f-99059c10189c::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:39:24::error::/v1/api/patientRecord/getRecordsByPatient/695bea58953a84b4229a7c5f::b5d201f2-63b8-4370-a591-f89f8bc8b146::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 21:39:24::error::/v1/api/patientRecord/getRecordsByPatient/695bea58953a84b4229a7c5f::68eaf445-742f-4bf7-98d6-e0a2b1f5b93f::handler-error::{"status":404,"message":"Not Found Route"}
+2026-01-10 22:03:22::error::/v1/api/patientRecord/readPatientRecord/695bea58953a84b4229a7c5f::0c271047-e0be-49dd-8bb3-c2a9b7830162::handler-error::{"status":404,"message":"Record not found"}
+2026-01-10 22:03:22::error::/v1/api/patientRecord/readPatientRecord/695bea58953a84b4229a7c5f::3be9382a-273a-4404-8d6e-8ccfd331df1a::handler-error::{"status":404,"message":"Record not found"}
+2026-01-10 22:03:22::error::/v1/api/patientRecord/readPatientRecord/695bea58953a84b4229a7c5f::0981e66d-a8d0-4e27-8382-fdd80216bd72::handler-error::{"status":404,"message":"Record not found"}
+2026-01-10 22:03:22::error::/v1/api/patientRecord/readPatientRecord/695bea58953a84b4229a7c5f::4b330a35-696c-4f42-8b22-39a34ff7862c::handler-error::{"status":404,"message":"Record not found"}
+2026-01-10 22:03:28::error::/v1/api/patientRecord/readPatientRecord/695bea58953a84b4229a7c5f::48f061d0-6b84-471e-9b9b-91ad40cc6ec4::handler-error::{"status":404,"message":"Record not found"}
+2026-01-10 22:03:28::error::/v1/api/patientRecord/readPatientRecord/695bea58953a84b4229a7c5f::7133ffbc-1f0b-49db-911e-edafc51ba941::handler-error::{"status":404,"message":"Record not found"}
+2026-01-10 22:03:28::error::/v1/api/patientRecord/readPatientRecord/695bea58953a84b4229a7c5f::16049d36-b985-4f3f-af5c-88fb1147122f::handler-error::{"status":404,"message":"Record not found"}
+2026-01-10 22:03:28::error::/v1/api/patientRecord/readPatientRecord/695bea58953a84b4229a7c5f::27778b7c-4529-47da-858e-ee0a739b7e3f::handler-error::{"status":404,"message":"Record not found"}

@@ -1,6 +1,6 @@
 // src/components/conversation/assistantPanel/AssistantPanel.jsx
 import { useState, useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom' // 1. Thêm useNavigate
 import Soulra from '../../../assets/icons/Soulra.svg'
 import { pythonApiUtils } from '../../../utils/pythonRequest'
 import { apiUtils } from '../../../utils/newRequest'
@@ -8,33 +8,79 @@ import { useAuth } from '../../../contexts/auth/AuthContext'
 import '../../../pages/workSpace/conversation/Conversations.css'
 
 export default function AssistantPanel() {
-    const { conversationId } = useParams() // This is the patient/conversation ID
+    const { conversationId, patientRecordId } = useParams()
+    const navigate = useNavigate() // 2. Khởi tạo hook navigate
     const { userInfo } = useAuth()
 
     const [text, setText] = useState('')
     const [messages, setMessages] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-    const [viewMode, setViewMode] = useState('profile') // profile | ai
+    const [viewMode, setViewMode] = useState('profile')
     const [contactInfo, setContactInfo] = useState(null)
     const messagesEndRef = useRef(null)
 
-    // Auto-scroll to bottom
+   const [clinicalMetrics, setClinicalMetrics] = useState({
+        phq9: '—',
+        gad7: '—',
+        severity: '—',
+        risk: 'Low' 
+    })
+
+    useEffect(() => {
+    // Chỉ chạy khi đã lấy được thông tin người dùng (contactInfo)
+    if (!contactInfo?._id) return
+
+    const fetchMedicalRecord = async () => {
+        try {
+            let record = null;
+            
+            if (patientRecordId) {
+                const res = await apiUtils.get(`/patientRecord/readPatientRecord/${patientRecordId}`)
+                record = res.data?.metadata?.patientRecord || res.data?.patientRecord
+                console.log(record)
+            } else {
+                    console.warn("Không gọi được API tìm theo User ID, thử cách khác...")
+            }
+
+            // --- XỬ LÝ DỮ LIỆU ĐỂ HIỂN THỊ ---
+            if (record && record.sessions && record.sessions.length > 0) {
+                // Sắp xếp session theo ngày mới nhất (giảm dần)
+                const sortedSessions = [...record.sessions].sort((a, b) => new Date(b.date) - new Date(a.date))
+                const latest = sortedSessions[0]
+
+                setClinicalMetrics({
+                    phq9: latest.phq9 ?? '—',
+                    gad7: latest.gad7 ?? '—',
+                    severity: latest.severity ? `${latest.severity}/10` : '—',
+                    risk: latest.risk ?? 'Low'
+                })
+            } else {
+                // Reset về mặc định nếu không tìm thấy hồ sơ hoặc session
+                setClinicalMetrics({ phq9: '—', gad7: '—', severity: '—', risk: 'Low' })
+            }
+
+        } catch (error) {
+            console.error('Error fetching clinical metrics:', error)
+        }
+    }
+
+    fetchMedicalRecord()
+}, [contactInfo, patientRecordId])
+
+    // Auto-scroll
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
     }, [messages])
 
-    // Reset to profile when switching conversation
     useEffect(() => {
         setViewMode('profile')
     }, [conversationId])
 
-    // Load AI history when patient changes
     useEffect(() => {
         if (!conversationId) {
             setMessages([])
             return
         }
-
         const loadHistory = async () => {
             setIsLoading(true)
             try {
@@ -52,17 +98,14 @@ export default function AssistantPanel() {
                 setIsLoading(false)
             }
         }
-
         loadHistory()
     }, [conversationId])
 
-    // Load basic info for the other member
     useEffect(() => {
         if (!conversationId || !userInfo?._id) {
             setContactInfo(null)
             return
         }
-
         const fetchConversation = async () => {
             try {
                 const res = await apiUtils.get(`/conversation/readConversationDetail/${conversationId}`)
@@ -78,8 +121,10 @@ export default function AssistantPanel() {
 
         fetchConversation()
     }, [conversationId, userInfo?._id])
+    
 
     const handleSubmit = async (e) => {
+        // ... (Giữ nguyên logic submit cũ) ...
         e.preventDefault()
         if (!text.trim() || !conversationId || isLoading) return
 
@@ -89,16 +134,11 @@ export default function AssistantPanel() {
         setIsLoading(true)
 
         try {
-            // Call AI
             const response = await pythonApiUtils.post('/chat', {
-                conversation_id: conversationId, // Changed to match backend
+                conversation_id: conversationId,
                 message: userMessage,
             })
-
-            console.log(response)
-            const aiReply = response.data.ai_reply || 'No response from AI.' // Changed to match backend
-
-            // Append AI reply
+            const aiReply = response.data.ai_reply || 'No response from AI.'
             const aiMsg = { sender: 'ai', text: aiReply }
             setMessages((prev) => [...prev, aiMsg])
         } catch (error) {
@@ -108,6 +148,14 @@ export default function AssistantPanel() {
         } finally {
             setIsLoading(false)
         }
+    }
+
+    // 3. Hàm xử lý chuyển trang
+    const handleViewDetail = () => {
+        if (contactInfo?._id) {
+            navigate(`/workspace/patients/${contactInfo?._id}/profiles`) 
+        }
+        
     }
 
     const noConversation = !conversationId
@@ -125,7 +173,8 @@ export default function AssistantPanel() {
 
     return (
         <aside className={`ws-assistant ${isProfile ? 'ws-assistant--profile' : ''}`}>
-            <button type='button' className='ws-assistant__toggle' onClick={toggleView} aria-label={isProfile ? 'Switch to AI chat' : 'Switch to client info'} title={isProfile ? 'AI chat' : 'Client info'}>
+            {/* ... (Giữ nguyên phần Header) ... */}
+            <button type='button' className='ws-assistant__toggle' onClick={toggleView}>
                 {isProfile ? <img src={Soulra} alt='Soulra' width={20} height={20} style={{ display: 'block' }} /> : 'i'}
             </button>
 
@@ -147,6 +196,7 @@ export default function AssistantPanel() {
                         <div className='ws-assistant__profile-name'>{contactInfo?.fullName || 'Unknown'}</div>
                         <div className='ws-assistant__profile-meta'>{contactInfo?.gender?.toUpperCase() || '—'}</div>
 
+                        {/* Thông tin grid cũ */}
                         <div className='ws-assistant__profile-grid'>
                             <div className='ws-assistant__profile-row'>
                                 <span className='ws-assistant__profile-label'>Email:</span>
@@ -168,9 +218,32 @@ export default function AssistantPanel() {
                                 <span className='ws-assistant__profile-label'>Address:</span>
                                 <span className='ws-assistant__profile-value'>{contactInfo?.address || '—'}</span>
                             </div>
+                            <div className='ws-assistant__profile-row'>
+                                <span className='ws-assistant__profile-label'>PHQ9:</span>
+                                <span className='ws-assistant__profile-value'>{clinicalMetrics.phq9 || '—'}</span>
+                            </div>
+                            <div className='ws-assistant__profile-row'>
+                                <span className='ws-assistant__profile-label'>GAD7:</span>
+                                <span className='ws-assistant__profile-value'>{clinicalMetrics.gad7 || '—'}</span>
+                            </div>
+                            <div className='ws-assistant__profile-row'>
+                                <span className='ws-assistant__profile-label'>SEVERITY:</span>
+                                <span className='ws-assistant__profile-value'>{clinicalMetrics.severity || '—'}</span>
+                            </div>
                         </div>
+
+                        {/* 4. Button mới thêm vào đây */}
+                        {contactInfo && (
+                            <button 
+                                className='ws-assistant__view-btn' 
+                                onClick={handleViewDetail}
+                            >
+                                View Full Profile
+                            </button>
+                        )}
                     </div>
                 ) : noConversation ? (
+                    // ... (Giữ nguyên phần AI Chat empty) ...
                     <div className='ws-assistant__empty'>
                         <p>Select a patient to view AI chat history.</p>
                     </div>
@@ -179,6 +252,7 @@ export default function AssistantPanel() {
                         <p>Loading history...</p>
                     </div>
                 ) : (
+                   // ... (Giữ nguyên phần render Messages) ...
                     <>
                         {messages.map((msg, idx) => (
                             <div key={idx} className={`ws-assistant__bubble ${msg.sender === 'user' ? 'user' : 'ai'}`}>
@@ -195,6 +269,7 @@ export default function AssistantPanel() {
                 )}
             </div>
 
+            {/* ... (Giữ nguyên phần Input form) ... */}
             {!isProfile && (
                 <form className='ws-assistant__input' onSubmit={handleSubmit}>
                     <input placeholder={noConversation ? 'Select a patient first' : 'Ask any request...'} value={text} onChange={(e) => setText(e.target.value)} disabled={isLoading || noConversation} />
