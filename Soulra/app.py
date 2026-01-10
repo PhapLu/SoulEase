@@ -11,6 +11,15 @@ from utils.db import (
     save_ai_chat_messages,
 )
 
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    force=True,  # IMPORTANT for Render
+)
+logger = logging.getLogger(__name__)
+
 api_app = FastAPI(title="Soulra AI API")
 
 api_app.add_middleware(
@@ -38,9 +47,9 @@ async def chat_endpoint(request: ChatRequest):
             request.conversation_id
         )
 
-        print("🧠 AI CONTEXT:")
+        logger.info("🧠 AI CONTEXT:")
         for m in conversation_context:
-            print("-", m.content)
+            logger.info(f"- {m.content}")
 
         # 2️⃣ Add doctor's current prompt
         conversation_context.append(
@@ -58,12 +67,15 @@ async def chat_endpoint(request: ChatRequest):
 
         response_parts = []
 
-        for output in langgraph_app.stream(inputs):
-            for value in output.values():
-                if "messages" in value and value["messages"]:
-                    response_parts.append(
-                        value["messages"][-1].content
-                    )
+        try:
+            for output in langgraph_app.stream(inputs):
+                for value in output.values():
+                    if "messages" in value and value["messages"]:
+                        response_parts.append(value["messages"][-1].content)
+        except Exception as e:
+            logger.exception("❌ LangGraph streaming failed")
+            raise
+
 
         ai_response = "\n".join(response_parts)
 
@@ -77,7 +89,7 @@ async def chat_endpoint(request: ChatRequest):
             new_msgs
         )
         if not saved:
-            print("⚠️ Failed to save AI chat")
+            logger.info("⚠️ Failed to save AI chat")
 
         return {
             "ai_reply": ai_response
