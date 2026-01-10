@@ -87,3 +87,13 @@
 2026-01-11 00:29:32::info::/v1/api/patientRecord/readPatientRecord/695f55311ce44862d35124f5::e4acaf53-7533-4880-b4d0-6f91229585a8::input-params ::GET::::{}
 2026-01-11 00:29:32::info::/v1/api/relative/readRelatives/695f55311ce44862d35124fd::ab1720bf-89de-49ee-bf34-50c6e198972c::input-params ::GET::::{}
 2026-01-11 00:29:32::info::/v1/api/patientRecord/readPatientRecord/695f55311ce44862d35124f5::d7809934-3af2-4826-8062-f32f0ed80255::input-params ::GET::::{}
+2026-01-11 00:31:13::info::/v1/api/patientRecord/readPatientRecord/695f55311ce44862d35124f5::ffd89967-2bc5-4090-8e2c-f674753e87a9::input-params ::GET::::{}
+2026-01-11 00:31:13::info::/v1/api/user/me::ebfbecf8-afd7-48d9-93ef-f96c1c9df891::input-params ::GET::::{}
+2026-01-11 00:31:13::info::/v1/api/user/me::c486a08c-456f-4ec2-bc59-38f99a5f059b::input-params ::GET::::{}
+2026-01-11 00:31:13::info::/v1/api/patientRecord/readPatientRecord/695f55311ce44862d35124f5::cb58bf20-af18-4698-b006-f04fca986236::input-params ::GET::::{}
+2026-01-11 00:31:13::info::/v1/api/patientRecord/readPatientRecord/695f55311ce44862d35124f5::32292077-ffb2-4285-b6fc-8a0f07e34b83::input-params ::GET::::{}
+2026-01-11 00:31:13::info::/v1/api/relative/readRelatives/695f55311ce44862d35124fd::870a7fb2-6a94-444b-8692-811098d53005::input-params ::GET::::{}
+2026-01-11 00:31:13::info::/v1/api/patientRecord/readPatientRecord/695f55311ce44862d35124f5::0b3e53f7-8c65-4135-8ab0-d474c2e14411::input-params ::GET::::{}
+2026-01-11 00:31:14::info::/v1/api/patientRecord/readPatientRecord/695f55311ce44862d35124f5::f25d905f-96d8-4eec-a4c7-5798313f231c::input-params ::GET::::{}
+2026-01-11 00:31:14::info::/v1/api/relative/readRelatives/695f55311ce44862d35124fd::eea96bbd-b17d-44fb-be98-d92d5c5f4f66::input-params ::GET::::{}
+2026-01-11 00:31:14::info::/v1/api/patientRecord/readPatientRecord/695f55311ce44862d35124f5::3a9e4578-f520-45d1-9f20-2eb371d41871::input-params ::GET::::{}

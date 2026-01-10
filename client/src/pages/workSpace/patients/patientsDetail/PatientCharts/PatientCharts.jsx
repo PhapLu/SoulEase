@@ -158,9 +158,6 @@ export default function PatientCharts({ patientIdProp }) {
         <div className='charts-section'>
             <div className='charts-header'>
                 <h2>Health Trends & Overview</h2>
-                <button className='icon-btn' title='Edit Assessment'>
-                    <Pencil size={18} />
-                </button>
             </div>
 
             <div className='charts-grid'>
