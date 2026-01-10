@@ -104,7 +104,16 @@ class UserService {
 
         const staff = await User.create(staffData)
 
-        // 6. Create conversations
+        // 6. Create archived folder for doctor
+        if (role === 'doctor') {
+            await Folder.create({
+                title: 'Archived',
+                description: 'System-generated archived folder',
+                doctorId: staff._id,
+            })
+        }
+
+        // 7. Create conversations
 
         // Clinic ↔ Staff
         await Conversation.create({
@@ -134,7 +143,7 @@ class UserService {
             })
         }
 
-        // 7. Return safe payload
+        // 8. Return safe payload
         const createdStaff = await User.findById(staff._id).select('-password -accessToken -defaultPassword')
 
         return {
