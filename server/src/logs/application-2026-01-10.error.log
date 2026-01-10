@@ -5,3 +5,5 @@
 2026-01-10 19:41:18::error::/v1/api/patientRecord/readPatientRecord/695f55311ce44862d35124f5::2075ae8b-5d90-48b7-8d9c-60b8cd652e3d::handler-error::{"status":401,"message":"Please login to continue"}
 2026-01-10 19:41:19::error::/v1/api/user/me::0f924d4c-2a43-4bbe-9f70-d374890b58dc::handler-error::{"status":403,"message":"Access token missing"}
 2026-01-10 19:41:19::error::/v1/api/user/me::932132b4-6c1f-4ff7-b81c-3eb01eb06a68::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-10 21:16:58::error::/v1/api/user/me::041dd58b-9721-43f5-9b2b-d4c7bdd4a2a2::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-10 21:16:58::error::/v1/api/user/me::0cb24b38-ba09-4e3b-a229-14855508d524::handler-error::{"status":403,"message":"Access token missing"}
