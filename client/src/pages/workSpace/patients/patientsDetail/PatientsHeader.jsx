@@ -56,8 +56,6 @@ export default function PatientsHeader({ patient, editForm, isEditing, readOnly,
                     </div>
                 </div>
             </div>
-
-            {showImport && <button className='pd-import-btn'>Import +</button>}
         </section>
     )
 }
