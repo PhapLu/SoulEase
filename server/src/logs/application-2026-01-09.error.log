@@ -7,3 +7,4 @@
 2026-01-09 13:16:37::error::/v1/api/patientRecord/uploadFile/695fd15a449a88e89f7936d0::39787129-649d-4dca-9e5a-8c5427517775::handler-error::{"status":500,"message":"Upload is not defined"}
 2026-01-09 13:23:44::error::/v1/api/patientRecord/uploadFile/695fd15a449a88e89f7936d0::726e0fdc-5f84-4ae5-ac6a-a419eb4b5c4e::handler-error::{"status":500,"message":"s3 is not defined"}
 2026-01-09 15:10:17::error::/v1/api/patientRecord/deleteFile/695fd15a449a88e89f7936d0/6960a5ae445ed4e514f22ddd::7e9a7b89-5eee-481b-a63a-e4977d4e1e5e::handler-error::{"status":404,"message":"Patient record not found"}
+2026-01-09 15:11:59::error::/v1/api/patientRecord/deleteFile/695fd15a449a88e89f7936d0/6960a5ae445ed4e514f22ddd::fab04549-516b-4917-a6a8-4cd9e3cd13d3::handler-error::{"status":404,"message":"File not found"}

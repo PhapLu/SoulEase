@@ -28,7 +28,9 @@ export default function UserProfile() {
             setError('')
             try {
                 const res = await apiUtils.get(`/user/readUserProfile/${userId}`)
-                setUser(res.data.metadata.user)
+                const fetchedUser = res.data.metadata.user
+                setUser(fetchedUser)
+                setOriginalUser(structuredClone(fetchedUser))
                 setOriginalUser(res.data.metadata.user)
             } catch (e) {
                 setError(e?.response?.data?.message || 'Failed to load profile')
@@ -41,7 +43,7 @@ export default function UserProfile() {
     }, [userId])
 
     const onEdit = () => {
-        setOriginalUser(user) // snapshot again in case user re-enters edit
+        setOriginalUser(structuredClone(user))
         setIsEditing(true)
     }
 
@@ -110,7 +112,7 @@ export default function UserProfile() {
         try {
             await apiUtils.patch(`/user/updateUserProfile/${userId}`, user)
             setIsEditing(false) // 👈 exit edit mode
-            setOriginalUser(user) // 👈 update snapshot
+            setOriginalUser(structuredClone(user))
         } catch (e) {
             setError(e?.response?.data?.message || 'Save failed')
         } finally {

@@ -94,6 +94,7 @@ export default function AssistantPanel() {
                 message: userMessage,
             })
 
+            console.log(response)
             const aiReply = response.data.ai_reply || 'No response from AI.' // Changed to match backend
 
             // Append AI reply
@@ -124,7 +125,7 @@ export default function AssistantPanel() {
     return (
         <aside className={`ws-assistant ${isProfile ? 'ws-assistant--profile' : ''}`}>
             <button type='button' className='ws-assistant__toggle' onClick={toggleView} aria-label={isProfile ? 'Switch to AI chat' : 'Switch to client info'} title={isProfile ? 'AI chat' : 'Client info'}>
-                {isProfile ? <img src={Soulra} alt="Soulra" width={20} height={20} style={{ display: 'block' }} /> : 'i'}
+                {isProfile ? <img src={Soulra} alt='Soulra' width={20} height={20} style={{ display: 'block' }} /> : 'i'}
             </button>
 
             <div className='ws-assistant__header'>
@@ -197,7 +198,9 @@ export default function AssistantPanel() {
                 <form className='ws-assistant__input' onSubmit={handleSubmit}>
                     <input placeholder={noConversation ? 'Select a patient first' : 'Ask any request...'} value={text} onChange={(e) => setText(e.target.value)} disabled={isLoading || noConversation} />
                     <button type='submit' disabled={isLoading || !text.trim() || noConversation}>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z"/></svg>
+                        <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#FFFFFF'>
+                            <path d='M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z' />
+                        </svg>
                     </button>
                 </form>
             )}
