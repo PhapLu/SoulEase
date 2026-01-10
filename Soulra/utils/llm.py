@@ -1,10 +1,19 @@
-# utils/local_llm.py
-from langchain_ollama import ChatOllama
+from langchain_groq import ChatGroq
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 def get_local_llm(temperature=0.3, max_tokens=1024):
-    return ChatOllama(
-        model="gemma3:4b",
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        raise RuntimeError(
+            "GROQ_API_KEY environment variable is not set.\n"
+            "Create a .env in the Soulra folder with GROQ_API_KEY=your_key or set it in your environment."
+        )
+
+    return ChatGroq(
+        model="openai/gpt-oss-120b",
         temperature=temperature,
         max_tokens=max_tokens,
-        base_url="http://localhost:11434"
+        api_key=api_key,
     )
