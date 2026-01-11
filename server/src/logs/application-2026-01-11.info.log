@@ -5,6 +5,39 @@
 2026-01-11 00:02:09::info::/v1/api/conversation/readConversationDetail/695bf1f9987e265495d5a82b::88bac444-740a-4003-91ee-c26664d18e42::input-params ::GET::::{}
 2026-01-11 00:02:09::info::/v1/api/conversation/readConversations::3ba0d6b8-9524-4837-a27d-4730250c9f98::input-params ::GET::::{}
 2026-01-11 00:02:09::info::/v1/api/conversation/readConversationDetail/695bf1f9987e265495d5a82b::45bbe0c4-0daf-47d0-bd2e-e3860c6d7da8::input-params ::GET::::{}
+<<<<<<< HEAD
+2026-01-11 00:35:18::info::/v1/api/auth/logout::189ec314-dd05-4ecb-8425-6a9979352ff5::input-params ::POST::::{}
+2026-01-11 00:35:18::info::/v1/api/user/me::8e15e260-527f-4d79-bd0b-89efe6b6f929::input-params ::GET::::{}
+2026-01-11 00:35:18::error::/v1/api/user/me::8e15e260-527f-4d79-bd0b-89efe6b6f929::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-11 00:35:18::info::/v1/api/user/me::16667dd0-24fd-419b-9a1a-6b0dd387e16b::input-params ::GET::::{}
+2026-01-11 00:35:18::error::/v1/api/user/me::16667dd0-24fd-419b-9a1a-6b0dd387e16b::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-11 00:35:19::info::/v1/api/auth/login::5560df67-2374-4e3b-ad27-1cc7f9b863ac::input-params ::POST::::{"email":"doctor1@gmail.com","password":"PhapNhat987AZ@"}
+2026-01-11 00:35:20::info::/v1/api/user/me::99b9a3aa-c497-4886-abd9-7d03a2cf8ab6::input-params ::GET::::{}
+2026-01-11 00:35:20::info::/v1/api/folder/readFolders::11fdf04c-6b51-449c-9992-f3d9d9f76bab::input-params ::GET::::{}
+2026-01-11 00:35:20::info::/v1/api/folder/readFolders::94e7770b-210d-4020-9866-665d6e72a7a2::input-params ::GET::::{}
+2026-01-11 00:35:21::info::/v1/api/folder/readFolder/695beef0987e265495d5a703::7887e542-4718-4ea1-8db0-760dcfe34a0e::input-params ::GET::::{}
+2026-01-11 00:35:21::info::/v1/api/folder/readFolder/695beef0987e265495d5a703::103e36ae-a8a2-404e-8c99-1ab7a9031340::input-params ::GET::::{}
+2026-01-11 00:35:23::info::/v1/api/patientRecord/readPatientRecord/695bf1f9987e265495d5a829::ded3d5f2-3497-4fbd-9680-d0b59f73f651::input-params ::GET::::{}
+2026-01-11 00:35:23::info::/v1/api/patientRecord/readPatientRecord/695bf1f9987e265495d5a829::f03d6c51-67cd-41ea-a2fe-cba2badce862::input-params ::GET::::{}
+2026-01-11 00:35:23::info::/v1/api/patientRecord/readPatientRecord/695bf1f9987e265495d5a829::88bc44a9-28fc-48bb-ba23-fbdb24a79117::input-params ::GET::::{}
+2026-01-11 00:35:23::info::/v1/api/relative/readRelatives/695bf1fa987e265495d5a831::10ff5931-2a4d-4343-88ad-f2757d78670e::input-params ::GET::::{}
+2026-01-11 00:35:23::info::/v1/api/patientRecord/readPatientRecord/695bf1f9987e265495d5a829::7e9da5b9-1b35-4600-970b-fed175c84605::input-params ::GET::::{}
+2026-01-11 00:35:23::info::/v1/api/patientRecord/readPatientRecord/695bf1f9987e265495d5a829::22c59595-3bd1-4f9e-bdff-8f932feeed8a::input-params ::GET::::{}
+2026-01-11 00:35:24::info::/v1/api/relative/readRelatives/695bf1fa987e265495d5a831::e3fdf171-5700-4fe6-9b2a-682c026a33f6::input-params ::GET::::{}
+2026-01-11 00:35:24::info::/v1/api/patientRecord/readPatientRecord/695bf1f9987e265495d5a829::496d23bc-0abb-47be-800c-6584faee09d1::input-params ::GET::::{}
+2026-01-11 00:35:27::info::/v1/api/conversation/readConversations::3cb7c566-07d5-45de-b346-ec242a798273::input-params ::GET::::{}
+2026-01-11 00:35:27::info::/v1/api/conversation/readConversations::2b7fe7ef-1368-42a9-9ddc-6cadebd83006::input-params ::GET::::{}
+2026-01-11 00:35:37::info::/v1/api/conversation/readConversationDetail/696230888d95776e4115945a::c6813114-27bc-4329-9660-2c3b2ee3246d::input-params ::GET::::{}
+2026-01-11 00:35:38::info::/v1/api/conversation/readConversationDetail/696230888d95776e4115945a::435958a4-ac97-4ac7-8e9b-99b7a045d26b::input-params ::GET::::{}
+2026-01-11 00:35:38::info::/v1/api/conversation/readConversationDetail/696230888d95776e4115945a::6ab67564-4888-4d85-91bf-c152b6cbbc47::input-params ::GET::::{}
+2026-01-11 00:35:38::info::/v1/api/conversation/readConversationDetail/696230888d95776e4115945a::70b14161-fc15-41b9-ab6e-fd8415157e10::input-params ::GET::::{}
+2026-01-11 00:35:41::info::/v1/api/conversation/readConversationDetail/695bea58953a84b4229a7c66::34be653f-20d4-4e04-80d8-bbdb09b74a1d::input-params ::GET::::{}
+2026-01-11 00:35:42::info::/v1/api/conversation/readConversationDetail/695bea58953a84b4229a7c66::dbada4eb-67dc-49a4-add2-0da723cd02a8::input-params ::GET::::{}
+2026-01-11 00:35:42::info::/v1/api/conversation/readConversationDetail/695bf1f9987e265495d5a82b::030eabdf-4d44-485a-9ba6-d3c8741a922f::input-params ::GET::::{}
+2026-01-11 00:35:43::info::/v1/api/conversation/readConversationDetail/695bf1f9987e265495d5a82b::7a81c7e0-cbb1-46b8-9634-4e094609151b::input-params ::GET::::{}
+2026-01-11 00:35:43::info::/v1/api/conversation/readConversationDetail/695fd15a449a88e89f7936d2::9a53621a-f0a1-4b0b-a035-38538f29934b::input-params ::GET::::{}
+2026-01-11 00:35:44::info::/v1/api/conversation/readConversationDetail/695fd15a449a88e89f7936d2::23aebb0f-0ad8-4498-a8b5-00c1f509cc85::input-params ::GET::::{}
+=======
 2026-01-11 00:25:53::info::/v1/api/auth/login::3041299f-1ba3-453a-a88a-a1a269206d52::input-params ::POST::::{"email":"phap2k5@gmail.com","password":"Khongcopass@123"}
 2026-01-11 00:25:53::info::/v1/api/user/me::e437f3eb-c9bd-401c-ae1e-0c4738102a62::input-params ::GET::::{}
 2026-01-11 00:25:53::info::/v1/api/folder/readFolders::e0ca59be-4d7e-4602-80be-1207e00af0f7::input-params ::GET::::{}
@@ -166,3 +199,4 @@
 2026-01-11 10:23:18::info::/v1/api/folder/readFolders::d473d2cf-679b-46ec-b97e-763f75c9edf1::input-params ::GET::::{}
 2026-01-11 10:23:20::info::/v1/api/folder/readFolder/695beef0987e265495d5a703::2b6cdf11-6552-47d9-9e30-9f7ab9a392a8::input-params ::GET::::{}
 2026-01-11 10:23:20::info::/v1/api/folder/readFolder/695beef0987e265495d5a703::77fca964-bcab-4530-b9a0-efee7b6c93b9::input-params ::GET::::{}
+>>>>>>> c32af1f810377f3b954e09a5ad365f67d7ff2d26
