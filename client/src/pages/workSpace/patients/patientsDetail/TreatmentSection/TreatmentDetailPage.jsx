@@ -305,9 +305,9 @@ export default function TreatmentDetailPage() {
                                             <div className='tp-card__title'>Sessions</div>
                                         </div>
 
-                                        <div className='tp-list__tools'>
+                                        {/* <div className='tp-list__tools'>
                                             <input className='tp-input' placeholder='Search sessions (date, focus, notes, status, risk)...' value={query} onChange={(e) => setQuery(e.target.value)} />
-                                        </div>
+                                        </div> */}
                                     </div>
 
                                     {!expandedStage3 ? (
