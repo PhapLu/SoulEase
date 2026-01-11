@@ -112,40 +112,6 @@ export default function SymptomsSection({
                                     const isOther = selectValue === "__other";
                                     return (
                                         <>
-                                            <select
-                                                className="pd-input pd-input--symptom"
-                                                value={selectValue}
-                                                onChange={(e) => {
-                                                    const val = e.target.value;
-                                                    if (val === "__other") {
-                                                        onSymptomFieldChange(idx, "isCustom", true);
-                                                        onSymptomFieldChange(idx, "name", "");
-                                                        onSymptomFieldChange(idx, "sign", "");
-                                                        return;
-                                                    }
-                                                    if (!val) {
-                                                        onSymptomFieldChange(idx, "isCustom", false);
-                                                        onSymptomFieldChange(idx, "name", "");
-                                                        onSymptomFieldChange(idx, "sign", "");
-                                                        return;
-                                                    }
-                                                    const preset = presetSymptoms.find((p) => p.id === val);
-                                                    if (preset) {
-                                                        onSymptomFieldChange(idx, "isCustom", false);
-                                                        onSymptomFieldChange(idx, "name", preset.name);
-                                                        onSymptomFieldChange(idx, "sign", preset.sign);
-                                                    }
-                                                }}
-                                            >
-                                                <option value="">Select symptom</option>
-                                                {presetSymptoms.map((p) => (
-                                                    <option key={p.id} value={p.id}>
-                                                        {p.name}
-                                                    </option>
-                                                ))}
-                                                <option value="__other">Other</option>
-                                            </select>
-
                                             {isOther ? (
                                                 <input
                                                     className="pd-input pd-input--symptom"
@@ -156,7 +122,41 @@ export default function SymptomsSection({
                                                     }
                                                     onKeyDown={(e) => onSymptomKeyDown(e, idx)}
                                                 />
-                                            ) : null}
+                                            ) : (
+                                                <select
+                                                    className="pd-input pd-input--symptom"
+                                                    value={selectValue}
+                                                    onChange={(e) => {
+                                                        const val = e.target.value;
+                                                        if (val === "__other") {
+                                                            onSymptomFieldChange(idx, "isCustom", true);
+                                                            onSymptomFieldChange(idx, "name", "");
+                                                            onSymptomFieldChange(idx, "sign", "");
+                                                            return;
+                                                        }
+                                                        if (!val) {
+                                                            onSymptomFieldChange(idx, "isCustom", false);
+                                                            onSymptomFieldChange(idx, "name", "");
+                                                            onSymptomFieldChange(idx, "sign", "");
+                                                            return;
+                                                        }
+                                                        const preset = presetSymptoms.find((p) => p.id === val);
+                                                        if (preset) {
+                                                            onSymptomFieldChange(idx, "isCustom", false);
+                                                            onSymptomFieldChange(idx, "name", preset.name);
+                                                            onSymptomFieldChange(idx, "sign", preset.sign);
+                                                        }
+                                                    }}
+                                                >
+                                                    <option value="">Select symptom</option>
+                                                    {presetSymptoms.map((p) => (
+                                                        <option key={p.id} value={p.id}>
+                                                            {p.name}
+                                                        </option>
+                                                    ))}
+                                                    <option value="__other">Other</option>
+                                                </select>
+                                            )}
 
                                             <input
                                                 className="pd-input pd-input--symptom"
