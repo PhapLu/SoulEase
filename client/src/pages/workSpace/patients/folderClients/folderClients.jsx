@@ -252,14 +252,14 @@ export default function FolderClients() {
                             <input type='search' placeholder='Search client ...' value={search} onChange={(e) => setSearch(e.target.value)} className='folder-search-input' />
                         </div>
 
-                        <div className='folder-sort-wrapper'>
+                        {/* <div className='folder-sort-wrapper'>
                             <label className='folder-sort-label'>Sort:</label>
                             <select className='folder-sort-select' value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
                                 <option value='lastName'>Last name</option>
                                 <option value='firstName'>First name</option>
                                 <option value='age'>Age</option>
                             </select>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* TABLE */}
