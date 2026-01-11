@@ -108,7 +108,7 @@ export default function SymptomsSection({
                                         null;
                                     const selectValue = match
                                         ? match.id
-                                        : (s.name || s.sign) ? "__other" : "";
+                                        : s.isCustom ? "__other" : "";
                                     const isOther = selectValue === "__other";
                                     return (
                                         <>
@@ -118,17 +118,20 @@ export default function SymptomsSection({
                                                 onChange={(e) => {
                                                     const val = e.target.value;
                                                     if (val === "__other") {
+                                                        onSymptomFieldChange(idx, "isCustom", true);
                                                         onSymptomFieldChange(idx, "name", "");
                                                         onSymptomFieldChange(idx, "sign", "");
                                                         return;
                                                     }
                                                     if (!val) {
+                                                        onSymptomFieldChange(idx, "isCustom", false);
                                                         onSymptomFieldChange(idx, "name", "");
                                                         onSymptomFieldChange(idx, "sign", "");
                                                         return;
                                                     }
                                                     const preset = presetSymptoms.find((p) => p.id === val);
                                                     if (preset) {
+                                                        onSymptomFieldChange(idx, "isCustom", false);
                                                         onSymptomFieldChange(idx, "name", preset.name);
                                                         onSymptomFieldChange(idx, "sign", preset.sign);
                                                     }

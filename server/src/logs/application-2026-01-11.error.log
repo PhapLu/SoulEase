@@ -2,3 +2,9 @@
 2026-01-11 10:23:04::error::/v1/api/user/me::bdef6537-99bd-4300-85fa-c38904004ffa::handler-error::{"status":403,"message":"Access token missing"}
 2026-01-11 00:35:18::error::/v1/api/user/me::8e15e260-527f-4d79-bd0b-89efe6b6f929::handler-error::{"status":403,"message":"Access token missing"}
 2026-01-11 00:35:18::error::/v1/api/user/me::16667dd0-24fd-419b-9a1a-6b0dd387e16b::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-11 03:04:11::error::/v1/api/user/me::6d4b735a-08a3-42ab-8c33-0be9292d1473::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-11 03:04:11::error::/v1/api/user/me::d88f74e3-4041-4d8e-870d-21a9a86097e6::handler-error::{"status":403,"message":"Access token missing"}
+2026-01-11 03:05:55::error::/v1/api/auth/login::dfd59cd5-6443-44b0-a34d-76602144fe9a::handler-error::{"status":401,"message":"Account or password is invalid"}
+2026-01-11 03:06:01::error::/v1/api/auth/login::ca64f08a-362a-45ca-a0c3-33f36c29bd84::handler-error::{"status":401,"message":"Account or password is invalid"}
+2026-01-11 03:06:03::error::/v1/api/auth/login::ad31d5d4-ed0c-4caf-bfa1-348e2d2c589e::handler-error::{"status":401,"message":"Account or password is invalid"}
+2026-01-11 03:06:03::error::/v1/api/auth/login::d9305c43-f594-4937-a85d-25e6731ab257::handler-error::{"status":401,"message":"Account or password is invalid"}

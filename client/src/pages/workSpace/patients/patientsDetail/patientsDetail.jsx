@@ -296,6 +296,7 @@ export default function PatientsDetail() {
                     id: `tmp-${Date.now()}`,
                     name: '',
                     sign: '',
+                    isCustom: false,
                     date: new Date().toISOString().split('T')[0],
                     status: 'Active',
                 },
